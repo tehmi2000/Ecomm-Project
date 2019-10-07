@@ -1,0 +1,67 @@
+*{
+    box-sizing: border-box; 
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #fcfcff;
+    padding: 0;
+    margin: 0;
+}
+
+header{
+    width: 100%;
+}
+
+header a:link{
+    text-decoration: none;
+}
+
+main{
+    padding: 0.9rem;
+}
+
+ul{
+    padding: 0;
+}
+
+button:hover, input[type="submit"]:hover, a:link:hover{
+    cursor: pointer;
+};
+
+.drop-container{
+    
+}
+
+.drop-button{
+
+}
+
+.drop-content{
+    display: none;
+    z-index: +10;
+    position: absolute;
+    border: 1px solid red;
+}
+
+.drop-container:hover{
+    cursor: pointer;
+}
+
+.drop-container:hover .drop-content{
+    display: block;
+}
+
+.rows{
+    display:flex;
+    flex-direction: row;
+}
+
+.cols{
+    display:flex;
+    flex-direction: column;
+}

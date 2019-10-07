@@ -1,0 +1,99 @@
+/* DARK SHADE WHITE = #f2f2f5
+   LIGHT SHADE WHITE = #fcfcff*/
+
+body{
+    background-color: #f2f2f5;
+    overflow-x: hidden;
+}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< MAIN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+.pane{
+    /* padding: 0.5rem; */
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.item{
+    text-decoration: none;
+    width: 20%;
+    /* min-width: calc(90px + 1.8rem); */
+    overflow: hidden;
+    padding: 0.8rem 0.6rem;
+    margin: 0.5rem 0.9rem;
+    box-shadow: 2px 2px 3px #dfdfe4;
+    background-color: #fcfcff;
+    justify-content: space-between;
+}
+
+.item *{
+    width: 100%;
+}
+
+.item .item-img{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0 auto;
+    height: 14vmax;
+    max-height: 205px;
+    /* min-width: 90px; */
+    min-height: 100px;
+    /* border: 1px solid salmon; */
+}
+
+.item .item-img [class^="icofont-"]{
+    width: auto;
+    font-size: 8rem;
+    color: rgb(233, 62, 0);
+}
+
+.item .item-description{
+    padding: 0 2%;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+.item .item-description > *{
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.pane .section-body{
+    width: 100%;
+    overflow-y: auto;
+    height: auto;
+    overflow: auto;
+    background-color: #f2f2f5;
+}
+
+.pane .section-body .slider{
+    width: auto;
+    flex-wrap: wrap;
+}
+
+@media only screen and (max-width:1000px){
+    .section-bottom > *:first-child, .section-bottom > *:last-child{
+        display: none;
+    }
+
+    header #search-form{
+        width: 95vw;
+    }
+
+    #slideshow{
+        height: 50vh;
+    }
+
+    .pane .item{
+        width: 44%;
+        padding: 0.8rem 0.6rem;
+    }
+
+    .item .item-img [class^="icofont-"]{
+        font-size: 5rem;
+    }
+}

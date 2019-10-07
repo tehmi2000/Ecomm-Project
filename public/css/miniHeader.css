@@ -1,0 +1,108 @@
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0.5rem 1rem;
+    box-shadow: 1px 1px 2px #e0e0e5;
+    background-color: #fcfcff;
+}
+
+header [class^="section"]{
+    padding: 0.4rem 0;
+    width: 100%;
+}
+
+header [class^="section"] *{
+    vertical-align: middle;
+}
+
+header #logo{
+    max-height: 2.5rem;
+}
+
+header .section-top{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.drop-container{
+    
+}
+
+.drop-button{
+    color: orangered;
+}
+
+.drop-content{
+    display: none;
+    z-index: +10;
+    position: absolute;
+    border: 1px solid red;
+}
+
+.drop-container:hover{
+    cursor: pointer;
+}
+
+.drop-container:hover .drop-content{
+    display: block;
+}
+
+#search-form button[type="submit"], [class^="section"] [class^="icofont-"]{
+    font-size: 18px;
+    color: orangered;
+}
+
+#sidemenu {
+    position: absolute;
+    top: 0;
+    margin-left: -70%; 
+    width: 30vw;
+    height: 100vh;
+    min-width: 25rem;
+    min-height: 40rem;
+    background-color: #fcfcff;
+    box-shadow: 1px 1px 2px #ccccc8;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+#sidemenu nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 2rem auto 5rem auto;
+    width: calc(100% - 3rem)
+}
+
+#sidemenu nav button{
+    border: none;
+    background-color: rgb(240, 68, 6);
+    border-radius: 5px;
+    padding: 1rem 1.5rem;
+    color: #fcfcff;
+    box-shadow: 2px 2px 3px #e0e0e5;
+}
+
+#sidemenu a:link, #sidemenu a:visited, #sidemenu a:hover{
+    color: #3f3333;
+}
+
+#sidemenu ul, #sidemenu a:link{
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+#sidemenu li{
+    font-size: 15px;
+    padding: 0 2rem 0.5rem 1.5rem;
+    margin: 2rem 0;
+    border-bottom: 1px solid rgba(122, 33, 0, 0.1); 
+}

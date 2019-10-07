@@ -1,0 +1,87 @@
+/* DARK SHADE WHITE = #f2f2f5
+   LIGHT SHADE WHITE = #fcfcff*/
+
+body{
+    background-color: #f2f2f5;
+    overflow-x: hidden;
+}
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< MAIN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+main{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1rem;
+    box-shadow: 1px 1px 3px rgba(224, 224, 229, 0.87);
+    background-color: #fafafd;
+}
+
+main h1{
+    text-align: center;
+}
+
+main *{
+    color: #3f3333;
+}
+
+main form{
+    width: 35vw;
+    display:flex;
+    flex-direction: column;
+    margin: 2rem auto 1rem auto;
+    padding: 2rem;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 0 4px rgb(206, 206, 206);
+}
+
+#login-form input[type="text"], #login-form input[type="password"]{
+    width: 100%;
+    border: none;
+    padding: 1.5rem 2rem;
+    margin: 0.9rem 0 2.5rem 0;
+    background-color: #efefef;
+}
+
+#login-form input[type="submit"]{
+    width: 100%;
+    border: none;
+    background-color: rgb(240, 68, 6);
+    color: #fcfcff;
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0 0.9rem 0;
+    box-shadow: 1px 1px 2px rgba(185, 91, 3, 0.637);
+}
+
+#login-form label{
+    color: rgb(202, 55, 1);
+    font-size: 12px;
+}
+
+#login-form+div{
+    width: 35vw;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#login-form+div a:link{
+    color: rgb(255, 86, 56);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+@media only screen and (max-width:1000px){
+    main form{
+        width: 80vw;
+    }
+
+    #login-form+div{
+        width: 80vw;
+    }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign up here</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/miniHeader.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
+    <script src="/js/main.js"></script>
+    <script src="/js/login.js"></script>
+</head>
+<body>
+    <header>
+        <div class="section-top">
+            <div class="left-tab">
+                <span class="icofont-navigation-menu" id="open-menu-btn" onclick="javascript:openMenu()"></span>
+                <span><a href="/"><img src="/assets/images/fav.png" alt="LOGO" id="logo"></a></span>
+            </div>
+
+            <div class="right-tab">
+                <span class="drop-container">
+                    <span class="drop-button">More<i class="icofont-caret-down"></i></span>
+                    <ul class="drop-content">
+                        <li><a href="">[Get Started]</a></li>
+                        <li><a href="">[Explore]</a></li>
+                        <li><a href="">[Explore]</a></li>
+                        <li><a href="">[Marketing]</a></li>
+                        <li><a href="">[Pricing]</a></li>
+                        <li><a href="">[Explore]</a></li>
+                    </ul>
+                </span>
+
+                <span class="icofont-cart"></span>
+            </div>
+        </div>
+
+        <!-- <div class="section-bottom">
+            <div class="one-tab">
+                
+            </div>
+        </div> -->
+    </header>
+
+    <aside id="sidemenu">
+        <nav>
+            <div>
+                <button>Login</button>
+                <button>Sign up</button>
+            </div>
+            
+            <div>
+                <button id="close-menu-btn" class="icofont-close" onclick="javascript:closeMenu()"></button>
+            </div>
+        </nav>
+
+        <ul>
+            <li><a href="/categories">All categories</a></li>
+            <li><a href="http://">Accessories</a></li>
+            <li><a href="http://">Electronics</a></li>
+            <li><a href="http://">Phones & Tablets</a></li>
+            <li><a href="http://">Fashion & Beauty</a></li>
+            <li><a href="http://">Break the law</a></li>
+        </ul>
+
+    </aside>
+
+    <main>
+        <h1>Welcome back</h1>
+
+        <form action="/auth" method="post" id="login-form">
+            <div class="error"></div>
+            <label for="">Username</label>
+            <input type="text" name="username" id="" placeholder="Your username">
+            <label for="">Password</label>
+            <input type="password" name="password" id="" placeholder="Your password">
+            <input type="submit" value="Log In">
+        </form>
+        <div>
+            <a href="http://he">Forgot password?</a>
+            <a href="http://he">Sign up instead</a>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+</html>
