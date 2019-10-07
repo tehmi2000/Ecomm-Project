@@ -7,7 +7,7 @@
     <title>Sign up here</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/miniHeader.css">
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/signup.css">
     <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
     <script src="/js/main.js"></script>
     <script src="/js/login.js"></script>
@@ -68,19 +68,31 @@
     </aside>
 
     <main>
-        <h1>Welcome back</h1>
+        <h1>Create your account</h1>
 
-        <form action="/auth" method="post" id="login-form">
+        <form action="/register" method="post" id="sign-up-form">
             <div class="error"></div>
+            <label for="">Fullname</label>
+            <input type="text" name="fullname" id="" placeholder="Example: John Doe">
             <label for="">Username</label>
             <input type="text" name="username" id="" placeholder="Your username">
+            <label for="">Email</label>
+            <input type="email" name="user_email" id="" placeholder="E.g: example_email@somemail.com">
             <label for="">Password</label>
             <input type="password" name="password" id="" placeholder="Your password">
-            <input type="submit" value="Log In">
+            <label for="">Confirm Password</label>
+            <input type="password" name="confirm-password" id="" placeholder="Re-type password">
+
+            <div class="rows">
+                <input type="checkbox" name="tc_agreement" id="">
+                <span style="vertical-align: middle; ">Do you agree with our terms and condition?</span>
+            </div>
+
+            <input type="submit" value="Sign Up">
         </form>
         <div>
             <a href="http://he">Forgot password?</a>
-            <a href="http://he">Sign up instead</a>
+            <a href="/login">Login instead</a>
         </div>
     </main>
 
