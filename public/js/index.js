@@ -1,3 +1,5 @@
+const socket = io();
+
 const images = ["0a9c147c668744d0afcb9d320afa0b73.jpg", "IMG-20180905-WA0011.jpg", "IMG-20180715-WA0007.jpg", "IMG-20190527-WA0029.jpg"];
 let counter = 0;
 
@@ -67,10 +69,30 @@ window.onload = function () {
 
     if (get_cookie("username")) {
 
+        
         let div0 = create("DIV");
-        let child = "<a href='/myprofile'><img src='../assets/images/Logo.png' alt='' class='user-picture'></a><a href='/logout'><button>Logout</button></a>";
+        let child = "<a href='/myprofile'><img id='user-photo' src='../assets/images/Logo.png' alt='' class='user-picture'></a><a href='/logout'><button>Logout</button></a>";
         div0.innerHTML = child;
-
         document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
+        
+        fetch(`/api/user/${get_cookie("username").value}`).then(async function(response) {
+            try {
+                let user_data = await response.json();
+                if(user_data.profile_picture !== ""){
+                    console.log(user_data);
+                    document.querySelector("#sidemenu #user-photo").src = user_data.profile_picture;
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }).catch(function(error) {
+            console.error(error);
+        });
+        // socket.emit("get-user-data", get_cookie("username").value);
     }
 };
+
+socket.on("receive-user-data", function(object) {
+    alert(JSON.stringify(object));
+    // document.querySelector("#sidemenu #user-photo").src = object.pp;
+});

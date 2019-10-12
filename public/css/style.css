@@ -65,3 +65,11 @@ button:hover, input[type="submit"]:hover, a:link:hover{
     display:flex;
     flex-direction: column;
 }
+
+.fill-container{
+    width: 100%;
+}
+
+.broken-fields > *:not(*:first-child){
+    margin-left: 1%;
+}

@@ -89,6 +89,7 @@ main form{
 @media only screen and (max-width:1000px){
     main h1{
         text-align: center;
+        margin-left: -3%;
     }
 
     main form{

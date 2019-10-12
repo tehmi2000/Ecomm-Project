@@ -32,8 +32,7 @@ main #profile-form{
     display:flex;
     flex-direction: column;
     margin: 0.2rem auto 0.2rem auto;
-    border-radius: 5px;
-    
+    border-radius: 5px; 
 }
 
 #profile-form img#user-picture{
@@ -93,12 +92,16 @@ main #profile-form{
     border-radius: 0 0 5px 5px;
 }
 
-#profile-form input[type="text"], #profile-form input[type="password"]{
+#profile-form input:not([type="submit"]), #profile-form select{
     width: 100%;
     border: none;
     padding: 1.5rem 2rem;
     margin: 0.9rem 0 2.5rem 0;
     background-color: #efefef;
+}
+
+#profile-form select{
+    padding: 1.4rem 0.8rem;
 }
 
 #profile-form input[type="submit"]{
@@ -123,13 +126,18 @@ main #profile-form{
     margin-top: 1rem; 
 }
 
+#profile-form .section-top .panel *{
+    text-decoration: none;
+    align-items: center;
+}
+
 #profile-form .section-top .panel .panel-pad{
     align-items: center;
-    border-radius: 2px; 
-    width: 9rem;
+    /* border-radius: 2px;  */
+    width: 40%;
     margin: 1rem;
     padding: 0.2rem;
-    box-shadow: 0 0 2px #b0b0b5;
+    box-shadow: 1px 1px 3px #c1c1c7;
 }
 
 #profile-form .section-top .pad-img{
@@ -138,18 +146,21 @@ main #profile-form{
 }
 
 #profile-form .section-top .pad-txt{
+    text-align: center;
     font-size: 1.5rem;
     padding: 0.5rem;
 }
 
 @media only screen and (max-width:1000px){
     main #profile-form{
-        width: 90vw;
+        width: 95vw;
+        margin: 0;
+        /* border-radius: 0;  */
     }
 
     #profile-form img#user-picture{
-        width: 22vw;
-        height: 22vw;
+        width: 24vw;
+        height: 24vw;
         border-radius: 30% 50% 50% 50%;
     }
 

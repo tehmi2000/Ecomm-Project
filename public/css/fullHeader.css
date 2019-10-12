@@ -113,8 +113,8 @@ header #search-form{
     vertical-align: middle;
     margin: auto 1rem auto 0;
     box-shadow: 2px 2px 3px #e0e0e5;
-    border: 1px solid brown;
-    background-color: #222222;
+    border: 1px solid rgb(90, 49, 49);
+    background-color: #ccc;
 }
 
 #sidemenu nav button{

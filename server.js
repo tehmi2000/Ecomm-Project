@@ -58,7 +58,17 @@ app.get("/logout", controller.logout);
 app.get("/myprofile", controller.myprofile);
 app.get("/search", controller.search);
 
+app.get("/api/user/:username", controller.data);
+
 app.post("/auth", controller.auth); // Login handler
 app.post("/register", controller.register); // Sign up/Registration handler
 
 app.use("/categories", require("./router/categoryRoute"));
+
+// SOCKET CONNECTION
+io.on("connection", function(socket) {
+    socket.on("get-user-data", function(username) {
+        
+        socket.emit("receive-user-data", {username: controller.session_user});
+    });
+});

@@ -13,6 +13,7 @@
     <script src="/js/profile.js"></script>
 </head>
 <body>
+
     <header>
         <div class="section-top">
             <div class="left-tab">
@@ -49,55 +50,106 @@
                                 <img id="user-picture" src="/assets/images/temi.jpg" alt="h">
                             </div>
                             <div class="cols">
-                                <span id="fullname" style="margin: 1rem; font-size: 2.2rem; color: #efefef">Temiloluwa Ogunbanjo</span>
-                                <span id="user-address" style="margin: 1rem 1.3rem; font-size: 1.8rem; color: #ececec"><i class="icofont-google-map"></i>Address</span>
-                                <span id="" style="margin: 1rem 1.3rem; font-size: 1.8rem; color: #ececec">Temiloluwa Ogunbanjo</span>
+                                <span id="fullname" style="margin: 1rem; font-size: 2.5rem; color: #efefef">N/A</span>
+
+                                <span style="margin: 1rem 1.3rem; font-size: 1.7rem;">
+                                    <i class="icofont-google-map"></i>
+                                    <span id="user-address" style="color: #d5d5d5">Lagos, Nigeria</span>
+                                </span>
+
                             </div>
                         </div>
 
                         <div style="margin: 1rem 0; text-align: center;">
-                            <i class="icofont-phone"></i><span style="font-size: 1.3rem; color: #ececec">Tel: Not available</span>
+                            <i class="icofont-phone"></i><span id="telephone" style="font-size: 1.3rem; color: #ececec">Tel: N/A</span>
                         </div>
 
-                        <div style="text-align: right;">
-                            <i style="margin: 1rem; font-size: 1.2rem">Copyright of unilag</i>
+                        <div style="margin-top: 1rem; text-align: right; font-size: 1.3rem;">
+                            <i class="icofont-key" style="color: #555555"></i>
+                            <span id="uuid" style="font-style: italic; margin-left: 0.5rem; font-size: 1.2rem; color: #555555">ZS12ercHRkelQWEJD39dcWEF</span>
                         </div>
                     </div>
 
                     <div class="panel rows">
-                        <span class="panel-pad cols">
-                            <i class="pad-img icofont-restaurant"></i>
-                            <span class="pad-txt">My orders</span>
-                        </span>
+                        <a href="" class="panel-pad cols">
+                            <i class="pad-img icofont-food-cart"></i>
+                            <span class="pad-txt">Post An Item</span>
+                        </a>
 
-                        <span class="panel-pad cols">
-                            <i class="pad-img icofont-restaurant"></i>
-                            <span class="pad-txt">My orders</span>
-                        </span>
+                        <a href="" class="panel-pad cols">
+                            <i class="pad-img icofont-notepad"></i>
+                            <span class="pad-txt">My Posts</span>
+                        </a>
 
-                        <span class="panel-pad cols">
-                            <i class="pad-img icofont-restaurant"></i>
-                            <span class="pad-txt">My orders</span>
-                        </span>
+                        <a href="" class="panel-pad cols">
+                            <i class="pad-img icofont-cart"></i>
+                            <span class="pad-txt">View My Cart</span>
+                        </a>
 
-                        <span class="panel-pad cols">
+                        <a href="" class="panel-pad cols">
                             <i class="pad-img icofont-restaurant"></i>
                             <span class="pad-txt">My orders</span>
-                        </span>
+                        </a>
                     </div>
                 </div>
 
                 <div class="tab-right">
+                    <div class="broken-fields rows">
+                        <div class="fill-container cols">
+                            <label for="">Firstname</label>
+                            <input type="text" name="firstname" id="" placeholder="Type here...">
+                        </div>
+
+                        <div class="fill-container cols">
+                            <label for="">Lastname</label>
+                            <input type="text" name="lastname" id="" placeholder="Type here...">
+                        </div>
+                    </div>
                     <label for="">Username</label>
-                    <input type="text" name="username" id="" placeholder="Your username">
-                    <label for="">Password</label>
+                    <input type="text" name="username" id="" placeholder="Edit username">
+                    <label for="">Email</label>
+                    <input type="email" name="email" id="" placeholder="Your Email">
+                    <div class="broken-fields rows">
+                        <div class="fill-container cols">
+                            <label for="">Region / State</label>
+                            <select name="" id="">
+                                <option value="">--- Select ---</option>
+                                <option value="">Ogun State</option>
+                                <option value="">Abeokuta</option>
+                            </select>
+                            <!-- <input type="text" name="firstname" id="" placeholder="Type here..."> -->
+                        </div>
+
+                        <div class="fill-container cols">
+                            <label for="">Country</label>
+                            <select name="" id="">
+                                <option value="">--- Select ---</option>
+                                <option value="">Ogun State</option>
+                                <option value="">Abeokuta</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="broken-fields rows">
+                        <div class="cols">
+                            <label for="">Tel Code</label>
+                            <select name="" id="">
+                                <option value="">--- Select ---</option>
+                                <option value="">Ogun State</option>
+                                <option value="">Abeokuta</option>
+                            </select>
+                            <!-- <input type="text" name="firstname" id="" placeholder="Type here..."> -->
+                        </div>
+
+                        <div class="fill-container cols">
+                            <label for="">Mobile Number</label>
+                            <input type="tel" name="username" id="" placeholder="Your phone number">
+                        </div>
+                    </div>
+                    <!-- <label for="">Password</label>
                     <input type="password" name="password" id="" placeholder="Your password">
                     <label for="">Username</label>
-                    <input type="text" name="username" id="" placeholder="Your username">
-                    <label for="">Password</label>
-                    <input type="password" name="password" id="" placeholder="Your password">
-                    <label for="">Username</label>
-                    <input type="text" name="username" id="" placeholder="Your username">
+                    <input type="text" name="username" id="" placeholder="Your username"> -->
                 </div>
             </div>
 
