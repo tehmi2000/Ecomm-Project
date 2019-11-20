@@ -122,7 +122,7 @@ body{
 
 
 
-@media only screen and (max-width:1000px){
+@media only screen and (max-width:800px){
     .section-bottom > *:first-child, .section-bottom > *:last-child{
         display: none;
     }

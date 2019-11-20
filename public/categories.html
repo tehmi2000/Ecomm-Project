@@ -21,31 +21,31 @@
             </div>
 
             <div class="right-tab">
-                <span class="icofont-cart"></span>
+                <a href="#explore"><span class="icofont-cart"></span></a>
             </div>
         </div>
 
         <div class="section-bottom">
             <div class="left-tab">
                 <ul>
-                    <li><a href="">[Get Started]</a></li>
-                    <li><a href="">[Explore]</a></li>
-                    <li><a href="">[Explore]</a></li>
+                    <li><a href="#">Get Started</a></li>
+                    <li><a href="#">Explore</a></li>
+                    <li><a href="#">Explore</a></li>
                 </ul>
             </div>
 
             <div class="middle-tab">
-                <form action="/search" method="get" id="search-form">
-                    <input type="search" name="query" id="" placeholder="Search for an item or thing">
+                <form action="/search" method="get" id="search-form" onsubmit="return validateSearch()">
+                    <input type="search" name="query" id="searchField" placeholder="Search for an item or thing">
                     <button type="submit"><i class="icofont-search"></i></button>
                 </form>
             </div>
 
             <div class="right-tab">
                 <ul>
-                    <li><a href="">[Marketing]</a></li>
-                    <li><a href="">[Pricing]</a></li>
-                    <li><a href="">[Explore]</a></li>
+                    <li><a href="#">Marketing</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Support</a></li>
                 </ul>
             </div>
         </div>
@@ -63,13 +63,35 @@
             </div>
         </nav>
 
+        <nav id="controls" class="panel rows">
+            <a href="/myprofile/orders?sectid=2" class="panel-pad cols">
+                <i class="pad-img icofont-food-cart"></i>
+                <span class="pad-txt">Sell An Item</span>
+            </a>
+
+            <a href="/myprofile/orders?sectid=3" class="panel-pad cols">
+                <i class="pad-img icofont-notepad"></i>
+                <span class="pad-txt">My Posts</span>
+            </a>
+
+            <a href="/myprofile/orders?sectid=1" class="panel-pad cols">
+                <i class="pad-img icofont-cart"></i>
+                <span class="pad-txt">View My Cart</span>
+            </a>
+
+            <a href="" class="panel-pad cols">
+                <i class="pad-img icofont-restaurant"></i>
+                <span class="pad-txt">My orders</span>
+            </a>
+        </nav>
+
         <ul>
             <li><a href="/categories">All categories</a></li>
-            <li><a href="http://">Accessories</a></li>
-            <li><a href="http://">Electronics</a></li>
-            <li><a href="http://">Phones & Tablets</a></li>
-            <li><a href="http://">Fashion & Beauty</a></li>
-            <li><a href="http://">Break the law</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">Electronics</a></li>
+            <li><a href="#">Phones & Tablets</a></li>
+            <li><a href="#">Fashion & Beauty</a></li>
+            <li><a href="#">Break the law</a></li>
         </ul>
 
     </aside>
@@ -80,7 +102,7 @@
 
         <section id="item-container" class="pane rows">
 
-            <a href="" class="item cols">
+            <!-- <a href="" class="item cols">
                 <div class="cols">
                     <div class="item-img">
                         <i class="icofont-jacket"></i>
@@ -89,48 +111,40 @@
                         <span>Fashion & Beauty</span>
                     </div>
                 </div>
-            </a>
-            
-            <a href="" class="item cols">
-                <div class="cols">
-                    <div class="item-img">
-                        <i class="icofont-laptop"></i>
-                    </div>
-                    <div class="item-description cols">
-                        <span>Computer & Accesories</span>
-                    </div>
-                </div>
-            </a>
-
-            <a href="" class="item cols">
-                <div class="cols">
-                    <div class="item-img">
-                        <i class="icofont-jacket"></i>
-                    </div>
-                    <div class="item-description cols">
-                        <span>Fashion & Beauty</span>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="" class="item cols">
-                <div class="cols">
-                    <div class="item-img">
-                        <i class="icofont-laptop"></i>
-                    </div>
-                    <div class="item-description cols">
-                        <span>Computer & Accesories</span>
-                    </div>
-                </div>
-            </a>
+            </a> -->
             
         </section>
         
         <!-- <button onclick="javascript:createItem('item-container', {})" style="padding: 2rem;">Create Item</button> -->
     </main>
 
-    <footer>
+    <footer class="cols">
+        <div class="links rows">
+            <div class="cols">
+                <span class="heading">HELP LINKS</span>
+                <a href="">Contact Us</a>
+                <a href="">About Us</a>
+                <a href="">Terms and Conditions</a>
+            </div>
+    
+            <div class="cols">
+                <span class="heading">QUICK LINKS</span>
+                <a href="">Log In</a>
+                <a href="">About Us</a>
+            </div>
 
+            <div class="cols">
+                <span class="heading">SOCIAL LINKS</span>
+                <a href="">Whatsapp</a>
+                <a href="">Twitter</a>
+                <a href="">Instagram</a>
+                <a href="">Facebook</a>
+            </div>
+        </div>
+
+        <div class="fill-container">
+            <span class="rows">Copyright &copy; 2019 Univers.com. All rights reserved</span>
+        </div>
     </footer>
 </body>
 </html>

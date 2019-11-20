@@ -30,137 +30,174 @@
                         <li><a href="">[Explore]</a></li>
                         <li><a href="">[Marketing]</a></li>
                         <li><a href="">[Pricing]</a></li>
-                        <li><a href="">[Explore]</a></li>
+                    <li><a href="/logout">Sign out</a></li>
                     </ul>
                 </span>
 
-                <span class="icofont-cart"></span>
+                <a href="#explore"><span class="icofont-cart"></span></a>
             </div>
         </div>
     </header>
 
     <main>
-        <form action="" method="post" id="profile-form">
-            <div class="section-top">
 
-                <div class="tab-left cols">
-                    <div class="details cols">
-                        <div class="rows">
-                            <div>
-                                <img id="user-picture" src="/assets/images/temi.jpg" alt="h">
-                            </div>
-                            <div class="cols">
-                                <span id="fullname" style="margin: 1rem; font-size: 2.5rem; color: #efefef">N/A</span>
+        <section class="fill-container name-header">
+            <div>
+                <button class="strip-btn icofont-navigation-menu"></button>
+            </div>
 
-                                <span style="margin: 1rem 1.3rem; font-size: 1.7rem;">
-                                    <i class="icofont-google-map"></i>
-                                    <span id="user-address" style="color: #d5d5d5">Lagos, Nigeria</span>
-                                </span>
+            <div>
+                <h2 id="user-fullname">Micheal Campbell</h2>
+                <h5 id="user-address">Your Address</h5>
+            </div>
 
-                            </div>
-                        </div>
+            <div>
+                <a href="/logout" class="link-btn btn-logout">SIGN OUT</a>
+            </div>
+        </section>
 
-                        <div style="margin: 1rem 0; text-align: center;">
-                            <i class="icofont-phone"></i><span id="telephone" style="font-size: 1.3rem; color: #ececec">Tel: N/A</span>
-                        </div>
+        <section class="fill-container main-body">
 
-                        <div style="margin-top: 1rem; text-align: right; font-size: 1.3rem;">
-                            <i class="icofont-key" style="color: #555555"></i>
-                            <span id="uuid" style="font-style: italic; margin-left: 0.5rem; font-size: 1.2rem; color: #555555">ZS12ercHRkelQWEJD39dcWEF</span>
-                        </div>
-                    </div>
-
-                    <div class="panel rows">
-                        <a href="" class="panel-pad cols">
-                            <i class="pad-img icofont-food-cart"></i>
-                            <span class="pad-txt">Post An Item</span>
-                        </a>
-
-                        <a href="" class="panel-pad cols">
-                            <i class="pad-img icofont-notepad"></i>
-                            <span class="pad-txt">My Posts</span>
-                        </a>
-
-                        <a href="" class="panel-pad cols">
-                            <i class="pad-img icofont-cart"></i>
-                            <span class="pad-txt">View My Cart</span>
-                        </a>
-
-                        <a href="" class="panel-pad cols">
-                            <i class="pad-img icofont-restaurant"></i>
-                            <span class="pad-txt">My orders</span>
-                        </a>
-                    </div>
+            <div class="control-head">
+                <div class="navigation">
+                    <a href="/myprofile">Profile</a>
+                    <a href="#wallet">Wallet & Transactions</a>
+                    <a href="/myprofile/orders?sectid=3">My Store</a>
+                    <a href="/myprofile/orders?sectid=1">Shopping Cart</a>
                 </div>
+            </div>
 
-                <div class="tab-right">
-                    <div class="broken-fields rows">
-                        <div class="fill-container cols">
-                            <label for="">Firstname</label>
-                            <input type="text" name="firstname" id="" placeholder="Type here...">
+            <div class="control-body">
+                <section id="profile-section">
+                    <div class="container">
+                        <div>
+                            <img id="user-picture" src="" alt="Profile picture">
                         </div>
-
-                        <div class="fill-container cols">
-                            <label for="">Lastname</label>
-                            <input type="text" name="lastname" id="" placeholder="Type here...">
-                        </div>
-                    </div>
-                    <label for="">Username</label>
-                    <input type="text" name="username" id="" placeholder="Edit username">
-                    <label for="">Email</label>
-                    <input type="email" name="email" id="" placeholder="Your Email">
-                    <div class="broken-fields rows">
-                        <div class="fill-container cols">
-                            <label for="">Region / State</label>
-                            <select name="" id="">
-                                <option value="">--- Select ---</option>
-                                <option value="">Ogun State</option>
-                                <option value="">Abeokuta</option>
-                            </select>
-                            <!-- <input type="text" name="firstname" id="" placeholder="Type here..."> -->
-                        </div>
-
-                        <div class="fill-container cols">
-                            <label for="">Country</label>
-                            <select name="" id="">
-                                <option value="">--- Select ---</option>
-                                <option value="">Ogun State</option>
-                                <option value="">Abeokuta</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="broken-fields rows">
                         <div class="cols">
-                            <label for="">Tel Code</label>
-                            <select name="" id="">
-                                <option value="">--- Select ---</option>
-                                <option value="">Ogun State</option>
-                                <option value="">Abeokuta</option>
-                            </select>
-                            <!-- <input type="text" name="firstname" id="" placeholder="Type here..."> -->
+                            <span data-display-name>Micheal Campbell</span>
+                            <span>Status: <span data-user-status>CLIENT</span></span>
+                            <span id="telephone">Phone Number: null</span>
+                            <!-- <span data-dob>DoB: 23-07-1919</span> -->
+                            <span data-ID>Ref. ID: <i id="uuid"></i></span>
                         </div>
+                        <button class="strip-btn edit-btn">Edit Profile</button>
+                    </div>
 
-                        <div class="fill-container cols">
-                            <label for="">Mobile Number</label>
-                            <input type="tel" name="username" id="" placeholder="Your phone number">
+                    <div>
+                        <form id="profile-form">
+                            <span id="minimize-form-btn" class="strip-btn icofont-close-line" 
+                            style="text-align: center;
+                            color: #fff;
+                            border-radius: 5px;
+                            font-size: 1.8rem; 
+                            margin: 0.5rem auto 2rem 0;
+                            box-shadow: 2px 2px 2px #999;
+                            background-image: linear-gradient(rgb(194, 1, 1), rgb(177, 0, 0));" title="Click to minimize"></span>
+
+                            <div class="broken-fields rows">
+                                <div class="fill-container cols">
+                                    <label for="">Firstname</label>
+                                    <input type="text" name="firstname" id="" placeholder="Type here...">
+                                </div>
+
+                                <div class="fill-container cols">
+                                    <label for="">Lastname</label>
+                                    <input type="text" name="lastname" id="" placeholder="Type here...">
+                                </div>
+                            </div>
+
+                            <label for="" hidden>Username</label>
+                            <input type="text" name="username" id="" placeholder="Your username" hidden>
+                            
+                            <label for="">Email</label>
+                            <input type="email" name="email" id="" placeholder="Your Email">
+                            
+                            <div class="broken-fields rows">
+                                <div class="fill-container cols">
+                                    <label for="">Country</label>
+                                    <select name="country" id="">
+                                        <option value="">--- Select ---</option>
+                                        <option value="null">Loading...</option>
+                                    </select>
+                                </div>
+
+                                <div class="fill-container cols">
+                                    <label for="">Region / State</label>
+                                    <select name="state" id="">
+                                        <option value="">--- Select ---</option>
+                                        <option value="null">Loading...</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="broken-fields rows">
+                                <div class="cols">
+                                    <label for="">Call Code</label>
+                                    <select name="telcode" id="">
+                                        <option value="">--- Select ---</option>
+                                        <option value="">Ogun State</option>
+                                        <option value="">Abeokuta</option>
+                                    </select>
+                                </div>
+
+                                <div class="fill-container cols">
+                                    <label for="">Mobile Number</label>
+                                    <input type="tel" name="phone" id="" placeholder="Your phone number">
+                                </div>
+                            </div>
+
+                            <input type="submit" value="Save" disabled>
+                        </form>
+                    </div>
+                </section>
+
+                <section id="wallet-section">
+                    <div class="wallet-div">
+                        <h3>My Wallet</h3>
+                        <div class="balance trans-container rows">
+                            <span>Current Balance</span>
+                            <span data-wallet-balance>NGN 0.00</span>
                         </div>
                     </div>
-                    <!-- <label for="">Password</label>
-                    <input type="password" name="password" id="" placeholder="Your password">
-                    <label for="">Username</label>
-                    <input type="text" name="username" id="" placeholder="Your username"> -->
-                </div>
-            </div>
 
-            <div class="section-bottom">
-                <input type="submit" value="Save">
+                    <div class="history-div">
+                        <h3>Transactions History</h3>
+                        <div id="no-trans" class="trans-container">No transactions yet. All your transactions would appear here.</div>
+                    </div>
+                
+                </section>
             </div>
-        </form>
+        </section>
+    
     </main>
 
-    <footer>
+    <footer class="cols">
+        <div class="links rows">
+            <div class="cols">
+                <span class="heading">HELP LINKS</span>
+                <a href="">Contact Us</a>
+                <a href="">About Us</a>
+                <a href="">Terms and Conditions</a>
+            </div>
+    
+            <div class="cols">
+                <span class="heading">QUICK LINKS</span>
+                <a href="">Log In</a>
+                <a href="">About Us</a>
+            </div>
 
+            <div class="cols">
+                <span class="heading">SOCIAL LINKS</span>
+                <a href="">Whatsapp</a>
+                <a href="">Twitter</a>
+                <a href="">Instagram</a>
+                <a href="">Facebook</a>
+            </div>
+        </div>
+
+        <div class="fill-container">
+            <span class="rows"><hr>Copyright &copy; 2019 Univers.com. All rights reserved<hr></span>
+        </div>
     </footer>
 </body>
 </html>

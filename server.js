@@ -10,7 +10,8 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const PORT = (process.env.PORT === "" || process.env.PORT === null || process.env.PORT === undefined)? 5000 : process.env.PORT;
 const controller = require("./modules/controller");
-const mysql_config =  require("./modules/config");
+const config =  require("./modules/config");
+const crypto = require("crypto");
 
 // APPLICATION SETUP
 app.use("/", express.static(__dirname + "/public"));
@@ -24,51 +25,68 @@ app.use(session({
     saveUninitialized: true
 }));
 server.listen(PORT, "0.0.0.0", function() {
+    
+    console.log(process.env.NODE_ENV);
+    console.log("Server started...");
     console.log(`Server currently running on port ${PORT}`);
 });
 
 // DATABASE SETUP AND CONNECTION
-mysql_config.connection.connect(function(err) {
-    if (err) throw err;
+config.connection.connect(function(err) {
+    if (err) {
+        config.log(err);
+    } else {
+        console.log('Connected to mysql server!');
+        console.log("Checking for mysql initialization requirements...");
 
-    console.log('Connected to mysql server!');
-    console.log("Checking for mysql initialization requirements...");
-
-    mysql_config.connection.query(mysql_config.test, function(err){
-        if(err){
-            try{
-                mysql_config.connection.query(mysql_config.create, function(err){
-                    if(err) throw err;
-                    console.log("Mysql database is initialized and ready");
-                });
-            }catch(error){
-                throw error;
+        config.connection.query(config.test, function(err){
+            if(err){
+                try{
+                    config.connection.query(config.create, function(err){
+                        if(err) {
+                            config.log(err);
+                        } else {
+                            console.log("Mysql database is initialized and ready");
+                        }
+                    });
+                }catch(error){
+                    config.log(err);
+                }
+            }else{
+                console.log("Connection to database is successful!");
             }
-        }else{
-            console.log("Connection to database is successful!");
-        }
-    });
+        });
+    }
 });
 
 // APPLICATION ROUTING
 app.get("/", controller.dashboard);
 app.get("/login", controller.login);
 app.get("/signup", controller.signup);
+app.get("/passwordReset", controller.reset);
 app.get("/logout", controller.logout);
 app.get("/myprofile", controller.myprofile);
+app.get("/myprofile/orders", controller.control);
 app.get("/search", controller.search);
-
-app.get("/api/user/:username", controller.data);
+app.get("/view/:itemID", controller.productView);
 
 app.post("/auth", controller.auth); // Login handler
 app.post("/register", controller.register); // Sign up/Registration handler
+app.post("/myprofile/update", controller.update); // Profile handler
+app.post("/resetHandler", controller.resetHandler);
 
+app.use("/api", require("./router/apiRoute"));
 app.use("/categories", require("./router/categoryRoute"));
 
 // SOCKET CONNECTION
 io.on("connection", function(socket) {
-    socket.on("get-user-data", function(username) {
-        
-        socket.emit("receive-user-data", {username: controller.session_user});
+    console.log(`User ${socket.id} just came online`);
+    socket.on("game", function(data) {
+        io.emit("game", data);
+        // console.log(data);
+    });
+
+    socket.on("disconnect", function() {
+        console.log(`User ${socket.id} disconnected`);
     });
 });

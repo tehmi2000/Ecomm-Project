@@ -1,0 +1,25 @@
+Sun, 27 Oct 2019 18:43:14 GMT: {"name":"MongoTimeoutError","reason":{"name":"MongoNetworkError","errorLabels":["TransientTransactionError"]}}
+Thu, 31 Oct 2019 14:33:21 GMT: "Server started..."
+Thu, 31 Oct 2019 14:33:22 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user 'tehmi2000'@'localhost' (using password: YES)","sqlState":"28000","fatal":true}
+Mon, 04 Nov 2019 14:35:59 GMT: {"name":"MongoError"}
+Mon, 04 Nov 2019 16:40:41 GMT: {"ok":0,"errmsg":"cannot nest $ under $in","code":2,"codeName":"BadValue","name":"MongoError"}
+Mon, 04 Nov 2019 16:42:41 GMT: {"ok":0,"errmsg":"cannot nest $ under $in","code":2,"codeName":"BadValue","name":"MongoError"}
+Mon, 04 Nov 2019 16:42:44 GMT: {"ok":0,"errmsg":"cannot nest $ under $in","code":2,"codeName":"BadValue","name":"MongoError"}
+Mon, 04 Nov 2019 16:46:05 GMT: {"ok":0,"errmsg":"unknown operator: $text","code":2,"codeName":"BadValue","name":"MongoError"}
+Mon, 04 Nov 2019 16:49:08 GMT: {"ok":0,"errmsg":"unknown operator: $text","code":2,"codeName":"BadValue","name":"MongoError"}
+Mon, 04 Nov 2019 16:51:07 GMT: {"ok":0,"errmsg":"unknown operator: $text","code":2,"codeName":"BadValue","name":"MongoError"}
+Mon, 04 Nov 2019 18:39:26 GMT: {"driver":true,"name":"MongoError","index":0,"code":13297,"errmsg":"db already exists with different case already have: [Tehmi2000] trying to create [tehmi2000]"}
+Mon, 04 Nov 2019 18:43:54 GMT: {"driver":true,"name":"MongoError","index":0,"code":11000,"errmsg":"E11000 duplicate key error collection: Tehmi2000.myCart index: _id_ dup key: { : \"5dae9b4f1c3f3e2510ffce22\" }"}
+Sat, 09 Nov 2019 06:48:24 GMT: {"driver":true,"name":"MongoError","index":0,"code":11000,"errmsg":"E11000 duplicate key error collection: Tehmi2000.myCart index: _id_ dup key: { : \"5dae9b4f1c3f3e2510ffce22\" }"}
+Sat, 09 Nov 2019 06:48:42 GMT: {"driver":true,"name":"MongoError","index":0,"code":11000,"errmsg":"E11000 duplicate key error collection: Tehmi2000.myCart index: _id_ dup key: { : \"5dae9b4f1c3f3e2510ffce22\" }"}
+Sat, 09 Nov 2019 06:51:40 GMT: {"driver":true,"name":"MongoError","index":0,"code":11000,"errmsg":"E11000 duplicate key error collection: Tehmi2000.myCart index: _id_ dup key: { : \"5dae9b4f1c3f3e2510ffce22\" }"}
+Sat, 09 Nov 2019 06:52:05 GMT: {"driver":true,"name":"MongoError","index":0,"code":11000,"errmsg":"E11000 duplicate key error collection: Tehmi2000.myCart index: _id_ dup key: { : \"5dae9b4f1c3f3e2510ffce22\" }"}
+Sat, 09 Nov 2019 06:52:13 GMT: {"driver":true,"name":"MongoError","index":0,"code":11000,"errmsg":"E11000 duplicate key error collection: Tehmi2000.myCart index: _id_ dup key: { : \"5dae9b4f1c3f3e2510ffce22\" }"}
+Sat, 09 Nov 2019 06:53:33 GMT: {"driver":true,"name":"MongoError","index":0,"code":11000,"errmsg":"E11000 duplicate key error collection: Tehmi2000.myCart index: _id_ dup key: { : \"5dae9b4f1c3f3e2510ffce22\" }"}
+Sat, 09 Nov 2019 06:53:58 GMT: {"driver":true,"name":"MongoError","index":0,"code":11000,"errmsg":"E11000 duplicate key error collection: Tehmi2000.myCart index: _id_ dup key: { : \"5dae9b4f1c3f3e2510ffce22\" }"}
+Sat, 09 Nov 2019 06:54:17 GMT: {"driver":true,"name":"MongoError","index":0,"code":11000,"errmsg":"E11000 duplicate key error collection: Ayoteo.myCart index: _id_ dup key: { : \"5dae9b4f1c3f3e2510ffce22\" }"}
+Sat, 09 Nov 2019 16:00:25 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user 'tehmi2000'@'localhost' (using password: YES)","sqlState":"28000","fatal":true}
+Sun, 17 Nov 2019 09:50:56 GMT: {"driver":true,"name":"MongoError","index":0,"code":11000,"errmsg":"E11000 duplicate key error collection: Tehmi2000.myCart index: _id_ dup key: { : \"5db2cd7c17dbac1adcf299f3\" }"}
+Sun, 17 Nov 2019 12:05:35 GMT: "Verification Email sending error"
+Sun, 17 Nov 2019 12:05:35 GMT: {"errno":"ECONNREFUSED","code":"EDNS","syscall":"queryA","hostname":"smtp.gmail.com","command":"CONN"}
+Wed, 20 Nov 2019 11:00:37 GMT: {"driver":true,"name":"MongoError","index":0,"code":11000,"errmsg":"E11000 duplicate key error collection: Tehmi2000.myCart index: _id_ dup key: { : \"5dc0926374d2032098c97422\" }"}

@@ -3,7 +3,7 @@ const model = function() {
     const algorithm = 'aes-256-cbc';
 
     return {
-        encrypt: function(password) {
+        softEncrypt: function(password) {
             const iv = crypto.randomBytes(16);
             const key = crypto.randomBytes(32);
         
@@ -11,11 +11,22 @@ const model = function() {
             let encrypted = cipher.update(password);
             encrypted = Buffer.concat([encrypted, cipher.final()]);
                 
-            return iv.toString('hex')+':'+encrypted.toString('hex')+':'+key.toString('hex');
+            return `${iv.toString('hex')}${encrypted.toString('hex')}${key.toString('hex')}`;
+        },
+        
+        encrypt: function(password) {
+            const iv = crypto.randomBytes(16); // Generates a buffer
+            const key = crypto.randomBytes(32);
+        
+            let cipher = crypto.createCipheriv(algorithm, Buffer.from(key), iv);
+            let encrypted = cipher.update(password);
+            encrypted = Buffer.concat([encrypted, cipher.final()]);
+                
+            return `${iv.toString('hex')}h${encrypted.toString('hex')}h${key.toString('hex')}`;
         },
 
         decrypt: function (encryptedpassword){
-            let [iv, encrypted, key] = encryptedpassword.split(':');
+            let [iv, encrypted, key] = encryptedpassword.split('h');
             iv = Buffer.from(iv, 'hex');
             encrypted = Buffer.from(encrypted, 'hex');
             key = Buffer.from(key, 'hex');

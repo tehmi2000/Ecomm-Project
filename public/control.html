@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/miniHeader.css">
+    <link rel="stylesheet" href="/css/control.css">
+    <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
+    <script src="/js/main.js"></script>
+    <script src="/js/control.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="section-top">
+            <div class="left-tab">
+                <a href="/myprofile"><span class="icofont-arrow-left" title="Back to Profile"></span></a>
+                <span><a href="/"><img src="/assets/images/fav.png" alt="LOGO" id="logo"></a></span>
+            </div>
+
+            <div class="right-tab">
+                <span class="drop-container">
+                    <span class="drop-button">More<i class="icofont-caret-down"></i></span>
+                    <ul class="drop-content">
+                        <li><a href="">[Get Started]</a></li>
+                        <li><a href="">[Explore]</a></li>
+                        <li><a href="">[Explore]</a></li>
+                        <li><a href="">[Marketing]</a></li>
+                        <li><a href="">[Pricing]</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </span>
+
+                <a href="#explore"><span class="icofont-cart"></span></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <aside class="control-head">
+
+            <nav class="navigation">
+                <a href="/myprofile/orders?sectid=1" class="nav-child" id="one" data-title="My Cart">My Cart</a>
+                <a href="/myprofile/orders?sectid=4" class="nav-child" id="four" data-title="Saved Items">Saved Items</a>
+                <a href="/myprofile/orders?sectid=3" class="nav-child" id="three" data-title="My Store">My Store</a>
+                <div class="drop-extra">
+                    <a href="/myprofile/orders?sectid=2" id="two" data-title="Sell Item">Sell Item</a>
+                </div>
+                
+            </nav>
+        </aside>
+
+        <div class="fill-container control-body">
+            <div class="fill-container header">
+                <h2 id="title">Title</h2>
+                <h5 id="subtitle"></h5>
+            </div>
+
+            <div class="fill-container body">
+                <section id="orders-box" class="cols">
+                    <span class="dummy item">
+                        <img src="" alt="">
+                        <span class="item-name"></span>
+                        <span class="item-number cols">
+                            <span></span>
+                            <span></span>
+                        </span>
+                        <span class="item-buttons">
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </span>
+
+                    <span class="dummy item">
+                        <img src="" alt="">
+                        <span class="item-name"></span>
+                        <span class="item-number cols">
+                            <span></span>
+                            <span></span>
+                        </span>
+                        <span class="item-buttons">
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </span>
+
+                    <!-- <span class="item">
+                        <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
+                        <span class="item-name">Sony Fifa 20 Standard Edition-PS4</span>
+                        <span class="item-number cols">
+                            <span>Qty: 1</span>
+                            <span>N15,000,000</span>
+                        </span>
+                        <span class="item-buttons">
+                            <button class="icofont-ui-love"></button>
+                            <button class="icofont-bin"></button>
+                        </span>
+                    </span> -->
+                    <!-- <button onclick="javascript:createItems({title: 'Me areand', qty: 2, price: 'N3,000'})"></button> -->
+                </section>
+
+                <section id="post-box" class="cols">
+                    <form action="/api/goods/save" method="POST" class="cols">
+                        <div class="gallery">
+                            <label for="preview-image-1">Click to insert image</label>
+                            <input type="file" name="item-image" id="preview-image-1">
+    
+                            <label for="preview-image-1">Click to insert image</label>
+                            <input type="file" name="item-image" id="preview-image-2">
+    
+                            <label for="preview-image-1">Click to insert image</label>
+                            <input type="file" name="item-image" id="preview-image-3">
+                        </div>
+    
+                        <label for="">Name of Item</label>
+                        <input type="text" name="item-name" id="" placeholder="Enter the name of item here">
+    
+                        <label for="">Description</label>
+                        <textarea name="item-desc" id="" placeholder="Describe the item here"></textarea>
+    
+                        <label>Categories</label>
+                        <div id="option-box" class="rows">
+                            <!-- <legend>Select categories</legend> -->
+                            <!-- <span class="wrapper">
+                                <input type="checkbox" name="categories" id="" value="">
+                                <label for="">Fasion</label>
+                            </span> -->
+                        </div>
+    
+                        <label for="">Seller's ID&nbsp;<a href="" class="icofont-info-circle" style="text-decoration: none;"></a></label>
+                        <input type="text" name="sellerID" id="" placeholder="Enter your seller's ID" required>
+    
+                        <div class="broken-fields rows">
+                            <div class="fill-container cols">
+                                <label for="" class="label">Price</label>
+                                <input type="number" name="item-price" id="" placeholder="Enter price of item">
+                            </div>
+                            
+                            <div class=" fill-container cols">
+                                <label for="" class="label">Quantity</label>
+                                <input type="number" name="item-qty" id="" placeholder="Enter number of items here">
+                            </div>
+                        </div>
+    
+                        <div>
+                            <input type="submit" value="Add to Store">
+                        </div>
+                    </form>
+                </section>
+                
+                <section id="store-box" class="cols">
+                    <div class="vendor-bg-cover">
+                        <div class="vendor-notify-box">
+                            <span class="close-btn icofont-ui-close"></span>
+                            <div class="body-box">
+                                <h2>Become a Vendor!</h2>
+                                <p class="vendor-brief-text">
+                                    Join our vendors to get your very own store on Univers. 
+                                    Explicabo impedit neque amet delectus tempore quo itaque. 
+                                    Aspernatur quasi consectetur alias nisi tenetur! 
+                                    Repudiandae laboriosam reiciendis est aut impedit doloremque ea?
+                                </p>
+    
+                                <ul>
+                                    <li class="icofont-">Ability to sell any item</li>
+                                    <li class="icofont-">Get to own one or more stores</li>
+                                    <li class="icofont-">Unlimited access to public vendors</li>
+                                    <li class="icofont-">Perform transactions off and on-site anytime</li>
+                                    <li class="icofont-">Become a licensed vendor</li>
+                                </ul>
+    
+                                <a href="#apply-now" class="strip-link vendor-apply-btn">Apply Now</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <span class="dummy item">
+                        <img src="" alt="">
+                        <span class="item-name"></span>
+                        <span class="item-number cols">
+                            <span></span>
+                            <span></span>
+                        </span>
+                        <span class="item-buttons">
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </span>
+
+                    <span class="dummy item">
+                        <img src="" alt="">
+                        <span class="item-name"></span>
+                        <span class="item-number cols">
+                            <span></span>
+                            <span></span>
+                        </span>
+                        <span class="item-buttons">
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </span>
+
+                    <!-- <span class="item">
+                        <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
+                        <span class="item-name">Sony Fifa 20 Standard Edition-PS4</span>
+                        <span class="item-number cols">
+                            <span>Qty: 1</span>
+                            <span>N15,000,000</span>
+                        </span>
+                        <span class="item-buttons">
+                            <button class="icofont-ui-love"></button>
+                            <button class="icofont-bin"></button>
+                        </span>
+                    </span> -->
+                    <!-- <button onclick="javascript:createItems({title: 'Me areand', qty: 2, price: 'N3,000'})"></button> -->
+                </section>
+            </div>
+
+            <div class="pagination fill-container rows">
+                <span>&laquo;</span>
+                <span class="active-page">1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>&raquo;</span>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="cols">
+        <div class="links rows">
+            <div class="cols">
+                <span class="heading">HELP LINKS</span>
+                <a href="">Contact Us</a>
+                <a href="">About Us</a>
+                <a href="">Terms and Conditions</a>
+            </div>
+    
+            <div class="cols">
+                <span class="heading">QUICK LINKS</span>
+                <a href="">Log In</a>
+                <a href="">About Us</a>
+            </div>
+
+            <div class="cols">
+                <span class="heading">SOCIAL LINKS</span>
+                <a href="">Whatsapp</a>
+                <a href="">Twitter</a>
+                <a href="">Instagram</a>
+                <a href="">Facebook</a>
+            </div>
+        </div>
+
+        <div class="fill-container">
+            <span class="rows"><hr>Copyright &copy; 2019 Univers.com. All rights reserved<hr></span>
+        </div>
+    </footer>
+</body>
+</html>

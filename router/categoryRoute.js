@@ -20,7 +20,7 @@ const model = function() {
         readFile("./public/categories.html", req, res);
     });
 
-    router.get("/fashion", function(req, res) {
+    router.get("/all/:category", function(req, res) {
         readFile("./public/dummy.html", req, res);
     });
 

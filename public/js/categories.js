@@ -16,15 +16,15 @@ const createItem = function(container, object){
             let div1 = create("DIV");
                 let i0 = create("I");
             let div2 = create("DIV");
-                let span0 = createComponent("SPAN", "Test example");
+                let span0 = createComponent("SPAN", object.title);
 
     a0.classList.add("item", "cols");
     div0.classList.add("cols");
     div1.classList.add("item-img");
     div2.classList.add("item-description", "cols");
-    i0.classList.add("icofont-jacket");
+    i0.classList.add(object.image);
 
-    a0.setAttribute("href", "");
+    a0.setAttribute("href", `categories/all/${object.title}`);
     div1 = joinComponent(div1, i0);
     div2 = joinComponent(div2, span0);
     div0 = joinComponent(div0, div1, div2);
@@ -33,14 +33,27 @@ const createItem = function(container, object){
     container.appendChild(a0);
 };
 
-window.onload = function () {
+const getAllCategories = function() {
+    fetch(`/api/categories`).then(async function(response) {
+        try {
+            let category_list = await response.json();
+            forEach(category_list, function(element) {
+                // debugger;
+                const nullChild = document.querySelector("[name='country'] option[value='null']");
+                if(nullChild){
+                    nullChild.parentNode.removeChild(nullChild);
+                }
+                createItem(document.querySelector("#item-container"), element);
+            });
 
-    if (get_cookie("username")) {
-
-        let div0 = create("DIV");
-        let child = "<a href='/myprofile'><img src='../assets/images/Logo.png' alt='' class='user-picture'></a><a href='/logout'><button>Logout</button></a>";
-        div0.innerHTML = child;
-
-        document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
-    }
+        } catch (err) {
+            console.error(err);
+        }
+    }).catch(function(error) {
+        console.error(error);
+    });
 };
+
+document.addEventListener("DOMContentLoaded", function () {
+    getAllCategories();
+});

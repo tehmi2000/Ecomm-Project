@@ -10,13 +10,20 @@
     <link rel="stylesheet" href="/css/signup.css">
     <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
     <script src="/js/main.js"></script>
-    <script src="/js/login.js"></script>
+    <script src="/js/signup.js"></script>
 </head>
 <body>
+
+    <style>
+        .required{
+            color: red;
+        }
+    </style>
+    
     <header>
         <div class="section-top">
             <div class="left-tab">
-                <span class="icofont-navigation-menu" id="open-menu-btn" onclick="javascript:openMenu()"></span>
+                <a href="/"><span class="icofont-home"></span></a>
                 <span><a href="/"><img src="/assets/images/fav.png" alt="LOGO" id="logo"></a></span>
             </div>
 
@@ -29,11 +36,11 @@
                         <li><a href="">[Explore]</a></li>
                         <li><a href="">[Marketing]</a></li>
                         <li><a href="">[Pricing]</a></li>
-                        <li><a href="">[Explore]</a></li>
+                        <li><a href="/login">Login</a></li>
                     </ul>
                 </span>
 
-                <span class="icofont-cart"></span>
+                <a href="#explore"><span class="icofont-cart"></span></a>
             </div>
         </div>
 
@@ -44,60 +51,60 @@
         </div> -->
     </header>
 
-    <aside id="sidemenu">
-        <nav>
-            <div>
-                <a href="/login"><button>Login</button></a>
-                <a href="/signup"><button>Sign up</button></a>
-            </div>
-            
-            <div>
-                <button id="close-menu-btn" class="icofont-close" onclick="javascript:closeMenu()"></button>
-            </div>
-        </nav>
-
-        <ul>
-            <li><a href="/categories">All categories</a></li>
-            <li><a href="http://">Accessories</a></li>
-            <li><a href="http://">Electronics</a></li>
-            <li><a href="http://">Phones & Tablets</a></li>
-            <li><a href="http://">Fashion & Beauty</a></li>
-            <li><a href="http://">Break the law</a></li>
-        </ul>
-
-    </aside>
-
     <main>
         <h1>Create your account</h1>
 
         <form action="/register" method="post" id="sign-up-form">
             <div class="error"></div>
-            <label for="">Fullname</label>
-            <input type="text" name="fullname" id="" placeholder="Example: John Doe">
-            <label for="">Username</label>
-            <input type="text" name="username" id="" placeholder="Your username">
-            <label for="">Email</label>
-            <input type="email" name="user_email" id="" placeholder="E.g: example_email@somemail.com">
-            <label for="">Password</label>
-            <input type="password" name="password" id="" placeholder="Your password">
-            <label for="">Confirm Password</label>
-            <input type="password" name="confirm-password" id="" placeholder="Re-type password">
+            <label for="">Firstname</label>
+            <input type="text" name="firstname" id="" placeholder="Example: John">
+            <label for="">Lastname</label>
+            <input type="text" name="lastname" id="" placeholder="Example: Doe">
+            <label for="">Username <span class="required">*</span></label>
+            <input type="text" name="username" id="" placeholder="Your username" required>
+            <label for="">Email <span class="required">*</span></label>
+            <input type="email" name="user_email" id="" placeholder="E.g: example_email@somemail.com" required>
+            <label for="">Password <span class="required">*</span></label>
+            <input type="password" name="password" id="user-password" placeholder="Your password" required>
+            <label for="">Confirm Password <span class="required">*</span></label>
+            <input type="password" name="confirm-password" id="confirm-password" placeholder="Re-type password" required>
 
             <div class="rows">
-                <input type="checkbox" name="tc_agreement" id="">
+                <input type="checkbox" name="tc_agreement" id="agreement">
                 <span style="vertical-align: middle; ">Do you agree with our terms and condition?</span>
             </div>
 
-            <input type="submit" value="Sign Up">
+            <input type="submit" value="Sign Up" disabled>
         </form>
-        <div>
-            <a href="http://he">Forgot password?</a>
-            <a href="/login">Login instead</a>
-        </div>
     </main>
 
-    <footer>
+    <footer class="cols">
+        <div class="links rows">
+            <div class="cols">
+                <span class="heading">HELP LINKS</span>
+                <a href="">Contact Us</a>
+                <a href="">About Us</a>
+                <a href="">Terms and Conditions</a>
+            </div>
+    
+            <div class="cols">
+                <span class="heading">QUICK LINKS</span>
+                <a href="">Log In</a>
+                <a href="">About Us</a>
+            </div>
 
+            <div class="cols">
+                <span class="heading">SOCIAL LINKS</span>
+                <a href="">Whatsapp</a>
+                <a href="">Twitter</a>
+                <a href="">Instagram</a>
+                <a href="">Facebook</a>
+            </div>
+        </div>
+
+        <div class="fill-container">
+            <span class="rows"><hr>Copyright &copy; 2019 Univers.com. All rights reserved<hr></span>
+        </div>
     </footer>
 </body>
 </html>

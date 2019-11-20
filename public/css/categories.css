@@ -16,11 +16,11 @@ body{
 
 .item{
     text-decoration: none;
-    width: 20%;
+    width: 16%;
     /* min-width: calc(90px + 1.8rem); */
     overflow: hidden;
     padding: 0.8rem 0.6rem;
-    margin: 0.5rem 0.9rem;
+    margin: 0.9rem;
     box-shadow: 2px 2px 3px #dfdfe4;
     background-color: #fcfcff;
     justify-content: space-between;
@@ -37,7 +37,7 @@ body{
     align-items: center;
     height: 100%;
     margin: 0 auto;
-    height: 14vmax;
+    height: 12vmax;
     max-height: 205px;
     /* min-width: 90px; */
     min-height: 100px;
@@ -47,7 +47,7 @@ body{
 .item .item-img [class^="icofont-"]{
     width: auto;
     font-size: 8rem;
-    color: rgb(233, 62, 0);
+    color: rgb(182, 52, 4);
 }
 
 .item .item-description{
@@ -58,8 +58,9 @@ body{
 
 .item .item-description > *{
     text-align: center;
-    font-size: 1.3rem;
-    font-weight: bold;
+    font-size: 1.5rem;
+    color: #333;
+    /* font-weight: bold; */
 }
 
 .pane .section-body{
@@ -75,7 +76,7 @@ body{
     flex-wrap: wrap;
 }
 
-@media only screen and (max-width:1000px){
+@media only screen and (max-width:800px){
     .section-bottom > *:first-child, .section-bottom > *:last-child{
         display: none;
     }

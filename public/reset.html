@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Password Reset</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/miniHeader.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
+    <script src="/js/main.js"></script>
+</head>
+<body>
+    <style>
+        #login-form input[type="email"]{
+            width: 100%;
+            border: none;
+            padding: 1.5rem 2rem;
+            margin: 0.9rem 0 2.5rem 0;
+            background-color: #efefef;
+        }
+    </style>
+    <header>
+        <div class="section-top">
+            <div class="left-tab">
+                <span class="icofont-home" id="open-menu-btn"></span>
+                <span><a href="/"><img src="/assets/images/fav.png" alt="LOGO" id="logo"></a></span>
+            </div>
+
+            <div class="right-tab">
+                <span class="drop-container">
+                    <span class="drop-button">More<i class="icofont-caret-down"></i></span>
+                    <ul class="drop-content">
+                        <li><a href="">[Get Started]</a></li>
+                        <li><a href="">[Explore]</a></li>
+                        <li><a href="">[Explore]</a></li>
+                        <li><a href="">[Marketing]</a></li>
+                        <li><a href="">[Pricing]</a></li>
+                        <li><a href=""></a></li>
+                    </ul>
+                </span>
+
+                <a href="#explore"><span class="icofont-cart"></span></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>Get a new password</h1>
+
+        <form action="/resetHandler" method="post" id="login-form">
+            <div id="error"></div>
+            <label for="">Email Address</label>
+            <input type="email" name="reset-email" placeholder="Your email address">
+            <input type="submit" value="Reset Password">
+        </form>
+        <div>
+            <a href="/passwordReset">Forgot password?</a>
+            <a href="/signup">Sign up instead</a>
+        </div>
+    </main>
+
+    <footer class="cols">
+        <div class="links rows">
+            <div class="cols">
+                <span class="heading">HELP LINKS</span>
+                <a href="">Contact Us</a>
+                <a href="">About Us</a>
+                <a href="">Terms and Conditions</a>
+            </div>
+    
+            <div class="cols">
+                <span class="heading">QUICK LINKS</span>
+                <a href="">Log In</a>
+                <a href="">About Us</a>
+            </div>
+
+            <div class="cols">
+                <span class="heading">SOCIAL LINKS</span>
+                <a href="">Whatsapp</a>
+                <a href="">Twitter</a>
+                <a href="">Instagram</a>
+                <a href="">Facebook</a>
+            </div>
+        </div>
+
+        <div class="fill-container">
+            <span class="rows"><hr>Copyright &copy; 2019 Univers.com. All rights reserved<hr></span>
+        </div>
+    </footer>
+
+    <script>
+        const err_image = `<i class="icofont-close-circled"></i>`;
+        const site_query = get_query()["idn"];
+        if(site_query && site_query === "novalid"){
+            // console.log(site_query);
+            document.querySelector("form #error").innerHTML = err_image + ' <div>No account registered to that email!</div>';
+            document.querySelector("form #error").classList.toggle("serror", true);
+        }
+    </script>
+</body>
+</html>

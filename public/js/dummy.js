@@ -60,17 +60,8 @@ const createItem = function(container, object){
     container.appendChild(div0);
 };
 
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function () {
     setInterval(function() {
         nextImage();
     }, 8000);
-
-    if (get_cookie("username")) {
-
-        let div0 = create("DIV");
-        let child = "<a href='/myprofile'><img src='../assets/images/Logo.png' alt='' class='user-picture'></a><a href='/logout'><button>Logout</button></a>";
-        div0.innerHTML = child;
-
-        document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
-    }
-};
+});

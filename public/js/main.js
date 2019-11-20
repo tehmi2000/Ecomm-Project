@@ -3,9 +3,50 @@ const openMenu = function() {
 };
 
 const closeMenu = function() {
-    document.querySelector("#sidemenu").style.marginLeft = "-70%";
+    document.querySelector("#sidemenu").style.marginLeft = "-150%";
 };
 
+document.addEventListener("DOMContentLoaded", function () {
+    let delay;
+    const dropMenu = document.querySelector(".drop-container");
+    if(dropMenu){
+        dropMenu.addEventListener("mouseover", function(evt) {
+            if(delay){
+                clearTimeout(delay);
+            }
+            document.querySelector(".drop-container .drop-content").style.display = "flex";
+        });
+
+        dropMenu.addEventListener("mouseout", function(evt) {
+            delay = setTimeout(function() {
+                document.querySelector(".drop-container .drop-content").style.display = "none";
+            }, 1000);
+        });
+    }
+
+    if (get_cookie("username") && document.querySelector("#sidemenu")) {
+        let div0 = create("DIV");
+        let child = "<a href='/myprofile'><img id='user-photo' src='../assets/images/contacts-filled.png' alt='' class='user-picture'></a><a href='/logout'><button>Logout</button></a>";
+        div0.innerHTML = child;
+        document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
+        
+        fetch(`/api/user/${get_cookie("username").value}`).then(function(response) {
+
+            response.json().then( function(user_data) {
+                if(user_data.profile_picture !== ""){
+                    document.querySelector("#sidemenu #user-photo").src = user_data.profile_picture;
+                }
+            }).catch(function (error) {
+                console.error(error);
+            });
+
+        }).catch(function(error) {
+            console.error(error);
+        });
+
+        document.querySelector("#sidemenu #controls").style.display = "flex";
+    }
+});
 // if('serviceWorker' in navigator){
 //     window.addEventListener('load', ()=>{
 //         navigator.serviceWorker.register("/hitmee-sw.js").then(function(reg) {
@@ -69,10 +110,10 @@ const closeMenu = function() {
 
 
 function formatTime(hours, minutes) {
-    const ampm = (hours>=12)? 'PM' : 'AM';
-    const fhours = (hours>12)? hours-12 : hours;
-    const fmin = (JSON.stringify(minutes).length==1)? '0'+minutes : minutes;
-    const ftime = fhours+':'+fmin+' '+ampm;
+    const ampm = (hours >= 12)? 'PM' : 'AM';
+    const fhours = (hours > 12)? hours - 12 : hours;
+    const fmin = (JSON.stringify(minutes).length === 1)? `0${minutes}` : minutes;
+    const ftime = `${fhours}:${fmin} ${ampm}`;
     return ftime;
 }
 
@@ -103,7 +144,6 @@ function genHex(length){
         generated_hex += characters.charAt(rand_index);
         counter += 1;
     }
-    console.log(generated_hex);
     return generated_hex;
 }
 
@@ -127,6 +167,13 @@ function forEach(elements, reaction){
         (reaction)(elements[i]);
     }
 }
+
+const validateSearch = function() {
+    if(document.getElementById("searchField").value !== "" && document.getElementById("searchField").value.length >= 3){
+        return true;
+    }
+    return false;
+};
 
 
 function create(element) {
@@ -157,3 +204,17 @@ function joinComponent(container, ...components) {
 function log(output) {
     return console.log(output);
 }
+
+const displayResponse = function(response) {
+    const component = document.querySelector("#response");
+    component.innerHTML = response;
+    component.style.top = 0;
+
+    setTimeout(function() {
+        component.style.opacity = 0;
+        component.style.top = "-10rem";
+        setTimeout(function() {
+            component.style.opacity = 1;
+        }, 600);
+    }, 3000);
+};

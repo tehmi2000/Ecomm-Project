@@ -35,9 +35,10 @@ header .section-bottom{
     justify-content: space-around;
 }
 
-/* .section-bottom [class*="tab"]{
-    border: 1px solid red;
-} */
+.section-bottom a:link, .section-bottom a:visited{
+    font-weight: 550;
+    color: #777;
+}
 
 .section-bottom [class*="tab"] ul{
     display: flex;
@@ -80,10 +81,10 @@ header #search-form{
 }
 
 #sidemenu {
-    position: absolute;
+    position: fixed;
     top: 0;
-    margin-left: -70%; 
-    width: 30vw;
+    margin-left: -150%; 
+    /* width: 30vw; */
     height: 100vh;
     min-width: 25rem;
     min-height: 40rem;
@@ -101,8 +102,13 @@ header #search-form{
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 2rem auto 5rem auto;
+    margin: 2rem auto 4.5rem auto;
     width: calc(100% - 3rem)
+}
+
+#sidemenu nav#controls{
+    display: none;
+    margin: 1rem auto 3rem auto;
 }
 
 #sidemenu .user-picture{
@@ -148,7 +154,39 @@ header #search-form{
     border-bottom: 1px solid rgba(122, 33, 0, 0.1); 
 }
 
-@media only screen and (max-width:1000px){
+#sidemenu .panel{
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 0.5rem; 
+}
+
+#sidemenu .panel *{
+    text-decoration: none;
+    align-items: center;
+}
+
+#sidemenu .panel .panel-pad{
+    align-items: center;
+    /* border-radius: 2px;  */
+    width: 40%;
+    margin: 1rem;
+    padding: 0.2rem;
+    box-shadow: 1px 1px 3px #c1c1c7;
+}
+
+#sidemenu .pad-img{
+    font-size: 3rem;
+    padding: 1.5rem 0.5rem;
+}
+
+#sidemenu .pad-txt{
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+}
+
+@media only screen and (max-width:800px){
     .section-bottom > *:first-child, .section-bottom > *:last-child{
         display: none;
     }

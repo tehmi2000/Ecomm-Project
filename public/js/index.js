@@ -1,26 +1,15 @@
-const socket = io();
+// const socket = io();
 
 const images = ["0a9c147c668744d0afcb9d320afa0b73.jpg", "IMG-20180905-WA0011.jpg", "IMG-20180715-WA0007.jpg", "IMG-20190527-WA0029.jpg"];
 let counter = 0;
 
 const nextImage = function(){
-
-    if(counter === images.length-1){
-        counter = 0;
-    }else{
-        counter += 1;
-    }
-
+    counter = (counter === images.length-1)? 0 : counter + 1;
     document.querySelector("#slideshow").style.backgroundImage = `url(../assets/ads/${images[counter]})`;
 };
 
 const prevImage = function(){
-    if (counter === 0) {
-        counter = images.length-1;
-    } else {
-        counter -= 1;
-    }
-
+    counter = (counter === 0)? images.length-1 : counter - 1;
     document.querySelector("#slideshow").style.backgroundImage = `url(../assets/ads/${images[counter]})`;
 };
 
@@ -36,63 +25,83 @@ const createItem = function(container, object){
     //     </div>
     // </div>
 
-    let div0 = create("DIV");
+    let price = parseInt(object["item-price"]).toLocaleString(undefined, {
+        style: "currency",
+        currency: "NGN"
+    });
+
+
+    let a0 = create("A");
         let div1 = create("DIV");
             let img0 = create("IMG");
         let div2 = create("DIV");
-            let span0 = createComponent("SPAN", "Test example");
-            let span1 = createComponent("SPAN", "NGN88,000");
-                let sup0 = createComponent("SUP", "NGN88,000 ");
+            let span0 = createComponent("SPAN", object["item-name"]);
+            let span1 = createComponent("SPAN", price);
+                let sup0 = createComponent("SUP", "NGN88,000");
 
-    div0.classList.add("item", "cols");
+    a0.classList.add("strip-link", "item", "cols");
     div1.classList.add("item-img");
     div2.classList.add("item-description", "cols");
 
     span1.classList.add("item-price");
     sup0.classList.add("strike");
 
-    img0.setAttribute("src", "assets/images/IMG-20180112-WA0009.jpg");
+    a0.setAttribute("href", `/view/${object._id}`);
+    img0.setAttribute("src", object["item-image"][1]);
     img0.setAttribute("alt", "Item Image");
 
     span1.appendChild(sup0);
     div1 = joinComponent(div1, img0);
     div2 = joinComponent(div2, span0, span1);
-    div0 = joinComponent(div0, div1, div2);
+    a0 = joinComponent(a0, div1, div2);
 
-    container.appendChild(div0);
+    container.appendChild(a0);
 };
 
-window.onload = function () {
+const getMostPopular = function() {
+    const container = document.querySelector("#most-popular-container.pane .slider");
+    
+    fetch(`/api/goods/all/mostPopular`).then(function(response) {
+
+        response.json().then( function(documents) {
+            console.log(documents);
+            container.innerHTML = "";
+            forEach(documents, function(object) {
+                createItem(container, object);
+            });
+        }).catch(function (error) {
+            console.error(error);
+        });
+
+    }).catch(function(error) {
+        console.error(error);
+    });
+};
+
+const getRecommended = function() {
+    fetch(`/api/goods/all/recommended`).then(function(response) {
+
+        response.json().then( function(documents) {
+            console.log(documents);
+        }).catch(function (error) {
+            console.error(error);
+        });
+
+    }).catch(function(error) {
+        console.error(error);
+    });
+};
+
+document.addEventListener("DOMContentLoaded", function () {
     setInterval(function() {
         nextImage();
     }, 8000);
 
-    if (get_cookie("username")) {
-
-        
-        let div0 = create("DIV");
-        let child = "<a href='/myprofile'><img id='user-photo' src='../assets/images/Logo.png' alt='' class='user-picture'></a><a href='/logout'><button>Logout</button></a>";
-        div0.innerHTML = child;
-        document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
-        
-        fetch(`/api/user/${get_cookie("username").value}`).then(async function(response) {
-            try {
-                let user_data = await response.json();
-                if(user_data.profile_picture !== ""){
-                    console.log(user_data);
-                    document.querySelector("#sidemenu #user-photo").src = user_data.profile_picture;
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        }).catch(function(error) {
-            console.error(error);
-        });
-        // socket.emit("get-user-data", get_cookie("username").value);
-    }
-};
-
-socket.on("receive-user-data", function(object) {
-    alert(JSON.stringify(object));
-    // document.querySelector("#sidemenu #user-photo").src = object.pp;
+    getMostPopular();
+    // getRecommended();
 });
+
+// socket.on("receive-user-data", function(object) {
+//     alert(JSON.stringify(object));
+//     // document.querySelector("#sidemenu #user-photo").src = object.pp;
+// });
