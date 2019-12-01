@@ -16,10 +16,10 @@ const crypto = require("crypto");
 // APPLICATION SETUP
 // To be removed during production
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     next();
-});
+});*/
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 app.use("/", express.static(__dirname + "/public"));
