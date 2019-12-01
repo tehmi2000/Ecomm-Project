@@ -29,21 +29,26 @@ const model = function(){
     const query_test = "SELECT * FROM users";
 
     // LOCALHOST CONNECTION
-    const conn = mysql.createConnection({
+    /* const conn = mysql.createConnection({
         host: 'localhost',
         user: 'tehmi2000',
         password: 'tehmitemi1#',
         database: "ecomm_db"
     });
+    
+    const MONGO_URL = "mongodb://localhost:27017"
+    */
 
     // AZURE MYSQL CONNECTION
-    // const conn = mysql.createConnection({
-    //     host: "temi.mysql.database.azure.com",
-    //     port: 3306,
-    //     user: "temi@temi",
-    //     password: "Re$et@123",
-    //     database: "ecomm_db"
-    // });
+   	const conn = mysql.createConnection({
+   		host: "temi.mysql.database.azure.com",
+   	    port: 3306,
+   	    user: "temi@temi",
+        password: "Re$et@123",
+        database: "ecomm_db"
+    });
+     
+    const MONGO_URL = "mongodb://localhost:27017";
 
     const log = function(err) {
         let content = `${(new Date).toUTCString()}: ${JSON.stringify(err)}` + "\n";
@@ -64,7 +69,7 @@ const model = function(){
         connection: conn,
 
         MONGO_CLIENT: mongodb,
-        MONGO_URL: "mongodb://localhost:27017",
+        MONGO_URL,
         mOptions: {
             useNewUrlParser: true,
             useUnifiedTopology: true
