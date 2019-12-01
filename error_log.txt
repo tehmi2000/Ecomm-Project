@@ -23,3 +23,6 @@ Sun, 17 Nov 2019 09:50:56 GMT: {"driver":true,"name":"MongoError","index":0,"cod
 Sun, 17 Nov 2019 12:05:35 GMT: "Verification Email sending error"
 Sun, 17 Nov 2019 12:05:35 GMT: {"errno":"ECONNREFUSED","code":"EDNS","syscall":"queryA","hostname":"smtp.gmail.com","command":"CONN"}
 Wed, 20 Nov 2019 11:00:37 GMT: {"driver":true,"name":"MongoError","index":0,"code":11000,"errmsg":"E11000 duplicate key error collection: Tehmi2000.myCart index: _id_ dup key: { : \"5dc0926374d2032098c97422\" }"}
+Sat, 23 Nov 2019 06:13:59 GMT: "Verification Email sending error"
+Sat, 23 Nov 2019 06:13:59 GMT: {"errno":"ECONNREFUSED","code":"EDNS","syscall":"queryA","hostname":"smtp.gmail.com","command":"CONN"}
+Sat, 30 Nov 2019 18:55:11 GMT: {"errno":"ECONNREFUSED","code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":3306,"fatal":true}

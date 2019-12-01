@@ -5,8 +5,18 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "start netsh wlan start hostednetwork && nodemon server.js"
+    "start": "node server.js",
+    "dev-start": "start netsh wlan start hostednetwork && start mongod --journal && nodemon server"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "mongodb": "^3.3.3",
+    "mysql": "^2.17.1",
+    "socket.io": "^2.3.0"
+  }
 }
