@@ -1,6 +1,6 @@
 # Ecomm-Project
 
-#Setting Up The Environment
+# Setting Up The Environment
 
 You would need these installed on your system first:
 1. A MySQL server (You can use XAMPP)
@@ -11,6 +11,6 @@ You would need these installed on your system first:
 Before you start the project, you need to create a MySQL database called "Ecomm_db"
 
 
-#Running The Project
+# Running The Project
 
 Use "npm run dev-start" to run the project.
