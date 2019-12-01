@@ -13,4 +13,6 @@ Before you start the project, you need to create a MySQL database called "Ecomm_
 
 ## Running The Project
 
-Use "npm run dev-start" to run the project.
+You can start the project's server by running:
+ 
+> npm run dev-start
