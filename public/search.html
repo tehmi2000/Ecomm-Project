@@ -51,10 +51,17 @@
         </div>
     </header>
 
-    <section id="filter" class="fill-container rows">
-        <span class="fill-container">Filter</span>
-        <button>Apply Filter</button>
-    </section>
+    <div id="filter" class="fill-container rows">
+        <span data-filter-tab class="rows fill-container" onclick="displayFilters()">
+            <span>Select Filter</span>
+            <i class="icofont-caret-down"></i>
+        </span>
+        <button data-apply-btn>Filter</button>
+    </div>
+
+    <div id="filter-content">
+        <button onclick="displayFilters()">Close</button>
+    </div>
 
     <aside id="sidemenu">
         <nav>
@@ -170,7 +177,7 @@
                         </span>
                     </span>
 
-                    <a href="" class="item">
+                    <!-- <a href="" class="item">
                         <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
                         <span class="fill-container cols">
                             <span class="item-name cols">
@@ -185,7 +192,7 @@
                                 </span>
                             </span>
                         </span>
-                    </a>
+                    </a> -->
 
                 </div>
             </div>

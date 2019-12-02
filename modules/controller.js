@@ -15,10 +15,10 @@ const model = function() {
     };
 
     const update = function(req, res) {
-        function formatName(str){
+        const formatName = str => {
             let formattedString = (str.charAt(0)).toUpperCase()+(str.substring(1)).toLowerCase();
             return formattedString;
-        }
+        };
 
         const user_username = req.body.username;
         const user_address = `${req.body.state}, ${req.body.country}`;
@@ -55,11 +55,9 @@ const model = function() {
                 }else{
                     if (ph.decrypt(user1.password) === user_password){
                         req.session.username = user_username;
-                        global_username = req.session.username;
                         res.cookie("username", user_username);
                         res.redirect(`/?sess=${ph.softEncrypt("success")}&idn=success`);
                     }else{
-                        
                         res.redirect(`/login?error=${ph.softEncrypt("not found")}&idn=invalidid`);
                     }
                 }
@@ -112,7 +110,6 @@ const model = function() {
                         console.log('Inserted successfully!');
                         require("./emailHandler").sendVerificationMail(user_email);
                         req.session.username = user_username;
-                        global_username = req.session.username;
                         res.cookie("username", user_username);
                         res.redirect(`/verification.html?idn=success&generated_uuid=${ph.softEncrypt(uuid)}`);
                     }

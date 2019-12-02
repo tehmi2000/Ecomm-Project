@@ -35,6 +35,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+const displayFilters = () => {
+    const element = document.querySelector("#filter + #filter-content");
+    element.style.display = (element.style.display === "flex")? "none" : "flex";
+};
+
 const createNoItemTag = function(container, query){
     container.style.justifyContent = "center";
     container.style.alignItems = "center";
@@ -112,7 +117,6 @@ const createItem = function(container, object){
     span2.classList.add("item-control", "rows", "fill-container");
     span20.classList.add("item-number");
     span21.classList.add("item-buttons");
-    button20.classList.add("icofont-ui-love");
 
     span10.setAttribute("href", `/view/${object._id}`);
     a0.setAttribute("id", object._id);
@@ -123,7 +127,8 @@ const createItem = function(container, object){
 
     button20.addEventListener("click", saveHandler);
     button21.addEventListener("click", cartHandler);
-    button21.innerHTML = `<i class="icofont-cart"></i> ADD TO CART`;
+    button20.innerHTML = `<i className="icofont-"></i> Save`;
+    button21.innerHTML = `<i class="icofont-cart"></i> CART`;
 
     span21 = joinComponent(span21, button20, button21);
     span1 = joinComponent(span1, span10, span11);
