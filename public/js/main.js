@@ -218,3 +218,12 @@ const displayResponse = function(response) {
         }, 600);
     }, 3000);
 };
+
+const formatAsMoney = price => {
+    let formattedPrice = price.toLocaleString(undefined, {
+        style: "currency",
+        currency: "NGN"
+    });
+
+    return formattedPrice;
+};

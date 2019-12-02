@@ -25,10 +25,18 @@ const createItem = function(container, object){
     //     </div>
     // </div>
 
-    let price = parseInt(object["item-price"]).toLocaleString(undefined, {
-        style: "currency",
-        currency: "NGN"
-    });
+    let price = formatAsMoney(parseInt(object["item-price"]));
+
+
+    let originalPrice = (function(){
+        let intPrice = parseInt(object["item-price"]);
+        
+        if(object[`price-discount`]){
+            return `${formatAsMoney(intPrice / (100 - parseInt(object[`price-discount`])))}`
+        }else{
+            return ``;
+        }
+    }());
 
 
     let a0 = create("A");
@@ -37,7 +45,7 @@ const createItem = function(container, object){
         let div2 = create("DIV");
             let span0 = createComponent("SPAN", object["item-name"]);
             let span1 = createComponent("SPAN", price);
-                let sup0 = createComponent("SUP", "NGN88,000");
+                let sup0 = createComponent("SUP", originalPrice);
 
     a0.classList.add("strip-link", "item", "cols");
     div1.classList.add("item-img");

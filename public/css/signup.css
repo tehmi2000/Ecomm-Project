@@ -1,6 +1,7 @@
 body{
     background-color: #f2f2f5;
     overflow-x: hidden;
+    /* color: #ff4500; */
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< MAIN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
@@ -56,14 +57,14 @@ main form{
 #sign-up-form input:focus:not([type="submit"]){
     outline: none;
     /* color: #02b102; */
-    border-bottom: 3px solid rgb(248, 81, 3);
+    border-bottom: 3px solid #f85103;
     background-color: transparent;
 }
 
 #sign-up-form input[type="submit"]{
     /* width: 100%; */
     border: none;
-    background-color: rgb(240, 68, 6);
+    background-color: #f04406;
     color: #fcfcff;
     padding: 1.5rem 2rem;
     margin: 1.5rem 0 0.9rem 0;
@@ -71,7 +72,7 @@ main form{
 }
 
 #sign-up-form label{
-    color: rgb(202, 55, 1);
+    color: #ca3701;
     font-size: 13px;
 }
 
@@ -85,7 +86,7 @@ main form{
 }
 
 #sign-up-form+div a{
-    color: rgb(255, 86, 56);
+    color: #ff5638;
     text-decoration: none;
     font-size: 13px;
 }

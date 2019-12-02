@@ -151,6 +151,7 @@
         }
 
         .info-card .discount-label{
+            display: none;
             position: absolute;
             background-color: rgb(175, 2, 2);
             color: #eee;
@@ -414,7 +415,7 @@
                     </ul>
                 </span>
 
-                <a href="#explore"><span class="icofont-cart"></span></a>
+                <a href="/categories"><span class="icofont-cart"></span></a>
             </div>
         </div>
     </header>
@@ -593,12 +594,14 @@
         const allFields = {
             title: document.querySelector(".product-card .product-name"),
             shortDesc: document.querySelector(".product-card .product-short-desc"),
+            longDesc: document.querySelector(".info-card #description"),
             frontImage: document.querySelector(".product-card #product-pic"),
             backImage: document.querySelector(".bg-image-container"),
             price: document.querySelector(".info-card .product-price"),
             nav1: document.querySelector(".product-card [data-nav-one]"),
             nav2: document.querySelector(".product-card [data-nav-two]"),
             nav3: document.querySelector(".product-card [data-nav-three]"),
+            discount: document.querySelector('.info-card .discount-label'),
             saveBtn: document.querySelector(".info-card .product-controls button:first-child"),
             cartBtn: document.querySelector(".info-card .product-controls button:last-child")
         };
@@ -628,7 +631,12 @@
 
                     allFields["price"].innerHTML = price;
                     allFields["title"].innerHTML = item["item-name"];
-
+                    allFields["longDesc"].innerHTML = item["item-desc"];
+                    if(item["price-discount"]){
+                        allFields["discount"].style.display = "block";
+                        allFields["discount"].innerHTML = `-${item["price-discount"]}% off`;
+                    }
+                    
                     allFields["frontImage"].style.backgroundImage = `url(${item["item-image"][0]})`;
                     // allFields["backImage"].style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${item["item-image"][1]})`;
                     allFields["nav1"].setAttribute("data-pic", item["item-image"][0]);
