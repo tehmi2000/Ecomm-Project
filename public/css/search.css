@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 body{
     background-color: #f2f2f5;
     overflow-x: hidden;
@@ -199,6 +203,7 @@ body{
 }
 
 .dummy.item{
+    position: relative;
     background-color: #ececec;
 }
 
@@ -301,7 +306,6 @@ body{
     .item{
         flex-direction: row;
         width: 99%;
-        /* height: 13vmin; */
         border-radius: 5px;
         margin: 0.7rem 0.5rem;
     }
@@ -351,5 +355,25 @@ body{
 
     .item .item-buttons button:first-child{
         font-size: 1.2rem;
+    }
+
+    .dummy.item{
+        width: 97%;
+    }
+
+    .dummy.item .item-name{
+        padding: 0.5rem 0;
+        margin: 0.5rem 0;
+    }
+
+    .dummy.item .item-number{
+        padding: 0.5rem;
+        margin: 0.5rem 0;
+    }
+
+    .dummy.item .item-buttons{
+        position: absolute;
+        top: 60%;
+        left: 34%;
     }
 }

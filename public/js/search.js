@@ -9,35 +9,39 @@ document.addEventListener("DOMContentLoaded", function() {
     displayQueryElement.innerHTML = ` ${queryText}`;
 
     if(queryText && queryText !== ""){
-        const container = document.querySelector("#item-container");
-        fetch(`/api/goods/all/search?query=${queryText}`).then(async function(response) {
-            try {
-                let result = await response.json();
-                console.log(result);
-
-                container.innerHTML = "";
-                if(result.length === 0){
-                    createNoItemTag(container, queryText);
-                }else{
-                    result.forEach(item => {
-                        itemList[`${item._id}`] = item;
-                        createItem(container, item);
-                    });
-                    console.log(itemList);
-                }
-
-            } catch (error) {
-                console.log(error);
-            }
-        }).catch(function(error) {
-            console.log(error);
-        });
+        fetchData(queryText);
     }
 });
 
 const displayFilters = () => {
     const element = document.querySelector("#filter + #filter-content");
     element.style.display = (element.style.display === "flex")? "none" : "flex";
+};
+
+const fetchData = (searchQuery) => {
+    const container = document.querySelector("#item-container");
+    fetch(`/api/goods/all/search?query=${searchQuery}`).then(async function(response) {
+        try {
+            let result = await response.json();
+            console.log(result);
+
+            container.innerHTML = "";
+            if(result.length === 0){
+                createNoItemTag(container, searchQuery);
+            }else{
+                result.forEach(item => {
+                    itemList[`${item._id}`] = item;
+                    createItem(container, item);
+                });
+                console.log(itemList);
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }).catch(function(error) {
+        console.log(error);
+    });
 };
 
 const createNoItemTag = function(container, query){
