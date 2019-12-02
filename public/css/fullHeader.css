@@ -97,7 +97,7 @@ header #search-form{
 }
 
 #sidemenu {
-	z-index: +999;
+	z-index: +500;
     position: fixed;
     top: 0;
     margin-left: -150%; 
