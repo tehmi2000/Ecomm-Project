@@ -1,5 +1,6 @@
 const model = function() {
     const fs = require("fs");
+    const { log } = require("./config");
     const mysql_config =  require("./config");
     const ph = require("./passwordHash");
 
