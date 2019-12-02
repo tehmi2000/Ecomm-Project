@@ -6,7 +6,7 @@ const model = function(){
     const ObjectID = require("mongodb").ObjectId;
     const mailer = require("nodemailer");
 
-    const ePass = {user: "fbnquestreminderapp@gmail.com"};
+    const ePass = {user: "universone132@gmail.com"};
 
     Object.defineProperty(ePass, "pass", {
         value: "aaf4a41d0f7c4d3ebbfe3b82d875ec",
@@ -35,6 +35,8 @@ const model = function(){
         password: 'tehmitemi1#',
         database: "ecomm_db"
     });
+    
+    // const MONGO_URL = "mongodb://localhost:27017";
 
     // AZURE MYSQL CONNECTION
     // const conn = mysql.createConnection({
@@ -44,6 +46,9 @@ const model = function(){
     //     password: "Re$et@123",
     //     database: "ecomm_db"
     // });
+    
+    // ATLAS MONGODB CONNECTION
+    MONGO_URL = "mongodb+srv://universAdmin:Re$et123@univers-cluster-uvdln.azure.mongodb.net/test?retryWrites=true&w=majority";
 
     const log = function(err) {
         let content = `${(new Date).toUTCString()}: ${JSON.stringify(err)}` + "\n";
@@ -64,7 +69,7 @@ const model = function(){
         connection: conn,
 
         MONGO_CLIENT: mongodb,
-        MONGO_URL: "mongodb://localhost:27017",
+        MONGO_URL,
         mOptions: {
             useNewUrlParser: true,
             useUnifiedTopology: true
