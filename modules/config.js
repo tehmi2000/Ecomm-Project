@@ -6,10 +6,10 @@ const model = function(){
     const ObjectID = require("mongodb").ObjectId;
     const mailer = require("nodemailer");
 
-    const ePass = {user: "universone132@gmail.com"};
+    const ePass = {user: process.env.EMAIL_USERNAME};
 
     Object.defineProperty(ePass, "pass", {
-        value: "aaf4a41d0f7c4d3ebbfe3b82d875ec",
+        value: process.env.EMAIL_PASS,
         writable: true,
         configurable: true,
         enumerable: true
