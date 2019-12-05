@@ -147,6 +147,7 @@ const model = function() {
             });
         },
         dashboard: function(req, res) {
+        	console.log(mysql_config.ePass);
             readFile("./public/index.html", req, res);
         },
         search: function(req, res) {
