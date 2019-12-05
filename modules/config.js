@@ -52,8 +52,8 @@ const model = function(){
     const conn = mysql.createConnection({
     	host: "l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     	port: 3306,
-    	user: "rhc66ah245c891u6",
-    	password: "e7dppzf8a4wc7zf0",
+    	user: process.env.MYSQL_USER,
+    	password: process.env.MYSQL_PASS,
     	database: "mvqa2ejzg5zltrc0"
     });
 
@@ -84,7 +84,6 @@ const model = function(){
         ObjectID,
         connection: conn,
         mongoConn,
-        MONGO_URL,
         itemsDB: "globalDB",
         iCollection: "goods",
         create: queryCreate,
