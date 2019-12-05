@@ -29,15 +29,15 @@ const model = function(){
     const queryTest = "SELECT * FROM users LIMIT 1";
 
     // LOCALHOST CONNECTION
-    const conn = mysql.createConnection({
-        host: 'localhost',
-        port: 3306,
-        user: 'tehmi2000',
-        password: 'tehmitemi1#',
-        database: "ecomm_db"
-    });
+    // const conn = mysql.createConnection({
+    //     host: 'localhost',
+    //     port: 3306,
+    //     user: 'tehmi2000',
+    //     password: 'tehmitemi1#',
+    //     database: "ecomm_db"
+    // });
     
-    const MONGO_URL = "mongodb://localhost:27017";
+    // const MONGO_URL = "mongodb://localhost:27017";
 
     // AZURE MYSQL CONNECTION
     // const conn = mysql.createConnection({
@@ -49,16 +49,16 @@ const model = function(){
     // });
     
     // JAWDB MYSQL CONNECTION
-    // const conn = mysql.createConnection({
-    // 	host: "l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    // 	port: 3306,
-    // 	user: "rhc66ah245c891u6",
-    // 	password: "e7dppzf8a4wc7zf0",
-    // 	database: "mvqa2ejzg5zltrc0"
-    // });
+    const conn = mysql.createConnection({
+    	host: "l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    	port: 3306,
+    	user: "rhc66ah245c891u6",
+    	password: "e7dppzf8a4wc7zf0",
+    	database: "mvqa2ejzg5zltrc0"
+    });
 
     // ATLAS MONGODB CONNECTION
-    // const MONGO_URL = "mongodb+srv://universAdmin:Re$et123@univers-cluster-uvdln.azure.mongodb.net/test?retryWrites=true&w=majority";
+    const MONGO_URL = "mongodb+srv://universAdmin:Re$et123@univers-cluster-uvdln.azure.mongodb.net/test?retryWrites=true&w=majority";
 
     const log = function(err) {
         let content = `${(new Date).toUTCString()}: ${JSON.stringify(err)}` + "\n";
