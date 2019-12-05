@@ -225,7 +225,7 @@ const model = function() {
         
         mongoConn.then(client => {
             const collection = client.db(itemsDB).collection(iCollection);
-            collection.find({"_id" : config.ObjectID(itemID)}).toArray(function(err, item) {
+            collection.find({"_id" : ObjectID(itemID)}).toArray(function(err, item) {
 
                 if(err) {
                     log(err);

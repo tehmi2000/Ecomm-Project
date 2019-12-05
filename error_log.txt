@@ -27,3 +27,9 @@ Sat, 23 Nov 2019 06:13:59 GMT: "Verification Email sending error"
 Sat, 23 Nov 2019 06:13:59 GMT: {"errno":"ECONNREFUSED","code":"EDNS","syscall":"queryA","hostname":"smtp.gmail.com","command":"CONN"}
 Sat, 30 Nov 2019 18:55:11 GMT: {"errno":"ECONNREFUSED","code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":3306,"fatal":true}
 Wed, 04 Dec 2019 20:23:52 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","host":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","port":3306,"fatal":true}
+Thu, 05 Dec 2019 12:12:04 GMT: {}
+Thu, 05 Dec 2019 12:13:19 GMT: {}
+Thu, 05 Dec 2019 12:14:41 GMT: {}
+Thu, 05 Dec 2019 12:14:46 GMT: {}
+Thu, 05 Dec 2019 12:14:47 GMT: {}
+Thu, 05 Dec 2019 12:15:02 GMT: {}

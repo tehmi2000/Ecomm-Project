@@ -606,7 +606,7 @@
             cartBtn: document.querySelector(".info-card .product-controls button:last-child")
         };
 
-        fetch(`api/goods/${itemID}`).then(async function(response) {
+        fetch(`/api/goods/${itemID}`).then(async function(response) {
             try {
                 let data = await response.json();
                 let [item] = data;
@@ -668,25 +668,6 @@
             console.error(error);
         });
 
-        function kangaroo(x1, v1, x2, v2) {
-            let position1 = x1;
-            let position2 = x2;
-
-            while(position1 <= 100000 || position2 <= 100000){
-                
-                position1 += v1;
-                position2 += v2;
-
-                if(position1 === position2){
-                    return "YES";
-                }
-                console.log({position1, position2});
-            }
-
-            return "NO";
-        }
-
-        console.log(kangaroo(4523, 8092, 9419, 8076));
     </script>
 </body>
 </html>
