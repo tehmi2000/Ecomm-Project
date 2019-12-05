@@ -12,7 +12,7 @@ const session = require("express-session");
 const PORT = (process.env.PORT === "" || process.env.PORT === null || process.env.PORT === undefined)? 5000 : process.env.PORT;
 const controller = require("./modules/controller");
 const config =  require("./modules/config");
-const {connection, test, create, log} = config;
+const {connection, test, create, log, ePass} = config;
 
 // APPLICATION SETUP
 
@@ -38,6 +38,7 @@ app.use(session({
 
 server.listen(PORT, "0.0.0.0", function() {
     console.log("Server started...");
+    console.log({ePass});
     console.log(`Server currently running on port ${PORT}`);
 });
 
