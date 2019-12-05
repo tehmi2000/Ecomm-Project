@@ -32,8 +32,8 @@ const model = function(){
     // const conn = mysql.createConnection({
     //     host: 'localhost',
     //     port: 3306,
-    //     user: 'tehmi2000',
-    //     password: 'tehmitemi1#',
+    //     user: 'root',
+    //     password: '',
     //     database: "ecomm_db"
     // });
     
@@ -44,7 +44,7 @@ const model = function(){
     //     host: "temi.mysql.database.azure.com",
     //     port: 3306,
     //     user: "temi@temi",
-    //     password: "Re$et@123",
+    //     password: "Re$et@103",
     //     database: "ecomm_db"
     // });
     
