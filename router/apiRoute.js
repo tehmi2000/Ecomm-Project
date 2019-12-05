@@ -2,7 +2,7 @@ const model = function() {
     const router = require("express").Router();
     const fs = require("fs");
     const controller = require("../modules/controller");
-    const config =  require("../modules/config");
+    const { log, connection, mongoConn, itemsDB, iCollection, ObjectID } =  require("../modules/config");
     const ph = require("../modules/passwordHash");
 
     function forEach(elements, reaction){
@@ -14,7 +14,7 @@ const model = function() {
     const readFile = function(path, req, res) {
         fs.readFile(path, "utf8", function(err, content) {
             if (err) {
-                config.log(err);
+                log(err);
             } else {
                 res.end(content);
             }
@@ -31,7 +31,7 @@ const model = function() {
         const user_password = req.body.password;
 
         const query = `SELECT username, password FROM users WHERE username='${user_username}'`;
-        config.connection.query(query, function(err, result){
+        connection.query(query, function(err, result){
             if(err) {
                 log(err);
             }else{
@@ -92,13 +92,13 @@ const model = function() {
 
         let query = `SELECT username, email FROM users WHERE username="${user_username}" OR email="${user_email}"`;
 
-        config.connection.query(query, function(err, existing_users) {
+        connection.query(query, function(err, existing_users) {
             if(err){
                 console.log(err);
             }else if(existing_users.length === 0){
                 let query = `INSERT INTO users (uID, username, password, firstname, lastname, telcode, phone, email, address, profile_picture, verification_status) VALUES ('${uuid}', '${user_username}', '${ph.encrypt(user_password)}', '${user_firstname}', '${user_lastname}', '', '', '${user_email}', '', '/assets/images/contacts-filled.png', true)`;
 
-                config.connection.query(query, function(err){
+                connection.query(query, function(err){
 
                     if(err) {
                         log(err);
@@ -128,9 +128,9 @@ const model = function() {
 
         if(username === req.session.username){
             const query = `SELECT uID, firstname, lastname, username, phone, email, address, profile_picture FROM users WHERE username='${username}'`;
-            config.connection.query(query, function(err, result){
+            connection.query(query, function(err, result){
                 if (err) {
-                    config.log(err);
+                    log(err);
                 }else{
                     let [user] = result;
                     res.json(user);
@@ -152,41 +152,33 @@ const model = function() {
 
     router.get("/user/:username/getSavedItems", function(req, res) {
 
-        config.MONGO_CLIENT.connect(config.MONGO_URL, config.mOptions, function(err, client) {
-            if (err) {
-                config.log(err);
-            }else{
-                const collection = client.db(`${formatName(req.params.username)}`).collection("savedItems");
-                collection.find({}).toArray(function(err, docs) {
-                    if(err) {
-                        config.log(err);
-                    }else{
-                        res.json(docs);
-                    }
-                });
-
-                client.close();
-            }
+        mongoConn.then(client => {
+            const collection = client.db(`${formatName(req.params.username)}`).collection("savedItems");
+            collection.find({}).toArray(function(err, docs) {
+                if(err) {
+                    log(err);
+                }else{
+                    res.json(docs);
+                }
+            });
+        }).catch(error => {
+            log(error);
         });
     });
 
     router.get("/user/:username/getCart", function(req, res) {
 
-        config.MONGO_CLIENT.connect(config.MONGO_URL, config.mOptions, function(err, client) {
-            if (err) {
-                config.log(err);
-            }else{
-                const collection = client.db(`${formatName(req.params.username)}`).collection("myCart");
-                collection.find({}).toArray(function(err, docs) {
-                    if(err) {
-                        config.log(err);
-                    }else{
-                        res.json(docs);
-                    }
-                });
-
-                client.close();
-            }
+        mongoConn.then(client => {
+            const collection = client.db(`${formatName(req.params.username)}`).collection("myCart");
+            collection.find({}).toArray(function(err, docs) {
+                if(err) {
+                    log(err);
+                }else{
+                    res.json(docs);
+                }
+            });
+        }).catch(error => {
+            log(error);
         });
     });
 
@@ -195,30 +187,28 @@ const model = function() {
 
         const sqlQuery = `SELECT sellerID FROM vendors WHERE username='${req.params.username}'`;
 
-        config.connection.query(sqlQuery, function(err, result) {
+        connection.query(sqlQuery, function(err, result) {
             console.log(result);
             if (err) {
-                config.log(err);
+                log(err);
 
             }else if(result.length > 0){
-                config.MONGO_CLIENT.connect(config.MONGO_URL, config.mOptions, function(err, client) {
-                    if (err) {
-                        config.log(err);
-                    }else{
-                        const [sellerID] = result;
-                        const collection = client.db(config.itemsDB).collection(config.iCollection);
 
-                        collection.find({"sellerID" : sellerID}).toArray(function(err, docs) {
-                            if(err) {
-                                config.log(err);
-                            }else{
-                                res.json(docs);
-                            }
-                        });
+                mongoConn.then(client => {
+                    const [sellerID] = result;
+                    const collection = client.db(itemsDB).collection(iCollection);
 
-                        client.close();
-                    }
+                    collection.find({"sellerID" : sellerID}).toArray(function(err, docs) {
+                        if(err) {
+                            log(err);
+                        }else{
+                            res.json(docs);
+                        }
+                    });
+                }).catch(error => {
+                    log(error);
                 });
+
             }else{
                 res.json([{
                     error: "NonVendorError",
@@ -233,30 +223,27 @@ const model = function() {
         const itemID = req.params.itemID;
         console.log(itemID);
         
-        config.MONGO_CLIENT.connect(config.MONGO_URL, config.mOptions, function(err, client) {
-            if (err) {
-                config.log(err);
-            }else{
-                const collection = client.db(config.itemsDB).collection(config.iCollection);
-                collection.find({"_id" : config.ObjectID(itemID)}).toArray(function(err, item) {
+        mongoConn.then(client => {
+            const collection = client.db(itemsDB).collection(iCollection);
+            collection.find({"_id" : config.ObjectID(itemID)}).toArray(function(err, item) {
 
-                    if(err) {
-                        config.log(err);
+                if(err) {
+                    log(err);
+                }else{
+                    if(item.length > 0){
+                        res.json(item);
                     }else{
-                        if(item.length > 0){
-                            res.json(item);
-                        }else{
-                            res.json([{
-                                error: "NotFoundError",
-                                code: 404,
-                                message: "Your item could not be found"
-                            }]);
-                        }
+                        res.json([{
+                            error: "NotFoundError",
+                            code: 404,
+                            message: "Your item could not be found"
+                        }]);
                     }
-                });
+                }
+            });
 
-                client.close();
-            }
+        }).catch(error => {
+            log(error);
         });
     });
 
@@ -265,23 +252,21 @@ const model = function() {
         // console.log(query);
         
         let pattern = query;
-        config.MONGO_CLIENT.connect(config.MONGO_URL, config.mOptions, function(err, client) {
-            if (err) {
-                config.log(err);
-            }else{
-                const collection = client.db(config.itemsDB).collection(config.iCollection);
-                collection.createIndex({"item-name": "text"});
-                collection.find({$text: {$search: pattern}}).toArray(function(err, docs) {
 
-                    if(err) {
-                        config.log(err);
-                    }else{
-                        res.json(docs);
-                    }
-                });
+        mongoConn.then(client => {
+            const collection = client.db(itemsDB).collection(iCollection);
+            collection.createIndex({"item-name": "text"});
+            collection.find({$text: {$search: pattern}}).toArray(function(err, docs) {
 
-                client.close();
-            }
+                if(err) {
+                    log(err);
+                }else{
+                    res.json(docs);
+                }
+            });
+
+        }).catch(error => {
+            log(error);
         });
     });
 
@@ -289,23 +274,20 @@ const model = function() {
     router.get("/goods/all/mostPopular", function(req, res) {
         const query = req.query['query'];
 
-        config.MONGO_CLIENT.connect(config.MONGO_URL, config.mOptions, function(err, client) {
-            if (err) {
-                config.log(err);
-            }else{
-                const collection = client.db(config.itemsDB).collection(config.iCollection);
-                collection.find({}).sort({ numberOfSaves: -1 }).limit(4).toArray(function(err, docs) {
-                    if(err) {
-                        config.log(err);
-                    }else{
-                        res.json(docs);
-                    }
-                });
-                client.close();
-            }
+        mongoConn.then(client => {
+            const collection = client.db(itemsDB).collection(iCollection);
+            collection.find({}).sort({ numberOfSaves: -1 }).limit(4).toArray(function(err, docs) {
+                if(err) {
+                    log(err);
+                }else{
+                    res.json(docs);
+                }
+            });
+        }).catch(error => {
+            log(error);
         });
-    });
 
+    });
 
     router.post("/goods/save", function(req, res) {
         const userInput = req.body;
@@ -313,21 +295,17 @@ const model = function() {
         userInput.numberOfSaves = 0;
         userInput.published = false;
 
-        config.MONGO_CLIENT.connect(config.MONGO_URL, config.mOptions, function(err, client) {
-            if (err) {
-                config.log(err);
-            }else{
-                const collection = client.db(config.itemsDB).collection(config.iCollection);
-                collection.insertOne(userInput, function(err, result) {
-                    if(err) {
-                        config.log(err);
-                    }else{
-                        res.redirect("/myprofile/orders?sectid=3");
-                    }
-                });
-
-                client.close();
-            }
+        mongoConn.then(client => {
+            const collection = client.db(itemsDB).collection(iCollection);
+            collection.insertOne(userInput, function(err, result) {
+                if(err) {
+                    log(err);
+                }else{
+                    res.redirect("/myprofile/orders?sectid=3");
+                }
+            });
+        }).catch(error => {
+            log(error);
         });
     });
 
@@ -336,46 +314,39 @@ const model = function() {
         const username = formatName(req.params.username);
         const item = req.body.item;
 
-        config.MONGO_CLIENT.connect(config.MONGO_URL, config.mOptions, function(err, client) {
-            if (err) {
-                config.log(err);
-            }else{
-                const collection = client.db(username).collection("myCart");
+        mongoConn.then(client => {
+            const collection = client.db(username).collection("myCart");
 
-                collection.insertOne(item, function(err, result) {
-                    if(err) config.log(err);
-                    res.json(result);
-                });
-            }
-            client.close();
+            collection.insertOne(item, function(err, result) {
+                if(err) log(err);
+                res.json(result);
+            });
+        }).catch(error => {
+            log(error);
         });
 
     });
 
     router.post("/goods/save/:username/addToSavedItems", function(req, res) {
         const query = req.query['query'];
-    
-        config.MONGO_CLIENT.connect(config.MONGO_URL, config.mOptions, function(err, client) {
-            if (err) {
-                config.log(err);
-            }else{
-                const collection = client.db(config.itemsDB).collection(config.iCollection);
-                collection.find({}).toArray(function(err, docs) {
-                    if(err) config.log(err);
-                    res.json(docs);
-                });
-            }
 
-            client.close();
+        mongoConn.then(client => {
+            const collection = client.db(itemsDB).collection(iCollection);
+            collection.find({}).toArray(function(err, docs) {
+                if(err) log(err);
+                res.json(docs);
+            });
+        }).catch(error => {
+            log(error);
         });
     });
 
     router.get("/categories", function(req, res) {
         const query = `SELECT * FROM categories WHERE 1`;
             
-        config.connection.query(query, function(err, result){
+        connection.query(query, function(err, result){
             if (err) {
-                config.log(err);
+                log(err);
             }else{
                 res.json(result);
             }
@@ -385,7 +356,7 @@ const model = function() {
     router.get("/countries/all", function(req, res) {
         fs.readFile("./router/support/countries.json", "utf8", function(err, content) {
             if (err) {
-                config.log(err);
+                log(err);
             } else {
                 res.json(JSON.parse(content));
             }
@@ -410,7 +381,7 @@ const model = function() {
 
         fs.readFile("./router/support/countries.json", "utf8", function(err, content) {
             if (err) {
-                config.log(err);
+                log(err);
             } else {
                 const countryList = JSON.parse(content);
                 let filename = getFilename(countryList);
@@ -418,7 +389,7 @@ const model = function() {
                 if(filename !== null){
                     fs.readFile(`./router/support/countries/${filename}.json`, "utf8", function(err, content) {
                         if (err) {
-                            config.log(err);
+                            log(err);
                         } else {
                             res.json(JSON.parse(content));
                         }

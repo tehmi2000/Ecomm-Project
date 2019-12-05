@@ -93,22 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //     }); 
 // }
 
-// socket.emit('update socketID', get_cookie("hitmee-username").value);
-
-// socket.on('reconnect', function() {
-//     if(get_cookie("hitmee-username")){
-//         socket.emit('update socketID', get_cookie("hitmee-username").value);
-//         if(get_cookie("chattingWith")){
-//             socket.emit('get presence', get_cookie("chattingWith").value);
-//         }
-//     }
-// });
-
-// socket.on('connectedTo', function(data) {
-//     document.cookie="chattingWith="+data+";";
-// });
-
-
 function formatTime(hours, minutes) {
     const ampm = (hours >= 12)? 'PM' : 'AM';
     const fhours = (hours > 12)? hours - 12 : hours;
@@ -130,7 +114,6 @@ function formatName(str){
     let formattedString = (str.charAt(0)).toUpperCase()+(str.substring(1)).toLowerCase();
     return formattedString;
 }
-
 
 // Custom helper functions 
 
@@ -173,6 +156,25 @@ const validateSearch = function() {
         return true;
     }
     return false;
+};
+
+const dataValidation = data => {
+    // console.log(data);
+    const result = {
+        valid: false,
+        data: null
+    };
+
+    if(data.length > 0){
+        let [dataOne] = data;
+        console.log(dataOne);
+    }else{
+        
+    }
+
+    result.valid = true;
+    result.data = data;
+    return result;
 };
 
 

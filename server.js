@@ -2,6 +2,7 @@
 
 // VARIABLE ASSIGNMENTS
 const express = require("express");
+const helmet = require("helmet");
 const app = express();
 const server = require("http").createServer(app);
 const io =  require("socket.io")(server);
@@ -16,14 +17,15 @@ const {connection, test, create, log} = config;
 // APPLICATION SETUP
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// Comment out during production
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    next();
-});
+// Only used during development
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Origin", "*");
+//     next();
+// });
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 app.use("/", express.static(__dirname + "/public"));
+app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -33,6 +35,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
 server.listen(PORT, "0.0.0.0", function() {
     console.log("Server started...");
     console.log(`Server currently running on port ${PORT}`);

@@ -58,7 +58,7 @@ const model = function(){
     });
 
     // ATLAS MONGODB CONNECTION
-    MONGO_URL = "mongodb+srv://universAdmin:Re$et123@univers-cluster-uvdln.azure.mongodb.net/test?retryWrites=true&w=majority";
+    const MONGO_URL = "mongodb+srv://universAdmin:Re$et123@univers-cluster-uvdln.azure.mongodb.net/test?retryWrites=true&w=majority";
 
     const log = function(err) {
         let content = `${(new Date).toUTCString()}: ${JSON.stringify(err)}` + "\n";
@@ -67,9 +67,15 @@ const model = function(){
                 console.log(err);
             }
         });
-        // throw err;
         console.error(err);
     };
+
+    const mOptions = {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    };
+
+    const mongoConn = MONGO_CLIENT.connect(MONGO_URL, mOptions);
 
     return {
         log,
@@ -77,16 +83,9 @@ const model = function(){
         transporter,
         ObjectID,
         connection: conn,
-
-        MONGO_CLIENT: mongodb,
-        MONGO_URL,
-        mOptions: {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        },
+        mongoConn,
         itemsDB: "globalDB",
         iCollection: "goods",
-        
         create: queryCreate,
         test: queryTest
     };

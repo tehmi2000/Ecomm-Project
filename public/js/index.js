@@ -71,13 +71,15 @@ const getMostPopular = function() {
     
     fetch(`/api/goods/all/mostPopular`).then(function(response) {
 
-        response.json().then( function(documents) {
-            console.log(documents);
+        response.json().then( function(result) {
+            console.log(result);
             container.innerHTML = "";
-            forEach(documents, function(object) {
+            let data = dataValidation(result).data;
+
+            data.forEach(object => {
                 createItem(container, object);
             });
-        }).catch(function (error) {
+        }).catch(error => {
             console.error(error);
         });
 
@@ -89,8 +91,10 @@ const getMostPopular = function() {
 const getRecommended = function() {
     fetch(`/api/goods/all/recommended`).then(function(response) {
 
-        response.json().then( function(documents) {
-            console.log(documents);
+        response.json().then( function(result) {
+            console.log(result);
+            let data = dataValidation(result).data;
+            
         }).catch(function (error) {
             console.error(error);
         });
