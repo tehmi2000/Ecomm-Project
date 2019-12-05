@@ -58,7 +58,7 @@ const model = function(){
     });
 
     // ATLAS MONGODB CONNECTION
-    const MONGO_URL = "mongodb+srv://universAdmin:Re$et123@univers-cluster-uvdln.azure.mongodb.net/test?retryWrites=true&w=majority";
+    const MONGO_URL = process.env.MONGO_CONNECTION_STRING;
 
     const log = function(err) {
         let content = `${(new Date).toUTCString()}: ${JSON.stringify(err)}` + "\n";
