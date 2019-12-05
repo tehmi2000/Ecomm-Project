@@ -38,7 +38,7 @@ app.use(session({
 
 server.listen(PORT, "0.0.0.0", function() {
     console.log("Server started...");
-    console.log({ePass});
+    console.log({MONGO_URL});
     console.log(`Server currently running on port ${PORT}`);
 });
 
