@@ -12,7 +12,7 @@ const session = require("express-session");
 const PORT = (process.env.PORT === "" || process.env.PORT === null || process.env.PORT === undefined)? 5000 : process.env.PORT;
 const controller = require("./modules/controller");
 const config =  require("./modules/config");
-const {connection, test, create, log, ePass} = config;
+const {connection, test, create, log, MONGO_URL} = config;
 
 // APPLICATION SETUP
 

@@ -84,6 +84,7 @@ const model = function(){
         ObjectID,
         connection: conn,
         mongoConn,
+        MONGO_URL,
         itemsDB: "globalDB",
         iCollection: "goods",
         create: queryCreate,
