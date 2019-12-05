@@ -2,7 +2,7 @@ const model = function(){
 
     const fs = require("fs");
     const mysql = require("mysql");
-    const mongodb = require("mongodb").MongoClient;
+    const MONGO_CLIENT = require("mongodb").MongoClient;
     const ObjectID = require("mongodb").ObjectId;
     const mailer = require("nodemailer");
 
