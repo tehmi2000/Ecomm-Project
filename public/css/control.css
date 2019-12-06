@@ -424,6 +424,17 @@ main{
         background-color: transparent;
     }
 
+/*  */
+    .nav-child:hover+.drop-extra, .drop-extra:hover{
+        opacity: 0;
+    }
+
+    .nav-child:hover+.drop-extra > *, .drop-extra:hover > *{
+        padding: 0;
+        height: 0;
+    }
+/*  */
+
     .navigation .nav-child:hover, .drop-extra > *:hover{
         border: none;
         color: #444;;

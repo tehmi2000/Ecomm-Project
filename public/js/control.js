@@ -113,6 +113,7 @@ const formHandler = function(evt) {
             let result = await response.json();
             if(!result[`error`]){
                 alert("Saved to Store!");
+                window.location.href = "/myprofile/orders?sectid=2";
             }else{
                 alert("Something unexpected happened. Try again!");
             }
