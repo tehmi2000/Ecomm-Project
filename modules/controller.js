@@ -17,11 +17,18 @@ const model = function() {
 
     const upload = function(req, res) {
         let file = req.files;
+        let path = "./public/uploads";
         for (const key in file) {
             let uploadedFile = file[key];
-            console.log(uploadedFile.mv);
+            uploadedFile.mv(`${path}/${uploadedFile.name}`, function(err) {
+                if (err) {
+                    log(err);
+                    res.json([{...err, status: 403}]);
+                }else{
+                    res.json([{status: 200, statusText: "Upload successful!"}]);
+                }
+            });
         }
-        res.end();
     }
 
     const update = function(req, res) {

@@ -55,7 +55,7 @@ const createItem = function(container, object){
     sup0.classList.add("strike");
 
     a0.setAttribute("href", `/view/${object._id}`);
-    img0.setAttribute("src", object["item-image"][1]);
+    img0.setAttribute("src", object["item-image"][0]);
     img0.setAttribute("alt", "Item Image");
 
     span1.appendChild(sup0);

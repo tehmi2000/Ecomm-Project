@@ -7,6 +7,7 @@ const model = function() {
             if (err) {
                 throw err;
             } else {
+                res.setHeader('Content-Type', 'text/html');
                 res.end(content);
             }
         });

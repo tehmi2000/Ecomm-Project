@@ -290,18 +290,28 @@ const model = function() {
     });
 
     router.post("/goods/save", function(req, res) {
+        const uploadPath = `../uploads`;
         const userInput = req.body;
         userInput.postTime = Date.now();
         userInput.numberOfSaves = 0;
         userInput.published = false;
+
+
+        userInput[`item-image`] = userInput[`item-image`].map((imageUrl, index) => {
+            return (imageUrl !== '')? `${uploadPath}/${imageUrl}`: imageUrl;
+        });
+        console.log(userInput[`item-image`]);
 
         mongoConn.then(client => {
             const collection = client.db(itemsDB).collection(iCollection);
             collection.insertOne(userInput, function(err, result) {
                 if(err) {
                     log(err);
+                    res.json([{...err}]);
                 }else{
-                    res.redirect("/myprofile/orders?sectid=3");
+                    console.log("Saving...")
+                    // res.redirect("/myprofile/orders?sectid=3");
+                    res.json([{...result}]);
                 }
             });
         }).catch(error => {

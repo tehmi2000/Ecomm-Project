@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.replace("/login");
     }
 
+    document.querySelector("#post-box #addToStore-form").addEventListener("submit", formHandler);
     document.querySelectorAll("#post-box [name='item-image']").forEach(element => {
         element.addEventListener("change", imageUploadHandler);
     });
@@ -47,8 +48,9 @@ const imageUploadHandler = function(evt){
         fetch('/upload', {
             method: "POST",
             body: fd
-        }).then(response => {
-            console.log(response);
+        }).then(async response => {
+            let result = await response.json();
+            console.log(result);
         }).catch(error => {
             console.log(error);
         });
@@ -72,38 +74,44 @@ const imageUploadHandler = function(evt){
 
 const formHandler = function(evt) {
     evt.preventDefault();
-    debugger;
+    // debugger;
     let categoryField = [];
+    let imageField = [];
 
     forEach(document.querySelectorAll("[name='categories']:checked"), function(field) {
         categoryField.push(field.value);
     });
 
-    let imageField = [];
-
     forEach(document.querySelectorAll("[name='item-image']"), function(field) {
-        imageField.push(field.value);
+        imageField.push('');
     });
 
+    for (let i = 1; i <= Object.keys(imgUrls).length; i++) {
+        imageField[i-1] = imgUrls[`preview-image-${i}`];
+    }
+
+    const bodyValue = {
+        "item-image": imageField,
+        "item-name": document.querySelector("[name='item-name']").value,
+        "item-desc": document.querySelector("[name='item-desc']").value,
+        categories: categoryField,
+        sellerID: document.querySelector("[name='sellerID']").value,
+        "item-price": document.querySelector("[name='item-price']").value,
+        "item-qty": document.querySelector("[name='item-qty']").value
+    };
+
+    console.log(JSON.stringify(bodyValue));
+
     fetch(`/api/goods/save`, {
-        method: "post",
-        body: JSON.stringify({
-            "item-image": imageField,
-            "item-name": document.querySelector("[name='item-name']").value,
-            "item-desc": document.querySelector("[name='item-desc']").value,
-            categories: categoryField,
-            sellerID: document.querySelector("[name='sellerID']").value,
-            "item-price": document.querySelector("[name='item-price']").value,
-            "item-qty": document.querySelector("[name='item-qty']").value
-        }),
+        method: "POST",
+        body: JSON.stringify(bodyValue),
         headers: {
             "Content-Type": "application/json; charset=utf-8"
         }
     }).then(async function(response) {
         try {
             let result = await response.json();
-            if(result.result.n > 0 && result.result.ok === 1){
-                // notify()
+            if(!result[`error`]){
                 alert("Saved to Store!");
             }else{
                 alert("Something unexpected happened. Try again!");
