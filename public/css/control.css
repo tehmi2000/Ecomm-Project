@@ -174,7 +174,9 @@ main{
     color: #777;
     font-weight: bold;
     padding: 1rem;
-    /* text-align: center; */
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
     background-color: #ddd;
 }
 
@@ -331,10 +333,6 @@ main{
 
 .vendor-notify-box *{
     position: relative;
-}
-
-.vendor-notify-box .close-btn{
-    margin-left: calc(100% - 1.2rem);
 }
 
 .vendor-notify-box .body-box{

@@ -1,7 +1,7 @@
 const model = function() {
     const fs = require("fs");
     const mysql_config =  require("./config");
-    const {log} = mysql_config;
+    const { log } = mysql_config;
     const ph = require("./passwordHash");
 
     const readFile = function(path, req, res) {
@@ -14,6 +14,15 @@ const model = function() {
             }
         });
     };
+
+    const upload = function(req, res) {
+        let file = req.files;
+        for (const key in file) {
+            let uploadedFile = file[key];
+            console.log(uploadedFile.mv);
+        }
+        res.end();
+    }
 
     const update = function(req, res) {
         const formatName = str => {
@@ -126,6 +135,7 @@ const model = function() {
         auth,
         register,
         update,
+        upload,
         resetHandler: function(req, res) {
             const account_email = req.body["reset-email"];
             console.log(account_email);

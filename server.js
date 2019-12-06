@@ -9,6 +9,7 @@ const io =  require("socket.io")(server);
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const fileUpload = require("express-fileupload");
 const PORT = (process.env.PORT === "" || process.env.PORT === null || process.env.PORT === undefined)? 5000 : process.env.PORT;
 const controller = require("./modules/controller");
 const config =  require("./modules/config");
@@ -35,6 +36,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+app.use(fileUpload());
 
 server.listen(PORT, "0.0.0.0", function() {
     console.log("Server started...");
@@ -80,6 +82,7 @@ app.get("/myprofile/orders", controller.control);
 app.get("/search", controller.search);
 app.get("/view/:itemID", controller.productView);
 
+app.post("/upload", controller.upload);
 app.post("/auth", controller.auth); // Login handler
 app.post("/register", controller.register); // Sign up/Registration handler
 app.post("/myprofile/update", controller.update); // Profile handler

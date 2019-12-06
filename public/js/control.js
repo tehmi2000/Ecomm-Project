@@ -1,10 +1,5 @@
+const imgUrls = {};
 document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector(".vendor-notify-box .close-btn").addEventListener("click", function(evt){
-        document.querySelector(".vendor-bg-cover").style.top = "-120vh";
-        setTimeout(function() {
-            window.location.href = "/myprofile/orders?sectid=1";
-        }, 1000);
-    });
     const activeSection = get_query().sectid;
 
     const selector = {
@@ -37,8 +32,43 @@ document.addEventListener("DOMContentLoaded", function() {
     }else{
         window.location.replace("/login");
     }
+
+    document.querySelectorAll("#post-box [name='item-image']").forEach(element => {
+        element.addEventListener("change", imageUploadHandler);
+    });
     
 });
+
+const imageUploadHandler = function(evt){
+    const uploadImage = (name, file) => {
+        const fd = new FormData();
+        fd.append(name, file);
+
+        fetch('/upload', {
+            method: "POST",
+            body: fd
+        }).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error);
+        });
+    };
+    
+    const reader = new FileReader();
+    const elementId = evt.target.id;
+    const file = evt.target.files[0];
+
+    reader.readAsDataURL(file);
+    reader.onload = function() {
+        const previewElement = document.querySelector(`label[for='${elementId}']`);
+        previewElement.innerHTML = "";
+        previewElement.style.backgroundImage = `url(${reader.result})`;
+        imgUrls[elementId] = file.name;
+        setTimeout(() => {
+            uploadImage(elementId, file);
+        }, 8000);
+    };
+};
 
 const formHandler = function(evt) {
     evt.preventDefault();
@@ -111,7 +141,6 @@ const getMyStoreItems = function() {
 
             if(result.length > 0 && result[0].error){
                 console.log(result);
-                // alert("You are not a vendor!");
                 document.querySelector(".vendor-bg-cover").style.top = "0vh";
             }else{
                 console.log(result);
