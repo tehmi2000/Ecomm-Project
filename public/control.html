@@ -107,17 +107,17 @@
                     <form id="addToStore-form" class="cols">
                         <div class="gallery">
                             <label for="preview-image-1">Click to insert image</label>
-                            <input type="file" name="item-image" id="preview-image-1">
+                            <input type="file" name="item-image" id="preview-image-1" accept="image/*">
     
                             <label for="preview-image-2">Click to insert image</label>
-                            <input type="file" name="item-image" id="preview-image-2">
+                            <input type="file" name="item-image" id="preview-image-2" accept="image/*">
     
                             <label for="preview-image-3">Click to insert image</label>
-                            <input type="file" name="item-image" id="preview-image-3">
+                            <input type="file" name="item-image" id="preview-image-3" accept="image/*">
                         </div>
     
                         <label for="">Name of Item</label>
-                        <input type="text" name="item-name" id="" placeholder="Enter the name of item here">
+                        <input type="text" name="item-name" id="" placeholder="Enter the name of item here" required>
     
                         <label for="">Description</label>
                         <textarea name="item-desc" id="" placeholder="Describe the item here"></textarea>
@@ -178,7 +178,6 @@
                         </div>
                     </div>
 
-
                     <span class="dummy item">
                         <img src="" alt="">
                         <span class="item-name"></span>
@@ -205,17 +204,26 @@
                         </span>
                     </span>
 
-                    <!-- <span class="item">
+                    <!-- <span class="store-item">
                         <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
-                        <span class="item-name">Sony Fifa 20 Standard Edition-PS4</span>
-                        <span class="item-number cols">
+                        <div class="info">
                             <span>Qty: 1</span>
                             <span>N15,000,000</span>
-                        </span>
-                        <span class="item-buttons">
                             <button class="icofont-ui-love"></button>
                             <button class="icofont-bin"></button>
-                        </span>
+                        </div>
+                        <div class="item-name">Sony Fifa 20 Standard Edition-PS4</div>
+                    </span>
+
+                    <span class="store-item rows">
+                        <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
+                        <div class="info">
+                            <span class="">Sony Fifa 20 Standard Edition-PS4</span>
+                            <span>Qty: 1</span>
+                            <span>N15,000,000</span>
+                            <button class="icofont-ui-love"></button>
+                            <button class="icofont-bin"></button>
+                        </div>
                     </span> -->
                     <!-- <button onclick="javascript:createItems({title: 'Me areand', qty: 2, price: 'N3,000'})"></button> -->
                 </section>
