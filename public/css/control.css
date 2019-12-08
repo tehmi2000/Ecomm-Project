@@ -230,10 +230,6 @@ main{
     align-items: center;
 }
 
-.item .top > *{
-
-}
-
 .item .top .item-brand{
     text-transform: capitalize;
     font-size: 1.1rem;
@@ -466,6 +462,7 @@ main{
     main{
         flex-direction: column;
         margin: 0;
+        padding: 0;
         width: auto;
         margin-top: 1rem;
     }
@@ -489,7 +486,7 @@ main{
         background-color: #fafafd;
         cursor: pointer;
         font-size: 1.3rem;
-        margin-right: 0.2rem;
+        margin: 0 0.2rem;
     }
 
     .navigation .nav-child{
@@ -525,6 +522,7 @@ main{
     }
     
     .active, .active > *{
+        font-weight: normal;
         color: #f4f3f2;
         background-color: rgb(226, 62, 2);
     }
@@ -535,11 +533,12 @@ main{
     }
 
     .control-body h2{
-        margin-top: 1.3rem;
+        font-size: x-large;
+        margin-top: 0.5rem;
     }
     
     .control-body h5{
-        margin-top: 1rem;
+        margin-top: 0.8rem;
     }
 
     .control-body .header{
@@ -547,54 +546,56 @@ main{
         background-color: rgb(226, 62, 2);
     }
 
-    .control-body .body > *{
-        padding: 1rem;
-    }
-
-    .control-body .item{
-        width: 100%;
-        height: 20%;
-        margin: 1rem 0;
-        border: none;
-    }
-
-    .control-body .item img{
-        width: 20%;
-    }
-
-    .control-body .item .item-name{
-        width: 40%;
-        padding: 1rem;
-        text-align: left;
-        font-size: 1.35rem;
-    }
-
-    .control-body .item .item-number{
-        min-width: 10%;
-        margin-left: auto;
-        margin-right: 1rem;
-        /* border: 1px solid palevioletred; */
-    }
-
-    .item .item-number > *{
-        font-weight: normal;
-    }
-
-    .item .item-buttons{
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        padding: 0.5rem 0.2rem;
+    .control-body .body{
+        min-height: 50vmax;
     }
     
-    .item .item-buttons button{
-        border: none;
-        overflow: hidden;
-        border-radius: 15%;
-        margin-top: 0.15rem;
-        margin-bottom: 0.15rem;
-        padding: 0.5rem;  
+    .control-body .body > *{
+        padding: 1rem;
+        min-height: 49vmax;
     }
+
+    /*  */
+    .control-body .item{
+        width: 100%;
+        height: 15rem;
+        border: none;
+        border-top: 1px solid #eee;
+        margin: 0;
+        padding-bottom: 1.5rem;
+    }
+    
+    .control-body .item img{
+        width: 12.5rem;
+        object-fit: contain;
+        background-color: #eee;
+    }
+    
+    .control-body .item div.info{
+        padding: 0.6rem 1rem;
+    }
+    
+    .control-body .item .item-name{
+        font-size: 1.5rem;
+        color: #333;
+    }
+    
+    .control-body .item .item-price{
+        font-size: 1.3rem;
+    }
+    
+    .control-body .item .item-controls{
+        bottom: 0.3rem;
+    }
+    
+    .item .item-controls button{
+        background-color: rgb(255, 153, 0);
+        border-radius: 3px;
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+        padding: 1rem 3rem;
+    }
+    /*  */
 
     .dummy.item .item-buttons > *{
         padding: 1.0rem;

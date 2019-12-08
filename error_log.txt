@@ -43,3 +43,4 @@ Thu, 05 Dec 2019 21:58:03 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sq
 Thu, 05 Dec 2019 21:58:11 GMT: {"code":"PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR","fatal":false}
 Fri, 06 Dec 2019 12:33:53 GMT: {"errno":-4058,"code":"ENOENT","syscall":"open","path":"C:\\Users\\Hp\\Desktop\\Project 2\\ecomm\\public\\uploas\\4496ad235a4941b2a4e0f2a670c8e053.jpg"}
 Fri, 06 Dec 2019 20:22:41 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user 'tehmi2000'@'localhost' (using password: YES)","sqlState":"28000","fatal":true}
+Sun, 08 Dec 2019 05:45:17 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","host":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","port":3306,"fatal":true}

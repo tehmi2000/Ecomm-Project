@@ -149,10 +149,10 @@ const getMyStoreItems = function() {
             let result = await response.json();
 
             if(result.length > 0 && result[0].error){
-                console.log(result);
+                // console.log(result);
                 document.querySelector(".vendor-bg-cover").style.top = "0vh";
             }else{
-                console.log(result);
+                // console.log(result);
                 document.querySelector(".control-body #post-box").style.flexDirection = "row";
                 document.querySelector("#subtitle").innerHTML = `${result.length} items`;
             }
@@ -174,7 +174,7 @@ const getSavedItems = function() {
             let items = await response.json();
             const container = document.querySelector("#orders-box");
 
-            console.log(items);
+            // console.log(items);
             document.querySelector("#subtitle").innerHTML = `${items.length} items`;
 
             container.innerHTML = "";
@@ -203,7 +203,7 @@ const getMyCart = function() {
             let items = await response.json();
             const container = document.querySelector("#orders-box");
             document.querySelector("#subtitle").innerHTML = `${items.length} items`;
-            console.log(items);
+            // console.log(items);
 
             container.innerHTML = "";
             if(items.length > 0){
@@ -224,7 +224,7 @@ const getMyCart = function() {
 };
 
 const createItems = function(items) {
-    console.log(items);
+    // console.log(items);
     const container = document.querySelector("#orders-box");
     // <div class="item">
     //     <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
