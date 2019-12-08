@@ -153,6 +153,7 @@ const getMyStoreItems = function() {
                 document.querySelector(".vendor-bg-cover").style.top = "0vh";
             }else{
                 console.log(result);
+                document.querySelector(".control-body #post-box").style.flexDirection = "row";
                 document.querySelector("#subtitle").innerHTML = `${result.length} items`;
             }
 
@@ -223,42 +224,44 @@ const getMyCart = function() {
 };
 
 const createItems = function(items) {
+    console.log(items);
     const container = document.querySelector("#orders-box");
-    // <span class="item">
+    // <div class="item">
     //     <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
-    //     <span class="item-name">Sony Fifa 20 Standard Edition-PS4</span>
-    //     <span class="item-number cols">
-    //         <span>Qty: 1</span>
-    //         <span>N15,000,000</span>
-    //     </span>
-    //     <span class="item-buttons">
-    //         <button class="icofont-ui-love"></button>
-    //         <button class="icofont-bin"></button>
-    //     </span>
-    // </span>
+    //     <div class="info cols">
+    //         <div class="rows top">
+    //             <div class="item-brand">fashion</div>
+    //             <button class="strip-btn icofont-close"></button>
+    //         </div>
+            
+    //         <span class="item-name">Sony Fifa 20 Standard Edition-PS4</span>
+    //         <span class="item-price">N15,000,000</span>
+    //         <span class="item-controls">
+    //             <button class="">Save Item</button>
+    //         </span>
+    //     </div>
+    // </div>
+    let price = formatAsMoney(parseInt(items['item-price']));
 
-    let span0 = create("SPAN");
+    let div0 = createComponent("div", null, ["item"]);
         const img0 = create("IMG");
-        const span1 = createComponent("SPAN", items.title);
-        let span2 = create("SPAN");
-            const span20 = createComponent("SPAN", `Qty: ${items.qty}`);
-            const span21 = createComponent("SPAN", items.price);
-        let span3 = create("SPAN");
-            const button30 = create("BUTTON");
-            const button31 = create("BUTTON");
+        let div1 = createComponent("DIV", null, ["info", "cols"]);
+            let div10 = createComponent("div", null, ["rows", "top"]);
+                let div101 = createComponent("DIV", `${items['item-brand'] || items['categories'][0]}`, ["item-brand"]);
+                let button101 = createComponent("BUTTON", null, ["strip-btn", "icofont-close"]);
+            let span10 = createComponent("SPAN", `${items['item-name']}`, ["item-name"]);
+            let span11 = createComponent("SPAN", `${price}`, ["item-price"]);
+            let span12 = createComponent("SPAN", null, ["item-controls"]);
+                const button120 = createComponent("BUTTON", "Save Item");
 
-    span0.classList.add("item");
-    span1.classList.add("item-name");
-    span2.classList.add("item-number", "cols");
-    span3.classList.add("item-buttons");
+    img0.setAttribute("src", `${items['item-image'][0]}`);
 
-    button30.classList.add("icofont-ui-love");
-    button31.classList.add("icofont-bin");
+    div10 = joinComponent(div10, div101, button101);
+    span12 = joinComponent(span12, button120);
 
-    span3 = joinComponent(span3, button30, button31);
-    span2 = joinComponent(span2, span20, span21);
-    span0 = joinComponent(span0, img0, span1, span2, span3);
-    container.appendChild(span0);
+    div1 = joinComponent(div1, div10, span10, span11, span12);
+    div0 = joinComponent(div0, img0, div1);
+    container.appendChild(div0);
 
 };
 

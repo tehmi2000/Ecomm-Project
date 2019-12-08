@@ -186,12 +186,20 @@ function createText(text) {
     return document.createTextNode(text);
 }
 
-function createComponent(type, value) {
+function createComponent(type, value, classList) {
     value = value || null;
+    classList = classList || null;
+
     const component = document.createElement(type);
     if (value){
         text = document.createTextNode(value);
         component.appendChild(text);
+    }
+
+    if(classList){
+        classList.forEach(className => {
+            component.classList.add(className);
+        });
     }
     return component;
 }

@@ -90,6 +90,7 @@ main{
     margin-left: 1.5rem;
 }
 
+
 .control-body .header{
     margin: 0;
     color: #f4f3f2;
@@ -115,14 +116,15 @@ main{
 }
 
 .control-body .body{
-    height: 50vmin;
-    min-height: 400px;
+    /* height: 50vmin; */
+    min-height: 50vmin;
     overflow-y: auto;
 }
 
 .control-body .body > *{
     display: none;
     height: 100%;
+    min-height: 49vmin;
     padding: 1rem 0;
 }
 
@@ -203,70 +205,88 @@ main{
     display: flex;
     flex-direction: row;
     width: 90%;
-    height: 21%;
+    height: 13.5rem;
     border: 1px solid #ddd;
     margin: 1rem 1rem;
 }
 
-.control-body .item > *{
-    height: 100%;
-    font-size: 1.5rem;
-}
-
 .control-body .item img{
     padding: 0.1rem;
-    width: 10%;
+    width: 13.5rem;
+    height: 100%;
     object-fit: contain;
-    background-color: black;
+    background-color: #eee;
+}
+
+.control-body .item div.info{
+    position: relative;
+    padding: 0.5rem 1rem;
+    width: 100%;
+}
+
+.item div.info .top{
+    /* border: 1px solid red; */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item .top > *{
+
+}
+
+.item .top .item-brand{
+    text-transform: capitalize;
+    font-size: 1.1rem;
+    padding: 0.3rem 1rem;
+    background-color: #ddd;
+    color: #888;
+}
+
+.item .top button{
+    padding: 0.5rem;
+    font-size: 1.3rem;
 }
 
 .control-body .item .item-name{
-    text-align: center;
-    font-size: 1.7rem;
-    width: 50%;
-    padding: 1rem;
-}
-
-.control-body .item .item-number{
-    min-width: 10%;
-    margin-left: auto;
-    margin-right: 2rem;
-    /* border: 1px solid palevioletred; */
-}
-
-.item .item-number > *{
     font-weight: bold;
-    text-align: right;
-    color: darkred;
-    padding-top: 1rem;
-    height: 100%;
-    min-width: 10%;
+    text-align: left;
+    font-size: 1.5rem;
+    /* width: 50%; */
+    padding-top: 0.3rem;
 }
 
-.item .item-buttons{
+.control-body .item .item-price{
+    padding-top: 0.3rem;
+    font-size: 1.2rem;
+    color: #444;
+}
+
+.control-body .item .item-controls{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: 1rem;
+    position: absolute;
+    bottom: 1rem;
 }
 
-.item .item-buttons button{
-    background-image: linear-gradient(135deg, darkred 60%, rgb(143, 34, 34) 60%);
+.item .item-controls button{
+    /* background-image: linear-gradient(135deg, darkred 60%, rgb(143, 34, 34) 60%); */
+    background-color: rgb(255, 153, 0);
     color: white;
+    text-transform: capitalize;
     /* width: 3rem;
     height: 3rem; */
     border: none;
     overflow: hidden;
-    border-radius: 15%;
+    border-radius: 3px;
     margin-left: 0.25rem;
     margin-right: 0.25rem;
-    padding: 1rem;  
+    padding: 1rem 3rem;  
 }
 
 #store-box{
-    display: flex;
-    flex-direction: row;
+    /* display: flex; */
+    /* flex-direction: row; */
     flex-wrap: wrap;
 }
 
@@ -303,6 +323,10 @@ main{
     font-size: 1.5rem;
     width: 100%;
     text-align: center;
+}
+
+.dummy.item{
+    position: relative;
 }
 
 .dummy.item img, .dummy.item .item-name, .dummy.item .item-number > *, .dummy.item .item-buttons > *{
@@ -353,6 +377,7 @@ main{
 }
 
 .vendor-bg-cover{
+    z-index: +200;
     width: 100vw;
     height: 100vh;
     position: fixed;
@@ -416,7 +441,7 @@ main{
     text-align: center;
     padding: 1.2rem 3.6rem;
     border-radius: 3px;
-    background-color: #0fe20f;
+    background-color: #10df10;
     font-size: 1.5rem;
     color: #fff;
     min-width: 100px;
@@ -424,6 +449,13 @@ main{
     margin: auto;
     margin-top: 1rem;
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
+}
+
+.vendor-apply-btn.no{
+    border: 2px solid #10df10;
+    color: #10df10;
+    background-color: transparent;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1);
 }
 
 @media only screen and (max-width:800px){
@@ -453,12 +485,17 @@ main{
     }
     
     .navigation > *{
-        border-radius: 0.8rem 0.8rem 0 0;
+        border-radius: 0.5rem 0.5rem 0 0;
         background-color: #fafafd;
         cursor: pointer;
         font-size: 1.3rem;
-        margin-right: 0.1rem;
-        padding: 0.9rem 1.5rem;
+        margin-right: 0.2rem;
+    }
+
+    .navigation .nav-child{
+        text-align: center;
+        padding: 1rem 0;
+        width: 100%;
     }
     
     .navigation > *:hover{
@@ -470,8 +507,11 @@ main{
         opacity: 0;
     }
 
+    .nav-child+.drop-extra > *, .nav-child:hover+.drop-extra > *{
+        padding: 0; 
+    }
+
     .nav-child:hover+.drop-extra > *, .drop-extra:hover > *{
-        padding: 0;
         height: 0;
     }
 /*  */
@@ -481,6 +521,7 @@ main{
         color: #444;;
         background-color: transparent;
         font-size: 1.3rem;
+        transform: scale(1.1);
     }
     
     .active, .active > *{

@@ -102,25 +102,18 @@ const createItem = function(container, object){
         currency: "NGN"
     });
 
-    let a0 = create("SPAN");
+    let a0 = createComponent("SPAN", null, ["item"]);
         let img0 = create("IMG");
-        let span0 = create("SPAN");
-            let span1 = create("SPAN");
-                let span10 = createComponent("A", object["item-name"]);
+        let span0 = createComponent("SPAN", null, ["fill-container", "cols"]);
+            let span1 = createComponent("SPAN", null, ["item-name", "cols"]);
+                let span10 = createComponent("A", object["item-name"], ["strip-link"]);
                 let span11 = createComponent("SPAN", `${object["item-desc"]}`);
-            let span2 = create("SPAN");
-                let span20 = createComponent("SPAN", `${price}`);
-                let span21 = create("SPAN");
+            let span2 = createComponent("SPAN", null, ["item-control", "rows", "fill-container"]);
+                let span20 = createComponent("SPAN", `${price}`, ["item-number"]);
+                let span21 = createComponent("SPAN", null, ["item-buttons"]);
                     let button20 = create("BUTTON");
                     let button21 = create("BUTTON");
 
-    a0.classList.add("item");
-    span0.classList.add("fill-container", "cols");
-    span1.classList.add("item-name", "cols");
-    span10.classList.add("strip-link");
-    span2.classList.add("item-control", "rows", "fill-container");
-    span20.classList.add("item-number");
-    span21.classList.add("item-buttons");
 
     span10.setAttribute("href", `/view/${object._id}`);
     a0.setAttribute("id", object._id);

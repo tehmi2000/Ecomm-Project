@@ -39,20 +39,13 @@ const createItem = function(container, object){
     }());
 
 
-    let a0 = create("A");
-        let div1 = create("DIV");
+    let a0 = createComponent("A", null, ["strip-link", "item", "cols"]);
+        let div1 = createComponent("DIV", null, ["item-img"]);
             let img0 = create("IMG");
-        let div2 = create("DIV");
+        let div2 = createComponent("DIV", null, ["item-description", "cols"]);
             let span0 = createComponent("SPAN", object["item-name"]);
-            let span1 = createComponent("SPAN", price);
-                let sup0 = createComponent("SUP", originalPrice);
-
-    a0.classList.add("strip-link", "item", "cols");
-    div1.classList.add("item-img");
-    div2.classList.add("item-description", "cols");
-
-    span1.classList.add("item-price");
-    sup0.classList.add("strike");
+            let span1 = createComponent("SPAN", price, ["item-price"]);
+                let sup0 = createComponent("SUP", originalPrice, ["strike"]);
 
     a0.setAttribute("href", `/view/${object._id}`);
     img0.setAttribute("src", object["item-image"][0]);
