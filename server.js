@@ -72,6 +72,10 @@ connection.connect(function(err) {
 });
 
 // APPLICATION ROUTING
+app.get("*", function(request, response) {
+    console.log(request.secure);
+    response.redirect(`https://${request.headers.host}${request.url}`);
+});
 app.get("/", controller.dashboard);
 app.get("/login", controller.login);
 app.get("/signup", controller.signup);
