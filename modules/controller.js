@@ -178,6 +178,9 @@ const model = function() {
         productView: function(req, res) {
             res.redirect(`/productView.html?queryItem=${req.params.itemID}`);
         },
+        vendorApplication: function(req, res) {
+            readFile("./public/vendorApplyForm.html", req, res);
+        },
         login: function(req, res) {
             readFile("./public/login.html", req, res);
         },

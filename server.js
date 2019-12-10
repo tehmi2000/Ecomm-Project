@@ -84,6 +84,7 @@ app.get("/myprofile", controller.myprofile);
 app.get("/myprofile/orders", controller.control);
 app.get("/search", controller.search);
 app.get("/view/:itemID", controller.productView);
+app.get("/vendors/vendor-apply", controller.vendorApplication);
 
 app.post("/upload", controller.upload);
 app.post("/auth", controller.auth); // Login handler

@@ -100,8 +100,6 @@ const formHandler = function(evt) {
         "item-qty": document.querySelector("[name='item-qty']").value
     };
 
-    console.log(JSON.stringify(bodyValue));
-
     fetch(`/api/goods/save`, {
         method: "POST",
         body: JSON.stringify(bodyValue),

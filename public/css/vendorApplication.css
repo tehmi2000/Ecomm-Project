@@ -1,0 +1,71 @@
+main h1{
+    color : rgb(255, 145, 0);
+    text-align: center;
+    text-transform: capitalize;
+    transform: skewX(-10deg);
+    font-size: 3rem;
+}
+
+.form-navigation{
+    position: relative;
+    display: flex;
+    width: 70%;
+    margin: auto;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    background-color: #ccc;
+    height: 1.5rem;
+    max-height: 1.5rem;
+    border-radius: 5vh;
+}
+
+.form-navigation-test{
+    width: 70%;
+    margin: 2em auto;
+    font-size: 1.5rem;
+    background-color: #ccc;
+    height: 5rem;
+    max-height: 5rem;
+    clip-path: polygon(0% 40%, 100% 0%, 100% 100%, 0% 60%);
+}
+
+.form-navigation::after{
+    content: "";
+    position: absolute;
+    height: 2.5rem;
+    width: 200px;
+    background-color: blue;
+    top: 0;
+    left: 0;
+    margin-top: -0.5rem;
+    z-index: -1;
+}
+
+.form-navigation span{
+    /* position: absolute; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    text-align: center;
+    margin-top: -0.5rem;
+    border-radius: 50%;
+    background-color: #ccc;
+}
+
+#vendor-form .btn{
+    display: inline-block;
+    padding: 8px 24px;
+    font-size: 1.3rem;
+    color: #fff;
+    background-color: orangered;
+    position: relative;
+}
+
+@media only screen and (max-width: 800px){
+    /* main h1{
+        color: green;
+    } */
+    
+}
