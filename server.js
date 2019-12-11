@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const fileUpload = require("express-fileupload");
+const compression = require("compression");
 const PORT = (process.env.PORT === "" || process.env.PORT === null || process.env.PORT === undefined)? 5000 : process.env.PORT;
 const controller = require("./modules/controller");
 const config =  require("./modules/config");
@@ -27,6 +28,7 @@ const { connection, test, create, log } = config;
 
 app.use("/", express.static(__dirname + "/public"));
 app.use(helmet());
+app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
