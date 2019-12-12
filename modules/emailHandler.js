@@ -2,7 +2,7 @@ const model = function(){
 	const fs = require("fs");
 	const config = require("./config");
 	const transporter = config.transporter;
-	const mailOption = { sender: '"Ecommerce Support" <' + config.ePass['user']+'>' };
+	const mailOption = { sender: `'Univers Team' <${config.ePass['user']}>` };
 	let email_template = "<b>Hey</b>";
 
 
@@ -19,9 +19,9 @@ const model = function(){
 			let deliveryReport = await transporter.sendMail({
 				from: mailOption.sender,
 				to: receiver,
-				subject: "Verify your account",
+				subject: "Welcome to Univers! Please confirm your registration to get started",
 				text: "",
-				html: "<h1>hey</h1>"
+				html: email_template || "<h1>Hi</h1>"
 			});
 
 			console.log("Verification Email with messageID %s sent", deliveryReport.messageId);
