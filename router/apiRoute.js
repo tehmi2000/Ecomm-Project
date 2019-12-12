@@ -124,7 +124,15 @@ const model = function() {
     });
 
     router.get("/ads/all", function(req, res) {
-        res.json(["IMG-20180905-WA0011.jpg", "IMG-20180715-WA0007.jpg", "IMG-20190527-WA0029.jpg"]);
+    	const dirPath = `./public/assets/ads`;
+    	fs.readdir(dirPath, (err, files) => {
+    		if (err) {
+    			throw err;
+    		}else{
+    			// console.log(files);
+    			res.json(files);
+    		}
+    	});
     });
 
     router.get("/user/:username", function(req, res){

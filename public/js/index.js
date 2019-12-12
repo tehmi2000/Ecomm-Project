@@ -63,10 +63,11 @@ const getAds = function() {
     const apiUrl = "/api/ads/all";
     fetch(apiUrl).then(async response => {
         try {
-            let data = await response.json();
-            data.forEach(ad => {
-                images.push(ad);
-            });
+            let result = await response.json();
+            let data = dataValidation(result).data;
+            images = data;
+            // Pick any of the ads to show next
+            counter = Math.round(Math.random() * images.length);
         } catch (error) {
             console.log(error);
         }
