@@ -1,6 +1,5 @@
 /* DARK SHADE WHITE = #f2f2f5
    LIGHT SHADE WHITE = #fcfcff*/
-
 body{
     background-color: #f2f2f5;
     overflow-x: hidden;
@@ -9,18 +8,17 @@ body{
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< MAIN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
 .pane{
-    /* padding: 0.5rem; */
     margin-top: 1rem;
     flex-wrap: wrap;
 }
 
 .item{
     text-decoration: none;
-    width: 16%;
+    width: 14.6%;
     /* min-width: calc(90px + 1.8rem); */
     overflow: hidden;
     padding: 0.8rem 0.6rem;
-    margin: 0.9rem;
+    margin: 0.9rem 1%;
     box-shadow: 2px 2px 3px #dfdfe4;
     background-color: #fcfcff;
     justify-content: space-between;
@@ -91,6 +89,7 @@ body{
 
     .pane .item{
         width: 44%;
+        margin: 0.9rem;
         padding: 0.8rem 0.6rem;
     }
 
