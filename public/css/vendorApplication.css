@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 main h1{
     color : rgb(255, 145, 0);
     text-align: center;
@@ -6,39 +10,31 @@ main h1{
     font-size: 3rem;
 }
 
-.form-navigation{
-    position: relative;
-    display: flex;
-    width: 70%;
-    margin: auto;
-    justify-content: space-around;
-    font-size: 1.5rem;
-    background-color: #ccc;
-    height: 1.5rem;
-    max-height: 1.5rem;
+.form-navigation, .form-navigation::after{
+    height: 1rem;
+    max-height: 1rem;
     border-radius: 5vh;
 }
 
-.form-navigation-test{
-    width: 70%;
-    margin: 2em auto;
-    font-size: 1.5rem;
-    background-color: #ccc;
-    height: 5rem;
-    max-height: 5rem;
-    clip-path: polygon(0% 40%, 100% 0%, 100% 100%, 0% 60%);
+.form-navigation{
+    position: relative;
+    display: flex;
+    width: 50%;
+    margin: auto;
+    justify-content: space-around;
+    font-size: 1.3rem;
+    background-color: #eaeaea;
 }
 
 .form-navigation::after{
     content: "";
     position: absolute;
-    height: 2.5rem;
-    width: 200px;
-    background-color: blue;
+    width: 16%;
+    background-color: orangered;
     top: 0;
     left: 0;
-    margin-top: -0.5rem;
-    z-index: -1;
+    transition: width 0.3s ease;
+    /* z-index: -1; */
 }
 
 .form-navigation span{
@@ -46,21 +42,75 @@ main h1{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 2rem;
+    width: 2rem;
     text-align: center;
     margin-top: -0.5rem;
     border-radius: 50%;
-    background-color: #ccc;
+    color: transparent;
+    background-color: #eaeaea;
+    z-index: +1;
+}
+
+.form-navigation span.on{
+    color: #fcfcff;
+    background-color: orangered;
+}
+
+#vendor-form{
+    width: 50%;
+    margin: 4rem auto;
+    overflow: hidden;
+    box-shadow: 1px 1px 2px #e0e0e0;
+    background-color: white;
+    box-shadow: 0 0 4px rgb(206, 206, 206);
+}
+
+#vendor-form h2{
+    margin-bottom: 3rem;
+}
+
+#vendor-form .container{
+    width: 300%;
+    transition: margin-left 0.3s ease;
+}
+
+#vendor-form .container > *{
+    width: 100%;
+    padding: 1rem 2rem;
+}
+
+#vendor-form input:not([type="submit"]){
+    width: 100%;
+    border: none;
+    padding: 1.5rem 2rem;
+    margin: 0.9rem 0 2.5rem 0;
+    background-color: #efefef;
+}
+
+#vendor-form input[type="submit"], #vendor-form span.btn{
+    text-align: center;
+    width: auto;
+    border: none;
+    background-color: rgb(240, 68, 6);
+    color: #fcfcff;
+    padding: 1.5rem 2rem;
+    margin: 1.5rem 0 0.9rem auto;
+    box-shadow: 1px 1px 2px rgba(185, 91, 3, 0.637);
+}
+
+#vendor-form label{
+    color: #ca3701;
+    font-size: 1.2rem;
+}
+
+#sign-up-form input:disabled{
+    opacity: 0.5;
 }
 
 #vendor-form .btn{
-    display: inline-block;
-    padding: 8px 24px;
-    font-size: 1.3rem;
-    color: #fff;
-    background-color: orangered;
     position: relative;
+    font-size: 1.3rem;
 }
 
 @media only screen and (max-width: 800px){
