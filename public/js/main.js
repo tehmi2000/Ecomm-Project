@@ -167,7 +167,7 @@ const dataValidation = data => {
 
     if(data.length > 0){
         let [dataOne] = data;
-        console.log(dataOne);
+        // console.log(dataOne);
     }else{
         
     }

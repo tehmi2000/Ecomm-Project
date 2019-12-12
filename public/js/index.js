@@ -1,6 +1,6 @@
 // const socket = io();
 
-const images = ["0a9c147c668744d0afcb9d320afa0b73.jpg", "IMG-20180905-WA0011.jpg", "IMG-20180715-WA0007.jpg", "IMG-20190527-WA0029.jpg"];
+let images = ["0a9c147c668744d0afcb9d320afa0b73.jpg"];
 let counter = 0;
 
 const nextImage = function(){
@@ -59,22 +59,39 @@ const createItem = function(container, object){
     container.appendChild(a0);
 };
 
+const getAds = function() {
+    const apiUrl = "/api/ads/all";
+    fetch(apiUrl).then(async response => {
+        try {
+            let data = await response.json();
+            data.forEach(ad => {
+                images.push(ad);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }).catch(error => {
+        console.log(error);
+    });
+};
+
 const getMostPopular = function() {
     const container = document.querySelector("#most-popular-container.pane .slider");
     
-    fetch(`/api/goods/all/mostPopular`).then(function(response) {
+    fetch(`/api/goods/all/mostPopular`).then(async function(response) {
 
-        response.json().then( function(result) {
-            console.log(result);
+        try {
+            let result = await response.json();
+            // console.log(result);
             container.innerHTML = "";
             let data = dataValidation(result).data;
 
             data.forEach(object => {
                 createItem(container, object);
             });
-        }).catch(error => {
+        } catch (error) {
             console.error(error);
-        });
+        }
 
     }).catch(function(error) {
         console.error(error);
@@ -85,7 +102,7 @@ const getRecommended = function() {
     fetch(`/api/goods/all/recommended`).then(function(response) {
 
         response.json().then( function(result) {
-            console.log(result);
+            // console.log(result);
             let data = dataValidation(result).data;
             
         }).catch(function (error) {
@@ -98,6 +115,7 @@ const getRecommended = function() {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
+    getAds();
     setInterval(function() {
         nextImage();
     }, 8000);
