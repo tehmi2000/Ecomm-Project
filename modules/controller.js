@@ -199,6 +199,9 @@ const model = function() {
                     res.redirect("/login");
                 }
             });
+        },
+        aboutUs: function(req, res) {
+            readFile("./public/dummy.html", req, res);
         }
     };
 };
