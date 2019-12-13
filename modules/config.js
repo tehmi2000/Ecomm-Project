@@ -79,14 +79,11 @@ const model = function(){
 		console.error(err);
 	};
 	
-	const userTableExist = () => {
-		const queryCreate = "CREATE TABLE users (id INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, uID VARCHAR(100) NOT NULL, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, telcode VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, profile_picture VARCHAR(255) NOT NULL, verification_status BOOLEAN) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
-		const queryTest = "SELECT * FROM users LIMIT 1";
-		
+	const checkTable = (test, create) => {
 		try {
-			connection.query(queryTest, function (err) {
+			connection.query(test, function (err) {
 				if (err) {
-					connection.query(queryCreate, function (err) {
+					connection.query(create, function (err) {
 						if (err) {
 							log(err);
 						} else {
@@ -100,16 +97,27 @@ const model = function(){
 		} catch (error) {
 			log(error);
 		}
+	}
+	
+	const userTableExist = () => {
+		const queryCreate = "CREATE TABLE users (id INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, uID VARCHAR(100) NOT NULL, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, telcode VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, profile_picture VARCHAR(255) NOT NULL, verification_status BOOLEAN) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
+		const queryTest = "SELECT * FROM users LIMIT 1";
+		
+		checkTable(queryTest, queryCreate);
 	};
 	
 	const categoryTableExist = () => {
-		const queryCreate = "CREATE TABLE users (id INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, uID VARCHAR(100) NOT NULL, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, telcode VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, profile_picture VARCHAR(255) NOT NULL, verification_status BOOLEAN) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
-		const queryTest = "SELECT * FROM users LIMIT 1";
+		const queryCreate = "CREATE TABLE categories (id INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255) NOT NULL, image VARCHAR(255) NOT NULL) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
+		const queryTest = "SELECT * FROM categories LIMIT 1";
+		
+		checkTable(queryTest, queryCreate);
 	};
 	
 	const vendorTableExist = () => {
 		const queryCreate = "CREATE TABLE users (id INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, uID VARCHAR(100) NOT NULL, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, telcode VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, profile_picture VARCHAR(255) NOT NULL, verification_status BOOLEAN) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
 		const queryTest = "SELECT * FROM users LIMIT 1";
+		
+		// checkTable(queryTest, queryCreate);
 	};
 	
     return {
@@ -121,7 +129,9 @@ const model = function(){
         mongoConn,
         itemsDB: "globalDB",
         iCollection: "goods",
-        userTableExist
+        userTableExist,
+        categoryTableExist,
+        vendorTableExist
     };
 };
 
