@@ -81,9 +81,9 @@ const model = function(){
 	
 	const checkTable = (test, create) => {
 		try {
-			connection.query(test, function (err) {
+			conn.query(test, function (err) {
 				if (err) {
-					connection.query(create, function (err) {
+					conn.query(create, function (err) {
 						if (err) {
 							log(err);
 						} else {

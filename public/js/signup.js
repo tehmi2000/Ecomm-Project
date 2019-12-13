@@ -8,6 +8,11 @@ const matchPasswords = function(evt) {
     }
 };
 
+const checkForErrors = function(){
+	let queryParams = getQuery();
+	alert(queryParams);
+};
+
 const checkAgreement = function(evt){
     // e
     console.log(evt.currentTarget.checked);
@@ -21,4 +26,5 @@ const checkAgreement = function(evt){
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelector("#confirm-password").addEventListener("input", matchPasswords);
     document.querySelector("#agreement").addEventListener("change", checkAgreement);
+    checkForErrors()
 });
