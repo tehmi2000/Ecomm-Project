@@ -148,7 +148,7 @@ const getMyStoreItems = function() {
 
             if(result.length > 0 && result[0].error){
                 // console.log(result);
-                document.querySelector(".vendor-bg-cover").style.top = "0vh";
+                // document.querySelector(".vendor-bg-cover").style.top = "0vh";
             }else{
                 // console.log(result);
                 document.querySelector(".control-body #post-box").style.flexDirection = "row";
