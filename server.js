@@ -14,7 +14,7 @@ const compression = require("compression");
 const PORT = (process.env.PORT === "" || process.env.PORT === null || process.env.PORT === undefined)? 5000 : process.env.PORT;
 const controller = require("./modules/controller");
 const config =  require("./modules/config");
-const { connection, test, create, log } = config;
+const { connection, userTableExist, categoryTableExist, vendorTableExist, log } = config;
 
 // APPLICATION SETUP
 
@@ -53,23 +53,9 @@ connection.connect(function(err) {
         console.log('Connected to mysql server!');
         console.log("Checking for mysql initialization requirements...");
 
-        try {
-            connection.query(test, function (err) {
-                if (err) {
-                    connection.query(create, function (err) {
-                        if (err) {
-                            log(err);
-                        } else {
-                            console.log("Mysql database is initialized and ready");
-                        }
-                    });
-                } else {
-                    console.log("Connection to database is successful!");
-                }
-            });
-        } catch (error) {
-            log(error);
-        }
+        userTableExist();
+        categoryTableExist();
+        vendorTableExist();
     }
 });
 

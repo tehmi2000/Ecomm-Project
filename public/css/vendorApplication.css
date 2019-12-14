@@ -97,14 +97,21 @@ main h1{
 #vendor-form{
     width: 50%;
     margin: 4rem 8% 4rem auto;
-    overflow: hidden;
-    box-shadow: 1px 1px 2px #e0e0e0;
+    overflow: auto;
     background-color: white;
     box-shadow: 0 0 4px rgb(206, 206, 206);
 }
 
 #vendor-form h2{
     margin-bottom: 3rem;
+}
+
+#vendor-form .step-text{
+	display: inline-block;
+	font-size: 1.6em;
+	color: rgb(255, 105, 0);
+	margin-right: 0.5rem;
+	transform: skewX(-10deg);
 }
 
 #vendor-form .container{
@@ -134,6 +141,7 @@ main h1{
     padding: 1.5rem 2rem;
     margin: 1.5rem 0 0.9rem auto;
     box-shadow: 1px 1px 2px rgba(185, 91, 3, 0.637);
+    animation: roll-in 1.2s ease-out 10s infinite forwards alternate;
 }
 
 #vendor-form label{
@@ -150,9 +158,28 @@ main h1{
     font-size: 1.3rem;
 }
 
+@keyframes roll-in{
+	0%{
+		margin-right: 0;
+		transform: scale(1, 1);
+		border-radius: 0;
+	}
+	
+	100%{
+		margin-right: -1rem;
+		transform: scale(0.92, 1.08);
+		border-radius: 200%/10%;
+	}
+}
+
 @media only screen and (max-width: 800px){
     /* main h1{
         color: green;
     } */
+    
+    #vendor-form{
+    	width: 90%;
+    	margin: 4rem auto;
+    }
     
 }

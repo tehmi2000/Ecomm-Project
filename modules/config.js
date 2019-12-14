@@ -25,8 +25,8 @@ const model = function(){
         }
     });
 
-    const queryCreate = "CREATE TABLE users (id INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, uID VARCHAR(100) NOT NULL, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, telcode VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, profile_picture VARCHAR(255) NOT NULL, verification_status BOOLEAN) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
-    const queryTest = "SELECT * FROM users LIMIT 1";
+    // const queryCreate = "CREATE TABLE users (id INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, uID VARCHAR(100) NOT NULL, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, telcode VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, profile_picture VARCHAR(255) NOT NULL, verification_status BOOLEAN) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
+    // const queryTest = "SELECT * FROM users LIMIT 1";
 
     // LOCALHOST CONNECTION
     const conn = mysql.createConnection({
@@ -60,16 +60,6 @@ const model = function(){
     // ATLAS MONGODB CONNECTION
     // const MONGO_URL = process.env.MONGO_CONNECTION_STRING;
 
-    const log = function(err) {
-        let content = `${(new Date).toUTCString()}: ${JSON.stringify(err)}` + "\n";
-        fs.appendFile("./error_log.txt", content, function(err) {
-            if(err){
-                console.log(err);
-            }
-        });
-        console.error(err);
-    };
-
     const mOptions = {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -77,6 +67,59 @@ const model = function(){
 
     const mongoConn = MONGO_CLIENT.connect(MONGO_URL, mOptions);
 
+
+	const log = function(err) {
+		let content = `${(new Date).toUTCString()}: ${JSON.stringify(err)}` + "\n";
+		fs.appendFile("./error_log.txt", content, function(err) {
+			if(err){
+				console.log(err);
+			}
+		});
+		
+		console.error(err);
+	};
+	
+	const checkTable = (test, create) => {
+		try {
+			conn.query(test, function (err) {
+				if (err) {
+					conn.query(create, function (err) {
+						if (err) {
+							log(err);
+						} else {
+							console.log("Mysql database is initialized and ready");
+						}
+					});
+				} else {
+					console.log("Connection to database is successful!");
+				}
+			});
+		} catch (error) {
+			log(error);
+		}
+	}
+	
+	const userTableExist = () => {
+		const queryCreate = "CREATE TABLE users (id INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, uID VARCHAR(100) NOT NULL, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, telcode VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, profile_picture VARCHAR(255) NOT NULL, verification_status BOOLEAN) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
+		const queryTest = "SELECT * FROM users LIMIT 1";
+		
+		checkTable(queryTest, queryCreate);
+	};
+	
+	const categoryTableExist = () => {
+		const queryCreate = "CREATE TABLE categories (id INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255) NOT NULL, image VARCHAR(255) NOT NULL) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
+		const queryTest = "SELECT * FROM categories LIMIT 1";
+		
+		checkTable(queryTest, queryCreate);
+	};
+	
+	const vendorTableExist = () => {
+		const queryCreate = "CREATE TABLE users (id INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, uID VARCHAR(100) NOT NULL, username VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, telcode VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, profile_picture VARCHAR(255) NOT NULL, verification_status BOOLEAN) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
+		const queryTest = "SELECT * FROM users LIMIT 1";
+		
+		// checkTable(queryTest, queryCreate);
+	};
+	
     return {
         log,
         ePass,
@@ -86,8 +129,9 @@ const model = function(){
         mongoConn,
         itemsDB: "globalDB",
         iCollection: "goods",
-        create: queryCreate,
-        test: queryTest
+        userTableExist,
+        categoryTableExist,
+        vendorTableExist
     };
 };
 

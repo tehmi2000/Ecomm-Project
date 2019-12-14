@@ -44,6 +44,7 @@ Thu, 05 Dec 2019 21:58:11 GMT: {"code":"PROTOCOL_ENQUEUE_AFTER_FATAL_ERROR","fat
 Fri, 06 Dec 2019 12:33:53 GMT: {"errno":-4058,"code":"ENOENT","syscall":"open","path":"C:\\Users\\Hp\\Desktop\\Project 2\\ecomm\\public\\uploas\\4496ad235a4941b2a4e0f2a670c8e053.jpg"}
 Fri, 06 Dec 2019 20:22:41 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user 'tehmi2000'@'localhost' (using password: YES)","sqlState":"28000","fatal":true}
 Sun, 08 Dec 2019 05:45:17 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","host":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","port":3306,"fatal":true}
+<<<<<<< HEAD
 Thu, 12 Dec 2019 21:58:13 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user 'tehmi2000'@'localhost' (using password: YES)","sqlState":"28000","fatal":true}
 Thu, 12 Dec 2019 21:58:16 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user 'tehmi2000'@'localhost' (using password: YES)","sqlState":"28000","fatal":true}
 Thu, 12 Dec 2019 21:58:21 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user 'tehmi2000'@'localhost' (using password: YES)","sqlState":"28000","fatal":true}
@@ -59,3 +60,39 @@ Thu, 12 Dec 2019 22:07:17 GMT: "Verification Email sending error"
 Thu, 12 Dec 2019 22:07:17 GMT: {"errno":"ECONNREFUSED","code":"EDNS","syscall":"queryA","hostname":"smtp.gmail.com","command":"CONN"}
 Thu, 12 Dec 2019 22:25:11 GMT: "Verification Email sending error"
 Thu, 12 Dec 2019 22:25:11 GMT: {"errno":"ECONNREFUSED","code":"EDNS","syscall":"queryA","hostname":"smtp.gmail.com","command":"CONN"}
+=======
+Thu, 12 Dec 2019 07:57:38 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.252' (using password: NO)","sqlState":"28000","fatal":true}
+Thu, 12 Dec 2019 08:00:39 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user 'tehmi2000'@'localhost' (using password: YES)","sqlState":"28000","fatal":true}
+Thu, 12 Dec 2019 08:01:18 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user 'tehmi2000'@'localhost' (using password: YES)","sqlState":"28000","fatal":true}
+Thu, 12 Dec 2019 18:33:48 GMT: "Verification Email sending error"
+Thu, 12 Dec 2019 18:33:48 GMT: {"errno":"ECONNREFUSED","code":"EDNS","syscall":"queryA","hostname":"smtp.gmail.com","command":"CONN"}
+Thu, 12 Dec 2019 18:34:18 GMT: {"code":"ER_NO_SUCH_TABLE","errno":1146,"sqlMessage":"Table 'ecomm_db.categories' doesn't exist","sqlState":"42S02","index":0,"sql":"SELECT * FROM categories WHERE 1"}
+Thu, 12 Dec 2019 18:36:18 GMT: {"code":"ER_NO_SUCH_TABLE","errno":1146,"sqlMessage":"Table 'ecomm_db.categories' doesn't exist","sqlState":"42S02","index":0,"sql":"SELECT * FROM categories WHERE 1"}
+Thu, 12 Dec 2019 18:44:51 GMT: {"code":"ER_NO_SUCH_TABLE","errno":1146,"sqlMessage":"Table 'ecomm_db.vendors' doesn't exist","sqlState":"42S02","index":0,"sql":"SELECT sellerID FROM vendors WHERE username='Tehmi2000'"}
+Fri, 13 Dec 2019 05:54:10 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 05:56:48 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 06:00:32 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 06:03:28 GMT: {"errorno":"ETIMEDOUT","code":"ETIMEDOUT","syscall":"connect","fatal":true}
+Fri, 13 Dec 2019 06:02:48 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 06:10:03 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 06:12:12 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 06:21:03 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 06:23:56 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 06:25:02 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 06:25:26 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 06:26:01 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 06:26:28 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 06:27:36 GMT: {"errorno":"ETIMEDOUT","code":"ETIMEDOUT","syscall":"connect","fatal":true}
+Fri, 13 Dec 2019 06:28:33 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 06:28:56 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 06:29:18 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 06:29:33 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 07:10:08 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 07:12:00 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 07:13:21 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user 'tehmi2000'@'localhost' (using password: YES)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 07:13:53 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user 'tehmi2000'@'localhost' (using password: YES)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 07:14:28 GMT: {}
+Fri, 13 Dec 2019 07:14:28 GMT: {}
+Fri, 13 Dec 2019 07:15:51 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 13 Dec 2019 07:16:37 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.254' (using password: NO)","sqlState":"28000","fatal":true}
+>>>>>>> 73ac930c5edb68a361d30058caa1990c47aaa0cb

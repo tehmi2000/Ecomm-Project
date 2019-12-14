@@ -8,6 +8,25 @@ const matchPasswords = function(evt) {
     }
 };
 
+const checkForErrors = function(){
+	let queryParams = get_query();
+	if(queryParams && queryParams.error){
+		const errorD = document.querySelector("form .error");
+		errorD.classList.toggle("serror", true);
+		
+		switch(queryParams.idn){
+			case "userexist":
+				errorD.innerHTML = "<i class='icofont-exclamation-circle'></i>&nbsp;A user exist with that username/email!";
+				break;
+				
+			default:
+				errorD.innerHTML = "An error occurred!";
+				break;
+		}
+		// alert(queryParams.idn);
+	}
+};
+
 const checkAgreement = function(evt){
     // e
     console.log(evt.currentTarget.checked);
@@ -21,4 +40,5 @@ const checkAgreement = function(evt){
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelector("#confirm-password").addEventListener("input", matchPasswords);
     document.querySelector("#agreement").addEventListener("change", checkAgreement);
+    checkForErrors()
 });
