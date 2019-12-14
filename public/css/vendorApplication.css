@@ -2,12 +2,22 @@
     box-sizing: border-box;
 }
 
-main h1{
-    color : rgb(255, 145, 0);
+/* main h1{
+    
     text-align: center;
     text-transform: capitalize;
     transform: skewX(-10deg);
     font-size: 3rem;
+} */
+
+main h1{
+    color : rgb(255, 145, 0);
+    width: 100%;
+    text-align: left;
+    text-transform: capitalize;
+    transform: skewX(-10deg);
+    font-size: 3rem;
+    margin-left: 3vw;
 }
 
 #slideshow{
@@ -47,7 +57,7 @@ main h1{
     height: 4rem;
 }
 
-.form-navigation, .form-navigation::after{
+.form-navigation, .form-navigation .progress{
     height: 1rem;
     max-height: 1rem;
     border-radius: 5vh;
@@ -56,22 +66,22 @@ main h1{
 .form-navigation{
     position: relative;
     display: flex;
-    width: 50%;
-    margin: auto 0 auto auto;
-    justify-content: space-around;
+    width: 90%;
+    margin: 3rem auto;
+    justify-content: space-between;
     font-size: 1.3rem;
     background-color: #eaeaea;
 }
 
-.form-navigation::after{
-    content: "";
+.form-navigation .progress{
+    
     position: absolute;
-    width: 16%;
+    width: 0%;
     background-color: orangered;
     top: 0;
     left: 0;
-    transition: width 0.3s ease;
-    /* z-index: -1; */
+    transition: width 0.6s ease-in;
+    /* z-index: -3; */
 }
 
 .form-navigation span{
@@ -79,14 +89,19 @@ main h1{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 2rem;
-    width: 2rem;
+    height: 3rem;
+    width: 3rem;
     text-align: center;
-    margin-top: -0.5rem;
+    margin-top: -1rem;
     border-radius: 50%;
     color: transparent;
     background-color: #eaeaea;
     z-index: +1;
+    transition: all 0.2s ease-in 0.4s;
+}
+
+.form-navigation span:hover{
+    cursor: pointer;
 }
 
 .form-navigation span.on{
@@ -94,10 +109,18 @@ main h1{
     background-color: orangered;
 }
 
-#vendor-form{
+.form-pane{
+    width: 98%;
+    margin-top: 3rem;
+}
+
+.form-pane > *{
     width: 50%;
-    margin: 4rem 8% 4rem auto;
-    overflow: auto;
+}
+
+#vendor-form{
+    margin: 4rem auto 4rem auto;
+    overflow: hidden;
     background-color: white;
     box-shadow: 0 0 4px rgb(206, 206, 206);
 }
@@ -116,7 +139,7 @@ main h1{
 
 #vendor-form .container{
     width: 300%;
-    transition: margin-left 0.3s ease;
+    transition: margin-left 0.5s ease-out;
 }
 
 #vendor-form .container > *{
@@ -173,10 +196,29 @@ main h1{
 }
 
 @media only screen and (max-width: 800px){
-    /* main h1{
-        color: green;
-    } */
+    main h1{
+        color : rgb(255, 145, 0);
+        text-align: center;
+        text-transform: capitalize;
+        transform: skewX(-10deg);
+        font-size: 3rem;
+        margin-left: auto;
+    }
+
+    .form-pane{
+        flex-direction: column;
+        width: 100%;
+    }
     
+    .form-pane > *{
+        width: 100%;
+    }
+    
+    .form-navigation{
+        width: 80%;
+        margin: auto;
+    }
+
     #vendor-form{
     	width: 90%;
     	margin: 4rem auto;
