@@ -164,7 +164,7 @@ main h1{
     padding: 1.5rem 2rem;
     margin: 1.5rem 0 0.9rem auto;
     box-shadow: 1px 1px 2px rgba(185, 91, 3, 0.637);
-    animation: roll-in 1.2s ease-out 10s infinite forwards alternate;
+    animation: roll-in 1.2s ease-out 10s 50 forwards alternate;
 }
 
 #vendor-form label{
