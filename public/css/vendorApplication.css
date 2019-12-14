@@ -115,8 +115,8 @@ main h1{
 
 #vendor-form .step-text{
 	display: inline-block;
-	font-size: 1.6em;
-	color: rgb(255, 105, 0);
+	font-size: 1.7rem;
+	color: #ff6900;
 	margin-right: 0.5rem;
 	transform: skewX(-10deg);
 }

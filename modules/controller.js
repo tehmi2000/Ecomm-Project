@@ -1,7 +1,7 @@
 const model = function() {
     const fs = require("fs");
     const mysql_config =  require("./config");
-    const { log } = mysql_config;
+    const { log, testSend } = mysql_config;
     const ph = require("./passwordHash");
 
     const readFile = function(path, req, res) {

@@ -2,9 +2,26 @@ const model = function(){
 	const fs = require("fs");
 	const config = require("./config");
 	const transporter = config.transporter;
+	const mailTransport = config.sgMail;
 	const mailOption = { sender: `'Univers Team' <${config.ePass['user']}>` };
 	let email_template = "<b>Hey</b>";
 
+	const msg = {
+		to: 'tehmi2000@gmail.com',
+		from: "universone132@gmail.com",
+		subject: "Sending is fun",
+		text: '...and easy',
+		html: '<strong>But crazy</strong>'
+	};
+
+	const emailSender = async function(msg) {
+        try {
+			let [result] = await mailTransport.send(msg);
+			return result;
+        } catch (error) {
+            return error;
+        }
+	};
 
 	const validation = async function(receiver){
 		try{
@@ -33,7 +50,8 @@ const model = function(){
 		}
 	};
 
-	const notification = async function(){};
+	const notification = async function(receiver){
+	};
 
 	return {
 		sendVerificationMail: validation,
