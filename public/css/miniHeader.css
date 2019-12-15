@@ -101,6 +101,18 @@ header .section-top{
     width: calc(100% - 3rem)
 }
 
+#sidemenu .user-picture{
+    width: calc(2rem + 18px);
+    height: calc(2rem + 18px);
+    border-radius: 50%;
+    object-fit: cover;
+    vertical-align: middle;
+    margin: auto 1rem auto 0;
+    box-shadow: 2px 2px 3px #e0e0e5;
+    border: 1px solid rgb(90, 49, 49);
+    background-color: #ccc;
+}
+
 #sidemenu nav#controls{
     display: none;
     margin: 1rem auto 3rem auto;

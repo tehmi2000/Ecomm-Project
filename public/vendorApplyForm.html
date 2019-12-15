@@ -16,7 +16,7 @@
     <header>
         <div class="section-top">
             <div class="left-tab">
-                <a href="/"><span class="icofont-pin"></span></a>
+                <span class="icofont-navigation-menu" id="open-menu-btn" onclick="javascript:openMenu()"></span>
                 <span><a href="/"><img src="/assets/images/fav.png" alt="LOGO" id="logo"></a></span>
             </div>
 
@@ -38,6 +38,50 @@
         </div>
     </header>
 
+    <aside id="sidemenu">
+        <nav>
+            <div>
+                <a href="/login"><button>Login</button></a>
+                <a href="/signup"><button>Sign up</button></a>
+            </div>
+            
+            <div>
+                <button id="close-menu-btn" class="icofont-close" onclick="javascript:closeMenu()"></button>
+            </div>
+        </nav>
+
+        <nav id="controls" class="panel rows">
+            <a href="/myprofile/orders?sectid=2" class="panel-pad cols">
+                <i class="pad-img icofont-food-cart"></i>
+                <span class="pad-txt">Sell An Item</span>
+            </a>
+
+            <a href="/myprofile/orders?sectid=3" class="panel-pad cols">
+                <i class="pad-img icofont-notepad"></i>
+                <span class="pad-txt">My Posts</span>
+            </a>
+
+            <a href="/myprofile/orders?sectid=1" class="panel-pad cols">
+                <i class="pad-img icofont-cart"></i>
+                <span class="pad-txt">View My Cart</span>
+            </a>
+
+            <a href="" class="panel-pad cols">
+                <i class="pad-img icofont-restaurant"></i>
+                <span class="pad-txt">My orders</span>
+            </a>
+        </nav>
+
+        <ul>
+            <li><a href="/categories">All categories</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">Electronics</a></li>
+            <li><a href="#">Phones & Tablets</a></li>
+            <li><a href="#">Fashion & Beauty</a></li>
+            <li><a href="#">Break the law</a></li>
+        </ul>
+
+    </aside>
     <main>
         <div class="form-pane rows">
             <div>
