@@ -114,7 +114,7 @@ const model = function(){
 	};
 
 	const vendorTableExist = () => {
-		const queryCreate = "CREATE TABLE vendors (id INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, sellerID VARCHAR(100) NOT NULL, vendorName VARCHAR(255) NOT NULL) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
+		const queryCreate = "CREATE TABLE vendors (id INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, sellerID VARCHAR(100) NOT NULL, username VARCHAR(255) NOT NULL, vendorName VARCHAR(255) NOT NULL) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
 		const queryTest = "SELECT * FROM vendors LIMIT 1";
 		checkTable(queryTest, queryCreate);
     };
