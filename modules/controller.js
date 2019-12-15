@@ -202,6 +202,12 @@ const model = function() {
         },
         aboutUs: function(req, res) {
             readFile("./public/dummy.html", req, res);
+        },
+        pricing: function(req, res) {
+            readFile("./public/pricing.html", req, res);
+        },
+        support: function(req, res) {
+            readFile("./public/support.html", req, res);
         }
     };
 };

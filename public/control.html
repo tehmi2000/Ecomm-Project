@@ -114,6 +114,7 @@
                 <section id="post-box" class="cols">
                     <form id="addToStore-form" class="cols">
                         <div class="gallery">
+                            <div class="status-bar">Uploading Image (1/1)</div>
                             <label for="preview-image-1">Click to insert image</label>
                             <input type="file" name="item-image" id="preview-image-1" accept="image/*">
     
@@ -130,13 +131,51 @@
                         <label for="">Description</label>
                         <textarea name="item-desc" id="" placeholder="Describe the item here"></textarea>
     
-                        <label>Categories</label>
+                        <label for="option-box">Categories</label>
                         <div id="option-box" class="rows">
-                            <!-- <legend>Select categories</legend> -->
                             <!-- <span class="wrapper">
                                 <input type="checkbox" name="categories" id="" value="">
                                 <label for="">Fasion</label>
                             </span> -->
+                        </div>
+
+                        <label for="props-box">Properties</label>
+                        <div class="cols">
+                            <div id="props-box" class="cols">
+                                <div id="color-tab" class="cols">
+                                    <div class="rows heading">
+                                        <span>Item Colors</span>
+                                        <span data-id="color-tab" class="icofont-close"></span>
+                                    </div>
+                                    <div id="color-props">
+                                        <input type="color" name="item-color" value="#ff4500">
+                                        <input type="color" name="item-color" value="#ff4500">
+                                    </div>
+                                    <span class="add-prop"><i class="icofont-plus"></i> Extra color</span>
+                                </div>
+
+                                <div id="size-tab" class="cols">
+                                    <div class="rows heading">
+                                        <span>Item Sizes</span>
+                                        <span data-id="size-tab" class="icofont-close"></span>
+                                    </div>
+                                    <div>
+                                        <select id="">
+                                            <option value="">Select Type</option>
+                                        </select>
+                                    </div>
+                                    <div id="size-props" class="rows">
+                                        <!-- <span class="size-item rows">S</span> -->
+                                    </div>
+                                    <span class="add-prop"><i class="icofont-plus"></i> Extra size</span>
+                                </div>
+                            </div>
+
+                            <div class="tab-controls cols">
+                                <span data-id="size-tab" class="add-prop">Add Sizes</span>
+                                <span data-id="color-tab" class="add-prop">Add Color</span>
+                                <span data-id="weight-tab" class="add-prop">Add Weight</span>
+                            </div>
                         </div>
     
                         <label for="">Seller's ID&nbsp;<a href="" class="icofont-info-circle" style="text-decoration: none;"></a></label>
@@ -260,7 +299,7 @@
         <div class="links rows">
             <div class="cols">
                 <span class="heading">HELP LINKS</span>
-                <a href="">Contact Us</a>
+                <a href="/support">Contact Us</a>
                 <a href="">About Us</a>
                 <a href="">Terms and Conditions</a>
             </div>

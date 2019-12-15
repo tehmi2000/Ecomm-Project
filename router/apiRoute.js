@@ -231,6 +231,16 @@ const model = function() {
         });
     });
 
+    router.get("/goods/item-sizes", function(req, res) {
+        fs.readFile("./router/support/product-sizes.json", "utf8", function(err, content) {
+            if (err) {
+                log(err);
+            } else {
+                res.json(JSON.parse(content));
+            }
+        });
+    });
+
     router.get("/goods/:itemID", function(req, res) {
         const itemID = req.params.itemID;
         console.log(itemID);

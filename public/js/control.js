@@ -1,4 +1,5 @@
 const imgUrls = {};
+const globals = {};
 document.addEventListener("DOMContentLoaded", function() {
     const activeSection = get_query().sectid;
 
@@ -131,10 +132,73 @@ const createNoItemTag = function(container, text){
 };
 
 const showPostForm = function() {
+    const getAllSizes = function() {
+        const createSizeOption = function(container, options) {
+            let elementOptions = options.map(item => {
+                const opt = create("OPTION");
+                opt.value = item.name;
+                opt.innerHTML = item.name;
+                return opt;
+            });
+            container = joinComponent(container, ...elementOptions);
+        };
+
+        fetch(`/api/goods/item-sizes`).then(async response => {
+            try {
+                const container = document.querySelector("#props-box #size-tab select");
+                let result = await response.json();
+                globals.itemSizes = result;
+
+                container.innerHTML = "";
+                createSizeOption(container, result);
+            } catch (err) {
+                console.error(err);
+            }
+        }).catch(function(error) {
+            console.error(error);
+        });
+    };
+
+    const displaySizeOption = function(container, object){
+        // <span class="size-item rows">S</span>
+        let elementOptions = object.sizes.map(item => {
+            const opt = createComponent("SPAN", item, ["size-item", "rows"]);
+            return opt;
+        });
+        container.innerHTML = "";
+        container = joinComponent(container, ...elementOptions);
+    };
+
     document.title = `${document.title} || Sell Item`;
     document.querySelector(".control-body .body").style.height = "auto";
     document.querySelector(".control-body #post-box").style.display = "flex";
+
+    document.querySelectorAll(`#post-box .tab-controls > *`).forEach(element => {
+        element.addEventListener("click", function(evt){
+            let tabID = evt.currentTarget.getAttribute("data-id");
+            document.querySelector(`#${tabID}`).style.display = "flex";
+            document.querySelector(`.tab-controls [data-id='${tabID}']`).style.display = "none";
+        });
+    });
+
+    document.querySelectorAll("#props-box [id$='-tab'] .heading > *:last-child").forEach(element => {
+        element.addEventListener("click", function(evt){
+            let tabID = evt.currentTarget.getAttribute("data-id");
+            document.querySelector(`#${tabID}`).style.display = "none";
+            document.querySelector(`.tab-controls [data-id='${tabID}']`).style.display = "block";
+        });
+    });
+
+    document.querySelector("#props-box #size-tab select").addEventListener("change", function(evt){
+        const container = document.querySelector("#props-box #size-tab #size-props");
+
+        displaySizeOption(container, globals[`itemSizes`].find(item => {
+            return item.name === evt.currentTarget.value;
+        }));
+    });
+
     getAllCategories();
+    getAllSizes();
 };
 
 const getMyStoreItems = function() {
