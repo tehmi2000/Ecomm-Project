@@ -2,13 +2,32 @@
     box-sizing: border-box;
 }
 
+header{
+    
+    box-shadow: 0 5px 2px rgba(64, 0, 77, 0.75);
+}
+
+main{
+    padding: 0;
+    padding-top: 2px;
+}
+
 main h1{
+    position: relative;
     color : rgb(255, 145, 0);
     width: 100%;
     text-align: left;
     text-transform: capitalize;
     font-size: 3rem;
 }
+
+main h1::after{
+    position: absolute;
+    content: "in 5 minutes!";
+    transform: translateX(0.9rem);
+    /* right: 1rem; */
+}
+
 
 .form-navigation, .form-navigation .progress{
     height: 1rem;
@@ -63,8 +82,10 @@ main h1{
 }
 
 .form-pane{
-    width: 85%;
+    width: 100%;
+    padding: 0 7.5%;
     margin: 0 auto;
+    background-color: #440950;
 }
 
 .form-pane > div:first-child{
@@ -80,19 +101,21 @@ main h1{
 .form-pane .content-intro{
     font-size: 1.8rem;
     line-height: 1.6;
-    color: #333;
+    color: #fcfcff;
 }
 
 .form-pane #get-started-btn{
+    outline: none;
     text-align: center;
     width: auto;
     border: none;
+    border-radius: 5vh;
     background-color: rgb(240, 68, 6);
     color: #fcfcff;
-    padding: 1.5rem 2rem;
-    margin: 2.5rem 0 0.9rem;
-    box-shadow: 1px 1px 2px rgba(185, 91, 3, 0.637);
-    transition: all 0.6s ease;
+    padding: 1.4rem 3rem;
+    margin: 3rem 0 0.9rem;
+    box-shadow: 1px 2px 4px rgba(185, 91, 3, 0.6);
+    transition: all 0.8s ease-in-out;
 }
 
 .form-pane #get-started-btn:focus{
@@ -103,10 +126,13 @@ main h1{
 }
 
 #vendor-form{
+    width: 80%;
+    padding: 1rem 1.5rem;
     margin: 4rem auto 4rem auto;
     overflow: hidden;
     background-color: white;
     box-shadow: 0 0 4px rgb(206, 206, 206);
+    border-radius: 2vmin;
 }
 
 #vendor-form h2{
@@ -148,8 +174,13 @@ main h1{
     padding: 1.5rem 2rem;
     margin: 1.5rem 0 0.9rem auto;
     box-shadow: 1px 1px 2px rgba(185, 91, 3, 0.637);
-    -webkit-animation: hit-wall 1500ms linear 20s 15 both;
-    animation: hit-wall 1500ms linear 20s 15 both;
+    -webkit-animation: hit-wall 1500ms linear 20s 6 both;
+    animation: hit-wall 1500ms linear 20s 6 both;
+}
+
+#vendor-form input[type="submit"]:focus, #vendor-form span.btn:hover{
+    -webkit-animation: none;
+    animation: none;
 }
 
 #vendor-form label{
@@ -164,21 +195,33 @@ main h1{
 
 @media only screen and (max-width: 800px){
     main h1{
+        display: inline-block;
+        width: auto;
         color : rgb(255, 145, 0);
-        text-align: center;
+        text-align: left;
         text-transform: capitalize;
         font-size: 2.5rem;
-        margin-left: auto;
+        margin-left: 1.5rem;
+        margin-top: 5rem;
+        padding-left: 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 3px solid rgb(255, 145, 0);
+    }
+
+    main h1::after{
+        content: "";
     }
 
     .form-pane{
         flex-direction: column;
         width: 100%;
+        padding-left: 0;
+        padding-right: 0;
     }
     
     .form-pane > *{
-        width: 100% !important;
-        margin: 0 !important;
+        width: 90% !important;
+        margin: 0 auto !important;
     }
     
     .form-navigation{
@@ -189,26 +232,31 @@ main h1{
     .form-pane .content-intro{
         font-size: 1.5rem;
         line-height: 1.6;
-        color: #333;
+        /* color: #333; */
         padding: 1rem 2rem;
     }
 
     .form-pane #get-started-btn{
         display: block;
-        padding: 1.5rem 2rem;
-        margin: 2.5rem auto 0.9rem;
+        padding: 1.5rem 3rem;
+        margin: 2rem auto 0.9rem;
+        transition: all 0.4s ease-out;
     }
     
     .form-pane #get-started-btn:focus{
         margin-left: auto;
         margin-top: 3rem;
-        padding: 1.5rem 2rem;
-        clip-path: polygon(10% 0%, 10% 60%, 0% 60%, 50% 100%, 100% 60%, 90% 60%, 90% 0%);
+        /* padding: 1.5rem 3rem; */
+        /* padding-bottom: 2rem; */
+        /* clip-path: polygon(10% 0%, 10% 70%, 0% 70%, 50% 100%, 100% 70%, 90% 70%, 90% 0%); */
+        clip-path: polygon(0% 20%, 60% 20%, 60% 0, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+        transform: rotateZ(450deg);
     }
 
     #vendor-form{
-    	width: 90%;
-    	margin: 4rem auto;
+    	width: 100%;
+        margin: 4rem auto;
+        padding: 0.8rem;
     }
     
 }
@@ -219,7 +267,7 @@ main h1{
   0% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   2.1% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 22.255, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 22.255, 0, 0, 1); }
   4.1% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 36.103, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 36.103, 0, 0, 1); }
-  8.21% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 45.983, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 45.983, 0, 0, 1); }
+  8.21% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 42.983, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 42.983, 0, 0, 1); }
   11.41% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 41.617, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 41.617, 0, 0, 1); }
   14.51% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 32.126, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 32.126, 0, 0, 1); }
   20.72% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 10.605, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 10.605, 0, 0, 1); }
@@ -235,7 +283,7 @@ main h1{
   0% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
   2.1% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 22.255, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 22.255, 0, 0, 1); }
   4.1% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 36.103, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 36.103, 0, 0, 1); }
-  8.21% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 45.983, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 45.983, 0, 0, 1); }
+  8.21% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 42.983, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 42.983, 0, 0, 1); }
   11.41% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 41.617, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 41.617, 0, 0, 1); }
   14.51% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 32.126, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 32.126, 0, 0, 1); }
   20.72% { -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 10.605, 0, 0, 1); transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 10.605, 0, 0, 1); }
