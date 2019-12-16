@@ -178,6 +178,7 @@ main{
 }
 
 #post-box .gallery .status-bar{
+    display: none;
     color: #f0f0f0;
     border-radius: 5px;
     /* border: 1px solid #0e6ba1; */

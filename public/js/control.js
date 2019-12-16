@@ -1,5 +1,7 @@
 const imgUrls = {};
 const globals = {};
+
+
 document.addEventListener("DOMContentLoaded", function() {
     const activeSection = get_query().sectid;
 
@@ -41,6 +43,22 @@ document.addEventListener("DOMContentLoaded", function() {
     
 });
 
+const displayUploadState = function(statusText, end){
+    end = end || null;
+    const container = document.querySelector("#post-box .gallery .status-bar");
+    // if(container.style.display === "none"){
+        container.style.display = "block";
+    // }
+
+    container.innerHTML = statusText;
+
+    if(end && end === true){
+        setTimeout(()=>{
+            container.style.display = "none";
+        }, 5000);
+    }
+};
+
 const imageUploadHandler = function(evt){
     const uploadImage = (name, file) => {
         const fd = new FormData();
@@ -52,6 +70,9 @@ const imageUploadHandler = function(evt){
         }).then(async response => {
             let result = await response.json();
             console.log(result);
+            if(Object.keys(imgUrls).indexOf(name) === Object.keys(imgUrls).length - 1){
+                displayUploadState("Upload Complete!", true);
+            }
         }).catch(error => {
             console.log(error);
         });
@@ -68,6 +89,7 @@ const imageUploadHandler = function(evt){
         previewElement.style.backgroundImage = `url(${reader.result})`;
         imgUrls[elementId] = file.name;
         setTimeout(() => {
+            displayUploadState(`Uploading Image (${Object.keys(imgUrls).indexOf(elementId) + 1}/${Object.keys(imgUrls).length})`);
             uploadImage(elementId, file);
         }, 8000);
     };

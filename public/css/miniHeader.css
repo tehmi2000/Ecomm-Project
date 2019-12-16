@@ -74,12 +74,13 @@ header .section-top{
     color: orangered;
 }
 
+
 #sidemenu {
     z-index: +999;
-    position: absolute;
+    position: fixed;
     top: 0;
-    margin-left: -70%; 
-    width: 30vw;
+    margin-left: -150%; 
+    /* width: 30vw; */
     height: 100vh;
     min-width: 25rem;
     min-height: 40rem;
@@ -97,8 +98,13 @@ header .section-top{
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 2rem auto 5rem auto;
+    margin: 2rem auto 4.5rem auto;
     width: calc(100% - 3rem)
+}
+
+#sidemenu nav#controls{
+    display: none;
+    margin: 1rem auto 3rem auto;
 }
 
 #sidemenu .user-picture{
@@ -113,13 +119,9 @@ header .section-top{
     background-color: #ccc;
 }
 
-#sidemenu nav#controls{
-    display: none;
-    margin: 1rem auto 3rem auto;
-}
-
 #sidemenu nav button{
     border: none;
+    vertical-align: middle;
     background-color: rgb(240, 68, 6);
     border-radius: 5px;
     padding: 1rem 1.5rem;
@@ -127,8 +129,12 @@ header .section-top{
     box-shadow: 2px 2px 3px #e0e0e5;
 }
 
-#sidemenu a:link, #sidemenu a:visited, #sidemenu a:hover{
+#sidemenu a:link, #sidemenu a:visited{
     color: #3f3333;
+}
+
+#sidemenu a:hover{
+    color: tomato;
 }
 
 #sidemenu ul, #sidemenu a:link{
