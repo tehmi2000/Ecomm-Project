@@ -514,12 +514,13 @@ main{
 }
 
 .vendor-notify-box .vendor-apply-btn{
+    position: relative;
     display: block;
     text-transform: capitalize;
     text-align: center;
     padding: 1.2rem 3.6rem;
-    border-radius: 3px;
-    background-color: #10df10;
+    border-radius: 5vh;
+    background-color: orangered;
     font-size: 1.5rem;
     color: #fff;
     min-width: 100px;
@@ -530,10 +531,18 @@ main{
 }
 
 .vendor-apply-btn.no{
-    border: 2px solid #10df10;
-    color: #10df10;
+    border: 2px solid #aaa; /*#15df10*/
+    color: #777;
     background-color: transparent;
-    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
+}
+
+.vendor-apply-btn.no:hover::after{
+    content: "😭";
+    position: absolute;
+    font-size: 2.2rem;
+    top: 0.7rem;
+    right: 1.2rem;
 }
 
 @media only screen and (max-width:800px){

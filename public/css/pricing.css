@@ -1,4 +1,81 @@
+*{
+    box-sizing: border-box;
+}
 
+main{
+    padding: 0;
+}
+
+main p{
+    margin-bottom: 0;
+    font-size: medium;
+}
+
+main h1{
+    font-size: x-large;
+    margin-top: 0;
+}
+
+main > *{
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.intro{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 100%;
+    /* height: 50vh; */
+    /* color: rgb(80, 168, 255); */
+    /* background-color: rgb(80, 168, 255); */
+}
+
+.pane{
+    color: #fff;
+    width: calc(100%);
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin: auto;
+    background-color: rgb(161, 0, 161);
+}
+
+.pane .pane-item{
+    color: #000;
+    width: 31.33%;
+    min-height: 30vh;
+    margin: 1rem 2% 1rem 0;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
+}
+
+.pane-item div:first-child{
+    text-transform: capitalize;
+    font-size: 2.5rem;
+}
+
+.pane-item div:nth-child(2){
+    font-size: medium;
+    margin: 1rem 0;
+}
+
+.pane-item div:last-child{
+    margin: 1.5rem 0 1rem;
+    width: 100%;
+}
+
+.pane-item button{
+    /* width: 30%; */
+    padding: 1rem 3rem;
+    border-radius: 5vh;
+    color: white;
+    font-size: 1.4rem;
+    background-color: orangered;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
+}
 
 @media only screen and (max-width:800px){
     
