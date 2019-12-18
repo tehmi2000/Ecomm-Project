@@ -31,15 +31,15 @@ const model = function(){
     // const queryTest = "SELECT * FROM users LIMIT 1";
 
     // LOCALHOST CONNECTION
-    // const conn = mysql.createConnection({
-    //     host: 'localhost',
-    //     port: 3306,
-    //     user: 'tehmi2000',
-    //     password: 'tehmitemi1#',
-    //     database: "ecomm_db"
-    // });
+    const conn = mysql.createConnection({
+        host: 'localhost',
+        port: 3306,
+        user: 'tehmi2000',
+        password: 'tehmitemi1#',
+        database: "ecomm_db"
+    });
     
-    // const MONGO_URL = "mongodb://localhost:27017";
+    const MONGO_URL = "mongodb://localhost:27017";
 
     // AZURE MYSQL CONNECTION
     // const conn = mysql.createConnection({
@@ -51,16 +51,16 @@ const model = function(){
     // });
     
     // JAWDB MYSQL CONNECTION
-    const conn = mysql.createConnection({
-    	host: "l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    	port: 3306,
-    	user: process.env.MYSQL_USER,
-    	password: process.env.MYSQL_PASS,
-    	database: "mvqa2ejzg5zltrc0"
-    });
+    // const conn = mysql.createConnection({
+    // 	host: "l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    // 	port: 3306,
+    // 	user: process.env.MYSQL_USER,
+    // 	password: process.env.MYSQL_PASS,
+    // 	database: "mvqa2ejzg5zltrc0"
+    // });
 
     // ATLAS MONGODB CONNECTION
-    const MONGO_URL = process.env.MONGO_CONNECTION_STRING;
+    // const MONGO_URL = process.env.MONGO_CONNECTION_STRING;
 
     const mOptions = {
         useNewUrlParser: true,
