@@ -13,8 +13,13 @@ main p{
 }
 
 main h1{
-    font-size: x-large;
+    font-size: 2.6rem;
     margin-top: 0;
+}
+
+main h2.section-topic{
+    font-weight: 500;
+    font-size: 2.3rem;
 }
 
 main > *{
@@ -22,27 +27,48 @@ main > *{
     padding-right: 3%;
 }
 
-.intro{
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    width: 100%;
-    /* height: 50vh; */
-    /* color: rgb(80, 168, 255); */
-    /* background-color: rgb(80, 168, 255); */
+.purple-text{
+    color: #663172;
 }
 
-.pane{
-    color: #fff;
-    width: calc(100%);
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    margin: auto;
+.blue-text{
+    color: #3957e0;
+}
+
+.purple{
     background-color: #663172;
 }
 
-.pane .pane-item{
+.blue{
+    background-color: #3957e0;
+}
+
+.intro-pane{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 100%;
+}
+
+.section-pane, .section-pane .pane-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    color: #fff;
+}
+
+.section-pane{
+    margin-top: 2rem;
+    padding: 2rem 3%;
+}
+
+.section-pane .pane-container{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    justify-content: space-around;
+}
+
+.section-pane .pane-item{
     color: #111;
     width: 31.33%;
     height: auto;
@@ -82,14 +108,27 @@ main > *{
 }
 
 @media only screen and (max-width:800px){
-	.pane{
-		flex-direction: column;
-    	padding-top: 2rem;
-    	padding-bottom: 2rem;
-    	margin: auto;
+    .section-pane, .section-pane .pane-container{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin: auto;
+        color: #fff;
     }
     
-    .pane .pane-item{
+    .section-pane{
+        margin-top: 2rem;
+        padding: 1rem 3%;
+    }
+    
+    .section-pane .pane-container{
+        flex-direction: column;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        margin: auto;
+    }
+    
+    .section-pane .pane-item{
     	width: 100%;
     	min-height: 30vh;
     	margin: 1rem 2% 1rem 0;
