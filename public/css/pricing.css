@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    line-height: 1.5;
 }
 
 main{
@@ -8,7 +9,7 @@ main{
 
 main p{
     margin-bottom: 0;
-    font-size: medium;
+    font-size: 1.5rem;
 }
 
 main h1{
@@ -38,23 +39,24 @@ main > *{
     padding-top: 2rem;
     padding-bottom: 2rem;
     margin: auto;
-    background-color: rgb(161, 0, 161);
+    background-color: #663172;
 }
 
 .pane .pane-item{
-    color: #000;
+    color: #111;
     width: 31.33%;
-    min-height: 30vh;
+    height: auto;
     margin: 1rem 2% 1rem 0;
     padding: 2rem;
-    background-color: white;
-    border-radius: 5px;
+    background-color: #fafafd;
+    border-radius: 3px;
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
 }
 
 .pane-item div:first-child{
     text-transform: capitalize;
-    font-size: 2.5rem;
+    font-size: 2rem;
+    color: #cc2500;
 }
 
 .pane-item div:nth-child(2){
@@ -69,14 +71,37 @@ main > *{
 
 .pane-item button{
     /* width: 30%; */
-    padding: 1rem 3rem;
-    border-radius: 5vh;
-    color: white;
-    font-size: 1.4rem;
-    background-color: orangered;
-    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    padding: 0.8rem 2.4rem;
+    border: 1px solid #ff4500;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.15rem;
+    background-color: #ff4500;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);*/
 }
 
 @media only screen and (max-width:800px){
+	.pane{
+		flex-direction: column;
+    	padding-top: 2rem;
+    	padding-bottom: 2rem;
+    	margin: auto;
+    }
     
+    .pane .pane-item{
+    	width: 100%;
+    	min-height: 30vh;
+    	margin: 1rem 2% 1rem 0;
+    	padding: 2rem;
+    	border-radius: 5px;
+    }
+    
+    .pane-item div:first-child{
+    	font-size: 2.5rem;
+    }
+    
+    .pane-item div:nth-child(2){
+    	font-size: 1.3rem;
+    }
 }
