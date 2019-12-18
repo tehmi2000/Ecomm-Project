@@ -266,11 +266,11 @@
         }
 
         .pref-options select, .pref-options input, .total-input{
-            background-color: #010510;
+            background-color: #00010f;
             border: none;
-            padding: 0.5rem;
-            color: #ccc;
-            font-size: 1.1rem;
+            padding: 0.8rem 1rem;
+            color: #ddd;
+            font-size: 1.3rem;
             outline: none;
             text-align: center;
         }
@@ -486,7 +486,7 @@
 
                     <div class="cols">
                         <span class="opt-label">Quantity</span>
-                        <input type="number" name="" id="" value="1">
+                        <input type="number" id="quantity-input" min=1 value="1">
                     </div>
 
                     <div class="cols">
@@ -536,6 +536,15 @@
 
     <script>
 
+        const priceQtyHandler = function(evt) {
+            let qty = evt.currentTarget.value;
+            let price = qty * parseInt(globalItem["item-price"]);
+
+            allFields["total"].innerHTML = formatAsMoney(price);
+            preferredItem["item-qty"] = qty;
+            preferredItem["item-price"] = price;
+        };
+
         const saveHandler = function(evt) {
             const itemID = evt.currentTarget.id.split("_")[1];
             console.log(itemID.toString("hex"));
@@ -548,12 +557,14 @@
 
         const cartHandler = function(evt) {
             const itemID = evt.currentTarget.id.split("_")[1];
-            console.log(itemID);
+            const cartItem = Object.assign({}, globalItem, preferredItem);
+            console.log(cartItem);
+
             if(get_cookie("username")){
                 fetch(`/api/goods/save/${get_cookie("username").value}/addToCart`, {
                     method: "post",
                     body: JSON.stringify({
-                        item: globalItem
+                        item: cartItem
                     }),
                     headers: {
                         "Content-Type" : "application/json; charset=utf-8"
@@ -586,10 +597,9 @@
             element.classList.add("active")
         };
 
-        // 
         let itemID = get_query()["queryItem"];
         let globalItem = null
-        console.log(itemID);
+        let preferredItem = {};
 
         const allFields = {
             title: document.querySelector(".product-card .product-name"),
@@ -602,6 +612,8 @@
             nav2: document.querySelector(".product-card [data-nav-two]"),
             nav3: document.querySelector(".product-card [data-nav-three]"),
             discount: document.querySelector('.info-card .discount-label'),
+            quantity: document.querySelector('.info-card .pref-options #quantity-input'),
+            total: document.querySelector('.info-card .pref-options .total-input'),
             saveBtn: document.querySelector(".info-card .product-controls button:first-child"),
             cartBtn: document.querySelector(".info-card .product-controls button:last-child")
         };
@@ -615,21 +627,21 @@
                 if(item.error && item.code === 404){
                     alert(item.message);
                 }else{
-                    console.log(item);
-                    const saveBtn = allFields["saveBtn"], cartBtn = allFields["cartBtn"];
+                    // console.log(item);
+                    const saveBtn = allFields["saveBtn"], cartBtn = allFields["cartBtn"], quantity = allFields["quantity"];
 
                     saveBtn.setAttribute("id", `save_${globalItem["_id"]}`);
                     cartBtn.setAttribute("id", `cart_${globalItem["_id"]}`);
 
                     saveBtn.addEventListener("click", saveHandler);
                     cartBtn.addEventListener("click", cartHandler);
+                    quantity.addEventListener("change", priceQtyHandler);
 
-                    let price = parseInt(item["item-price"]).toLocaleString(undefined, {
-                        style: "currency",
-                        currency: "NGN"
-                    });
+                    let price = formatAsMoney(parseInt(item["item-price"]));
 
                     allFields["price"].innerHTML = price;
+                    allFields["total"].innerHTML = formatAsMoney(parseInt(item["item-price"]) * quantity.value);;
+
                     allFields["title"].innerHTML = item["item-name"];
                     allFields["longDesc"].innerHTML = item["item-desc"];
                     if(item["price-discount"]){

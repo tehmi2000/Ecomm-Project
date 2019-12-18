@@ -50,7 +50,7 @@ body{
 }
 
 .pane .item{
-    width: 20%;
+    width: calc((100% - 5rem)/5);
     min-width: calc(90px + 1.8rem);
     overflow: hidden;
     padding: 0.8rem 0.6rem;
