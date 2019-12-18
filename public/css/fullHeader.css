@@ -205,6 +205,10 @@ header #search-form{
     padding: 0.5rem;
 }
 
+#sidemenu .side-links{
+    margin-top: 1rem;
+}
+
 #sidemenu .side-links .head{
     font-size: 1.4rem;
     padding: 0.8rem;
