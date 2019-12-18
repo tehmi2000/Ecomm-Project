@@ -17,8 +17,8 @@ main p{
 }
 
 main h1{
-    font-weight: 500;
-    font-size: 2.4rem;
+    font-weight: 400;
+    font-size: 2.35rem;
     margin-top: 0;
     margin-bottom: 0.8rem;
 }
@@ -130,7 +130,6 @@ main h2.section-topic{
 
 	main h1{
 		font-size: 2.2rem;
-		font-weight: 400;
 	}
 	
 	main p{
