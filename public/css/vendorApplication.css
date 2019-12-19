@@ -282,6 +282,7 @@ main h1::after{
 }
 
 .card-purse [data-verve-card] [data-card-type]{
+	background-color: #fff;
 	background-image: url("../assets/images/Vervecard-logo.png");
 }
 
