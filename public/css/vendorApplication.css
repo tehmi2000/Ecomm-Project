@@ -264,10 +264,23 @@ main h1::after{
     transform: translate(-50%, -50%) rotateZ(-5deg);
 }
 
+.card-purse [data-master-card] [data-card-type]{
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-image: url("../assets/images/Mastercard-logo.png");
+}
+
 .card-purse [data-verve-card]{
     transform: translate(-50%, -50%) rotateZ(5deg);
     background-color: rgb(1, 69, 133);
 }
+
+.card-purse [data-verve-card] [data-card-type]{
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-image: url("../assets/images/Mastercard-logo.png");
+}
+
 
 @media only screen and (max-width: 800px){
     main h1{
