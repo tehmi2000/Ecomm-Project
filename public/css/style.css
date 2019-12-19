@@ -40,12 +40,21 @@ form .serror{
     font-size: 1.3rem;
     border-radius: 5vh 5vh;
     /* border: 1px solid rgba(158, 38, 48, 0.7); */
-    background-color: rgb(248, 77, 77);
+    background-color: rgba(255, 140, 26, 0.4);
     width:100%;
     height:auto;
     text-align:center;
     margin: 0.7rem auto 3rem auto;
     padding: 0.8rem;
+}
+
+.serror, .serror *{
+	color: rgb(165, 80, 0);
+}
+
+.serror [class^="icofont-"]{
+    font-size: 1.6rem;
+    margin-right: 0.6rem; 
 }
 
 .link-btn{
@@ -58,15 +67,6 @@ form .serror{
     background-color: transparent;
     color: black;
     padding: 1rem;
-}
-
-.serror *{
-    color: white; 
-}
-
-.serror .icofont-close-circled{
-    font-size: 2.0rem;
-    margin-right: 1rem; 
 }
 
 .drop-content{
@@ -226,7 +226,7 @@ footer > *:last-child *{
         padding: 1rem;
     }
     
-    .serror .icofont-close-circled{
+    .serror [class^="icofont-"]{
         font-size: 1.5rem;
         margin-right: 1rem; 
     }

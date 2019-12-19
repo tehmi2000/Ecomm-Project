@@ -41,13 +41,13 @@ main form{
     opacity: 0.5;
 }
 
-#sign-up-form .serror, #sign-up-form .serror *{
+/* #sign-up-form .serror, #sign-up-form .serror *{
 	color: rgb(165, 80, 0);
 }
 
 #sign-up-form .serror{
 	background-color: rgba(255, 140, 26, 0.3);
-}
+} */
 
 #sign-up-form input:not([type="submit"]){
     width: 100%;
