@@ -545,6 +545,19 @@ main{
     top: 0.7rem;
     right: 1.2rem;
 }
+[data-pay-btn]{
+    position: sticky;
+    bottom: 1rem;
+    font-size: 1.5rem;
+    width: 90%;
+    color: white;
+    text-align: center;
+    margin: 1rem;
+    border-radius: 5px;
+    display: block;
+    background-color: rgb(184, 49, 0);
+    box-shadow: 1px 2px 2px #e0e0e0;
+}
 
 @media only screen and (max-width:800px){
     body{
@@ -639,12 +652,12 @@ main{
     }
 
     .control-body .body{
-        min-height: 50vmax;
+        min-height: 80vmax;
     }
     
     .control-body .body > *{
         padding: 1rem;
-        min-height: 49vmax;
+        min-height: 79vmax;
     }
 
     #post-box label[for="option-box"] + #option-box > *{
@@ -732,6 +745,14 @@ main{
 
     .vendor-brief-text + ul{
         width: 95%;
+    }
+
+    [data-pay-btn]{
+        font-size: 1.5rem;
+        width: 95%;
+        margin: 1rem auto;
+        border-radius: 5px;
+        box-shadow: 1px 2px 2px #e0e0e0;
     }
 }
 

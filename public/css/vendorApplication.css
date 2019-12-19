@@ -132,6 +132,7 @@ main h1::after{
     background-color: white;
     box-shadow: 0 0 4px rgb(206, 206, 206);
     border-radius: 2vmin;
+    transition: width 0.5s ease;
 }
 
 #vendor-form h2{
@@ -207,6 +208,67 @@ main h1::after{
     font-size: 1.3rem;
 }
 
+#vendor-form .card-purse{
+    position: relative;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    transition: width 0.5s ease;
+    /* margin: 4rem auto; */
+}
+
+.card-purse [class*="paycard"]{
+    color: #fcfcff;
+    padding: 2rem;
+    justify-content: space-between;
+    position: absolute;
+    width : 35rem;
+    height: 20rem;
+    border-radius: 5px;
+    background-color: #ff6900;
+    transform-origin: left;
+    left: 50%;
+    top: 50%;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.card-purse [class*="paycard"] .card-logo{
+    background-color: white;
+    border-radius: 5px;
+    width: 4rem;
+    height: 4rem;
+    margin-left: auto;
+}
+
+.card-purse [class*="paycard"] .gold-chip{
+    background-color: rgb(223, 168, 30);
+    border-radius: 5px;
+    width: 4rem;
+    height: 4rem;
+}
+
+.card-purse [class*="paycard"] .card-number input{
+    background-color: transparent !important;
+    color: #fcfcff;
+    text-align: center;
+    border: none;
+}
+
+.card-purse [class*="paycard"] .name-date{
+    justify-content: space-between;
+}
+
+.card-purse [data-master-card]{
+    /* z-index: +1; */
+    background-color: #ff6900;
+    transform: translate(-50%, -50%) rotateZ(-5deg);
+}
+
+.card-purse [data-verve-card]{
+    transform: translate(-50%, -50%) rotateZ(5deg);
+    background-color: rgb(1, 69, 133);
+}
+
 @media only screen and (max-width: 800px){
     main h1{
         display: inline-block;
@@ -272,7 +334,36 @@ main h1::after{
         margin: 4rem auto;
         padding: 0.8rem;
     }
+
+    .card-purse [class*="paycard"]{
+        padding: 1.5rem;
+        width : 28rem;
+        height: 17rem;
+        border-radius: 5px;
+        transform-origin: left;
+        left: 50%;
+        top: 50%;
+    }
+
+    .card-purse [class*="paycard"] .card-logo{
+        width: 4rem;
+        height: 4rem;
+    }
     
+    .card-purse [class*="paycard"] .gold-chip{
+        background-color: rgb(223, 168, 30);
+        border: 1px solid rgb(204, 154, 28);
+        border-radius: 5px;
+        width: 4rem;
+        height: 4rem;
+    }
+    
+    .card-purse [class*="paycard"] .card-number input{
+        color: #fcfcff;
+        text-align: center;
+        border: none;
+        padding: 1rem !important;
+    }
 }
 
 /* Generated with Bounce.js. Edit at http://bouncejs.com#%7Bl%3A1%2Cs%3A%5B%7BT%3A%22t%22%2Ce%3A%22s%22%2Cd%3A1000%2CD%3A0%2Cf%3A%7Bx%3A0%2Cy%3A0%7D%2Ct%3A%7Bx%3A100%2Cy%3A0%7D%2Cs%3A1%2Cb%3A4%7D%5D%7D */

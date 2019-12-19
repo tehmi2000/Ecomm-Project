@@ -1,5 +1,6 @@
 const addHandlers = function() {
     const form = document.querySelector("#vendor-form");
+    const cardPurse = document.querySelector("#vendor-form .card-purse");
     const container = document.querySelector("#vendor-form .container");
 
     const navOne = document.querySelector(`.form-navigation span:nth-child(1)`);
@@ -41,6 +42,10 @@ const addHandlers = function() {
         if(evt.currentTarget.getAttribute("disabled") === null){
             setActive(3);
             container.style.marginLeft = "-200%";
+            form.style.width = "100%";
+            cardPurse.style.width = "auto";
+            cardPurse.style.height = "25rem";
+            cardPurse.style.overflow = "unset";
         }
     };
 
