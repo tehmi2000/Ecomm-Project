@@ -1,4 +1,5 @@
 const addHandlers = function() {
+    const form = document.querySelector("#vendor-form");
     const container = document.querySelector("#vendor-form .container");
 
     const navOne = document.querySelector(`.form-navigation span:nth-child(1)`);
@@ -48,6 +49,8 @@ const addHandlers = function() {
     nextBtnOne.addEventListener("click", stepTwo);
     navThree.addEventListener("click", stepThree);
     nextBtnTwo.addEventListener("click", stepThree);
+
+    form.addEventListener("submit", formHandler);
 };
 
 document.addEventListener("DOMContentLoaded", function(){

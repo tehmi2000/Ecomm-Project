@@ -187,6 +187,21 @@ main h1::after{
     font-size: 1.2rem;
 }
 
+/* #vendor-form .description-display{
+    display: block;
+    z-index: +1;
+    left: -20%;
+    position: absolute;
+    font-size: 1.3rem;
+    text-align: center;
+    width: auto;
+    padding: 1rem;
+    margin: auto;
+    color: #030;
+    border-radius: 5px;
+    background-color: rgba(10, 197, 52, 0.5);
+} */
+
 #vendor-form .btn{
     position: relative;
     font-size: 1.3rem;
