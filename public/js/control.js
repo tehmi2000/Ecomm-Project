@@ -205,9 +205,9 @@ const showPostForm = function() {
 
     document.querySelectorAll("#props-box [id$='-tab'] .heading > *:last-child").forEach(element => {
         element.addEventListener("click", function(evt){
-            let tabID = evt.currentTarget.getAttribute("data-id");
-            document.querySelector(`#${tabID}`).style.display = "none";
-            document.querySelector(`.tab-controls [data-id='${tabID}']`).style.display = "block";
+            let propPaneID = evt.currentTarget.getAttribute("data-id");
+            document.querySelector(`#${propPaneID}`).style.display = "none";
+            document.querySelector(`.tab-controls [data-id='${propPaneID}']`).style.display = "block";
         });
     });
 
@@ -221,24 +221,14 @@ const showPostForm = function() {
 
     getAllCategories();
     getAllSizes();
-};
 
-const getMyStoreItems = function() {
-    document.title = `${document.title} || Manage Your Posts`;
-    const container =  document.querySelector(".control-body #store-box");
-    container.style.display = "flex";
-
-    fetch(`/api/user/${get_cookie("username").value}/getStoreItems`).then(async function(response) {
+    fetch(`/api/vendors/${get_cookie("username").value}`).then(async function(response) {
         try {
+            let cover = document.querySelector(".vendor-bg-cover");
             let result = await response.json();
 
             if(result.length > 0 && result[0].error){
-                // console.log(result);
-                document.querySelector(".vendor-bg-cover").style.top = "0vh";
-            }else{
-                // console.log(result);
-                document.querySelector(".control-body #post-box").style.flexDirection = "row";
-                document.querySelector("#subtitle").innerHTML = `${result.length} items`;
+                cover.style.top = "0vh";
             }
 
         } catch (error) {
@@ -247,6 +237,53 @@ const getMyStoreItems = function() {
     }).catch(function(error) {
         console.log(error);
     });
+};
+
+const getMyStoreItems = function() {
+    const fetchItems = function () {
+        fetch(`/api/user/${get_cookie("username").value}/getStoreItems`).then(async function(response) {
+            try {
+                let cover = document.querySelector(".vendor-bg-cover");
+                let result = await response.json();
+    
+                if(result.length > 0 && result[0].error){
+                    cover.style.top = "0vh";
+                }else{
+                    document.querySelector(".control-body #post-box").style.flexDirection = "row";
+                    document.querySelector("#subtitle").innerHTML = `${result.length} items`;
+                }
+    
+            } catch (error) {
+                console.log(error);
+            }
+        }).catch(function(error) {
+            console.log(error);
+        });
+    };
+
+    document.title = `${document.title} || Manage Your Posts`;
+    const container =  document.querySelector(".control-body #store-box");
+    container.style.display = "flex";
+
+    fetch(`/api/vendors/${get_cookie("username").value}`).then(async function(response) {
+        try {
+            let cover = document.querySelector(".vendor-bg-cover");
+            let result = await response.json();
+
+            if(result.length > 0 && result[0].error){
+                cover.style.top = "0vh";
+            }else{
+                fetchItems();
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }).catch(function(error) {
+        console.log(error);
+    });
+
+    
 };
 
 const getSavedItems = function() {

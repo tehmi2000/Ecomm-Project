@@ -135,6 +135,26 @@ const model = function() {
     	});
     });
 
+    router.get("/vendors/:username", function(req, res) {
+        const sqlQuery = `SELECT * FROM vendors WHERE username='${req.params.username}'`;
+
+        connection.query(sqlQuery, function(err, result) {
+            console.log(result);
+            if (err) {
+                log(err);
+
+            }else if(result.length > 0){
+                res.json(result);
+            }else{
+                res.json([{
+                    error: "NonVendorError",
+                    code: 404,
+                    message: "Not a vendor"
+                }]);
+            }
+        });
+    });
+
     router.get("/user/:username", function(req, res){
         const username = req.params.username;
 
@@ -210,7 +230,7 @@ const model = function() {
                     const [sellerID] = result;
                     const collection = client.db(itemsDB).collection(iCollection);
 
-                    collection.find({"sellerID" : sellerID}).toArray(function(err, docs) {
+                    collection.find({"sellerID" : sellerID}).sort({postTime: -1}).toArray(function(err, docs) {
                         if(err) {
                             log(err);
                         }else{
@@ -298,7 +318,7 @@ const model = function() {
 
         mongoConn.then(client => {
             const collection = client.db(itemsDB).collection(iCollection);
-            collection.find({}).sort({ numberOfSaves: -1 }).limit(4).toArray(function(err, docs) {
+            collection.find({}).sort({ numberOfSaves: -1 }).limit(10).toArray(function(err, docs) {
                 if(err) {
                     log(err);
                 }else{
@@ -349,7 +369,7 @@ const model = function() {
         mongoConn.then(client => {
             const collection = client.db(username).collection("myCart");
 
-            collection.insertOne(item, function(err, result) {
+            collection.updateMany({"_id": item["_id"]}, item, {upsert: true}, function(err, result) {
                 if(err) log(err);
                 res.json(result);
             });
@@ -360,13 +380,15 @@ const model = function() {
     });
 
     router.post("/goods/save/:username/addToSavedItems", function(req, res) {
-        const query = req.query['query'];
+        const username = formatName(req.params.username);
+        const item = req.body.item;
 
         mongoConn.then(client => {
-            const collection = client.db(itemsDB).collection(iCollection);
-            collection.find({}).toArray(function(err, docs) {
+            const collection = client.db(username).collection("savedItems");
+
+            collection.updateMany({"_id": item["_id"]}, item, {upsert: true}, function(err, result) {
                 if(err) log(err);
-                res.json(docs);
+                res.json(result);
             });
         }).catch(error => {
             log(error);

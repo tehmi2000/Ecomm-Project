@@ -158,6 +158,15 @@ const model = function() {
                         res.redirect(`/passwordReset?error=${ph.softEncrypt("not found")}&idn=novalid`);
                     }else{
                         console.log(req.body);
+                        const msg = {
+                            to: account_email,
+                            from: "universone132@gmail.com",
+                            subject: "Password Reset Request",
+                            text: '...and easy',
+                            html: '<strong>Password reset!</strong>'
+                        };
+            
+                        testSend(msg);
                         res.end("Password Reset!");
                     }
                 }

@@ -455,6 +455,7 @@ main{
 }
 
 .vendor-bg-cover{
+    display: flex !important;
     z-index: +200;
     width: 100vw;
     height: 100vh;
