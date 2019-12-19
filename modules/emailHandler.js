@@ -54,6 +54,7 @@ const model = function(){
 	};
 
 	return {
+		emailSender,
 		sendVerificationMail: validation,
 		sendNotificationMail: notification
 	};
