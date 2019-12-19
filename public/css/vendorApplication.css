@@ -256,14 +256,17 @@ main h1::after{
 
 .card-purse [class*="paycard"] .name-date{
     justify-content: space-between;
+    	align-items: center;
 }
 
 .card-purse [class*="paycard"] [data-card-type]{
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
-	width: 30%;
-	height: 4rem;
+	width: 25%;
+	height: 3rem;
+	padding: 0 0.5rem
+	border-radius: 3px;
 }
 
 .card-purse [data-master-card]{
