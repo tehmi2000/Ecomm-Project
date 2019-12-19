@@ -258,6 +258,14 @@ main h1::after{
     justify-content: space-between;
 }
 
+.card-purse [class*="paycard"] [data-card-type]{
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 4rem;
+	height: 4rem;
+}
+
 .card-purse [data-master-card]{
     /* z-index: +1; */
     background-color: #ff6900;
@@ -265,9 +273,6 @@ main h1::after{
 }
 
 .card-purse [data-master-card] [data-card-type]{
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
 	background-image: url("../assets/images/Mastercard-logo.png");
 }
 
@@ -277,9 +282,6 @@ main h1::after{
 }
 
 .card-purse [data-verve-card] [data-card-type]{
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
 	background-image: url("../assets/images/Mastercard-logo.png");
 }
 
