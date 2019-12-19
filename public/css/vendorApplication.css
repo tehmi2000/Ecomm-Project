@@ -265,8 +265,9 @@ main h1::after{
 }
 
 .card-purse [data-master-card] [data-card-type]{
+	background-position: center;
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: cover;
 	background-image: url("../assets/images/Mastercard-logo.png");
 }
 
@@ -276,8 +277,9 @@ main h1::after{
 }
 
 .card-purse [data-verve-card] [data-card-type]{
+	background-position: center;
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: cover;
 	background-image: url("../assets/images/Mastercard-logo.png");
 }
 
