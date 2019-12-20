@@ -323,7 +323,7 @@ const getMyCart = function() {
             let items = await response.json();
             const container = document.querySelector("#orders-box");
             document.querySelector("#subtitle").innerHTML = `${items.length} items`;
-            // console.log(items);
+            console.log(items);
 
             container.innerHTML = "";
             if(items.length > 0){
@@ -336,7 +336,7 @@ const getMyCart = function() {
                 }, 0));
 
                 checkoutBtn.style.display = "block";
-                checkoutBtn.innerHTML = `Pay ${globals['cartTotal']} Now`;
+                checkoutBtn.innerHTML = `Pay ${globals['cartTotal']} +5% VAT Now`;
                 forEach(items, function(item) {
                     createItems(item);
                 });

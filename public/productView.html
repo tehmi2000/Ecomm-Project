@@ -641,7 +641,8 @@
 
                     allFields["price"].innerHTML = price;
                     allFields["total"].innerHTML = formatAsMoney(parseInt(item["item-price"]) * quantity.value);;
-
+                    preferredItem["item-qty"] = 1;
+                    
                     allFields["title"].innerHTML = item["item-name"];
                     allFields["longDesc"].innerHTML = item["item-desc"];
                     if(item["price-discount"]){
