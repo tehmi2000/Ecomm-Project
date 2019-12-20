@@ -238,36 +238,6 @@ main h1::after{
     transform: translate(-50%, -50%) rotateZ(0deg);
 }
 
-.card-purse [class*="paycard"] .card-logo{
-    background-color: white;
-    border-radius: 5px;
-    width: 4rem;
-    height: 4rem;
-    margin-left: auto;
-}
-
-.card-purse [class*="paycard"] .gold-chip{
-    background-color: rgb(223, 168, 30);
-    border-radius: 5px;
-    width: 4rem;
-    height: 4rem;
-}
-
-.card-purse [class*="paycard"] input{
-    background-color: transparent !important;
-    text-align: center;
-    border: none;
-}
-
-.card-purse [class*="paycard"] input, .card-purse [class*="paycard"] input::placeholder{
-    color: #fcfcff;
-}
-
-.card-purse [class*="paycard"] .name-date{
-    justify-content: space-between;
-    align-items: center;
-}
-
 .card-purse [class*="paycard"] [data-card-type]{
 	background-position: center;
 	background-repeat: no-repeat;
@@ -378,26 +348,6 @@ main h1::after{
         transform-origin: left;
         left: 50%;
         top: 50%;
-    }
-
-    .card-purse [class*="paycard"] .card-logo{
-        width: 4rem;
-        height: 4rem;
-    }
-    
-    .card-purse [class*="paycard"] .gold-chip{
-        background-color: rgb(223, 168, 30);
-        border: 1px solid rgb(204, 154, 28);
-        border-radius: 5px;
-        width: 4rem;
-        height: 4rem;
-    }
-    
-    .card-purse [class*="paycard"] .card-number input{
-        color: #fcfcff;
-        text-align: center;
-        border: none;
-        padding: 1rem !important;
     }
 }
 
