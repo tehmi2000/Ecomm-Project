@@ -336,7 +336,7 @@ const getMyCart = function() {
                 }, 0));
 
                 checkoutBtn.style.display = "block";
-                checkoutBtn.innerHTML = `Pay ${globals['cartTotal']} +5% VAT Now`;
+                checkoutBtn.innerHTML = `Pay ${globals['cartTotal']} Now`;
                 forEach(items, function(item) {
                     createItems(item);
                 });
