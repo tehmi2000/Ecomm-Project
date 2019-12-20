@@ -545,7 +545,9 @@ main{
     top: 0.7rem;
     right: 1.2rem;
 }
+
 [data-pay-btn]{
+    display: none;
     position: sticky;
     bottom: 1rem;
     font-size: 1.5rem;
@@ -554,8 +556,7 @@ main{
     text-align: center;
     margin: 1rem;
     border-radius: 5px;
-    display: block;
-    background-color: rgb(184, 49, 0);
+    background-image: linear-gradient(to right, rgb(184, 49, 0), rgb(184, 0, 0), rgb(184, 49, 0));
     box-shadow: 1px 2px 2px #e0e0e0;
 }
 

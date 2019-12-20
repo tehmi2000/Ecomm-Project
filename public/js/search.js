@@ -2,14 +2,13 @@ const itemList = {};
 
 document.addEventListener("DOMContentLoaded", function() {
     const queryText = window.decodeURI(get_query().query);
-    const displayQueryElement = document.getElementById("query");
+    const displayQueryElement = document.querySelector("#query");
 
-    console.log(window.location.hash);
-    // searchform.addEventListener("submit", searchHandler);
-    displayQueryElement.innerHTML = ` ${queryText}`;
+    let formattedQuery = queryText.split("+").join(" ");
+    displayQueryElement.innerHTML = ` ${formattedQuery}`;
 
     if(queryText && queryText !== ""){
-        fetchData(queryText);
+        fetchData(queryText, formattedQuery);
     }
 });
 
@@ -18,7 +17,7 @@ const displayFilters = () => {
     element.style.display = (element.style.display === "flex")? "none" : "flex";
 };
 
-const fetchData = (searchQuery) => {
+const fetchData = (searchQuery, formattedQuery) => {
     const container = document.querySelector("#item-container");
     fetch(`/api/goods/all/search?query=${searchQuery}`).then(async function(response) {
         try {
@@ -27,7 +26,7 @@ const fetchData = (searchQuery) => {
 
             container.innerHTML = "";
             if(result.length === 0){
-                createNoItemTag(container, searchQuery);
+                createNoItemTag(container, formattedQuery);
             }else{
                 result.forEach(item => {
                     itemList[`${item._id}`] = item;
@@ -118,7 +117,7 @@ const createItem = function(container, object){
     span10.setAttribute("href", `/view/${object._id}`);
     a0.setAttribute("id", object._id);
     a0.setAttribute("data-href", `/view/${object._id}`);
-    img0.setAttribute("src", `${object["item-image"][1]}`);
+    img0.setAttribute("src", `${object["item-image"][0]}`);
     button20.setAttribute("id", `save_${object._id}`);
     button21.setAttribute("id", `cart_${object._id}`);
 

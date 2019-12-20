@@ -230,6 +230,12 @@ main h1::after{
     left: 50%;
     top: 50%;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease ;
+}
+
+.card-purse [class*="paycard"]:hover{
+    z-index: +1;
+    transform: translate(-50%, -50%) rotateZ(0deg);
 }
 
 .card-purse [class*="paycard"] .card-logo{
@@ -247,35 +253,39 @@ main h1::after{
     height: 4rem;
 }
 
-.card-purse [class*="paycard"] .card-number input{
+.card-purse [class*="paycard"] input{
     background-color: transparent !important;
-    color: #fcfcff;
     text-align: center;
     border: none;
 }
 
+.card-purse [class*="paycard"] input, .card-purse [class*="paycard"] input::placeholder{
+    color: #fcfcff;
+}
+
 .card-purse [class*="paycard"] .name-date{
     justify-content: space-between;
-    	align-items: center;
+    align-items: center;
 }
 
 .card-purse [class*="paycard"] [data-card-type]{
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;
-	width: 25%;
-	height: 3rem;
-	padding: 0 0.5rem
+	width: 30%;
+	height: 4rem;
 	border-radius: 3px;
 }
 
 .card-purse [data-master-card]{
-    /* z-index: +1; */
     background-color: #ff6900;
     transform: translate(-50%, -50%) rotateZ(-5deg);
 }
 
 .card-purse [data-master-card] [data-card-type]{
+    /* border: 1px solid #efefef; */
+    width: 6rem;
+	height: 6rem;
 	background-image: url("../assets/images/Mastercard-logo.png");
 }
 
@@ -285,6 +295,10 @@ main h1::after{
 }
 
 .card-purse [data-verve-card] [data-card-type]{
+    box-sizing: content-box;
+    border: 0.5rem solid #fff;
+    width: 6rem;
+	height: 2.5rem;
 	background-color: #fff;
 	background-image: url("../assets/images/Vervecard-logo.png");
 }

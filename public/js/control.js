@@ -228,7 +228,7 @@ const showPostForm = function() {
             let result = await response.json();
 
             if(result.length > 0 && result[0].error){
-                cover.style.top = "0vh";
+                // cover.style.top = "0vh";
             }
 
         } catch (error) {
@@ -281,9 +281,7 @@ const getMyStoreItems = function() {
         }
     }).catch(function(error) {
         console.log(error);
-    });
-
-    
+    });  
 };
 
 const getSavedItems = function() {
@@ -317,6 +315,7 @@ const getSavedItems = function() {
 };
 
 const getMyCart = function() {
+    const checkoutBtn = document.querySelector("[data-pay-btn]");
     document.title = `${document.title} || View Cart`;
     document.querySelector(".control-body #orders-box").style.display = "flex";
     fetch(`/api/user/${get_cookie("username").value}/getCart`).then(async function(response) {
@@ -328,6 +327,16 @@ const getMyCart = function() {
 
             container.innerHTML = "";
             if(items.length > 0){
+                globals['cartTotal'] = formatAsMoney(items.reduce((total, current) => {
+                    const price = current["item-price"];
+                    const qty = current["item-qty"];
+
+                    total += parseInt(price) * qty;
+                    return total;
+                }, 0));
+
+                checkoutBtn.style.display = "block";
+                checkoutBtn.innerHTML = `Pay ${globals['cartTotal']} Now`;
                 forEach(items, function(item) {
                     createItems(item);
                 });
@@ -370,10 +379,10 @@ const createItems = function(items) {
             let div10 = createComponent("div", null, ["rows", "top"]);
                 let div101 = createComponent("DIV", `${items['item-brand'] || items['categories'][0]}`, ["item-brand"]);
                 let button101 = createComponent("BUTTON", null, ["strip-btn", "icofont-close"]);
-            let span10 = createComponent("SPAN", `${items['item-name']}`, ["item-name"]);
+            let span10 = createComponent("SPAN", `${items['item-name']} (x${items['item-qty']})`, ["item-name"]);
             let span11 = createComponent("SPAN", `${price}`, ["item-price"]);
             let span12 = createComponent("SPAN", null, ["item-controls"]);
-                const button120 = createComponent("BUTTON", "Save Item");
+                const button120 = createComponent("BUTTON", "Save For Later");
 
     img0.setAttribute("src", `${items['item-image'][0]}`);
 

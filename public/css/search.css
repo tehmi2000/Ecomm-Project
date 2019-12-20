@@ -15,6 +15,7 @@ body{
 }
 
 #filter{
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13);
     padding: 0.5rem 1rem;
 }
 
@@ -60,7 +61,16 @@ body{
     /* border-radius: 5px; */
 }
 
+main{
+    min-height: 80vh;
+}
+
+main h1{
+    font-weight: 500;
+}
+
 #query{
+    text-transform: capitalize;
     color: orangered;
 }
 
@@ -88,7 +98,7 @@ body{
     display: flex;
     flex-direction: row;
     width: 48%;
-    min-height: 13vmin;
+    /* min-height: 13vmin; */
     border-radius: 5px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
     background-color: #fafafc;
@@ -104,11 +114,9 @@ body{
 }
 
 .item img{
-    margin: auto 0.6vmin;
-    width: 11.8vmin;
-    height: 11.8vmin;
+    width: 16rem;
+    height: 14rem;
     object-fit: contain;
-    /* background-color: #ccc; */
 }
 
 .item .item-name{
@@ -128,24 +136,18 @@ body{
     padding-bottom: 0.3rem;
 }
 
-/* .item-name > a::after{
-    content: "f";
-    width: auto;
-    height: auto; 
-    transform: translateX(-50%);
-    padding-bottom: 0.3rem;
-    border-bottom: 2px solid rgb(62, 8, 209);
-} */
-
 .item .item-name > *, .item .item-control > *{
     text-align: left;
     margin-left: 1rem;
 }
 
 .item .item-name > *:last-child{
-    padding-top: 0.5rem;
     text-align: left;
-    color: #111;
+    color: #555;
+}
+
+.item .item-name > *:last-child::first-letter{
+    text-transform: uppercase;
 }
 
 .item .item-control{
@@ -158,7 +160,7 @@ body{
 }
 
 .item .item-number{
-    /* font-weight: bold; */
+    font-weight: 500;
     text-align: right;
     color: #333;
     padding-top: 1rem;
@@ -176,7 +178,8 @@ body{
 
 .item .item-buttons button{
     z-index: +10;
-    font-family: "Open Sans", sans-serif;
+    text-transform: capitalize;
+    /* font-family: "Open Sans", sans-serif; */
     border: none;
     background-color: #f9f9f9;
     color: rgb(255, 153, 0);
@@ -185,8 +188,8 @@ body{
     font-size: 1.3rem;
     margin-left: 0.45rem;
     margin-right: 0.45rem;
-    padding: 1rem;
-    border-radius: 2px;
+    padding: 1rem 3rem;
+    border-radius: 3px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.26);
 }
 
@@ -198,13 +201,17 @@ body{
     font-size: 1.4rem;
     border: 1px solid orange;
     background-color: orange;
-    color: #efefef;
+    color: #fff;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.26);
 }
 
 .dummy.item{
     position: relative;
     background-color: #ececec;
+}
+
+.dummy.item img{
+    margin: 0;
 }
 
 .dummy.item img, .dummy.item .item-name > *, .dummy.item .item-number > *, .dummy.item .item-buttons > *{
@@ -289,16 +296,6 @@ body{
         height: 50vh;
     }
 
-    /* .pane .item{
-        width: 46%;
-        padding: 0.8rem 0.6rem;
-    }
-
-    .pane .section-body .slider{
-        justify-content: space-between;
-    } */
-
-
     #item-container{
         flex-direction: column;
     }
@@ -311,22 +308,23 @@ body{
     }
 
     .item img{
-        width: 28vmin;
-        height: 31vmin;
+        /* display: block; */
+        width: 13rem;
+        height: 18rem;
+        margin: auto;
     }
 
     .item > *{
         font-size: 1.3rem;
     }
 
-    .item img+span{
+    .item img + span{
         margin-left: auto;
     }
 
     .item .item-name{
         text-align: center;
         font-size: 1.5rem;
-        /* width: 50%; */
         margin-right: auto;
         padding: 1rem;
     }
