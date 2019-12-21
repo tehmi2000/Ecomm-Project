@@ -9,67 +9,67 @@
 
 <url>
   <loc>https://oneunivers.herokuapp.com/</loc>
-  <lastmod>2019-12-16T03:17:07+00:00</lastmod>
+  <lastmod>2019-12-20T14:09:09+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://oneunivers.herokuapp.com/categories</loc>
-  <lastmod>2019-12-16T14:25:41+00:00</lastmod>
+  <lastmod>2019-12-21T14:24:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://oneunivers.herokuapp.com/pricing</loc>
-  <lastmod>2019-12-16T14:25:41+00:00</lastmod>
+  <lastmod>2019-12-21T14:24:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://oneunivers.herokuapp.com/support</loc>
-  <lastmod>2019-12-16T14:25:41+00:00</lastmod>
+  <lastmod>2019-12-21T14:24:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://oneunivers.herokuapp.com/login</loc>
-  <lastmod>2019-12-16T14:25:41+00:00</lastmod>
+  <lastmod>2019-12-21T14:24:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://oneunivers.herokuapp.com/signup</loc>
-  <lastmod>2019-12-16T14:25:41+00:00</lastmod>
+  <lastmod>2019-12-21T14:24:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://oneunivers.herokuapp.com/myprofile/orders?sectid=2</loc>
-  <lastmod>2019-12-16T14:25:41+00:00</lastmod>
+  <lastmod>2019-12-21T14:24:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://oneunivers.herokuapp.com/myprofile/orders?sectid=3</loc>
-  <lastmod>2019-12-16T14:25:41+00:00</lastmod>
+  <lastmod>2019-12-21T14:24:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://oneunivers.herokuapp.com/myprofile/orders?sectid=1</loc>
-  <lastmod>2019-12-16T14:25:41+00:00</lastmod>
+  <lastmod>2019-12-21T14:24:21+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/myprofile/orders?sectid=4</loc>
+  <lastmod>2019-12-21T14:24:21+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://oneunivers.herokuapp.com/passwordReset</loc>
-  <lastmod>2019-12-16T14:25:41+00:00</lastmod>
+  <lastmod>2019-12-21T14:24:21+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://oneunivers.herokuapp.com/myprofile</loc>
-  <lastmod>2019-12-16T14:25:41+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://oneunivers.herokuapp.com/myprofile/orders?sectid=4</loc>
-  <lastmod>2019-12-16T14:25:41+00:00</lastmod>
+  <lastmod>2019-12-21T14:24:21+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://oneunivers.herokuapp.com/vendors/vendor-apply</loc>
-  <lastmod>2019-12-16T14:25:41+00:00</lastmod>
+  <lastmod>2019-12-21T14:24:21+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 
