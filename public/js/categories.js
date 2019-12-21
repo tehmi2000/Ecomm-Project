@@ -37,6 +37,8 @@ const getAllCategories = function() {
     fetch(`/api/categories`).then(async function(response) {
         try {
             let category_list = await response.json();
+            document.querySelector("#item-container").innerHTML = "";
+
             forEach(category_list, function(element) {
                 // debugger;
                 const nullChild = document.querySelector("[name='country'] option[value='null']");
