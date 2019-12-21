@@ -368,11 +368,12 @@ const model = function() {
 
         mongoConn.then(client => {
             const collection = client.db(username).collection("myCart");
-
-            collection.update({"_id": item["_id"]}, item, {upsert: true}, function(err, result) {
-                if(err) log(err);
-                res.json(result);
-            });
+			
+			collection.updateMany({"_id": item["_id"]}, {$set: item}, {upsert: true}, function(err, result) {
+				if(err) log(err);
+				res.json(result);
+			});
+			
         }).catch(error => {
             log(error);
         });
@@ -386,7 +387,7 @@ const model = function() {
         mongoConn.then(client => {
             const collection = client.db(username).collection("savedItems");
 
-            collection.update({"_id": item["_id"]}, item, {upsert: true}, function(err, result) {
+            collection.updateMany({"_id": item["_id"]}, {$set: item}, {upsert: true}, function(err, result) {
                 if(err) log(err);
                 res.json(result);
             });
