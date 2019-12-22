@@ -51,9 +51,14 @@
             font-size: 2.3rem;
         }
 
-        main .section-wrap{
-            padding-left: 3vmax;
-            padding-right: 3vmax;
+        main .support-pane{
+            width: 100%;
+            padding: 3rem 5rem;
+        }
+
+        main .support-pane h2{
+            font-size: 2.5rem;
+            margin: 2rem 0;
         }
 
         .purple-text{
@@ -81,6 +86,59 @@
         .section-wrap > h2, .section-wrap > p{
             padding-left: 0;
             padding-right: 0;
+        }
+
+        #support-form{
+            width: 60%;
+            min-width: 50rem;
+            background-color: #fcfcff;
+        }
+
+        #support-form > *{
+            margin-bottom: 2rem;
+        }
+
+        #support-form > *:first-child{
+            justify-content: space-between;
+        }
+
+        #support-form > *:first-child > *{
+            width: 48%;
+        }
+
+        #support-form > *:first-child input{
+            width: 100%;
+        }
+
+        #support-form label{
+            font-size: 1.4rem;
+        }
+
+        #support-form input:not([type="submit"]), #support-form textarea{
+            outline: none;
+            border: none;
+            border-bottom: 2px solid #eaeaea;
+            padding: 0.75rem 1rem;
+            background-color: transparent;
+            transition: all 0.5s ease-in-out;
+        }
+
+        #support-form input:not([type="submit"]):focus, #support-form textarea:focus{
+            border-bottom: 2px solid rgb(240, 68, 6);
+        }
+
+        #support-form input[type="submit"]{
+            outline: none;
+            text-align: center;
+            width: auto;
+            border: none;
+            border-radius: 5vh;
+            background-color: rgb(240, 68, 6);
+            color: #fcfcff;
+            padding: 1.2rem 3rem;
+            margin: 3rem 0 0.9rem;
+            box-shadow: 1px 2px 4px rgba(185, 91, 3, 0.6);
+            transition: all 0.8s ease-in-out;
         }
         
         @media only screen and (max-width:800px){
@@ -201,6 +259,33 @@
             <h1>Contact Support</h1>
             <span class="subtitle">Reach out to our able and reliable support team.</span>
         </div>
+
+        <div class="support-pane">
+            <h2>Submit A Request</h2>
+            <form id="support-form" action="" method="post">
+                <div class="rows">
+                    <div class="cols">
+                        <label for="">Your Name</label>
+                        <input type="text" name="" id="" placeholder="Enter your name">
+                    </div>
+                    <div class="cols">
+                        <label for="">Email</label>
+                        <input type="text" name="" id="" placeholder="Enter your email address">
+                    </div>
+                </div>
+
+                <div class="cols">
+                    <label for="">Message</label>
+                    <textarea name="" id="" cols="40" rows="8" placeholder="Type your message here..."></textarea>
+                </div>
+                
+                <div>
+                    <input type="submit" value="Submit">
+                </div>
+                
+            </form>
+        </div>
+        
     </main>
 
     <footer class="cols">

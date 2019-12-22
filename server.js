@@ -63,6 +63,10 @@ connection.connect(function(err) {
 // app.get("*", function(request, response) {
 //     response.redirect(`https://${request.headers.host}${request.url}`);
 // });
+// app.get("*", function(req, res, next) {
+//     console.log(res.statusCode);
+//     next();
+// });
 app.get("/", controller.dashboard);
 app.get("/login", controller.login);
 app.get("/signup", controller.signup);

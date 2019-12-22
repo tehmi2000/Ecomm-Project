@@ -11,4 +11,15 @@ document.addEventListener("DOMContentLoaded", function () {
         errorField.innerHTML = err_image + ' <div>Username does not exist!</div>';
         errorField.classList.toggle("serror", true);
     }
+
+    const tl = new TimelineMax();
+    tl.add(
+        TweenMax.from(document.querySelector("#login-form"), 0.5, {x: "100vw", ease: Power1.easeOut})
+    )
+    .add(
+        TweenMax.from(document.querySelector("#login-form input[type='submit']"), 0.6, {y: "100vh", ease: Power2.easeOut})
+    )
+    .add(
+        TweenMax.staggerFrom(document.querySelectorAll("main h1, #login-form+div"), 0.5, {opacity: 0, ease: Power1.easeOut, stagger: 0.2})
+    );
 });
