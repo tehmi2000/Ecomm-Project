@@ -14,9 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const tl = new TimelineMax();
     tl.add(
-        TweenMax.from(document.querySelector("#login-form"), 0.5, {x: "100vw", ease: Power1.easeOut})
-    )
-    .add(
         TweenMax.from(document.querySelector("#login-form input[type='submit']"), 0.6, {y: "100vh", ease: Power2.easeOut})
     )
     .add(
