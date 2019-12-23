@@ -14,10 +14,10 @@ body{
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 80vh;
+    height: 60vh;
     border-radius: 0.5rem;
     background-repeat: no-repeat;
-    background-position: 50%;
+    background-position: center;
     background-size: cover;
     background-image: url("../assets/ads/0a9c147c668744d0afcb9d320afa0b73.jpg");
     -webkit-transition: all 0.2s ease-in;

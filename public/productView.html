@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="/css/miniHeader.css">
     <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
     <script src="/js/main.js"></script>
-    <!-- <script src="/js/index.js"></script> -->
+    <script src="/js/lib/greensock-js/src/minified/TweenMax.min.js"></script>
+    <script src="/js/lib/greensock-js/src/minified/TimelineMax.min.js"></script>
 </head>
 <body>
     <style>
@@ -535,6 +536,8 @@
     </footer>
 
     <script>
+        const tl  = new TimelineMax();
+        tl.staggerFrom(document.querySelectorAll(".product-controls > *"), 0.5, {y: -100, opacity: 0, stagger: 0.2, });
 
         const priceQtyHandler = function(evt) {
             let qty = evt.currentTarget.value;
