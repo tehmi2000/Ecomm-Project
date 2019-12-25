@@ -33,7 +33,7 @@ const model = function() {
                     res.json([{...err, status: 403}]);
                 }else{
                     const params = {
-                       Bucket: 'oneunivers-1-amazons3-bucket',
+                       Bucket: 'oneunivers-2-amazons3-bucket',
                        Key: `uploads/${name}`,
                        Body: JSON.stringify(data, null, 2)
                     };
