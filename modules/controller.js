@@ -1,9 +1,15 @@
 const model = function() {
     const fs = require("fs");
+    const AWS = require('aws-sdk');
     const mysql_config =  require("./config");
     const { log } = mysql_config;
     const { emailSender } = require("./emailHandler");
     const ph = require("./passwordHash");
+
+    const s3 = new AWS.S3({
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    });
 
     const readFile = function(path, req, res) {
         fs.readFile(path, "utf8", function(err, content) {
@@ -14,6 +20,38 @@ const model = function() {
                 res.end(content);
             }
         });
+    };
+
+    const s3Upload = function(req, res) {
+        let file = req.files;
+        let path = "./public/uploads";
+
+        for (const key in file) {
+            let uploadedFile = file[key];
+            fs.readFile(uploadedFile.name, (err, data) => {
+                if (err) {
+                    log(err);
+                    res.json([{...err, status: 403}]);
+                }else{
+
+                    const params = {
+                       Bucket: 'oneunivers-1-amazons3-bucket',
+                       Key: uploadedFile.name,
+                       Body: JSON.stringify(data, null, 2)
+                    };
+
+                    console.log(JSON.stringify(data, null, 2));
+
+                    s3.upload(params, function(s3Err, data) {
+                        if (s3Err) {
+                            log(s3Err);
+                        }else{
+                            res.json([{status: 200, statusText: "Upload successful!"}]);
+                        }
+                    });
+                }
+            });
+        }
     };
 
     const upload = function(req, res) {

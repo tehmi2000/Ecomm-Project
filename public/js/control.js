@@ -336,7 +336,7 @@ const getMyCart = function() {
                 }, 0));
 
                 checkoutBtn.style.display = "block";
-                checkoutBtn.innerHTML = `Pay ${globals['cartTotal']} Now`;
+                checkoutBtn.innerHTML = `Checkout Now`;
                 forEach(items, function(item) {
                     createItems(item);
                 });
