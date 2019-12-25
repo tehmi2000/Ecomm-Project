@@ -80,7 +80,7 @@ app.get("/pricing", controller.pricing);
 app.get("/vendors/vendor-apply", controller.vendorApplication);
 app.get("/support", controller.support);
 
-app.post("/upload", controller.upload);
+app.post("/upload", controller.s3Upload);
 app.post("/auth", controller.auth); // Login handler
 app.post("/register", controller.register); // Sign up/Registration handler
 app.post("/myprofile/update", controller.update); // Profile handler

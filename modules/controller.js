@@ -26,29 +26,38 @@ const model = function() {
         let file = req.files;
         let path = "./public/uploads";
 
-        for (const key in file) {
-            let uploadedFile = file[key];
-            fs.readFile(uploadedFile.name, (err, data) => {
+        const uploadToBucket = (name, path) => {
+            fs.readFile(path, (err, data) => {
                 if (err) {
                     log(err);
                     res.json([{...err, status: 403}]);
                 }else{
-
                     const params = {
                        Bucket: 'oneunivers-1-amazons3-bucket',
-                       Key: uploadedFile.name,
+                       Key: `uploads/${name}`,
                        Body: JSON.stringify(data, null, 2)
                     };
-
-                    console.log(JSON.stringify(data, null, 2));
 
                     s3.upload(params, function(s3Err, data) {
                         if (s3Err) {
                             log(s3Err);
+                            res.json([{...s3Err, status: 403}]);
                         }else{
                             res.json([{status: 200, statusText: "Upload successful!"}]);
                         }
                     });
+                }
+            });
+        };
+
+        for (const key in file) {
+            let uploadedFile = file[key];
+            uploadedFile.mv(`${path}/${uploadedFile.name}`, function(err) {
+                if (err) {
+                    log(err);
+                    res.json([{...err, status: 403}]);
+                }else{
+                    uploadToBucket(uploadedFile.name, `${path}/${uploadedFile.name}`);
                 }
             });
         }
@@ -182,6 +191,7 @@ const model = function() {
         register,
         update,
         upload,
+        s3Upload,
         resetHandler: function(req, res) {
             const account_email = req.body["reset-email"];
             console.log(account_email);
