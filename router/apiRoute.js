@@ -332,7 +332,7 @@ const model = function() {
     });
 
     router.post("/goods/save", function(req, res) {
-        const uploadPath = `https://oneunivers-1-amazons3-bucket.s3.amazonaws.com/uploads`;
+        const uploadPath = `https://oneunivers-2-amazons3-bucket.s3.amazonaws.com/uploads`;
         const userInput = req.body;
         userInput.postTime = Date.now();
         userInput.numberOfSaves = 0;
