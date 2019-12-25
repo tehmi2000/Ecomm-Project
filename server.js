@@ -20,10 +20,11 @@ const { connection, userTableExist, categoryTableExist, vendorTableExist, log } 
 
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // Only used during development
-// app.use((req, res, next) => {
-//     res.setHeader("Access-Control-Allow-Origin", "*");
-//     next();
-// });
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://oneunivers-1-amazons3-bucket.s3.amazonaws.com");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 app.use("/", express.static(__dirname + "/public"));
@@ -62,10 +63,6 @@ connection.connect(function(err) {
 // APPLICATION ROUTING
 // app.get("*", function(request, response) {
 //     response.redirect(`https://${request.headers.host}${request.url}`);
-// });
-// app.get("*", function(req, res, next) {
-//     console.log(res.statusCode);
-//     next();
 // });
 app.get("/", controller.dashboard);
 app.get("/login", controller.login);
