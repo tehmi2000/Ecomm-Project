@@ -1,10 +1,7 @@
 ------------------------------------UNDONE-----------------------------------------
-Remove and add relevant links in the header of the main page
-Main page need to get 'Goods' object from database
-Work on search page and filters
+Add more options to profile page:
+-   vendor status
+-   Saved items preview
+-   Explore Options
 
 ------------------------------------DONE-------------------------------------------
-Create a platform for posting goods, viewing carts and other relevant actions
-Api connection to get countries and so on on the profile page
-Add a logout button on the profile page
-Add a footer

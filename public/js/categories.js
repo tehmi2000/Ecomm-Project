@@ -24,7 +24,7 @@ const createItem = function(container, object){
     div2.classList.add("item-description", "cols");
     i0.classList.add(object.image);
 
-    a0.setAttribute("href", `categories/all/${object.title}`);
+    a0.setAttribute("href", `/search?query=${object.title}`);
     div1 = joinComponent(div1, i0);
     div2 = joinComponent(div2, span0);
     div0 = joinComponent(div0, div1, div2);
@@ -49,7 +49,7 @@ const getAllCategories = function() {
             });
 
             const tl = new TimelineMax();
-            tl.staggerFrom(document.querySelectorAll("#item-container > *"), 0.4, {x: "-100vw", ease: Power2.easeOut, stagger: 0.2})
+            tl.staggerFrom(document.querySelectorAll("#item-container > *"), 0.4, {x: "-100vw", ease: Power2.easeOut, stagger: 0.2});
 
         } catch (err) {
             console.error(err);

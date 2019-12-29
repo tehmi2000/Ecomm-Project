@@ -5,12 +5,12 @@ let counter = 0;
 
 const nextImage = function(){
     counter = (counter === images.length-1)? 0 : counter + 1;
-    document.querySelector("#slideshow").style.backgroundImage = `url(../assets/ads/${images[counter]})`;
+    document.querySelector("#banner").style.backgroundImage = `url(../assets/ads/${images[counter]})`;
 };
 
 const prevImage = function(){
     counter = (counter === 0)? images.length-1 : counter - 1;
-    document.querySelector("#slideshow").style.backgroundImage = `url(../assets/ads/${images[counter]})`;
+    document.querySelector("#banner").style.backgroundImage = `url(../assets/ads/${images[counter]})`;
 };
 
 const createItem = function(container, object){

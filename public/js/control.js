@@ -323,7 +323,7 @@ const getMyCart = function() {
             let items = await response.json();
             const container = document.querySelector("#orders-box");
             document.querySelector("#subtitle").innerHTML = `${items.length} items`;
-            console.log(items);
+            // console.log(items);
 
             container.innerHTML = "";
             if(items.length > 0){
@@ -340,6 +340,9 @@ const getMyCart = function() {
                 forEach(items, function(item) {
                     createItems(item);
                 });
+
+                // Animate items
+                gsap.from(document.querySelectorAll("#orders-box > *"), 0.6, {x: "100vw", ease: 'Power1.easeOut', stagger: 0.3})
 
             }else{
                 createNoItemTag(container, "No item in your cart yet");
@@ -384,7 +387,17 @@ const createItems = function(items) {
             let span12 = createComponent("SPAN", null, ["item-controls"]);
                 const button120 = createComponent("BUTTON", "Save For Later");
 
+    img0.setAttribute("id", `image_${items['_id']}`);
     img0.setAttribute("src", `${items['item-image'][0]}`);
+    button101.setAttribute("id", `remove_${items['_id']}`);
+
+    img0.addEventListener("click", function(evt){
+        window.location.href = `/view/${evt.currentTarget.id.split("_")[1]}`;
+    });
+
+    button101.addEventListener("click", function(evt){
+        console.log(`Removed Item: ${evt.currentTarget.id.split("_")[1]}`);
+    });
 
     div10 = joinComponent(div10, div101, button101);
     span12 = joinComponent(span12, button120);

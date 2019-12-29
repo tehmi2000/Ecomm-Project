@@ -22,6 +22,16 @@ const model = function() {
         });
     };
 
+    const authSanitizer = function(input) {
+
+        return input.replace(/ /g, '')
+                    .replace(/\'/g, '')
+                    .replace(/\"/g, '')
+                    .replace(/\`/g, '')
+                    .replace(/--/g, '')
+                    .replace(/=/g, '');
+    };
+
     const s3Upload = function(req, res) {
         let file = req.files;
         let path = "./public/uploads";
@@ -106,8 +116,9 @@ const model = function() {
     };
 
     const auth = function(req, res) {
-        const user_username = req.body.username;
-        const user_password = req.body.password;
+        const user_username = authSanitizer(req.body.username);
+        const user_password = authSanitizer(req.body.password);
+        // console.log(user_username, user_password);
 
         const query = `SELECT username, password FROM users WHERE username='${user_username}'`;
         mysql_config.connection.query(query, function(err, result){
@@ -148,13 +159,12 @@ const model = function() {
 
         function formatName(str){
             let formattedString = (str.charAt(0)).toUpperCase()+(str.substring(1)).toLowerCase();
-            console.log(formattedString);
             return formattedString;
         }
 
         const uuid = genHex(32);
-        const user_username = req.body.username;
-        const user_password = req.body.password;
+        const user_username = authSanitizer(req.body.username);
+        const user_password = authSanitizer(req.body.password);
         const user_email = req.body.user_email;
         const user_firstname = formatName(req.body.firstname);
         const user_lastname = formatName(req.body.lastname);

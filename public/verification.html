@@ -156,7 +156,8 @@
         for (const key in query) {
             redirect_url += `${key}=${query[key]}&`;
         }
-        const redirectButton = document.querySelector("#redirect-home").setAttribute("href", `/${redirect_url}`);
+        const redirectButton = document.querySelector("#redirect-home");
+        redirectButton.setAttribute("href", `/${redirect_url}`);
         console.log(redirect_url);
     </script>
 </body>

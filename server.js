@@ -14,7 +14,7 @@ const compression = require("compression");
 const PORT = (process.env.PORT === "" || process.env.PORT === null || process.env.PORT === undefined)? 5000 : process.env.PORT;
 const controller = require("./modules/controller");
 const config =  require("./modules/config");
-const { connection, userTableExist, categoryTableExist, vendorTableExist, log } = config;
+const { connection, userTableExist, categoryTableExist, vendorTableExist, log, mongoConn } = config;
 
 // APPLICATION SETUP
 
@@ -58,6 +58,21 @@ connection.connect(function(err) {
         categoryTableExist();
         vendorTableExist();
     }
+});
+
+mongoConn.then(client => {
+
+    const {itemsDB, iCollection} = config;
+    const collection = client.db(itemsDB).collection(iCollection);
+    collection.dropIndexes();
+    collection.createIndex({"item-name": "text", "categories": "text"}).then(response => {
+        console.log(response);
+    }).catch(error => {
+        console.log(error);
+    });
+
+}).catch(error => {
+    log(error);
 });
 
 // APPLICATION ROUTING

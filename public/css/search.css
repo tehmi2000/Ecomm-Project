@@ -130,9 +130,7 @@ main h1{
 
 .item-name > *:first-child{
     font-weight: bold;
-    text-transform: capitalize;
-    /* border-bottom: 2px solid rgb(226, 121, 2); */
-    /* width: auto; */
+    text-transform: uppercase;
     padding-bottom: 0.3rem;
 }
 
@@ -143,7 +141,8 @@ main h1{
 
 .item .item-name > *:last-child{
     text-align: left;
-    color: #555;
+    color: #888;
+    margin-top: 1rem;
 }
 
 .item .item-name > *:last-child::first-letter{
@@ -152,6 +151,7 @@ main h1{
 
 .item .item-control{
     /* border: 1px solid red; */
+    flex-wrap: wrap;
     justify-content: space-between;
     text-align: center;
     font-size: 1.5rem;
@@ -165,7 +165,7 @@ main h1{
     color: #333;
     padding-top: 1rem;
     margin-right: 2rem;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .item .item-buttons{
@@ -315,7 +315,7 @@ main h1{
     }
 
     .item > *{
-        font-size: 1.3rem;
+        font-size: 1.3rem !important;
     }
 
     .item img + span{
@@ -324,14 +324,22 @@ main h1{
 
     .item .item-name{
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         margin-right: auto;
         padding: 1rem;
+    }
+
+    .item .item-name > *:last-child{
+        max-height: 3.2rem;
+        white-space: pre-line;
+        text-overflow: clip;
+        overflow: hidden;
     }
 
     .item .item-control{
         flex-direction: column;
         align-items: flex-start;
+        font-size: 1.3rem;
     }
 
     .item .item-buttons{

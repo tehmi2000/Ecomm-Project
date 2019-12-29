@@ -1,5 +1,6 @@
 let errorField;
-let query = get_query()
+let query = get_query();
+
 document.addEventListener("DOMContentLoaded", function () {
     let err_image = "<i class=\"icofont-close-circled\"></i>";
     errorField = document.querySelector('#error');

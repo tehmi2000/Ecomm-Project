@@ -123,7 +123,7 @@ const createItem = function(container, object){
 
     button20.addEventListener("click", saveHandler);
     button21.addEventListener("click", cartHandler);
-    button20.innerHTML = `<i className="icofont-"></i> Save`;
+    button20.innerHTML = `<i class="icofont-"></i> Save`;
     button21.innerHTML = `<i class="icofont-cart"></i> CART`;
 
     span21 = joinComponent(span21, button20, button21);

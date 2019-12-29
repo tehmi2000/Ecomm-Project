@@ -7,7 +7,7 @@ body{
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< MAIN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
-#slideshow{
+#banner{
     /* border: none; */
     display: flex;
     flex-direction: column;
@@ -27,7 +27,7 @@ body{
     transition: all 0.2s ease-in;
 }
 
-#slideshow .button-container{
+#banner .button-container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -35,13 +35,25 @@ body{
     width: 98%;
 }
 
-#slideshow button{
+#banner button{
     background-color: rgba(242, 242, 245, 0.699);
     border: none;
     border-radius: 50%;
     font-size: 2rem;
     width: 4rem;
     height: 4rem;
+}
+
+marquee{
+    position: sticky;
+    top: 0;
+    font-size: 1.8vmin;
+    margin-top: 1rem;
+    padding: 0.8rem;
+    color: white;
+    border-top: 1px solid rgb(184, 49, 0);
+    border-bottom: 1px solid rgb(184, 49, 0);
+    background-color: rgb(164, 10, 10);
 }
 
 .pane{
@@ -124,6 +136,10 @@ body{
     justify-content: space-between;
 }
 
+.pane .section-head h3{
+    font-size: 1.6rem;
+}
+
 .pane .section-head > *:last-child{
     margin: auto 0;
 }
@@ -142,7 +158,6 @@ body{
 }
 
 
-
 @media only screen and (max-width:800px){
     .section-bottom > *:first-child, .section-bottom > *:last-child{
         display: none;
@@ -152,8 +167,12 @@ body{
         width: 95vw;
     }
 
-    #slideshow{
+    #banner{
         height: 50vh;
+    }
+
+    .pane .section-head h3{
+        font-size: 1.4rem;
     }
 
     .pane .item{
@@ -186,4 +205,5 @@ body{
     .pane .section-body .slider{
         justify-content: space-between;
     }
+    
 }
