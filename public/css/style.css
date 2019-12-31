@@ -105,6 +105,50 @@ form .serror{
     width: 100%;
 }
 
+.lg-5{
+    width: 5%;
+}
+
+.lg-10{
+    width: 10%;
+}
+
+.lg-15{
+    width: 15%;
+}
+
+.lg-20{
+    width: 20%;
+}
+
+.lg-25{
+    width: 25%;
+}
+
+.lg-30{
+    width: 30%;
+}
+
+.lg-35{
+    width: 35%;
+}
+
+.lg-40{
+    width: 40%;
+}
+
+.lg-50{
+    width: 50%;
+}
+
+.lg-60{
+    width: 60%;
+}
+
+.lg-100{
+    width: 100%;
+}
+
 .broken-fields > *:not(:first-child){
     margin-left: 1%;
 }

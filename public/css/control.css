@@ -457,19 +457,19 @@ main{
     border-radius: 5vmin
 }
 
-.vendor-bg-cover{
+[class$="bg-cover"]{
     display: flex !important;
     z-index: +200;
     width: 100vw;
     height: 100vh;
     position: fixed;
     background-color: rgba(0, 0, 0, 0.459);
-    top: -120vh;
+    top: 0vh;
     left: 0;
     transition: all 0.6s ease;
 }
 
-.vendor-notify-box{
+[class$="bg-cover"] > *{
     width: 50vw;
     height: 80vmin;
     padding: 4rem;
@@ -509,12 +509,10 @@ main{
 }
 
 .vendor-brief-text + ul li::before{
-    /* font-size: 12px; */
     font-weight: bold;
     content: "\eed6";
     color: dodgerblue;
     margin-right: 1rem;
-    /* position: absolute; */
 }
 
 .vendor-notify-box .vendor-apply-btn{
@@ -733,10 +731,8 @@ main{
         width: 70%;
     }
 
-    .vendor-notify-box{
-        /* display: flex; */
+    [class$="bg-cover"] > *{
         width: 80vw;
-        /* height: auto; */
         min-height: 80vh;
         overflow: auto;
         padding: 2rem;
