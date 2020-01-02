@@ -91,23 +91,34 @@
 
                 <div class="payment-bg-cover">
                     <div class="payment-popup-box">
+                        <span class="icofont-close close-btn" style="font-size: 1.4rem;"></span>
                         <h2>Payment Details</h2>
-                        <div class="total-fees">
-                            <div class="rows">
-                                <span>Cart Total</span>
-                                <span>NGN 3,600.00</span>
+                        <div class="cols total-fees">
+                            <div class="rows fee-item">
+                                <span class="fee-title">Cart Total</span>
+                                <span class="fee credit">+ NGN 0.00</span>
                             </div>
-                            <div class="rows">
-                                <span>Value Added Tax</span>
-                                <span>NGN 600.00</span>
+                            <div class="rows fee-item">
+                                <span class="fee-title">Value Added Tax</span>
+                                <span class="fee debt">- NGN 0.00</span>
                             </div>
-                            <div class="rows">
-                                <span>Shipping Fee</span>
-                                <span>NGN 500.00</span>
+                            <div class="rows fee-item">
+                                <span class="fee-title">Shipping Fee</span>
+                                <span class="fee debt">- NGN 0.00</span>
+                            </div>
+
+                            <div class="rows promo-tab">
+                                <input type="text" placeholder="Promocode or Voucher">
+                                <button class="promo-apply-btn">Apply</button>
+                            </div>
+
+                            <div class="rows sum-total">
+                                <span>Total: </span>
+                                <span>NGN 0.00</span>
                             </div>
                         </div>
 
-                        <h4>Pay With</h4>
+                        <h4>Pay Now With</h4>
                         <div>
                             <ul>
                                 <li><a href="">Pay with 737</a></li>
@@ -338,7 +349,7 @@
                 </section>
             </div>
 
-            <a href="" class="link-btn fill-container" data-pay-btn>Pay NGN 32,500 Now</a>
+            <button class="strip-btn fill-container" data-pay-btn>Pay NGN 32,500 Now</button>
 
             <div class="pagination fill-container rows">
                 <span>&laquo;</span>

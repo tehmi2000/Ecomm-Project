@@ -322,6 +322,9 @@ const getMyCart = function() {
         try {
             let items = await response.json();
             const container = document.querySelector("#orders-box");
+            let cover = document.querySelector(".payment-bg-cover");
+            let coverClose = document.querySelector(".payment-bg-cover .close-btn");
+
             document.querySelector("#subtitle").innerHTML = `${items.length} items`;
             // console.log(items);
 
@@ -337,6 +340,14 @@ const getMyCart = function() {
 
                 checkoutBtn.style.display = "block";
                 checkoutBtn.innerHTML = `Checkout Now`;
+                checkoutBtn.addEventListener("click", function(){
+                    cover.style.top = "0vh";
+                });
+
+                coverClose.addEventListener("click", function(evt) {
+                    cover.style.top = "-120vh";
+                })
+
                 forEach(items, function(item) {
                     createItems(item);
                 });
