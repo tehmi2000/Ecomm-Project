@@ -137,7 +137,10 @@ marquee{
 }
 
 .pane .section-head h3{
-    font-size: 1.6rem;
+    /* font-weight: 500; */
+    color: #111;
+    text-transform: uppercase;
+    font-size: 1.5rem;
 }
 
 .pane .section-head > *:last-child{
@@ -172,7 +175,7 @@ marquee{
     }
 
     .pane .section-head h3{
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
 
     .pane .item{

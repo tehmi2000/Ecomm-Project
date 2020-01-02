@@ -208,6 +208,7 @@ header #search-form{
 }
 
 #sidemenu .side-links .head{
+    text-transform: uppercase;
     font-size: 1.4rem;
     padding: 0.8rem;
     font-weight: bold;
