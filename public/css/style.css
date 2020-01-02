@@ -92,12 +92,28 @@ form .serror{
 }
 
 .rows{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -moz-box;
+    display: -webkit-flex;
     display:flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
     flex-direction: row;
 }
 
 .cols{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -moz-box;
+    display: -webkit-flex;
     display:flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
 }
 
@@ -188,8 +204,6 @@ form .serror{
 }
 
 footer{
-    display: flex;
-    flex-direction: row;
     width: 100%;
     min-height: 10rem;
     /* border: 1px solid salmon; */

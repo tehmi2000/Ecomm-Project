@@ -1,14 +1,11 @@
 body{
     background-color: #f2f2f5;
     overflow-x: hidden;
-    /* color: #ff4500; */
 }
 
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< MAIN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 
 main{
-    display:flex;
-    flex-direction: column;
     width: 100%;
     margin-top: 2rem;
     padding: 1rem;
@@ -28,9 +25,8 @@ main *{
 }
 
 main form{
+    width: 50rem;
     width: 35vw;
-    display:flex;
-    flex-direction: column;
     transform: translateX(60%);
     margin: 2rem 0 1rem 0;
     padding: 2rem;
@@ -40,14 +36,6 @@ main form{
 #sign-up-form input:disabled{
     opacity: 0.5;
 }
-
-/* #sign-up-form .serror, #sign-up-form .serror *{
-	color: rgb(165, 80, 0);
-}
-
-#sign-up-form .serror{
-	background-color: rgba(255, 140, 26, 0.3);
-} */
 
 #sign-up-form input:not([type="submit"]){
     width: 100%;
@@ -84,21 +72,6 @@ main form{
     font-size: 13px;
 }
 
-#sign-up-form+div{
-    width: 35vw;
-    padding: 0.5rem 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#sign-up-form+div a{
-    color: #ff5638;
-    text-decoration: none;
-    font-size: 13px;
-}
-
 @media only screen and (max-width:800px){
     main h1{
         text-align: center;
@@ -117,9 +90,5 @@ main form{
 
     #sign-up-form label{
         font-size: small;
-    }
-
-    #sign-up-form+div{
-        width: 80vw;
     }
 }

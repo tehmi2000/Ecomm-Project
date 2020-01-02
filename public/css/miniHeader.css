@@ -7,12 +7,12 @@ header{
     background-color: #fcfcff;
 }
 
-header [class^="section"]{
+header [class*="section"]{
     padding: 0.4rem 0;
     width: 100%;
 }
 
-header [class^="section"] *{
+header [class*="section"] *{
     vertical-align: middle;
 }
 
@@ -25,10 +25,6 @@ header .section-top{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-}
-
-.drop-container{
-    
 }
 
 .drop-button{
@@ -69,11 +65,10 @@ header .section-top{
     display: flex;
 }
 
-#search-form button[type="submit"], [class^="section"] [class^="icofont-"]{
+#search-form button[type="submit"], [class*="section"] [class^="icofont-"]{
     font-size: 18px;
     color: orangered;
 }
-
 
 #sidemenu {
     z-index: +999;

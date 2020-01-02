@@ -1,19 +1,16 @@
 header{
-    display: flex;
-    flex-direction: column;
     justify-content: space-around;
     padding: 0.5rem 1rem;
     box-shadow: 1px 1px 3px #e0e0e5;
-    /* box-shadow: 0 1px 5px 0 rgba(32, 33, 36, 0.28); */
     background-color: #fcfcff;
 }
 
-header [class^="section"]{
+header [class*="section"]{
     padding: 0.4rem 0;
     width: 100%;
 }
 
-header [class^="section"] *{
+header [class*="section"] *{
     vertical-align: middle;
 }
 
@@ -23,15 +20,11 @@ header #logo{
 }
 
 header .section-top{
-    display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
 }
 
 header .section-bottom{
-    display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-around;
 }
@@ -42,8 +35,6 @@ header .section-bottom{
 }
 
 .section-bottom [class*="tab"] ul{
-    display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-around;
     padding: 0;
@@ -56,9 +47,9 @@ header .section-bottom{
 }
 
 header #search-form{
+    margin: 0 auto;
+    min-width: 50rem;
     min-width: 50vw;
-    display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     border: 1px solid #ececec;
@@ -73,7 +64,7 @@ header #search-form{
     background-color: transparent;
 }
 
-#search-form button[type="submit"], [class^="section"] [class^="icofont-"]{
+#search-form button[type="submit"], [class*="section"] [class^="icofont-"]{
     font-size: 18px;
     color: orangered;
     -webkit-transition: all 0.3s linear;
@@ -81,19 +72,18 @@ header #search-form{
     -ms-transition: all 0.3s linear;
     -o-transition: all 0.3s linear;
     transition: all 0.3s linear;
-
 }
 
-#search-form input[type="search"]{
+#search-form input[type="text"]{
     outline: none;
     width: 85%;
 }
 
-#search-form input[type='search']:focus + button{
+#search-form input[type='text']:focus + button{
     background-color: orangered;
 }
 
-#search-form input[type='search']:focus + button *{
+#search-form input[type='text']:focus + button *{
     color: #fafafc;
 }
 
@@ -103,6 +93,7 @@ header #search-form{
     top: 0;
     margin-left: -150%; 
     /* width: 30vw; */
+    height: 100%;
     height: 100vh;
     min-width: 25rem;
     min-height: 40rem;
@@ -116,8 +107,6 @@ header #search-form{
 }
 
 #sidemenu nav{
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     margin: 1rem auto 3rem auto;
@@ -227,6 +216,7 @@ header #search-form{
     }
 
     header #search-form{
+        width: 100%;
         width: 95vw;
     }
 
