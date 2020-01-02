@@ -140,12 +140,21 @@ header #search-form{
     box-shadow: 2px 2px 3px #e0e0e5;
 }
 
+#sidemenu a{
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
 #sidemenu a:link, #sidemenu a:visited{
     color: #3f3333;
 }
 
 #sidemenu a:hover{
     color: tomato;
+    font-size: 1.6rem;
 }
 
 #sidemenu ul, #sidemenu a:link{
