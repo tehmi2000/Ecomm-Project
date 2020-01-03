@@ -473,6 +473,7 @@ main{
     width: 50vw;
     height: 80vmin;
     padding: 4rem;
+    border-radius: 5px;
     transform: translate(50%, 12%);
     background-color: #fcfcff;
     text-transform: uppercase;
@@ -545,6 +546,12 @@ main{
     font-size: 2.2rem;
     top: 0.7rem;
     right: 1.2rem;
+}
+
+.payment-popup-box .close-btn{
+    float: right;
+    vertical-align: middle;
+    font-size: 1.5rem;
 }
 
 .payment-popup-box .total-fees{

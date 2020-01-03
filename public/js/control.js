@@ -1,5 +1,10 @@
 const imgUrls = {};
-const globals = {};
+const globals = {
+    cart: {
+        items: [],
+        total: {}
+    }
+};
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -314,10 +319,21 @@ const getSavedItems = function() {
     });
 };
 
+const calculateBill = function(items){
+    globals.cart.total = formatAsMoney(items.reduce((total, current) => {
+        const price = current["item-price"];
+        const qty = current["item-qty"];
+
+        total += parseInt(price) * qty;
+        return total;
+    }, 0));
+};
+
 const getMyCart = function() {
     const checkoutBtn = document.querySelector("[data-pay-btn]");
     document.title = `${document.title} || View Cart`;
     document.querySelector(".control-body #orders-box").style.display = "flex";
+
     fetch(`/api/user/${get_cookie("username").value}/getCart`).then(async function(response) {
         try {
             let items = await response.json();
@@ -330,18 +346,13 @@ const getMyCart = function() {
 
             container.innerHTML = "";
             if(items.length > 0){
-                globals['cartTotal'] = formatAsMoney(items.reduce((total, current) => {
-                    const price = current["item-price"];
-                    const qty = current["item-qty"];
-
-                    total += parseInt(price) * qty;
-                    return total;
-                }, 0));
+                calculateBill(items);
 
                 checkoutBtn.style.display = "block";
                 checkoutBtn.innerHTML = `Checkout Now`;
                 checkoutBtn.addEventListener("click", function(){
                     cover.style.top = "0vh";
+                    // calculateTotalBill();
                 });
 
                 coverClose.addEventListener("click", function(evt) {
@@ -349,6 +360,7 @@ const getMyCart = function() {
                 })
 
                 forEach(items, function(item) {
+                    globals.cart.items.push(item);
                     createItems(item);
                 });
 
@@ -364,6 +376,41 @@ const getMyCart = function() {
         }
     }).catch(function(error) {
         console.log(error);
+    });
+};
+
+const removeItem = function(item_id){
+    const container = document.querySelector("#orders-box");
+    const element = document.querySelector(`#cartItem_${item_id}`);
+    const checkoutBtn = document.querySelector("[data-pay-btn]");
+
+    fetch(`/api/goods/save/${get_cookie("username").value}/removeFromCart`, {
+        method: "POST",
+        body: JSON.stringify({itemID: item_id}),
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        }
+    }).then(async response => {
+        try {
+            let result = await response.json();
+            if(result){
+                globals.cart.items = globals.cart.items.filter(item => {
+                    return item[`_id`] !== item_id;
+                });
+                calculateBill(globals.cart.items);
+                element.parentNode.removeChild(element);
+                document.querySelector("#subtitle").innerHTML = `${globals.cart.items.length} items`;
+                if(globals.cart.items.length === 0){
+                    createNoItemTag(container, "No item in your cart yet");
+                    checkoutBtn.style.display = "none";
+                }
+            }
+        } catch (error) {
+            console.error(error);
+        }
+        
+    }).catch(error => {
+        console.error(error);
     });
 };
 
@@ -398,6 +445,7 @@ const createItems = function(items) {
             let span12 = createComponent("SPAN", null, ["item-controls"]);
                 const button120 = createComponent("BUTTON", "Save For Later");
 
+    div0.setAttribute("id", `cartItem_${items['_id']}`);
     img0.setAttribute("id", `image_${items['_id']}`);
     img0.setAttribute("src", `${items['item-image'][0]}`);
     button101.setAttribute("id", `remove_${items['_id']}`);
@@ -407,7 +455,7 @@ const createItems = function(items) {
     });
 
     button101.addEventListener("click", function(evt){
-        console.log(`Removed Item: ${evt.currentTarget.id.split("_")[1]}`);
+        removeItem(evt.currentTarget.id.split("_")[1]);
     });
 
     div10 = joinComponent(div10, div101, button101);

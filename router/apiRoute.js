@@ -280,6 +280,25 @@ const model = function() {
 
     });
 
+    router.post("/goods/save/:username/removeFromCart", function(req, res) {
+
+        const username = formatName(req.params.username);
+        const {itemID} = req.body;
+
+        mongoConn.then(client => {
+            const collection = client.db(username).collection("myCart");
+			
+			collection.deleteMany({"_id": itemID}, function(err, result) {
+				if(err) log(err);
+				res.json(result);
+			});
+			
+        }).catch(error => {
+            log(error);
+        });
+
+    });
+
     router.post("/goods/save/:username/addToSavedItems", function(req, res) {
         const username = formatName(req.params.username);
         const item = req.body.item;
