@@ -91,7 +91,8 @@ const model = function() {
 
     const update = function(req, res) {
         const formatName = str => {
-            let formattedString = (str.charAt(0)).toUpperCase()+(str.substring(1)).toLowerCase();
+            const wordArray = str.split(" ").map(word => (word.charAt(0)).toUpperCase()+(word.substring(1)).toLowerCase());
+            let formattedString = wordArray.join(" ");
             return formattedString;
         };
 
@@ -157,10 +158,11 @@ const model = function() {
             return generated_hex;
         }
 
-        function formatName(str){
-            let formattedString = (str.charAt(0)).toUpperCase()+(str.substring(1)).toLowerCase();
+        const formatName = str => {
+            const wordArray = str.split(" ").map(word => (word.charAt(0)).toUpperCase()+(word.substring(1)).toLowerCase());
+            let formattedString = wordArray.join(" ");
             return formattedString;
-        }
+        };
 
         const uuid = genHex(32);
         const user_username = authSanitizer(req.body.username);
