@@ -312,6 +312,7 @@ main h1{
         width: 13rem;
         height: 18rem;
         margin: auto;
+        background-color: #ccc;
     }
 
     .item > *{
