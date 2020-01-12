@@ -175,6 +175,10 @@
             /* border: 1px solid sandybrown; */
         }
 
+        .product-controls button, .product-controls button *{
+            transition: all 0.3s ease-out;
+        }
+
         .product-controls button{
             color: #ccc;
             font-size: 1.2rem;
@@ -185,7 +189,6 @@
             margin: 5px auto;
             width: 40%;
             text-transform: uppercase;
-            transition: all 0.3s linear;
             box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
         }
 
@@ -204,10 +207,14 @@
 
         .product-controls button:hover{
             transform: scale(0.99);
-            background-color: dodgerblue;
+            background-color: orange;
             color: white;
-            border-color: dodgerblue;
+            border-color: orange;
             /* font-weight: bold; */
+        }
+
+        .product-controls button:hover *{
+            color: white;
         }
 
         .tab-wrapper .nav-tabs{
@@ -553,6 +560,9 @@
                 // 
             }else{
                 displayResponse("You need to sign in first!");
+                setTimeout(()=>{
+                    window.location.href = "/login";
+                }, 2999);
             }
         };
 
@@ -584,6 +594,9 @@
                 });
             }else{
                 displayResponse("You need to sign in first!");
+                setTimeout(()=>{
+                    window.location.href = "/login";
+                }, 2999);
             }
             
         };
@@ -644,6 +657,7 @@
                     allFields["total"].innerHTML = formatAsMoney(parseInt(item["item-price"]) * quantity.value);;
                     preferredItem["item-qty"] = 1;
                     
+                    document.title = `Univers | ${item["item-name"].toUpperCase()}`;
                     allFields["title"].innerHTML = item["item-name"];
                     allFields["longDesc"].innerHTML = item["item-desc"];
                     if(item["price-discount"]){
