@@ -52,13 +52,15 @@
         }
 
         main .support-pane{
+            align-items: center;
+            justify-content: center;
             width: 100%;
             padding: 3rem 5rem;
         }
 
         main .support-pane h2{
             font-size: 2.5rem;
-            margin: 2rem 0;
+            margin: 2rem 0 3rem;
         }
 
         .purple-text{
@@ -89,7 +91,7 @@
         }
 
         #support-form{
-            width: 60%;
+            width: 50%;
             background-color: #fcfcff;
         }
 
@@ -110,23 +112,39 @@
         }
 
         #support-form label{
+            font-weight: 500;
             font-size: 1.4rem;
         }
 
         #support-form input:not([type="submit"]), #support-form textarea{
+            font-size: 1.35rem;
             outline: none;
-            border: none;
-            border-bottom: 2px solid #eaeaea;
             padding: 0.75rem 1rem;
             background-color: transparent;
-            transition: all 0.5s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #support-form input:not([type="submit"]){
+            border: none;
+            border-bottom: 2px solid #ccc;
+        }
+
+        #support-form textarea{
+            margin-top: 1.2rem;
+            border: 2px solid #ccc;
+            border-radius: 3px;
         }
 
         #support-form input:not([type="submit"]):focus, #support-form textarea:focus{
-            border-bottom: 2px solid rgb(240, 68, 6);
+            border-bottom: 2px solid rgb(240, 78, 16);
+        }
+
+        #support-form textarea:focus{
+            border: 2px solid rgb(240, 78, 16);
         }
 
         #support-form input[type="submit"]{
+            display: block;
             outline: none;
             text-align: center;
             width: auto;
@@ -135,7 +153,7 @@
             background-color: rgb(240, 68, 6);
             color: #fcfcff;
             padding: 1.2rem 3rem;
-            margin: 3rem 0 0.9rem;
+            margin: 3rem auto 0.9rem;
             box-shadow: 1px 2px 4px rgba(185, 91, 3, 0.6);
             transition: all 0.8s ease-in-out;
         }
@@ -165,8 +183,30 @@
                 padding-right: 2rem;
             }
 
+            main .support-pane{
+                padding: 4rem;
+            }
+
             #support-form{
+                font-size: 1.3rem;
                 width: 100%;
+            }
+
+            #support-form .t-inputs{
+                flex-direction: column;
+            }
+
+            #support-form .t-inputs > *{
+                width: 100%;
+                margin-top: 2rem;
+            }
+
+            #support-form input:not([type="submit"]){
+                border-bottom-width: 1px;
+            }
+
+            #support-form textarea{
+                border-width: 1px;
             }
         }
     </style>
@@ -178,19 +218,7 @@
             </div>
 
             <div class="right-tab">
-                <span class="drop-container">
-                    <span class="drop-button">More<i class="icofont-caret-down"></i></span>
-                    <ul class="drop-content">
-                        <li><a href="">[Get Started]</a></li>
-                        <li><a href="">[Explore]</a></li>
-                        <li><a href="">[Explore]</a></li>
-                        <li><a href="">[Marketing]</a></li>
-                        <li><a href="">[Pricing]</a></li>
-                        <li><a href=""></a></li>
-                    </ul>
-                </span>
-
-                <a href="/categories"><span class="icofont-cart"></span></a>
+                <a href="/myprofile/orders?sectid=1"><span class="icofont-cart"></span></a>
             </div>
         </div>
     </header>
@@ -263,10 +291,10 @@
             <span class="subtitle">Reach out to our able and reliable support team.</span>
         </div>
 
-        <div class="support-pane">
-            <h2>Submit A Request</h2>
+        <div class="cols support-pane">
+            <h2>Send Us A Message...</h2>
             <form id="support-form" action="" method="post">
-                <div class="rows">
+                <div class="rows t-inputs">
                     <div class="cols">
                         <label for="">Your Name</label>
                         <input type="text" name="" id="" placeholder="Enter your name">
@@ -283,10 +311,14 @@
                 </div>
                 
                 <div>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Send Message">
                 </div>
                 
             </form>
+        </div>
+
+        <div class="faq-pane">
+
         </div>
         
     </main>
