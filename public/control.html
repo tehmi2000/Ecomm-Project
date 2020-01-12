@@ -119,12 +119,18 @@
                         </div>
 
                         <h4>Pay Now With</h4>
-                        <div>
-                            <ul>
-                                <li><a href="">Pay with 737</a></li>
-                                <li><a href="">Pay with Paystack</a></li>
-                            </ul>
+                        <div class="lg-100 cols">
+                            <form >
+                                <script src="https://js.paystack.co/v1/inline.js"></script>
+                                <button type="button" onclick="payWithPaystack()"> Pay with Paystack </button> 
+                            </form>
+    
+                            <form >
+                                <script src="https://js.paystack.co/v1/inline.js"></script>
+                                <button type="button" onclick="payWithPaystack()"> Pay with Bank </button> 
+                            </form>
                         </div>
+                        
                     </div>
                 </div>
 
