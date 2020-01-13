@@ -256,6 +256,9 @@ const model = function() {
         vendorApplication: function(req, res) {
             readFile("./public/vendorApplyForm.html", req, res);
         },
+        paymentSuccess: function(req, res) {
+            readFile("./public/payment_success.html", req, res);
+        },
         login: function(req, res) {
             readFile("./public/login.html", req, res);
         },

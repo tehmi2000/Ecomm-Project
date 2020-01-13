@@ -89,6 +89,7 @@ app.get("/myprofile/orders", controller.control);
 app.get("/search", controller.search);
 app.get("/view/:itemID", controller.productView);
 app.get("/pricing", controller.pricing);
+app.get("/vendors/pay/success", controller.paymentSuccess);
 app.get("/vendors/vendor-apply", controller.vendorApplication);
 app.get("/support", controller.support);
 
