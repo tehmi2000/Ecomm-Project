@@ -65,7 +65,7 @@ header #search-form{
 }
 
 #search-form button[type="submit"], [class*="section"] [class^="icofont-"]{
-    font-size: 18px;
+    font-size: 2rem;
     color: orangered;
     -webkit-transition: all 0.3s linear;
     -moz-transition: all 0.3s linear;
@@ -223,6 +223,10 @@ header #search-form{
 @media only screen and (max-width:800px){
     .section-bottom > *:first-child, .section-bottom > *:last-child{
         display: none;
+    }
+
+    #search-form button[type="submit"], [class*="section"] [class^="icofont-"]{
+        font-size: 2.35rem;
     }
 
     header #search-form{

@@ -65,8 +65,8 @@ header .section-top{
     display: flex;
 }
 
-#search-form button[type="submit"], [class*="section"] [class^="icofont-"]{
-    font-size: 18px;
+[class*="section"] [class^="icofont-"]{
+    font-size: 2rem;
     color: orangered;
 }
 
@@ -201,6 +201,10 @@ header .section-top{
 }
 
 @media only screen and (max-width:800px){
+    [class*="section"] [class^="icofont-"]{
+        font-size: 2.3rem;
+    }
+
     #sidemenu {
         overflow: auto;
     }
