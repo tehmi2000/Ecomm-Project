@@ -42,10 +42,10 @@ const addHandlers = function() {
         if(evt.currentTarget.getAttribute("disabled") === null){
             setActive(3);
             container.style.marginLeft = "-200%";
-            form.style.width = "100%";
-            cardPurse.style.width = "auto";
-            cardPurse.style.height = "25rem";
-            cardPurse.style.overflow = "unset";
+            // form.style.width = "100%";
+            // cardPurse.style.width = "auto";
+            // cardPurse.style.height = "25rem";
+            // cardPurse.style.overflow = "unset";
         }
     };
 

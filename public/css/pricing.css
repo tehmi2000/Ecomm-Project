@@ -141,7 +141,7 @@ main .section-wrap.abstract{
     width: 100%;
 }
 
-.pane-item button{
+.pane-item button, .pane-item a.link-btn{
     /* width: 30%; */
     text-transform: uppercase;
     padding: 0.8rem 2.4rem;

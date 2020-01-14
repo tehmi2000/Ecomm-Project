@@ -91,6 +91,12 @@ form .serror{
     display: block;
 }
 
+.grid{
+    display: -moz-grid;
+    display: -ms-grid;
+    display: grid;
+}
+
 .rows{
     display: -webkit-box;
     display: -ms-flexbox;

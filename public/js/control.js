@@ -3,6 +3,9 @@ const globals = {
     cart: {
         items: [],
         total: {}
+    },
+    saved: {
+        items: []
     }
 };
 
@@ -250,12 +253,15 @@ const getMyStoreItems = function() {
             try {
                 let cover = document.querySelector(".vendor-bg-cover");
                 let result = await response.json();
-    
+
                 if(result.length > 0 && result[0].error){
                     cover.style.top = "0vh";
                 }else{
-                    document.querySelector(".control-body #post-box").style.flexDirection = "row";
                     document.querySelector("#subtitle").innerHTML = `${result.length} items`;
+                    container.innerHTML = "";
+                    result.forEach(item => {
+                        createStoreItem(item);
+                    });
                 }
     
             } catch (error) {
@@ -266,10 +272,11 @@ const getMyStoreItems = function() {
         });
     };
 
-    document.title = `${document.title} || Manage Your Posts`;
+    document.title = `${document.title} || Manage Your Store`;
     const container =  document.querySelector(".control-body #store-box");
     container.style.display = "flex";
 
+    // Check if vendor exists first...
     fetch(`/api/vendors/${get_cookie("username").value}`).then(async function(response) {
         try {
             let cover = document.querySelector(".vendor-bg-cover");
@@ -304,8 +311,11 @@ const getSavedItems = function() {
             container.innerHTML = "";
             if(items.length > 0){
                 forEach(items, function(item) {
-                    createItems(item);
+                    globals.saved.items.push(item);
+                    createItems(item, "save");
                 });
+
+                gsap.from(document.querySelectorAll("#orders-box > *"), 0.6, {x: "100vw", ease: 'Power1.easeOut', stagger: 0.3})
 
             }else{
                 createNoItemTag(container, "No saved item yet");
@@ -379,12 +389,12 @@ const getMyCart = function() {
     });
 };
 
-const removeItem = function(item_id){
+const removeItem = function(item_id, type){
     const container = document.querySelector("#orders-box");
-    const element = document.querySelector(`#cartItem_${item_id}`);
     const checkoutBtn = document.querySelector("[data-pay-btn]");
+    const apiUrl = (type === "save")? 'removeFromSaved' : 'removeFromCart';
 
-    fetch(`/api/goods/save/${get_cookie("username").value}/removeFromCart`, {
+    fetch(`/api/goods/save/${get_cookie("username").value}/${apiUrl}`, {
         method: "POST",
         body: JSON.stringify({itemID: item_id}),
         headers: {
@@ -393,7 +403,8 @@ const removeItem = function(item_id){
     }).then(async response => {
         try {
             let result = await response.json();
-            if(result){
+            if(result && type === null){
+                const element = document.querySelector(`#cartItem_${item_id}`);
                 globals.cart.items = globals.cart.items.filter(item => {
                     return item[`_id`] !== item_id;
                 });
@@ -403,6 +414,16 @@ const removeItem = function(item_id){
                 if(globals.cart.items.length === 0){
                     createNoItemTag(container, "No item in your cart yet");
                     checkoutBtn.style.display = "none";
+                }
+            }else{
+                const element = document.querySelector(`#savedItem_${item_id}`);
+                globals.saved.items = globals.saved.items.filter(item => {
+                    return item[`_id`] !== item_id;
+                });
+                element.parentNode.removeChild(element);
+                document.querySelector("#subtitle").innerHTML = `${globals.saved.items.length} items`;
+                if(globals.saved.items.length === 0){
+                    createNoItemTag(container, "No item saved yet");
                 }
             }
         } catch (error) {
@@ -414,8 +435,9 @@ const removeItem = function(item_id){
     });
 };
 
-const createItems = function(items) {
+const createItems = function(items, type) {
     // console.log(items);
+    type = type || null;
     const container = document.querySelector("#orders-box");
     // <div class="item">
     //     <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
@@ -445,7 +467,8 @@ const createItems = function(items) {
             let span12 = createComponent("SPAN", null, ["item-controls"]);
                 const button120 = createComponent("BUTTON", "Save For Later");
 
-    div0.setAttribute("id", `cartItem_${items['_id']}`);
+    const mainID = (type === "save")? `savedItem_${items['_id']}`: `cartItem_${items['_id']}`
+    div0.setAttribute("id", mainID);
     img0.setAttribute("id", `image_${items['_id']}`);
     img0.setAttribute("src", `${items['item-image'][0]}`);
     button101.setAttribute("id", `remove_${items['_id']}`);
@@ -455,7 +478,7 @@ const createItems = function(items) {
     });
 
     button101.addEventListener("click", function(evt){
-        removeItem(evt.currentTarget.id.split("_")[1]);
+        removeItem(evt.currentTarget.id.split("_")[1], type);
     });
 
     div10 = joinComponent(div10, div101, button101);
@@ -465,6 +488,51 @@ const createItems = function(items) {
     div0 = joinComponent(div0, img0, div1);
     container.appendChild(div0);
 
+};
+
+const createStoreItem = function(object) {
+    const container = document.querySelector("#store-box");
+    // <span class="grid store-item gr">
+    //     <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
+    //     <span class="item-name">Sony Fifa 20 Standard Edition-PS4</span>
+    //     <span class="item-qty">Quantity: 1</span>
+    //     <span class="item-price">NGN 15,000,000</span>
+    //     <div class="rows mod-controls">
+    //         <button class="icofont-pencil"></button>
+    //         <button class="icofont-bin"></button>
+    //     </div>
+    //     <button class="icofont-globe publish-btn"></button>
+    // </span>
+
+    let price = formatAsMoney(parseInt(object['item-price']));
+
+    let div0 = createComponent("div", null, ["grid","store-item", "gr"]);
+        const img0 = create("IMG");
+        let span1 = createComponent("SPAN", `${object['item-name']}`, ["item-name"]);
+        let span2 = createComponent("SPAN", `Quantity: ${object['item-qty']}`, ["item-qty"]);
+        let span3 = createComponent("SPAN", `${price}`, ["item-price"]);
+        let div1 = createComponent("div", null, ["rows", "mod-controls"]);
+            let button10 = createComponent("BUTTON", null, ["icofont-pencil"]);
+            let button11 = createComponent("BUTTON", null, ["icofont-bin"]);
+        let button20 = createComponent("BUTTON", null, ["icofont-globe", "publish-btn"]);
+                
+
+    div0.setAttribute("id", `storeItem_${object['_id']}`);
+    img0.setAttribute("id", `image_${object['_id']}`);
+    img0.setAttribute("src", `${object['item-image'][0]}`);
+    button11.setAttribute("id", `remove_${object['_id']}`);
+
+    img0.addEventListener("click", function(evt){
+        window.location.href = `/view/${evt.currentTarget.id.split("_")[1]}`;
+    });
+
+    // button101.addEventListener("click", function(evt){
+    //     removeItem(evt.currentTarget.id.split("_")[1]);
+    // });
+
+    div1 = joinComponent(div1, button10, button11);
+    div0 = joinComponent(div0, img0, span1, span2, span3, div1, button20);
+    container.appendChild(div0);
 };
 
 const createCheckOption = function(container, option) {

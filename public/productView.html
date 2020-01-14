@@ -425,7 +425,7 @@
                     </ul>
                 </span>
 
-                <a href="/categories"><span class="icofont-cart"></span></a>
+                <a href="/myprofile/orders?sectid=1"><span class="icofont-cart"></span></a>
             </div>
         </div>
     </header>
@@ -555,9 +555,29 @@
 
         const saveHandler = function(evt) {
             const itemID = evt.currentTarget.id.split("_")[1];
-            console.log(itemID.toString("hex"));
+            const savedItem = Object.assign({}, globalItem, preferredItem);
+
             if(get_cookie("username")){
-                // 
+                fetch(`/api/goods/save/${get_cookie("username").value}/addToSavedItems`, {
+                    
+                    method: "post",
+                    body: JSON.stringify({
+                        item: savedItem
+                    }),
+                    headers: {
+                        "Content-Type" : "application/json; charset=utf-8"
+                    }
+                }).then(async function(response) {
+                    try {
+                        console.log(response);
+                        let result = await response.json();
+                        displayResponse("Item has been saved successfully!");
+                    } catch (error) {
+                        console.error(error);
+                    }
+                }).catch(function(error) {
+                    console.error(error);
+                }); 
             }else{
                 displayResponse("You need to sign in first!");
                 setTimeout(()=>{

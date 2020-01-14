@@ -315,6 +315,25 @@ const model = function() {
         });
     });
 
+    router.post("/goods/save/:username/removeFromSaved", function(req, res) {
+
+        const username = formatName(req.params.username);
+        const {itemID} = req.body;
+
+        mongoConn.then(client => {
+            const collection = client.db(username).collection("savedItems");
+			
+			collection.deleteMany({"_id": itemID}, function(err, result) {
+				if(err) log(err);
+				res.json(result);
+			});
+			
+        }).catch(error => {
+            log(error);
+        });
+
+    });
+
     router.get("/categories", function(req, res) {
         const query = `SELECT * FROM categories WHERE 1`;
             
