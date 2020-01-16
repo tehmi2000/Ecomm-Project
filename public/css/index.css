@@ -9,8 +9,7 @@ body{
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< MAIN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 #banner{
     /* border: none; */
-    display: flex;
-    flex-direction: column;
+    min-height: 200px;
     justify-content: center;
     align-items: center;
     width: 100%;

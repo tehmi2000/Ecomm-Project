@@ -121,14 +121,14 @@ const model = function() {
         const sqlQuery = `SELECT sellerID FROM vendors WHERE username='${req.params.username}'`;
 
         connection.query(sqlQuery, function(err, result) {
-            console.log(result);
             if (err) {
                 log(err);
 
             }else if(result.length > 0){
 
                 mongoConn.then(client => {
-                    const [sellerID] = result;
+                    const [dataOne] = result;
+                    const sellerID = dataOne.sellerID;
                     const collection = client.db(itemsDB).collection(iCollection);
 
                     collection.find({"sellerID" : sellerID}).sort({postTime: -1}).toArray(function(err, docs) {

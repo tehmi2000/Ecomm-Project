@@ -27,9 +27,19 @@
             padding: 0;
         }
 
+        main a:link{
+            font-weight: 500;
+        }
+
         main p{
             margin-bottom: 0;
             font-size: 1.5rem;
+        }
+
+        .intro-pane{
+            padding: 1.5rem 2rem;
+            width: 100%;
+            box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13);
         }
 
         main h1{
@@ -59,6 +69,7 @@
         }
 
         main .support-pane h2{
+            font-weight: 500;
             font-size: 2.5rem;
             margin: 2rem 0 3rem;
         }
@@ -77,12 +88,6 @@
 
         .blue{
             background-color: #398fe0;
-        }
-
-        .intro-pane{
-            padding: 1.5rem 2rem;
-            width: 100%;
-            box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13);
         }
 
         .section-wrap > h2, .section-wrap > p{
@@ -112,6 +117,7 @@
         }
 
         #support-form label{
+            color: #888;
             font-weight: 500;
             font-size: 1.4rem;
         }
@@ -131,8 +137,8 @@
 
         #support-form textarea{
             margin-top: 1.2rem;
-            border: 2px solid #ccc;
-            border-radius: 3px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
         }
 
         #support-form input:not([type="submit"]):focus, #support-form textarea:focus{
@@ -156,6 +162,27 @@
             margin: 3rem auto 0.9rem;
             box-shadow: 1px 2px 4px rgba(185, 91, 3, 0.6);
             transition: all 0.8s ease-in-out;
+        }
+
+        main .faq-pane{
+            margin: auto;
+            align-items: center;
+            width: 70%;
+            /* border: 1px solid; */
+        }
+
+        main .faq-pane > h2{
+            font-size: 3rem;
+            font-weight: 400;
+        }
+
+        .faq-pane .container{
+            margin-top: 2rem;
+            font-size: 1.4rem;
+            grid-row-gap: 2rem;
+            grid-column-gap: 3rem;
+            grid-template-columns: repeat(2, 1fr);
+            width: 85%;
         }
         
         @media only screen and (max-width:800px){
@@ -317,8 +344,45 @@
             </form>
         </div>
 
-        <div class="faq-pane">
-
+        <div id="faq" class="cols faq-pane">
+            <h2>Frequently Asked Questions</h2>
+            <div class="grid container">
+                <div class="cols">
+                    <b>1. What does Univers do?</b>
+                    <span>Univers is a shopping platform for anyone that wants to buy and sell their items</span>
+                </div>
+                <div class="cols">
+                    <b>2. How does Univers make its money?</b>
+                    <span>
+                        Univers makes its money majorly from VAT charged on product when a trade is 
+                        successfully completed. You can check out the <a href="/pricing">pricing page</a> to 
+                        learn more
+                    </span>
+                </div>
+                <div class="cols">
+                    <b>3. Who are vendors?</b>
+                    <span>
+                        Vendors are registered sellers/traders/store owners on the platform. Visit our 
+                        <a href="/vendors/vendor-apply">How to become a vendor</a> page to learn more
+                    </span>
+                </div>
+                <div class="cols">
+                    <b>4. How can I start selling my items on the platform?</b>
+                    <span>
+                        To post an item for sale, you have to <a href="/vendors/vendor-apply">register</a> for 
+                        vendorship after registering as a user on the platform. Visit our <a href="/signup">sign up</a> page 
+                        to register as a user on the platform.
+                    </span>
+                </div>
+                <div class="cols">
+                    <b>5. Can I hide my store items so that nobody sees them?</b>
+                    <span>
+                        Yes, you can. To post or hide an item in your <a href="/myprofile/orders?sectid=3">store</a> from the 
+                        public, click on the toggle button at the bottom right of the item and it would either be toggled off 
+                        or on. That way you can choose the items you wish to display to the public.
+                    </span>
+                </div>
+            </div>
         </div>
         
     </main>

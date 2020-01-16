@@ -251,6 +251,7 @@ const getMyStoreItems = function() {
     const fetchItems = function () {
         fetch(`/api/user/${get_cookie("username").value}/getStoreItems`).then(async function(response) {
             try {
+                // debugger;
                 let cover = document.querySelector(".vendor-bg-cover");
                 let result = await response.json();
 
@@ -260,7 +261,7 @@ const getMyStoreItems = function() {
                     document.querySelector("#subtitle").innerHTML = `${result.length} items`;
                     container.innerHTML = "";
                     result.forEach(item => {
-                        createStoreItem(item);
+                        createStoreItem(container, item);
                     });
                 }
     
@@ -273,8 +274,8 @@ const getMyStoreItems = function() {
     };
 
     document.title = `${document.title} || Manage Your Store`;
-    const container =  document.querySelector(".control-body #store-box");
-    container.style.display = "flex";
+    const container = document.querySelector("#store-box .store-item-container");
+    document.querySelector(".control-body #store-box").style.display = "flex";
 
     // Check if vendor exists first...
     fetch(`/api/vendors/${get_cookie("username").value}`).then(async function(response) {
@@ -293,7 +294,7 @@ const getMyStoreItems = function() {
         }
     }).catch(function(error) {
         console.log(error);
-    });  
+    })
 };
 
 const getSavedItems = function() {
@@ -490,8 +491,7 @@ const createItems = function(items, type) {
 
 };
 
-const createStoreItem = function(object) {
-    const container = document.querySelector("#store-box");
+const createStoreItem = function(container, object) {
     // <span class="grid store-item gr">
     //     <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
     //     <span class="item-name">Sony Fifa 20 Standard Edition-PS4</span>
@@ -506,7 +506,7 @@ const createStoreItem = function(object) {
 
     let price = formatAsMoney(parseInt(object['item-price']));
 
-    let div0 = createComponent("div", null, ["grid","store-item", "gr"]);
+    let div0 = createComponent("div", null, ["grid","store-item", "list"]);
         const img0 = create("IMG");
         let span1 = createComponent("SPAN", `${object['item-name']}`, ["item-name"]);
         let span2 = createComponent("SPAN", `Quantity: ${object['item-qty']}`, ["item-qty"]);
@@ -514,26 +514,46 @@ const createStoreItem = function(object) {
         let div1 = createComponent("div", null, ["rows", "mod-controls"]);
             let button10 = createComponent("BUTTON", null, ["icofont-pencil"]);
             let button11 = createComponent("BUTTON", null, ["icofont-bin"]);
-        let button20 = createComponent("BUTTON", null, ["icofont-globe", "publish-btn"]);
-                
+        let button20 = createComponent("BUTTON", null, ["toggle-switch", "publish-btn"]);
+            let div2 = createComponent("DIV", null, ["toggle-ball", ]);
 
     div0.setAttribute("id", `storeItem_${object['_id']}`);
     img0.setAttribute("id", `image_${object['_id']}`);
     img0.setAttribute("src", `${object['item-image'][0]}`);
     button11.setAttribute("id", `remove_${object['_id']}`);
-
+    
     img0.addEventListener("click", function(evt){
         window.location.href = `/view/${evt.currentTarget.id.split("_")[1]}`;
     });
+    button20.addEventListener("click", addToggleAction);
 
     // button101.addEventListener("click", function(evt){
     //     removeItem(evt.currentTarget.id.split("_")[1]);
     // });
 
+    button20 = joinComponent(button20, div2);
     div1 = joinComponent(div1, button10, button11);
     div0 = joinComponent(div0, img0, span1, span2, span3, div1, button20);
     container.appendChild(div0);
 };
+
+const gridView = function(){
+    document.querySelectorAll("#store-box .store-item-container .store-item.list").forEach(element => {
+        if(element.classList.contains("list")){
+            element.classList.remove("list");
+            element.classList.add("gr");
+        }
+    });
+};
+
+const listView = function(){
+    document.querySelectorAll("#store-box .store-item-container .store-item.gr").forEach(element => {
+        if(element.classList.contains("gr")){
+            element.classList.remove("gr");
+            element.classList.add("list");
+        }
+    });
+}
 
 const createCheckOption = function(container, option) {
     // <input type="checkbox" name="categories" id="">

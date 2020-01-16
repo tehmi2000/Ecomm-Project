@@ -28,9 +28,8 @@
                         <li><a href="">[Get Started]</a></li>
                         <li><a href="">[Explore]</a></li>
                         <li><a href="">[Explore]</a></li>
-                        <li><a href="">[Marketing]</a></li>
-                        <li><a href="">[Pricing]</a></li>
-                        <li><a href=""></a></li>
+                        <li><a href="/support/#faq">FAQs</a></li>
+                        <li><a href="/myprofile/orders?sectid=2">Sell An Item</a></li>
                     </ul>
                 </span>
 
@@ -38,7 +37,7 @@
             </div>
         </div>
     </header>
-
+    <noscript>You need javascript enabled to be able to view this page</noscript>
     <main>
         <aside class="control-head">
 
@@ -300,18 +299,15 @@
 
                     <div class="cols store-controls">
                         <div class="rows">
-                            <span>Current Plan: Basic</span>
-                            <button class="strip-btn"><i class="icofont-arrow-up"></i> Upgrade</button>
+                            <span>Current Plan: Basic </span>
+                            <button class="icofont-arrow-up strip-btn"></button>
                         </div>
                         <div class="rows">
                             <div class="rows">
-                                <button class="strip-btn"><i class="icofont-brand-microsoft"></i></button>
-                                <button class="strip-btn"><i class="icofont-justify-center"></i></button>
+                                <button class="icofont-brand-microsoft strip-btn" onclick="gridView()"></button>
+                                <button class="icofont-justify-left strip-btn" onclick="listView()"><i class=""></i></button>
                             </div>
-                            <div>
-                                <button class="strip-btn"><i class="icofont-plus"></i></button>
-                            </div>
-                            
+                            <button class="strip-btn">Add new Item</button>
                         </div>
                     </div>
 
@@ -361,7 +357,7 @@
                             </div>
                         </span>
     
-                        <!-- <span class="grid store-item gr">
+                        <span class="grid store-item gr">
                             <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
                             <span class="item-name">Sony Fifa 20 Standard Edition-PS4</span>
                             <span class="item-qty">Quantity: 1</span>
@@ -370,8 +366,10 @@
                                 <button class="icofont-pencil"></button>
                                 <button class="icofont-bin"></button>
                             </div>
-                            <button class="icofont-globe publish-btn"></button>
-                        </span> -->
+                            <button class="toggle-switch publish-btn">
+                                <div class="toggle-ball"></div>
+                            </button>
+                        </span>
                     </div>
                 </section>
             </div>
@@ -386,7 +384,6 @@
                 <span>&raquo;</span>
             </div>
         </div>
-
     </main>
 
     <footer class="cols">

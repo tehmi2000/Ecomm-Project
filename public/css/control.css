@@ -368,9 +368,9 @@ main{
 }
 
 #store-box .store-controls *{
-    color: rgb(228, 149, 2);
-    font-weight: 500;
-    font-size: 1.2rem;
+    color: rgb(146, 95, 0);
+    font-weight: 400;
+    font-size: 1.3rem;
     text-transform: uppercase;
 }
 
@@ -378,6 +378,11 @@ main{
     /* font-size: 1.2rem; */
     justify-content: space-between;
     align-items: center;
+}
+
+#store-box .store-controls button.strip-btn{
+    padding: 0.5rem;
+    text-transform: capitalize;
 }
 
 #store-box .store-item-container{
@@ -464,12 +469,12 @@ main{
 
 /* Grid View */
 #store-box .store-item.gr{
-    padding: 1rem;
+    padding: 0.9rem;
     grid-row-gap: 0.5rem;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(12, 2rem);
     width: 30%;
-    min-width: 190px;
+    min-width: 160px;
 }
 
 .store-item.gr > *{
@@ -568,7 +573,7 @@ main{
     height: 100vh;
     position: fixed;
     background-color: rgba(0, 0, 0, 0.459);
-    top: -120vh;
+    top: -120vmax;
     left: 0;
     transition: all 0.6s ease;
 }
@@ -928,6 +933,10 @@ main{
     .store-item.list .mod-controls{
         grid-row: 6/7;
         grid-column: 5/9;
+    }
+
+    #store-box .store-item.gr{
+        width: 48%;
     }
 
     .dummy.item img{
