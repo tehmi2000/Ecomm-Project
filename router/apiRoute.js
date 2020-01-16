@@ -40,7 +40,6 @@ const model = function() {
         const sqlQuery = `SELECT * FROM vendors WHERE username='${req.params.username}'`;
 
         connection.query(sqlQuery, function(err, result) {
-            console.log(result);
             if (err) {
                 log(err);
 
