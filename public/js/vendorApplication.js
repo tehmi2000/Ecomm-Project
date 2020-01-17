@@ -35,8 +35,9 @@ const addHandlers = function() {
             setActive(2);
             container.style.marginLeft = "-100%";
             const emailValue = document.querySelector(`[name='user-email']`).value;
+
             PaystackPop.setup({
-                key: process.env.PAYSTACK_PUBLIC_KEY,
+                key: "pk_live_d949c1638a95b38046c1b59a89311ab0af223614",
                 email: emailValue,
                 amount: 100000,
                 container: 'payStackEmbedContainer',
