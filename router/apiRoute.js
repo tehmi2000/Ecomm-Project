@@ -3,6 +3,16 @@ const model = function() {
     const fs = require("fs");
     const { log, connection, mongoConn, itemsDB, iCollection, ObjectID } =  require("../modules/config");
 
+    const sqlSanitizer = function(input) {
+
+        return input.replace(/ /g, '')
+                    .replace(/\'/g, '')
+                    .replace(/\"/g, '')
+                    .replace(/\`/g, '')
+                    .replace(/--/g, '')
+                    .replace(/=/g, '');
+    };
+
     function forEach(elements, reaction){
         for(let i = 0; i < elements.length; i++){
             (reaction)(elements[i]);
@@ -36,8 +46,9 @@ const model = function() {
     	});
     });
 
-    router.get("/vendors/:username", function(req, res) {
-        const sqlQuery = `SELECT * FROM vendors WHERE username='${req.params.username}'`;
+    router.get("/vendors/:search", function(req, res) {
+        const searchStr = sqlSanitizer(req.params.search);
+        const sqlQuery = `SELECT * FROM vendors WHERE username='${searchStr}' OR sellerID='${searchStr}'`;
 
         connection.query(sqlQuery, function(err, result) {
             if (err) {

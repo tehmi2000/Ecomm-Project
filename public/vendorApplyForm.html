@@ -104,13 +104,13 @@
             <div>
                 <h1>Become a vendor</h1>
                 <div class="content-intro">
-                    Explore the features and benefits that come with being a member of this platform. From small breakout sessions to large hakathons, Univers provides a platform for overseeing all your business analytics.
+                    Explore the features and benefits that come with being a member of this platform. From local door-to-door trading to large scale international trading, Univers provides a platform for overseeing all your business analytics and needs.
                 </div>
                 <button id="get-started-btn" class="strip-btn">Get Started</button>
             </div>
 
             <div>
-                <form id="vendor-form">
+                <form id="vendor-form" name="vendor-form">
                     <nav class="rows form-navigation">
                         <span class="on" disabled>1</span>
                         <span disabled>2</span>
@@ -123,14 +123,14 @@
                     <div class="container rows">
                         <div class="step cols">
                             <h2><span class="step-text">Step 1:</span> Vendor Profile</h2>
-                            <label for="">Vendor's Name</label>
-                            <input type="text" name="" id="" placeholder="Example: Brand Name or your nickname">
+                            <label for="user-brand">Vendor's Name</label>
+                            <input type="text" name="user-brand" id="user-brand" placeholder="Brand Name or your Nickname">
 
-                            <label for="">Vendor's Bio</label>
-                            <input type="text" name="" id="" placeholder="Write something interesting about you or brand...">
+                            <label for="user-bio">Vendor's Bio</label>
+                            <input type="text" name="user-bio" id="user-bio" placeholder="Write something interesting about you or brand...">
         
-                            <label for="">Email Adress</label>
-                            <input type="email" name="" id="" placeholder="Univers Account Email">
+                            <label for="user-email">Email Adress</label>
+                            <input type="email" name="user-email" id="user-email" placeholder="Univers Account Email">
                             
                             <span class="btn">Next</span>
                         </div>
@@ -138,40 +138,31 @@
                         <div class="step cols">
                             <h2><span class="step-text">Step 2:</span> More details</h2>
         
-                            <label for="">Country</label>
-                            <select name="" id="">
+                            <label for="user-country">Country</label>
+                            <select name="user-country" id="user-country">
                                 <option value="">--- Select ---</option>
                             </select>
                             
-                            <label for="">Region/State/Province</label>
-                            <select name="" id="">
+                            <label for="user-region">Region/State/Province</label>
+                            <select name="user-region" id="user-region">
                                 <option value="">--- Select ---</option>
                             </select>
                             
-                            <label for="">Website URL (optional)</label>
-                            <input type="url" name="" id="" placeholder="https://your-business-url/">
+                            <label for="business-url">Website URL (optional)</label>
+                            <input type="url" name="business-url" id="business-url" placeholder="https://your-business-url/">
                             
                             <span class="btn">Next</span>
                         </div>
             
                         <div class="step cols">
                             <h2><span class="step-text">Step 3:</span>Payment Method</h2>
-                            <div class="card-purse">
-                                <div class="paycard cols" data-master-card>
-                                	<span data-card-type></span>
-                                </div>
+                            <script src="https://js.paystack.co/v1/inline.js"></script>
+                            <div class="lg-90" id="payStackEmbedContainer"></div>
+                            <script>
                                 
-                                <div class="paycard cols" data-verve-card>
-                                    <span data-card-type></span>
-                                </div>
-                            </div>
-                            
-                            <div>
-                            	<label for="">CVV</label>
-                            	<input type="text" name="" id="">
-                            </div>
-                            
-                            <input type="submit" class="strip-btn btn" value="Register">
+                                
+                            </script>
+                            <!-- <input type="submit" class="strip-btn btn" value="Register"> -->
                         </div>
                     </div>
                 </form>

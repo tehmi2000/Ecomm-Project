@@ -105,52 +105,69 @@ const imageUploadHandler = function(evt){
 
 const formHandler = function(evt) {
     evt.preventDefault();
-    // debugger;
-    let categoryField = [];
-    let imageField = [];
+    const submitForm = function(){
+        let categoryField = [];
+        let imageField = [];
 
-    forEach(document.querySelectorAll("[name='categories']:checked"), function(field) {
-        categoryField.push(field.value);
-    });
+        forEach(document.querySelectorAll("[name='categories']:checked"), function(field) {
+            categoryField.push(field.value);
+        });
 
-    forEach(document.querySelectorAll("[name='item-image']"), function(field) {
-        imageField.push('');
-    });
+        forEach(document.querySelectorAll("[name='item-image']"), function(field) {
+            imageField.push('');
+        });
 
-    for (let i = 1; i <= Object.keys(imgUrls).length; i++) {
-        imageField[i-1] = imgUrls[`preview-image-${i}`];
-    }
+        for (let i = 1; i <= Object.keys(imgUrls).length; i++) {
+            imageField[i-1] = imgUrls[`preview-image-${i}`];
+        }
 
-    const bodyValue = {
-        "item-image": imageField,
-        "item-name": document.querySelector("[name='item-name']").value,
-        "item-desc": document.querySelector("[name='item-desc']").value,
-        categories: categoryField,
-        sellerID: document.querySelector("[name='sellerID']").value,
-        "item-price": document.querySelector("[name='item-price']").value,
-        "item-qty": document.querySelector("[name='item-qty']").value
+        const bodyValue = {
+            "item-image": imageField,
+            "item-name": document.querySelector("[name='item-name']").value,
+            "short-desc": document.querySelector("[name='item-short-desc']").value,
+            "item-desc": document.querySelector("[name='item-desc']").value,
+            categories: categoryField,
+            sellerID: document.querySelector("[name='sellerID']").value,
+            "item-price": document.querySelector("[name='item-price']").value,
+            "item-qty": document.querySelector("[name='item-qty']").value
+        };
+
+        fetch(`/api/goods/save`, {
+            method: "POST",
+            body: JSON.stringify(bodyValue),
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            }
+        }).then(async function(response) {
+            try {
+                let result = await response.json();
+                if(!result[`error`]){
+                    alert("Saved to Store!");
+                    window.location.href = "/myprofile/orders?sectid=3";
+                }else{
+                    alert("Something unexpected happened. Try again!");
+                }
+                // alert(result);
+            } catch (error) {
+                console.error(error);
+            }
+        }).catch(function(error) {
+            console.error(error);
+        });
     };
 
-    fetch(`/api/goods/save`, {
-        method: "POST",
-        body: JSON.stringify(bodyValue),
-        headers: {
-            "Content-Type": "application/json; charset=utf-8"
-        }
-    }).then(async function(response) {
+    fetch(`/api/vendors/${document.querySelector("[name='sellerID']").value}`).then(async function(response){
         try {
             let result = await response.json();
-            if(!result[`error`]){
-                alert("Saved to Store!");
-                window.location.href = "/myprofile/orders?sectid=3";
+            if(result.length > 0 && result[0].error){
+                alert("SellerID is Invalid!");
             }else{
-                alert("Something unexpected happened. Try again!");
+                submitForm();
             }
-            // alert(result);
         } catch (error) {
             console.error(error);
         }
-    }).catch(function(error) {
+    }).catch(function(error){
         console.error(error);
     });
 };
@@ -227,16 +244,19 @@ const showPostForm = function() {
         }));
     });
 
+    // Load all categories...
     getAllCategories();
+    // Load all sizes...
     getAllSizes();
 
+    // Check for vendorship...
     fetch(`/api/vendors/${get_cookie("username").value}`).then(async function(response) {
         try {
             let cover = document.querySelector(".vendor-bg-cover");
             let result = await response.json();
 
             if(result.length > 0 && result[0].error){
-                // cover.style.top = "0vh";
+                cover.style.top = "0vh";
             }
 
         } catch (error) {
@@ -559,7 +579,7 @@ const createCheckOption = function(container, option) {
     // <input type="checkbox" name="categories" id="">
     // <label for="">Fasion</label>
 
-    const id = "";
+    const id = `cat-option-${genHex(4)}`;
     let span0 = create("SPAN");
     const input0 = create("INPUT");
     const label0 = createComponent("LABEL", option.title);
@@ -588,7 +608,6 @@ const getAllCategories = function() {
         try {
             let category_list = await response.json();
             forEach(category_list, function(element) {
-                // debugger;
                 createCheckOption(document.querySelector("#option-box"), element);
             });
 

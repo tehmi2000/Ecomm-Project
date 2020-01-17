@@ -679,6 +679,7 @@
                     
                     document.title = `Univers | ${item["item-name"].toUpperCase()}`;
                     allFields["title"].innerHTML = item["item-name"];
+                    allFields["shortDesc"].innerHTML = item["short-desc"] || 'No summary available for this product';
                     allFields["longDesc"].innerHTML = item["item-desc"];
                     if(item["price-discount"]){
                         allFields["discount"].style.display = "block";
@@ -686,10 +687,9 @@
                     }
                     
                     allFields["frontImage"].style.backgroundImage = `url(${item["item-image"][0]})`;
-                    // allFields["backImage"].style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${item["item-image"][1]})`;
                     allFields["nav1"].setAttribute("data-pic", item["item-image"][0]);
-                    allFields["nav2"].setAttribute("data-pic", item["item-image"][1])
-                    allFields["nav3"].setAttribute("data-pic", item["item-image"][2])
+                    allFields["nav2"].setAttribute("data-pic", item["item-image"][1]);
+                    allFields["nav3"].setAttribute("data-pic", item["item-image"][2]);
 
                     allFields["nav1"].addEventListener("click", function(evt) {
                         setActive(evt.currentTarget);

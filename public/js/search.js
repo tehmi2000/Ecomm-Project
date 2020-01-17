@@ -103,11 +103,11 @@ const createItem = function(container, object){
 
     let a0 = createComponent("SPAN", null, ["item"]);
         let img0 = create("IMG");
-        let span0 = createComponent("SPAN", null, ["fill-container", "cols"]);
+        let span0 = createComponent("SPAN", null, ["lg-100", "cols"]);
             let span1 = createComponent("SPAN", null, ["item-name", "cols"]);
                 let span10 = createComponent("A", object["item-name"], ["strip-link"]);
-                let span11 = createComponent("SPAN", `${object["item-desc"]}`);
-            let span2 = createComponent("SPAN", null, ["item-control", "rows", "fill-container"]);
+                let span11 = createComponent("SPAN", `${object["short-desc"] || 'No summary available'}`);
+            let span2 = createComponent("SPAN", null, ["item-control", "rows", "lg-100"]);
                 let span20 = createComponent("SPAN", `${price}`, ["item-number"]);
                 let span21 = createComponent("SPAN", null, ["item-buttons"]);
                     let button20 = create("BUTTON");

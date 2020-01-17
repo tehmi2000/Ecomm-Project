@@ -9,7 +9,6 @@ const addHandlers = function() {
 
     const nextBtnOne = document.querySelector("#vendor-form .step:first-child .btn");
     const nextBtnTwo = document.querySelector("#vendor-form .step:nth-child(2) .btn");
-    const submitBtn = document.querySelector("#vendor-form .step:last-child .btn");
 
     const setActive = function(elementNumber) {
         // document.querySelectorAll(".form-navigation::after")
@@ -35,6 +34,17 @@ const addHandlers = function() {
         if(evt.currentTarget.getAttribute("disabled") === null){
             setActive(2);
             container.style.marginLeft = "-100%";
+            const emailValue = document.querySelector(`[name='user-email']`).value;
+            PaystackPop.setup({
+                key: process.env.PAYSTACK_PUBLIC_KEY,
+                email: emailValue,
+                amount: 100000,
+                container: 'payStackEmbedContainer',
+                callback: function(response) {
+                    alert(`Successfully suscribed. transaction ref is ${response.reference}`);
+                    submitForm("vendor-form");
+                }
+            });
         }
     };
 
@@ -42,10 +52,7 @@ const addHandlers = function() {
         if(evt.currentTarget.getAttribute("disabled") === null){
             setActive(3);
             container.style.marginLeft = "-200%";
-            // form.style.width = "100%";
-            // cardPurse.style.width = "auto";
-            // cardPurse.style.height = "25rem";
-            // cardPurse.style.overflow = "unset";
+            form.style.width = "100%";
         }
     };
 
@@ -62,6 +69,11 @@ document.addEventListener("DOMContentLoaded", function(){
     addHandlers();
 });
 
+const submitForm = function(formName){
+    document[`${formName}`].submit();
+};
+
 const formHandler = (evt) => {
     evt.preventDefault();
+    console.log("Form submitted");
 };
