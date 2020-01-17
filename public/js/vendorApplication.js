@@ -1,3 +1,4 @@
+let paymentPortalLoaded = false;
 const addHandlers = function() {
     const form = document.querySelector("#vendor-form");
     const cardPurse = document.querySelector("#vendor-form .card-purse");
@@ -36,16 +37,20 @@ const addHandlers = function() {
             container.style.marginLeft = "-100%";
             const emailValue = document.querySelector(`[name='user-email']`).value;
 
-            PaystackPop.setup({
-                key: "pk_live_d949c1638a95b38046c1b59a89311ab0af223614",
-                email: emailValue,
-                amount: 100000,
-                container: 'payStackEmbedContainer',
-                callback: function(response) {
-                    alert(`Successfully suscribed. transaction ref is ${response.reference}`);
-                    submitForm("vendor-form");
-                }
-            });
+            if(paymentPortalLoaded === false){
+                PaystackPop.setup({
+                    key: "pk_live_d949c1638a95b38046c1b59a89311ab0af223614",
+                    email: emailValue,
+                    amount: 100000,
+                    container: 'payStackEmbedContainer',
+                    callback: function(response) {
+                        alert(`Successfully suscribed. transaction ref is ${response.reference}`);
+                        submitForm("vendor-form");
+                    }
+                });
+                paymentPortalLoaded = true;
+            }
+            
         }
     };
 
