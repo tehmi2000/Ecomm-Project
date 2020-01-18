@@ -166,6 +166,7 @@ main h1::after{
 }
 
 #vendor-form input[type="submit"], #vendor-form span.btn{
+    opacity: 1;
     text-align: center;
     width: auto;
     border: none;
@@ -179,6 +180,17 @@ main h1::after{
     animation: hit-wall 1500ms linear 20s 1 both;
 }
 
+#vendor-form input[type="submit"]{
+    margin-right: auto;
+    border-radius: 4px;
+}
+
+#vendor-form input[type="submit"]:disabled{
+    opacity: 0.5;
+    background-color: gray;
+    color: black;
+}
+
 #vendor-form input[type="submit"]:focus, #vendor-form span.btn:hover{
     -webkit-animation: none;
     animation: none;
@@ -189,21 +201,6 @@ main h1::after{
     font-size: 1.2rem;
 }
 
-/* #vendor-form .description-display{
-    display: block;
-    z-index: +1;
-    left: -20%;
-    position: absolute;
-    font-size: 1.3rem;
-    text-align: center;
-    width: auto;
-    padding: 1rem;
-    margin: auto;
-    color: #030;
-    border-radius: 5px;
-    background-color: rgba(10, 197, 52, 0.5);
-} */
-
 #vendor-form .btn{
     position: relative;
     font-size: 1.3rem;
@@ -211,10 +208,9 @@ main h1::after{
 
 #payStackEmbedContainer{
     min-height: 200px;
-    /* background-image: url("../assets/images/Loading_icon.gif"); */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    text-align: center;
+    font-size: 1.3rem;
+    line-height: 1.5;
 }
 
 @media only screen and (max-width: 800px){

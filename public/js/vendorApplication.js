@@ -87,22 +87,6 @@ const addHandlers = function() {
         if(evt.currentTarget.getAttribute("disabled") === null){
             setActive(2);
             container.style.marginLeft = "-100%";
-            const emailValue = document.querySelector(`[name='user-email']`).value;
-
-            if(paymentPortalLoaded === false){
-                PaystackPop.setup({
-                    key: "pk_live_d949c1638a95b38046c1b59a89311ab0af223614",
-                    email: emailValue,
-                    amount: 100000,
-                    container: 'payStackEmbedContainer',
-                    callback: function(response) {
-                        alert(`Successfully suscribed. transaction ref is ${response.reference}`);
-                        submitForm("vendor-form");
-                    }
-                });
-                paymentPortalLoaded = true;
-            }
-            
         }
     };
 
@@ -110,7 +94,13 @@ const addHandlers = function() {
         if(evt.currentTarget.getAttribute("disabled") === null){
             setActive(3);
             container.style.marginLeft = "-200%";
-            form.style.width = "100%";
+            const emailValue = document.querySelector(`[name='user-email']`).value;
+
+            if(paymentPortalLoaded === false){
+                setTimeout(() => {
+                    loadPortal(emailValue);
+                }, 4998);
+            }
         }
     };
 

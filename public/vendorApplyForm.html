@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/vendorApplication.css">
     <script src="/js/main.js"></script>
     <script src="/js/vendorApplication.js"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
 <body>
     <header>
@@ -156,9 +157,32 @@
             
                         <div class="step cols">
                             <h2><span class="step-text">Step 3:</span>Payment Method</h2>
-                            <script src="https://js.paystack.co/v1/inline.js"></script>
-                            <div class="lg-90" id="payStackEmbedContainer"></div>
-                            <!-- <input type="submit" class="strip-btn btn" value="Register"> -->
+                            <div class="lg-90" id="payStackEmbedContainer">
+                                Your payment portal is loading...5s
+                            </div>
+                            <script>
+                                const loadPortal = function(email) {
+
+                                    const handler = PaystackPop.setup({
+                                        key: "pk_live_d949c1638a95b38046c1b59a89311ab0af223614",
+                                        email: email,
+                                        amount: 100000,
+                                        callback: function(response) {
+                                            console.log(`Successfully suscribed. transaction ref is ${response.reference}`);
+                                            document.querySelector("#payStackEmbedContainer").innerHTML = `Payment is succesful. Transaction ref is ${response.reference}`;
+                                            document.querySelector("#vendor-form input[type='submit']").removeAttribute("disabled");
+                                        },
+                                        onClose: function() {
+                                            document.querySelector("#payStackEmbedContainer").innerHTML = `Payment was unsuccessful. Transaction cancelled. <a class="link-btn lg-70" style='background-color: darkgrey; margin: 1rem auto 0; border-radius: 5px; color: #444; display: block;' onclick="loadPortal('${email}')">Try again?</a>`;
+                                            paymentPortalLoaded = false;
+                                        }
+                                    });
+
+                                    handler.openIframe();
+                                    paymentPortalLoaded = true;
+                                }
+                            </script>
+                            <input type="submit" class="strip-btn btn" value="Complete Registration" disabled>
                         </div>
                     </div>
                 </form>
