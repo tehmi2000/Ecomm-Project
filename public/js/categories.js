@@ -48,8 +48,8 @@ const getAllCategories = function() {
                 createItem(document.querySelector("#item-container"), element);
             });
 
-            const tl = new TimelineMax();
-            tl.staggerFrom(document.querySelectorAll("#item-container > *"), 0.4, {x: "-100vw", ease: Power2.easeOut, stagger: 0.2});
+            const tl = gsap.timeline();
+            tl.from(document.querySelectorAll("#item-container > *"), 0.4, {x: "-100vw", ease: Power2.easeOut, stagger: 0.2});
 
         } catch (err) {
             console.error(err);
