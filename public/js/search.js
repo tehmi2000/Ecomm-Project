@@ -22,7 +22,6 @@ const fetchData = (searchQuery, formattedQuery) => {
     fetch(`/api/goods/all/search?query=${searchQuery}`).then(async function(response) {
         try {
             let result = await response.json();
-            console.log(result);
 
             container.innerHTML = "";
             if(result.length === 0){
@@ -32,7 +31,6 @@ const fetchData = (searchQuery, formattedQuery) => {
                     itemList[`${item._id}`] = item;
                     createItem(container, item);
                 });
-                console.log(itemList);
             }
 
         } catch (error) {
@@ -53,12 +51,10 @@ const createItem = function(container, object){
 
     const saveHandler = function(evt) {
         const itemID = evt.currentTarget.id.split("_")[1];
-        console.log(itemID.toString("hex"));
     };
 
     const cartHandler = function(evt) {
         const itemID = evt.currentTarget.id.split("_")[1];
-        console.log(itemID);
 
         fetch(`/api/goods/save/${get_cookie("username").value}/addToCart`, {
             method: "post",
