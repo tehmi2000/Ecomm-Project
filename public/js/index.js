@@ -26,7 +26,7 @@ const createItem = function(container, object){
     // </div>
 
     let price = formatAsMoney(parseInt(object["item-price"]));
-
+    let loadedImage = object["item-image"][0];
 
     let originalPrice = (function(){
         let intPrice = parseInt(object["item-price"]);
@@ -48,7 +48,7 @@ const createItem = function(container, object){
                 let sup0 = createComponent("SUP", originalPrice, ["strike"]);
 
     a0.setAttribute("href", `/view/${object._id}`);
-    img0.setAttribute("src", object["item-image"][0]);
+    img0.setAttribute("src", loadedImage);
     img0.setAttribute("alt", "Item Image");
 
     span1.appendChild(sup0);

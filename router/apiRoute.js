@@ -67,7 +67,7 @@ const model = function() {
     });
 
     router.get("/user/:username", function(req, res){
-        const username = req.params.username;
+        const username = sqlSanitizer(req.params.username);
 
         if(username === req.session.username){
             const query = `SELECT uID, firstname, lastname, username, phone, email, address, profile_picture FROM users WHERE username='${username}'`;
@@ -97,7 +97,7 @@ const model = function() {
 
         mongoConn.then(client => {
             const collection = client.db(`${formatName(req.params.username)}`).collection("savedItems");
-            collection.find({}).toArray(function(err, docs) {
+            collection.find({"published": true}).toArray(function(err, docs) {
                 if(err) {
                     log(err);
                 }else{
@@ -113,7 +113,7 @@ const model = function() {
 
         mongoConn.then(client => {
             const collection = client.db(`${formatName(req.params.username)}`).collection("myCart");
-            collection.find({}).toArray(function(err, docs) {
+            collection.find({"published": true}).toArray(function(err, docs) {
                 if(err) {
                     log(err);
                 }else{
@@ -178,7 +178,7 @@ const model = function() {
         
         mongoConn.then(client => {
             const collection = client.db(itemsDB).collection(iCollection);
-            collection.find({"_id" : ObjectID(itemID)}).toArray(function(err, item) {
+            collection.find({$and: [{"published": true}, {"_id" : ObjectID(itemID)}]}).toArray(function(err, item) {
 
                 if(err) {
                     log(err);
@@ -202,13 +202,10 @@ const model = function() {
 
     router.get("/goods/all/search", function(req, res) {
         const query = req.query['query'];
-        // console.log(query);
-        
         let pattern = query;
-
         mongoConn.then(client => {
             const collection = client.db(itemsDB).collection(iCollection);
-            collection.find({$text: {$search: pattern}}).toArray(function(err, docs) {
+            collection.find({$and:[{"published": true}, {$text: {$search: pattern}}]}).toArray(function(err, docs) {
 
                 if(err) {
                     log(err);
@@ -228,7 +225,7 @@ const model = function() {
 
         mongoConn.then(client => {
             const collection = client.db(itemsDB).collection(iCollection);
-            collection.find({}).sort({ numberOfSaves: -1 }).limit(10).toArray(function(err, docs) {
+            collection.find({"published": true}).sort({ numberOfSaves: -1 }).limit(10).toArray(function(err, docs) {
                 if(err) {
                     log(err);
                 }else{
@@ -241,16 +238,33 @@ const model = function() {
 
     });
 
+    router.post("/goods/save/:username/publish", function(req, res) {
+        const username = formatName(req.params.username);
+        const {itemID, state} = req.body;
+
+        mongoConn.then(client => {
+            const collection = client.db(itemsDB).collection(iCollection);
+			
+			collection.updateOne({"_id": ObjectID(itemID)}, {$set: {"published": state}}, function(err, result) {
+				if(err) log(err);
+				res.json(result);
+			});
+			
+        }).catch(error => {
+            log(error);
+        });
+
+    });
+
     router.post("/goods/save", function(req, res) {
-        const uploadPath = `https://oneunivers-2-amazons3-bucket.s3.amazonaws.com/uploads`;
+        const uploadPath = `https://s3.amazonaws.com/oneunivers-1-amazons3-bucket/uploads`;
         const userInput = req.body;
         userInput.postTime = Date.now();
         userInput.numberOfSaves = 0;
-        userInput.published = false;
-
+        userInput.published = true;
 
         userInput[`item-image`] = userInput[`item-image`].map((imageUrl, index) => {
-            return (imageUrl !== '')? `${uploadPath}/${imageUrl}`: imageUrl;
+            return (imageUrl !== '')? `${uploadPath}/${imageUrl}`: '';
         });
         console.log(userInput[`item-image`]);
 
@@ -261,8 +275,7 @@ const model = function() {
                     log(err);
                     res.json([{...err}]);
                 }else{
-                    console.log("Saving...")
-                    // res.redirect("/myprofile/orders?sectid=3");
+                    console.log("Saving...");
                     res.json([{...result}]);
                 }
             });
@@ -272,7 +285,6 @@ const model = function() {
     });
 
     router.post("/goods/save/:username/addToCart", function(req, res) {
-
         const username = formatName(req.params.username);
         const item = req.body.item;
 
@@ -287,7 +299,6 @@ const model = function() {
         }).catch(error => {
             log(error);
         });
-
     });
 
     router.post("/goods/save/:username/removeFromCart", function(req, res) {

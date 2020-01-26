@@ -50,8 +50,25 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const addToggleAction = function(evt) {
+    console.log("on");
     evt.currentTarget.classList.toggle("on");
 };
+
+const readOctet = function(path) {
+    fetch(path, {
+        mode: 'no-cors'
+    }).then(async response => {
+        try {
+            let result = await response.json();
+            console.log(result);
+        } catch (error) {
+            console.error(error);
+        }
+    }).catch(error => {
+        console.error(error);
+    });
+};
+
 
 // if('serviceWorker' in navigator){
 //     window.addEventListener('load', ()=>{
@@ -221,8 +238,18 @@ function log(output) {
     return console.log(output);
 }
 
-const displayResponse = function(response) {
+const displayResponse = function(response, options) {
+
+    options = options || {
+        type: "success"
+    };
+    console.log(response, options);
     const component = document.querySelector("#response");
+
+    if(options.type){
+        component.style.backgroundColor = (options.type === "error")? "#e72e2e" : "green";
+    }
+
     component.innerHTML = response;
     component.style.top = 0;
 

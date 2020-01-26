@@ -410,6 +410,40 @@ const getMyCart = function() {
     });
 };
 
+const togglePublish = function(evt) {
+    const target = evt.currentTarget;
+    const itemID = target.id.split("_")[1];
+    const state = target.classList.contains('on');
+    const apiUrl = `/api/goods/save/${get_cookie("username").value}/publish`;
+
+    target.setAttribute("disabled", true);
+
+    fetch(apiUrl, {
+        method: "POST",
+        body: JSON.stringify({itemID, state}),
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        }
+    }).then(async response => {
+        try {
+            let result = await response.json();
+            if(result){
+                target.removeAttribute("disabled");
+                displayResponse("Published succesfully!");
+            }
+            
+        } catch (error) {
+            console.error(error);
+            displayResponse("An error occurred", {type: "error"});
+        }
+    }).catch(error => {
+        console.error(error);
+        target.removeAttribute("disabled");
+        displayResponse("An error occurred", {type: "error"});
+        // addToggleAction(evt);
+    });
+};
+
 const removeItem = function(item_id, type){
     const container = document.querySelector("#orders-box");
     const checkoutBtn = document.querySelector("[data-pay-btn]");
@@ -541,15 +575,17 @@ const createStoreItem = function(container, object) {
     img0.setAttribute("id", `image_${object['_id']}`);
     img0.setAttribute("src", `${object['item-image'][0]}`);
     button11.setAttribute("id", `remove_${object['_id']}`);
-    
+    button20.setAttribute("id", `publish_${object['_id']}`);
+    button20.setAttribute("title", `Toggle ON/OFF`)
     img0.addEventListener("click", function(evt){
         window.location.href = `/view/${evt.currentTarget.id.split("_")[1]}`;
     });
     button20.addEventListener("click", addToggleAction);
+    button20.addEventListener("click", togglePublish);
 
-    // button101.addEventListener("click", function(evt){
-    //     removeItem(evt.currentTarget.id.split("_")[1]);
-    // });
+    if(object.published === true){
+        button20.classList.add('on');
+    }
 
     button20 = joinComponent(button20, div2);
     div1 = joinComponent(div1, button10, button11);

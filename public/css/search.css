@@ -202,7 +202,6 @@ main h1{
     border: 1px solid orange;
     background-color: orange;
     color: #fff;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.26);
 }
 
 .dummy.item{

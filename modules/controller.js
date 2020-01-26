@@ -5,12 +5,13 @@ const model = function() {
     const { log } = mysql_config;
     const { emailSender } = require("./emailHandler");
     const ph = require("./passwordHash");
-
-    const s3 = new AWS.S3({
+    AWS.config.update({
         accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        region: 'us-east-1'
     });
-
+    const s3 = new AWS.S3();
+    
     const readFile = function(path, req, res) {
         fs.readFile(path, "utf8", function(err, content) {
             if (err) {
@@ -43,7 +44,7 @@ const model = function() {
                     res.json([{...err, status: 403}]);
                 }else{
                     const params = {
-                       Bucket: 'oneunivers-2-amazons3-bucket',
+                       Bucket: 'oneunivers-1-amazons3-bucket',
                        Key: `uploads/${name}`,
                        Body: JSON.stringify(data, null, 2)
                     };
@@ -87,7 +88,7 @@ const model = function() {
                 }
             });
         }
-    }
+    };
 
     const update = function(req, res) {
         const formatName = str => {
