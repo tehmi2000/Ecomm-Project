@@ -24,7 +24,7 @@ const createItem = function(container, object){
     div2.classList.add("item-description", "cols");
     i0.classList.add(object.image);
 
-    a0.setAttribute("href", `/search?query=${object.title}`);
+    a0.setAttribute("href", `/categories/view?query=${window.encodeURIComponent(object.title)}`);
     div1 = joinComponent(div1, i0);
     div2 = joinComponent(div2, span0);
     div0 = joinComponent(div0, div1, div2);

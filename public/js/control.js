@@ -11,7 +11,7 @@ const globals = {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    const activeSection = get_query().sectid;
+    const activeSection = getQuery().sectid;
 
     const selector = {
         "1": document.querySelector("#one"),
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
         "4": getSavedItems
     };
 
-    if(get_cookie("username")){
+    if(getCookie("username")){
         selector[`${activeSection}`].classList.add("active");
         document.querySelector("#title").innerHTML = selector[`${activeSection}`].getAttribute("data-title");
         document.querySelector("#subtitle").innerHTML = subSelection[`${activeSection}`];
@@ -250,7 +250,7 @@ const showPostForm = function() {
     getAllSizes();
 
     // Check for vendorship...
-    fetch(`/api/vendors/${get_cookie("username").value}`).then(async function(response) {
+    fetch(`/api/vendors/${getCookie("username").value}`).then(async function(response) {
         try {
             let cover = document.querySelector(".vendor-bg-cover");
             let result = await response.json();
@@ -269,7 +269,7 @@ const showPostForm = function() {
 
 const getMyStoreItems = function() {
     const fetchItems = function () {
-        fetch(`/api/user/${get_cookie("username").value}/getStoreItems`).then(async function(response) {
+        fetch(`/api/user/${getCookie("username").value}/getStoreItems`).then(async function(response) {
             try {
                 // debugger;
                 let cover = document.querySelector(".vendor-bg-cover");
@@ -298,7 +298,7 @@ const getMyStoreItems = function() {
     document.querySelector(".control-body #store-box").style.display = "flex";
 
     // Check if vendor exists first...
-    fetch(`/api/vendors/${get_cookie("username").value}`).then(async function(response) {
+    fetch(`/api/vendors/${getCookie("username").value}`).then(async function(response) {
         try {
             let cover = document.querySelector(".vendor-bg-cover");
             let result = await response.json();
@@ -321,7 +321,7 @@ const getSavedItems = function() {
     document.title = `${document.title} || Saved Items`;
     document.querySelector(".control-body #orders-box").style.display = "flex";
 
-    fetch(`/api/user/${get_cookie("username").value}/getSavedItems`).then(async function(response) {
+    fetch(`/api/user/${getCookie("username").value}/getSavedItems`).then(async function(response) {
         try {
             let items = await response.json();
             const container = document.querySelector("#orders-box");
@@ -365,7 +365,7 @@ const getMyCart = function() {
     document.title = `${document.title} || View Cart`;
     document.querySelector(".control-body #orders-box").style.display = "flex";
 
-    fetch(`/api/user/${get_cookie("username").value}/getCart`).then(async function(response) {
+    fetch(`/api/user/${getCookie("username").value}/getCart`).then(async function(response) {
         try {
             let items = await response.json();
             const container = document.querySelector("#orders-box");
@@ -414,7 +414,7 @@ const togglePublish = function(evt) {
     const target = evt.currentTarget;
     const itemID = target.id.split("_")[1];
     const state = target.classList.contains('on');
-    const apiUrl = `/api/goods/save/${get_cookie("username").value}/publish`;
+    const apiUrl = `/api/goods/save/${getCookie("username").value}/publish`;
 
     target.setAttribute("disabled", true);
 
@@ -449,7 +449,7 @@ const removeItem = function(item_id, type){
     const checkoutBtn = document.querySelector("[data-pay-btn]");
     const apiUrl = (type === "save")? 'removeFromSaved' : 'removeFromCart';
 
-    fetch(`/api/goods/save/${get_cookie("username").value}/${apiUrl}`, {
+    fetch(`/api/goods/save/${getCookie("username").value}/${apiUrl}`, {
         method: "POST",
         body: JSON.stringify({itemID: item_id}),
         headers: {

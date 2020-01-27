@@ -32,20 +32,17 @@ header .section-top{
 }
 
 .drop-content{
-    margin-top: 1.2rem;
-    display: none;
+    margin-top: 1.1rem;
     flex-direction: row;
     font-size: 1.2rem;
     padding: 0.85em;
     left: 0;
     width: 100%;
-    z-index: +10;
-    position: absolute;
     background-color: #fcfcff;
-    box-shadow: 1px 1px 2px #e5e5ea;
+    box-shadow: 1px 0 4px #e5e5ea;
 }
 
-.drop-content > *:last-child{
+/* .drop-content > *:last-child{
     border: none;
     background-color: rgb(240, 68, 6);
     border-radius: 5px;
@@ -55,7 +52,7 @@ header .section-top{
 
 .drop-content > *:last-child *{
     color: #fcfcff;
-}
+} */
 
 .drop-container:hover{
     cursor: pointer;

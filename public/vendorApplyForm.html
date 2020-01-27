@@ -25,16 +25,16 @@
                 <span class="drop-container">
                     <span class="drop-button">More<i class="icofont-caret-down"></i></span>
                     <ul class="drop-content">
-                        <li><a href="">[Get Started]</a></li>
+                        <li><a href="/">Home</a></li>
                         <li><a href="">[Explore]</a></li>
                         <li><a href="">[Explore]</a></li>
-                        <li><a href="">[Marketing]</a></li>
-                        <li><a href="">[Pricing]</a></li>
+                        <li><a href="/pricing">Pricing</a></li>
+                        <li><a href="/support#faq">FAQs</a></li>
                         <li><a href=""></a></li>
                     </ul>
                 </span>
 
-                <a href="/categories"><span class="icofont-cart"></span></a>
+                <a href="/myprofile/orders?sectid=1"><span class="icofont-cart"></span></a>
             </div>
         </div>
     </header>
@@ -78,11 +78,11 @@
                 <span class="head">Browse Categories</span>
                 <ul>
                     <li><a href="/categories">All categories</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Electronics</a></li>
-                    <li><a href="#">Phones & Tablets</a></li>
-                    <li><a href="#">Fashion & Beauty</a></li>
-                    <li><a href="#">Break the law</a></li>
+                    <li><a href="/categories/view?query=Fashion">Fashion</a></li>
+                    <li><a href="/categories/view?query=Electronics">Electronics</a></li>
+                    <li><a href="/categories/view?query=Phones%20%26%20Tablet">Phones & Tablets</a></li>
+                    <li><a href="/categories/view?query=Beauty%20%26%20Health%20Care">Beauty & Health Care</a></li>
+                    <li><a href="/categories/view?query=Baby,%20Kids%20%26%20Toys">Baby, Kids & Toys</a></li>
                 </ul>
             </div>
 
@@ -125,13 +125,13 @@
                         <div class="step cols">
                             <h2><span class="step-text">Step 1:</span> Vendor Profile</h2>
                             <label for="user-brand">Vendor's Name</label>
-                            <input type="text" name="user-brand" id="user-brand" placeholder="Brand Name or your Nickname">
+                            <input type="text" name="user-brand" id="user-brand" placeholder="Brand Name or your Nickname" required>
 
                             <label for="user-bio">Vendor's Bio</label>
                             <input type="text" name="user-bio" id="user-bio" placeholder="Write something interesting about you or brand...">
         
                             <label for="user-email">Email Adress</label>
-                            <input type="email" name="user-email" id="user-email" placeholder="Univers Account Email">
+                            <input type="email" name="user-email" id="user-email" placeholder="Univers Account Email" required>
                             
                             <span class="btn">Next</span>
                         </div>
@@ -140,12 +140,12 @@
                             <h2><span class="step-text">Step 2:</span> More details</h2>
         
                             <label for="user-country">Country</label>
-                            <select name="user-country" id="user-country">
+                            <select name="user-country" id="user-country" required>
                                 <option value="">--- Select ---</option>
                             </select>
                             
                             <label for="user-region">Region/State/Province</label>
-                            <select name="user-region" id="user-region">
+                            <select name="user-region" id="user-region" required>
                                 <option value="">--- Select ---</option>
                             </select>
                             
@@ -168,6 +168,7 @@
                                         email: email,
                                         amount: 100000,
                                         callback: function(response) {
+                                            registrationUrl = `/vendor-register`;
                                             console.log(`Successfully suscribed. transaction ref is ${response.reference}`);
                                             document.querySelector("#payStackEmbedContainer").innerHTML = `Payment is succesful. Transaction ref is ${response.reference}`;
                                             document.querySelector("#vendor-form input[type='submit']").removeAttribute("disabled");
@@ -205,7 +206,7 @@
     
             <div class="cols">
                 <span class="heading">QUICK LINKS</span>
-                <a href="">Log In</a>
+                <a href="/login">Log In</a>
                 <a href="">About Us</a>
             </div>
 

@@ -9,6 +9,7 @@ body{
 /* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< MAIN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 #banner{
     /* border: none; */
+    margin-top: 3rem;
     min-height: 200px;
     justify-content: center;
     align-items: center;

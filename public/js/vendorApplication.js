@@ -1,5 +1,6 @@
 let paymentPortalLoaded = false;
 let flagCountry = false;
+let registrationUrl = '';
 
 const createOption = function(container, displayText, value) {
     let option = createComponent("OPTION", displayText);
@@ -64,7 +65,6 @@ const addHandlers = function() {
     const nextBtnTwo = document.querySelector("#vendor-form .step:nth-child(2) .btn");
 
     const setActive = function(elementNumber) {
-        // document.querySelectorAll(".form-navigation::after")
         document.querySelectorAll(".form-navigation span.on").forEach(element => {
             element.classList.remove("on");
         });
@@ -76,6 +76,28 @@ const addHandlers = function() {
         }
     };
 
+    const stepValidation = function(elements) {
+        const logicArray = [];
+
+        elements.forEach(el => {
+            let isEmpty = el.value !== '';
+
+            if(!isEmpty){
+                el.style.boxShadow = '0 0 4px red';
+            }else{
+                el.style.boxShadow = 'none';
+            }
+
+            logicArray.push(isEmpty);
+        });
+
+        const isValid = logicArray.reduce((current, next) => {
+            return current && next;
+        });
+
+        return isValid;
+    };
+
     const stepOne = function(evt) {
         if(evt.currentTarget.getAttribute("disabled") === null){
             setActive(1);
@@ -84,14 +106,16 @@ const addHandlers = function() {
     };
 
     const stepTwo = function(evt) {
-        if(evt.currentTarget.getAttribute("disabled") === null){
+        const inputElements = document.querySelectorAll("#vendor-form .container .step:nth-child(1) *:required");
+        if(evt.currentTarget.getAttribute("disabled") === null && stepValidation(inputElements) === true){
             setActive(2);
             container.style.marginLeft = "-100%";
         }
     };
 
     const stepThree = function(evt) {
-        if(evt.currentTarget.getAttribute("disabled") === null){
+        const inputElements = document.querySelectorAll("#vendor-form .container .step:nth-child(2) *:required");
+        if(evt.currentTarget.getAttribute("disabled") === null && stepValidation(inputElements) === true){
             setActive(3);
             container.style.marginLeft = "-200%";
             const emailValue = document.querySelector(`[name='user-email']`).value;
@@ -125,7 +149,7 @@ const submitForm = function(formName){
 
 const formHandler = (evt) => {
     evt.preventDefault();
-
+    
     const bodyValue = function() {
         const retValue = {};
         const arrayOfElements = document.querySelectorAll("#vendor-form [name]");
@@ -135,9 +159,7 @@ const formHandler = (evt) => {
         return retValue;
     }();
 
-    console.log(bodyValue);
-
-    fetch(``, {
+    fetch(registrationUrl, {
         method: "POST",
         body: JSON.stringify(bodyValue),
         headers: {
@@ -146,7 +168,13 @@ const formHandler = (evt) => {
     }).then(async function(response) {
         try {
             let result = await response.json();
-            
+            let [data] = result;
+
+            if(data.status === 'ok'){
+                window.location.href = `http://localhost:5000/myprofile/orders?sectid=3&idn=success&generated_uuid=${data.sellerID}`;
+            }else{
+
+            }
         } catch (error) {
             console.error(error);
         }

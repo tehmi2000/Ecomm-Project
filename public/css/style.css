@@ -88,8 +88,15 @@ form .serror{
     z-index: +10;
     position: absolute;
     list-style-type: none;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+}
+
+.drop-content  a:link, .drop-content a:visited{
+    color: #222;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin: 0.45rem 3vw;
 }
 
 .drop-content li{
@@ -259,6 +266,40 @@ form .serror{
     color: white;
 }
 
+.pane.sug{
+    display: none;
+}
+
+.sug-item{
+    align-items: center;
+    width: auto;
+    max-width: 45%;
+    border-radius: 3.25rem;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
+    background-color: #fafafc;
+    text-decoration: none;
+    margin: 0.7rem 1.6rem 0.7rem 0;
+    padding: 0.5rem;
+}
+
+.sug-item img{
+    object-fit: contain;
+    object-position: center;
+    min-width: 6rem;
+    min-height: 6rem;
+    max-width: 6rem;
+    max-height: 6rem;
+    border-radius: 50%;
+    background-color: #ccc;
+}
+
+.sug-item .item-name{
+    font-weight: 500;
+    font-size: 1.2rem;
+    min-width: 5rem;
+    padding: 0 1rem;
+}
+
 footer{
     width: 100%;
     min-height: 10rem;
@@ -352,6 +393,10 @@ footer > *:last-child *{
     .response-display{
         padding: 1rem;
         font-size: 1.2rem;
+    }
+
+    .sug-item .item-name{
+        padding: 0 1rem;
     }
 }
 

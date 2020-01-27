@@ -9,7 +9,7 @@ const matchPasswords = function(evt) {
 };
 
 const checkForErrors = function(){
-	let queryParams = get_query();
+	let queryParams = getQuery();
 	if(queryParams && queryParams.error){
 		const errorD = document.querySelector("form .error");
 		errorD.classList.toggle("serror", true);

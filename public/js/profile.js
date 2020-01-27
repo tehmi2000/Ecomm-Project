@@ -2,8 +2,8 @@ let flagCountry = false;
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    if (get_cookie("username")) {
-        getUserData(get_cookie("username").value);
+    if (getCookie("username")) {
+        getUserData(getCookie("username").value);
     }else{
         window.location.replace("/login");
     }

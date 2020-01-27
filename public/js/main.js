@@ -7,13 +7,13 @@ const closeMenu = function() {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-    if (get_cookie("username") && document.querySelector("#sidemenu")) {
+    if (getCookie("username") && document.querySelector("#sidemenu")) {
         let div0 = create("DIV");
         let child = "<a href='/myprofile'><img id='user-photo' src='../assets/images/contacts-filled.png' alt='' class='user-picture'></a><a href='/logout'><button>Logout</button></a>";
         div0.innerHTML = child;
         document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
         
-        fetch(`/api/user/${get_cookie("username").value}`).then(function(response) {
+        fetch(`/api/user/${getCookie("username").value}`).then(function(response) {
 
             response.json().then( function(user_data) {
                 if(user_data.profile_picture !== ""){
@@ -52,6 +52,57 @@ document.addEventListener("DOMContentLoaded", function () {
 const addToggleAction = function(evt) {
     console.log("on");
     evt.currentTarget.classList.toggle("on");
+};
+
+const createSuggestions = function(pEl, cEl) {
+    const createSugItem = function(props) {
+        // <span class="rows sug-item">
+        //     <img src="" alt="">
+        //     <span class="item-name"></span>
+        // </span>
+
+        let span0 = createComponent("SPAN", null, ["rows", "sug-item"]);
+            let img0 = create("IMG");
+            let span01 = createComponent("SPAN", null, ["item-name"]);
+
+        img0.setAttribute('src', props['item-image'][0]);
+        img0.setAttribute('alt', '');
+        span0.addEventListener("click", function(evt) {
+            window.location.href = `/categories/view?query=${window.encodeURIComponent(props.categories[0] || props['item-name'])}`
+        });
+
+        span01.innerHTML = props['item-name'];
+        span0 = joinComponent(span0, img0, span01);
+        cEl.appendChild(span0);
+    };
+
+    pEl.style.display = "flex";
+
+    fetch(`/api/goods/all/mostPopular`).then(async response => {
+        try {
+            let result = await response.json();
+            let data = dataValidation(result).data;
+            const sugData = [data[0]];
+
+            data.forEach((eachItem, index) => {
+                let isUnique = !sugData.some(item => {
+                    return item.categories[0] === eachItem.categories[0] || item['item-name'] === eachItem['item-name'];
+                });
+
+                if(sugData.length < 4 && ((isUnique === true && eachItem['item-image'][0] !== "") || index >= data.length - 4)){
+                    sugData.push(eachItem);
+                }
+            });
+
+            sugData.forEach(item => {
+                createSugItem(item);
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    }).catch(error => {
+        console.error(error);
+    });
 };
 
 const readOctet = function(path) {
@@ -124,7 +175,7 @@ function formatTime(hours, minutes) {
     return ftime;
 }
 
-function get_cookie(name){
+function getCookie(name){
     arrayCookie=(document.cookie).split(';');
     for (let index = 0; index < arrayCookie.length; index++) {
         if (arrayCookie[index].indexOf(name)!=-1) {
@@ -153,7 +204,7 @@ function genHex(length){
     return generated_hex;
 }
 
-function get_query() {
+function getQuery() {
     const object = {};
     const query_list = window.location.search.substring(1).split('&');
 

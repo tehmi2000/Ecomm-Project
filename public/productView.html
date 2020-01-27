@@ -557,8 +557,8 @@
             const itemID = evt.currentTarget.id.split("_")[1];
             const savedItem = Object.assign({}, globalItem, preferredItem);
 
-            if(get_cookie("username")){
-                fetch(`/api/goods/save/${get_cookie("username").value}/addToSavedItems`, {
+            if(getCookie("username")){
+                fetch(`/api/goods/save/${getCookie("username").value}/addToSavedItems`, {
                     
                     method: "post",
                     body: JSON.stringify({
@@ -591,8 +591,8 @@
             const cartItem = Object.assign({}, globalItem, preferredItem);
             console.log(cartItem);
 
-            if(get_cookie("username")){
-                fetch(`/api/goods/save/${get_cookie("username").value}/addToCart`, {
+            if(getCookie("username")){
+                fetch(`/api/goods/save/${getCookie("username").value}/addToCart`, {
                     method: "post",
                     body: JSON.stringify({
                         item: cartItem
@@ -631,7 +631,7 @@
             element.classList.add("active")
         };
 
-        let itemID = get_query()["queryItem"];
+        let itemID = getQuery()["queryItem"];
         let globalItem = null
         let preferredItem = {};
 

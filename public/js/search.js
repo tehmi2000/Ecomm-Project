@@ -1,7 +1,7 @@
 const itemList = {};
 
 document.addEventListener("DOMContentLoaded", function() {
-    const queryText = window.decodeURI(get_query().query);
+    const queryText = window.decodeURIComponent(getQuery().query);
     const displayQueryElement = document.querySelector("#query");
 
     let formattedQuery = queryText.split("+").join(" ");
@@ -45,6 +45,7 @@ const createNoItemTag = function(container, query){
     container.style.justifyContent = "center";
     container.style.alignItems = "center";
     container.innerHTML = `<span id='no-item'>No result found for '${query}'</span>`;
+    createSuggestions(document.querySelector(".pane.sug"), document.querySelector(".pane.sug #suggestion-container"));
 };
 
 const createItem = function(container, object){
@@ -56,7 +57,7 @@ const createItem = function(container, object){
     const cartHandler = function(evt) {
         const itemID = evt.currentTarget.id.split("_")[1];
 
-        fetch(`/api/goods/save/${get_cookie("username").value}/addToCart`, {
+        fetch(`/api/goods/save/${getCookie("username").value}/addToCart`, {
             method: "post",
             body: JSON.stringify({
                 item: itemList[itemID]

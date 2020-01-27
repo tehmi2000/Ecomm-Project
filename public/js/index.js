@@ -59,6 +59,37 @@ const createItem = function(container, object){
     container.appendChild(a0);
 };
 
+const createDummyItem = function(container, length){
+
+    // <div class="dummy item cols">
+    //     <div class="item-img">
+    //         <img src="" alt="">
+    //     </div>
+    //     <div class="item-description cols">
+    //         <span class="item-name"></span>
+    //         <span class="item-price"></span>
+    //     </div>
+    // </div>
+
+    for (let index = 0; index < length; index++) {
+        let div0 = createComponent("DIV", null, ["dummy", "item", "cols"]);
+        let div1 = createComponent("DIV", null, ["item-img"]);
+            let img0 = create("IMG");
+        let div2 = createComponent("DIV", null, ["item-description", "cols"]);
+            let span0 = createComponent("SPAN", null);
+            let span1 = createComponent("SPAN", null, ["item-price"]);
+
+        img0.setAttribute("src", "");
+        img0.setAttribute("alt", "");
+
+        div2 = joinComponent(div2, span0, span1);
+        div1 = joinComponent(div1, img0);
+        div0 = joinComponent(div0, div1, div2);
+
+        container.appendChild(div0);   
+    }
+};
+
 const getAds = function() {
     const apiUrl = "/api/ads/all";
     fetch(apiUrl).then(async response => {
@@ -87,6 +118,7 @@ const getMostPopular = function() {
             container.innerHTML = "";
             let data = dataValidation(result).data;
 
+            data = data.slice(0, 10);
             data.forEach(object => {
                 createItem(container, object);
             });
@@ -103,7 +135,6 @@ const getRecommended = function() {
     fetch(`/api/goods/all/recommended`).then(function(response) {
 
         response.json().then( function(result) {
-            // console.log(result);
             let data = dataValidation(result).data;
             
         }).catch(function (error) {
@@ -116,6 +147,8 @@ const getRecommended = function() {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
+    createDummyItem(document.querySelector("#most-popular-container.pane .slider"), 5);
+    createDummyItem(document.querySelector("#recommended-container.pane .slider"), 5);
     getAds();
     setInterval(function() {
         nextImage();

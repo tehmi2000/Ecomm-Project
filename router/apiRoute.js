@@ -174,15 +174,14 @@ const model = function() {
 
     router.get("/goods/:itemID", function(req, res) {
         const itemID = req.params.itemID;
-        console.log(itemID);
         
         mongoConn.then(client => {
             const collection = client.db(itemsDB).collection(iCollection);
-            collection.find({$and: [{"published": true}, {"_id" : ObjectID(itemID)}]}).toArray(function(err, item) {
-
+            collection.find({$and: [{"published": true}, {"_id": ObjectID(itemID)}]}).toArray(function(err, item) {
                 if(err) {
                     log(err);
                 }else{
+                    console.log(item);
                     if(item.length > 0){
                         res.json(item);
                     }else{
@@ -225,7 +224,7 @@ const model = function() {
 
         mongoConn.then(client => {
             const collection = client.db(itemsDB).collection(iCollection);
-            collection.find({"published": true}).sort({ numberOfSaves: -1 }).limit(10).toArray(function(err, docs) {
+            collection.find({"published": true}).sort({ numberOfSaves: -1 }).limit(100).toArray(function(err, docs) {
                 if(err) {
                     log(err);
                 }else{

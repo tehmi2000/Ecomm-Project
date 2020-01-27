@@ -94,11 +94,11 @@
                 <span class="head">Browse Categories</span>
                 <ul>
                     <li><a href="/categories">All categories</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Electronics</a></li>
-                    <li><a href="#">Phones & Tablets</a></li>
-                    <li><a href="#">Fashion & Beauty</a></li>
-                    <li><a href="#">Break the law</a></li>
+                    <li><a href="/categories/view?query=Fashion">Fashion</a></li>
+                    <li><a href="/categories/view?query=Electronics">Electronics</a></li>
+                    <li><a href="/categories/view?query=Phones%20%26%20Tablet">Phones & Tablets</a></li>
+                    <li><a href="/categories/view?query=Beauty%20%26%20Health%20Care">Beauty & Health Care</a></li>
+                    <li><a href="/categories/view?query=Baby,%20Kids%20%26%20Toys">Baby, Kids & Toys</a></li>
                 </ul>
             </div>
 
@@ -117,12 +117,6 @@
     </aside>
 
     <main>
-        <div id="banner" class="cols">
-            <div class="button-container">
-                <button class="icofont-rounded-left" onclick="prevImage()"></button>
-                <button class="icofont-rounded-right" onclick="nextImage()"></button>
-            </div>
-        </div>
 
         <!-- <marquee behavior="" direction="">Merry Christmas in Arrears - Univers is offering a discount on every five items bought</marquee> -->
 
@@ -175,9 +169,25 @@
                         </div>
                     </div>
 
+                    <div class="dummy item cols">
+                        <div class="item-img">
+                            <img src="" alt="">
+                        </div>
+                        <div class="item-description cols">
+                            <span class="item-name"></span>
+                            <span class="item-price"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <div id="banner" class="cols">
+            <div class="button-container">
+                <button class="icofont-rounded-left" onclick="prevImage()"></button>
+                <button class="icofont-rounded-right" onclick="nextImage()"></button>
+            </div>
+        </div>
 
         <section class="pane cols" id="recommended-container">
             <div class="section-head rows">
@@ -187,7 +197,6 @@
             
             <div class="section-body">
                 <div id="recommended" class="slider rows">
-
                     <div class="dummy item cols">
                         <div class="item-img">
                             <img src="" alt="">
@@ -228,11 +237,19 @@
                         </div>
                     </div>
 
+                    <div class="dummy item cols">
+                        <div class="item-img">
+                            <img src="" alt="">
+                        </div>
+                        <div class="item-description cols">
+                            <span class="item-name"></span>
+                            <span class="item-price"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- <button onclick="javascript:createItem('recommended', {})" style="padding: 2rem;">Create Item</button> -->
     </main>
 
     <footer class="cols">

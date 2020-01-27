@@ -17,12 +17,12 @@ const model = function() {
         readFile("./public/categories.html", req, res);
     });
 
-    router.get("/all", function(req, res) {
-        readFile("./public/categories.html", req, res);
+    router.get("/view", function(req, res) {
+        readFile("./public/categoryView.html", req, res);
     });
 
-    router.get("/all/:category", function(req, res) {
-        readFile("./public/dummy.html", req, res);
+    router.get("/all", function(req, res) {
+        readFile("./public/categories.html", req, res);
     });
 
     return router;

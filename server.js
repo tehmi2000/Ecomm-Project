@@ -64,12 +64,12 @@ mongoConn.then(client => {
 
     const {itemsDB, iCollection} = config;
     const collection = client.db(itemsDB).collection(iCollection);
-    collection.dropIndexes();
-    collection.createIndex({"item-name": "text", "categories": "text"}).then(response => {
-        console.log(response);
-    }).catch(error => {
-        console.log(error);
-    });
+    // collection.dropIndexes();
+    // collection.createIndex({"item-name": "text", "categories": "text"}).then(response => {
+    //     console.log(response);
+    // }).catch(error => {
+    //     console.log(error);
+    // });
 
 }).catch(error => {
     log(error);
@@ -96,6 +96,7 @@ app.get("/support", controller.support);
 app.post("/upload", controller.s3Upload);
 app.post("/auth", controller.auth); // Login handler
 app.post("/register", controller.register); // Sign up/Registration handler
+app.post("/vendor-register", controller.vendorRegister); // Vendor Sign up/Registration handler
 app.post("/myprofile/update", controller.update); // Profile handler
 app.post("/resetHandler", controller.resetHandler);
 

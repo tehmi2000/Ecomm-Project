@@ -11,6 +11,28 @@ const model = function() {
         region: 'us-east-1'
     });
     const s3 = new AWS.S3();
+
+
+    function genHex(length){
+        length = length || 16;
+        let counter = 0;
+        let generated_hex = "t";
+        let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        
+        while(counter <= length){
+            let rand_index = Math.round((Math.random()*characters.length)+1);
+            generated_hex += characters.charAt(rand_index);
+            counter += 1;
+        }
+        console.log(generated_hex);
+        return generated_hex;
+    }
+
+    const formatName = str => {
+        const wordArray = str.split(" ").map(word => (word.charAt(0)).toUpperCase()+(word.substring(1)).toLowerCase());
+        let formattedString = wordArray.join(" ");
+        return formattedString;
+    };
     
     const readFile = function(path, req, res) {
         fs.readFile(path, "utf8", function(err, content) {
@@ -32,6 +54,8 @@ const model = function() {
                     .replace(/--/g, '')
                     .replace(/=/g, '');
     };
+
+
 
     const s3Upload = function(req, res) {
         let file = req.files;
@@ -91,11 +115,6 @@ const model = function() {
     };
 
     const update = function(req, res) {
-        const formatName = str => {
-            const wordArray = str.split(" ").map(word => (word.charAt(0)).toUpperCase()+(word.substring(1)).toLowerCase());
-            let formattedString = wordArray.join(" ");
-            return formattedString;
-        };
 
         const user_username = req.body.username;
         const user_address = `${req.body.state}, ${req.body.country}`;
@@ -144,26 +163,6 @@ const model = function() {
     };
 
     const register = function(req, res) {
-        function genHex(length){
-            length = length || 16;
-            let counter = 0;
-            let generated_hex = "t";
-            let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-            
-            while(counter <= length){
-                let rand_index = Math.round((Math.random()*characters.length)+1);
-                generated_hex += characters.charAt(rand_index);
-                counter += 1;
-            }
-            console.log(generated_hex);
-            return generated_hex;
-        }
-
-        const formatName = str => {
-            const wordArray = str.split(" ").map(word => (word.charAt(0)).toUpperCase()+(word.substring(1)).toLowerCase());
-            let formattedString = wordArray.join(" ");
-            return formattedString;
-        };
 
         const uuid = genHex(32);
         const user_username = authSanitizer(req.body.username);
@@ -199,9 +198,52 @@ const model = function() {
         });
     };
 
+    const vendorRegister = function(req, res) {
+        let vendorEmail = req.body['user-email'];
+        let vendorName = req.body['user-brand'];
+        let vendorWebsite = req.body['business-url'];
+        let vendorBio = req.body['user-bio'];
+        let vendorCountry = req.body['user-country'];
+        let vendorRegion = req.body['user-region'];
+
+        let query = `SELECT uID, username FROM users WHERE email="${vendorEmail}"`;
+
+        mysql_config.connection.query(query, function(err, users) {
+            if(err){
+                log(err);
+                res.json([{...err}]);
+            }else if(users.length > 0){
+                let sellerID = users[0].uID;
+                let username = users[0].username;
+
+                let query = `INSERT INTO vendors (sellerID, username, vendorName, email, website, bio, country, region) VALUES ('${sellerID}', '${username}', '${vendorName}', '${vendorEmail}', '${vendorWebsite}', '${vendorBio}', '${vendorCountry}', '${vendorRegion}')`;
+                mysql_config.connection.query(query, function(err){
+                    if (err) {
+                        log(err);
+                        res.json([{...err}]);
+                    }else{
+                        console.log('New Vendor Profile Inserted successfully!');
+                        // require("./emailHandler").sendVerificationMail(user_email);
+                        // req.session.username = user_username;
+                        res.cookie(`univers-${username}-sellerID`, sellerID);
+                        res.json([{
+                            status: 'ok',
+                            sellerID,
+                        }]);
+                        // res.redirect();
+                    }
+                });
+            }else{
+
+                res.redirect(`/signup?error=${ph.softEncrypt("not found")}&idn=userexist`);
+            }
+        });
+    };
+
     return {
         auth,
         register,
+        vendorRegister,
         update,
         upload,
         s3Upload,

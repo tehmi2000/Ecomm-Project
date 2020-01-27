@@ -27,6 +27,17 @@ main h1::after{
     /* right: 1rem; */
 }
 
+.drop-content > *:last-child{
+    background-color: transparent;
+    border-radius: 0;
+    padding: 1rem 1.5rem;
+    box-shadow: none;
+}
+
+.drop-content > *:last-child *{
+    color: #222;
+}
+
 
 .form-navigation, .form-navigation .progress{
     height: 1rem;
