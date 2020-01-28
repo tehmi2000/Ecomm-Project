@@ -44,7 +44,7 @@ const fetchData = (searchQuery, formattedQuery) => {
 const createNoItemTag = function(container, query){
     container.style.justifyContent = "center";
     container.style.alignItems = "center";
-    container.innerHTML = `<span id='no-item'>No result found for '${query}'</span>`;
+    container.innerHTML = `<span id='no-item' class='cols'><img src="../assets/images/portfolium-robot.png" alt=""><span>Sorry, we couldn't find any item that matched '${query}'.</span></span>`;
     createSuggestions(document.querySelector(".pane.sug"), document.querySelector(".pane.sug #suggestion-container"));
 };
 
