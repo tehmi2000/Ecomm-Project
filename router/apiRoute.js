@@ -256,13 +256,15 @@ const model = function() {
     });
 
     router.post("/goods/save", function(req, res) {
-        const uploadPath = `https://s3.amazonaws.com/oneunivers-1-amazons3-bucket/uploads`;
+        const uploadPath = `https://res.cloudinary.com/https-oneunivers-herokuapp-com/image/upload/univers_product_images`;
+        // const uploadPath = `https://s3.amazonaws.com/oneunivers-2-amazons3-bucket/uploads`;
         const userInput = req.body;
         userInput.postTime = Date.now();
         userInput.numberOfSaves = 0;
         userInput.published = true;
 
         userInput[`item-image`] = userInput[`item-image`].map((imageUrl, index) => {
+            console.log(index, imageUrl);
             return (imageUrl !== '')? `${uploadPath}/${imageUrl}`: '';
         });
         console.log(userInput[`item-image`]);

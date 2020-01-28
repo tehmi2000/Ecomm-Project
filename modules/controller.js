@@ -1,16 +1,26 @@
 const model = function() {
     const fs = require("fs");
     const AWS = require('aws-sdk');
+    const cloudinary = require('cloudinary').v2;
     const mysql_config =  require("./config");
     const { log } = mysql_config;
     const { emailSender } = require("./emailHandler");
     const ph = require("./passwordHash");
+
+    // AWS CONFIGURATION
     AWS.config.update({
         accessKeyId: process.env.AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
         region: 'us-east-1'
     });
     const s3 = new AWS.S3();
+
+    // CLOUDINARY CONFIGURATION
+    cloudinary.config({
+        cloud_name: "https-oneunivers-herokuapp-com",
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET
+    });
 
 
     function genHex(length){
@@ -68,9 +78,9 @@ const model = function() {
                     res.json([{...err, status: 403}]);
                 }else{
                     const params = {
-                       Bucket: 'oneunivers-1-amazons3-bucket',
+                       Bucket: 'oneunivers-2-amazons3-bucket',
                        Key: `uploads/${name}`,
-                       Body: JSON.stringify(data, null, 2)
+                       Body: JSON.stringify(data)
                     };
 
                     s3.upload(params, function(s3Err, data) {
@@ -93,6 +103,48 @@ const model = function() {
                     res.json([{...err, status: 403}]);
                 }else{
                     uploadToBucket(uploadedFile.name, `${path}/${uploadedFile.name}`);
+                }
+            });
+        }
+    };
+
+    const cloudUpload = function(req, res) {
+        let file = req.files;
+        let localPath = "./public/uploads";
+
+        const uploadToCloud = (name, path) => {
+
+            const params = {
+                overwrite: true,
+                public_id: `univers_product_images/${name.split('.')[0]}`
+            };
+
+            cloudinary.uploader.upload(path, params, function(cloudErr, result) {
+                if (cloudErr) {
+                    log(cloudErr);
+                    res.json([{...cloudErr, status: 403}]);
+                }else{
+                    console.log(result);
+                    res.json([
+                        {
+                            status: 200, 
+                            statusText: "Upload successful!",
+                            version: result.version,
+                            signature: result.signature
+                        }
+                    ]);
+                }
+            });
+        };
+
+        for (const key in file) {
+            let uploadedFile = file[key];
+            uploadedFile.mv(`${localPath}/${uploadedFile.name}`, function(err) {
+                if (err) {
+                    log(err);
+                    res.json([{...err, status: 403}]);
+                }else{
+                    uploadToCloud(uploadedFile.name, `${localPath}/${uploadedFile.name}`);
                 }
             });
         }
@@ -247,6 +299,7 @@ const model = function() {
         update,
         upload,
         s3Upload,
+        cloudUpload,
         resetHandler: function(req, res) {
             const account_email = req.body["reset-email"];
             console.log(account_email);

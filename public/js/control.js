@@ -77,6 +77,9 @@ const imageUploadHandler = function(evt){
             body: fd
         }).then(async response => {
             let result = await response.json();
+            let [data] = result;
+
+            document.querySelector(`#${name}`).setAttribute("data-version", data.version);
             console.log(result);
             if(Object.keys(imgUrls).indexOf(name) === Object.keys(imgUrls).length - 1){
                 displayUploadState("Upload Complete!", true);
@@ -113,12 +116,15 @@ const formHandler = function(evt) {
             categoryField.push(field.value);
         });
 
-        forEach(document.querySelectorAll("[name='item-image']"), function(field) {
-            imageField.push('');
+        // Get all image field element and set content to version
+        document.querySelectorAll("[name='item-image']").forEach(function(field) {
+            imageField.push(field.getAttribute("data-version") || '');
         });
 
+        console.log(imageField);
+        // Rewrite the content of each image field
         for (let i = 1; i <= Object.keys(imgUrls).length; i++) {
-            imageField[i-1] = imgUrls[`preview-image-${i}`];
+            imageField[i-1] = `v${imageField[i-1]}/` + imgUrls[`preview-image-${i}`];
         }
 
         const bodyValue = {
