@@ -82,15 +82,19 @@ const createSuggestions = function(pEl, cEl) {
         try {
             let result = await response.json();
             let data = dataValidation(result).data;
-            const sugData = [data[0]];
+            const sugData = [];
 
             data.forEach((eachItem, index) => {
-                let isUnique = !sugData.some(item => {
-                    return item.categories[0] === eachItem.categories[0] || item['item-name'] === eachItem['item-name'];
-                });
-
-                if(sugData.length < 4 && ((isUnique === true && eachItem['item-image'][0] !== "") || index >= data.length - 4)){
+                if(index === 0){
                     sugData.push(eachItem);
+                }else{
+                    let isUnique = !sugData.some(item => {
+                        return item.categories[0] === eachItem.categories[0] || item['item-name'] === eachItem['item-name'];
+                    });
+    
+                    if(sugData.length < 4 && ((isUnique === true && eachItem['item-image'][0] !== "") || index >= data.length - 4)){
+                        sugData.push(eachItem);
+                    }
                 }
             });
 

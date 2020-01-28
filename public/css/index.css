@@ -6,10 +6,8 @@ body{
     overflow-x: hidden;
 }
 
-/* <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< MAIN >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
 #banner{
-    /* border: none; */
-    margin-top: 3rem;
+    margin: 3rem 0 2rem;
     min-height: 200px;
     justify-content: center;
     align-items: center;
@@ -57,8 +55,40 @@ marquee{
 }
 
 .pane{
-    padding: 0.5rem;
-    margin-top: 1rem;
+    padding: 0;
+    margin-top: 0.5rem;
+}
+
+.pane .section-head{
+    padding: 0 1rem;
+    justify-content: space-between;
+}
+
+.pane .section-head h3{
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+
+.pane .section-head > *{
+    color: #111;
+    text-transform: uppercase;
+}
+
+.pane .section-head > *:last-child{
+    margin: auto 0;
+}
+
+.pane .section-body{
+    width: 100%;
+    overflow-y: auto;
+    height: auto;
+    overflow: auto;
+    background-color: #f2f2f5;
+}
+
+.pane .section-body .slider{
+    width: auto;
+    flex-wrap: wrap;
 }
 
 .pane .item{
@@ -131,35 +161,6 @@ marquee{
     margin-top: 1.5rem;
 }
 
-.pane .section-head{
-    padding: 0 1rem;
-    justify-content: space-between;
-}
-
-.pane .section-head h3{
-    /* font-weight: 500; */
-    color: #111;
-    text-transform: uppercase;
-    font-size: 1.5rem;
-}
-
-.pane .section-head > *:last-child{
-    margin: auto 0;
-}
-
-.pane .section-body{
-    width: 100%;
-    overflow-y: auto;
-    height: auto;
-    overflow: auto;
-    background-color: #f2f2f5;
-}
-
-.pane .section-body .slider{
-    width: auto;
-    flex-wrap: wrap;
-}
-
 
 @media only screen and (max-width:800px){
     .section-bottom > *:first-child, .section-bottom > *:last-child{
@@ -174,12 +175,12 @@ marquee{
         height: 50vh;
     }
 
-    .pane .section-head h3{
-        font-size: 1.3rem;
+    .pane{
+        margin-top: 0;
     }
 
     .pane .item{
-        width: 46%;
+        width: 47%;
         padding: 0.8rem 0.6rem;
     }
 
@@ -204,9 +205,4 @@ marquee{
     .pane .item .item-description > *{
         margin-top: 1rem;
     }
-
-    .pane .section-body .slider{
-        justify-content: space-between;
-    }
-    
 }
