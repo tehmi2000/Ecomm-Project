@@ -224,7 +224,7 @@ const model = function() {
 
         mongoConn.then(client => {
             const collection = client.db(itemsDB).collection(iCollection);
-            collection.find({"published": true}).sort({ numberOfSaves: -1 }).limit(100).toArray(function(err, docs) {
+            collection.find({"published": true}).sort({ numberOfSaves: 1 }).limit(100).toArray(function(err, docs) {
                 if(err) {
                     log(err);
                 }else{
@@ -234,7 +234,6 @@ const model = function() {
         }).catch(error => {
             log(error);
         });
-
     });
 
     router.post("/goods/save/:username/publish", function(req, res) {

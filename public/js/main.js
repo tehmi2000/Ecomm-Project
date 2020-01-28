@@ -8,12 +8,13 @@ const closeMenu = function() {
 
 document.addEventListener("DOMContentLoaded", function () {
     if (getCookie("username") && document.querySelector("#sidemenu")) {
+        let apiUrl = `/api/user/${getCookie("username").value}`;
         let div0 = create("DIV");
         let child = "<a href='/myprofile'><img id='user-photo' src='../assets/images/contacts-filled.png' alt='' class='user-picture'></a><a href='/logout'><button>Logout</button></a>";
         div0.innerHTML = child;
         document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
         
-        fetch(`/api/user/${getCookie("username").value}`).then(function(response) {
+        fetch(apiUrl).then(function(response) {
 
             response.json().then( function(user_data) {
                 if(user_data.profile_picture !== ""){
@@ -131,7 +132,7 @@ const readOctet = function(path) {
 //             console.log("Service worker is working fine");
             
 //             function updateReady(worker) {
-//                 var answerToUpdate = confirm("An update to the page is available, do you wish to receive updates now?");
+//                 let answerToUpdate = confirm("An update to the page is available, do you wish to receive updates now?");
                 
 //                 if(answerToUpdate != true) return;
 //                 worker.postMessage({action : 'skipWaiting'});

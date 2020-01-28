@@ -22,7 +22,6 @@ const model = function() {
         api_secret: process.env.CLOUDINARY_API_SECRET
     });
 
-
     function genHex(length){
         length = length || 16;
         let counter = 0;
@@ -43,7 +42,7 @@ const model = function() {
         let formattedString = wordArray.join(" ");
         return formattedString;
     };
-    
+
     const readFile = function(path, req, res) {
         fs.readFile(path, "utf8", function(err, content) {
             if (err) {
@@ -56,7 +55,6 @@ const model = function() {
     };
 
     const authSanitizer = function(input) {
-
         return input.replace(/ /g, '')
                     .replace(/\'/g, '')
                     .replace(/\"/g, '')
@@ -64,8 +62,6 @@ const model = function() {
                     .replace(/--/g, '')
                     .replace(/=/g, '');
     };
-
-
 
     const s3Upload = function(req, res) {
         let file = req.files;
