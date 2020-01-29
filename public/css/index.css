@@ -6,6 +6,13 @@ body{
     overflow-x: hidden;
 }
 
+main h1{
+    margin: 0;
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: #f2f2f5;
+}
+
 #banner{
     padding: 0;
     margin: 3rem 0 2rem;
@@ -44,15 +51,18 @@ body{
 }
 
 marquee{
+    width: 100vw;
     position: sticky;
     top: 0;
+    text-transform: capitalize;
     font-size: 1.8vmin;
-    margin-top: 1rem;
-    padding: 0.8rem;
+    margin-top: -0.7rem;
+    margin-left: -0.9rem;
+    padding: 1rem;
     color: white;
-    border-top: 1px solid rgb(184, 49, 0);
-    border-bottom: 1px solid rgb(184, 49, 0);
-    background-color: rgb(164, 10, 10);
+    border-top: 1px solid rgb(138, 23, 2);
+    border-bottom: 1px solid rgb(138, 23, 2);
+    background-color: rgb(126, 16, 2);
 }
 
 .pane{
@@ -171,6 +181,10 @@ marquee{
 
     header #search-form{
         width: 95vw;
+    }
+
+    main h1{
+        font-size: 1.35rem;
     }
 
     #banner{
