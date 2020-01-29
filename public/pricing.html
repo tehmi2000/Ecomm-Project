@@ -19,25 +19,25 @@
     <header>
         <div class="rows section-top">
             <div class="left-tab">
-                <span class="icofont-navigation-menu" id="open-menu-btn" onclick="javascript:openMenu()"></span>
+                <span class="icofont-navigation-menu" id="open-menu-btn" tabindex="0" onclick="openMenu()" onkeydown="openMenu()"></span>
                 <span><a href="/"><img src="/assets/images/fav.png" alt="LOGO" id="logo"></a></span>
             </div>
 
             <div class="right-tab">
-                <a href="/myprofile/orders?sectid=1"><span class="icofont-cart"></span></a>
+                <a href="/myprofile/orders?sectid=1" class="icofont-cart"><span style="display: none;">Cart</span></a>
             </div>
         </div>
     </header>
 
     <aside id="sidemenu">
-        <nav>
+        <nav class="rows">
             <div>
-                <a href="/login"><button>Login</button></a>
-                <a href="/signup"><button>Sign up</button></a>
+                <a href="/login" class="link-btn">Login</a>
+                <a href="/signup" class="link-btn">Sign up</a>
             </div>
             
             <div>
-                <button id="close-menu-btn" class="icofont-close" onclick="javascript:closeMenu()"></button>
+                <button id="close-menu-btn" class="icofont-close" title="Close Menu" onclick="closeMenu()" onkeydown="closeMenu()" tabindex="0"></button>
             </div>
         </nav>
 
@@ -68,11 +68,11 @@
                 <span class="head">Browse Categories</span>
                 <ul>
                     <li><a href="/categories">All categories</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Electronics</a></li>
-                    <li><a href="#">Phones & Tablets</a></li>
-                    <li><a href="#">Fashion & Beauty</a></li>
-                    <li><a href="#">Break the law</a></li>
+                    <li><a href="/categories/view?query=Fashion">Fashion</a></li>
+                    <li><a href="/categories/view?query=Electronics">Electronics</a></li>
+                    <li><a href="/categories/view?query=Phones%20%26%20Tablet">Phones & Tablets</a></li>
+                    <li><a href="/categories/view?query=Beauty%20%26%20Health%20Care">Beauty & Health Care</a></li>
+                    <li><a href="/categories/view?query=Baby,%20Kids%20%26%20Toys">Baby, Kids & Toys</a></li>
                 </ul>
             </div>
 
@@ -80,10 +80,10 @@
                 <span class="head">Useful Links</span>
                 <ul>
                     <li><a href="#">Getting Started</a></li>
-                    <li><a href="#">Explore</a></li>
+                    <li><a href="/categories">Explore</a></li>
                     <li><a href="/pricing">Pricing</a></li>
                     <li><a href="#">Marketing</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="/support#faq">FAQs</a></li>
                     <li><a href="/support">Support</a></li>
                 </ul>
             </div>
@@ -98,7 +98,7 @@
         </div>
 
         <div class="section-wrap abstract">
-            <h1>How Expensive Are We?</h1>
+            <h2>How Expensive Are We?</h2>
             <img src="assets/images/anime-girl-wink-3.png" alt="">
             <p>Often times, we want to know how expensive the items in a store or an online shopping platform like 
                 <a href="https://jumia.ng">Jumia</a>, <a href="https://kongo.com">Konga</a>, or <a href="https://ebay.com">eBay</a> are but you cant find anything 
