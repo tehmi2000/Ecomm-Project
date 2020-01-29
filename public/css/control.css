@@ -202,12 +202,14 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     width: 29.33%;
     margin: 0 2%;
     min-width: 9rem;
     height: 15rem;
-    color: #777;
-    font-weight: bold;
+    color: #b9b9b9;
+    font-size: 1.4rem;
+    font-weight: 500;
     padding: 1rem;
     background-repeat: no-repeat;
     background-size: contain;
