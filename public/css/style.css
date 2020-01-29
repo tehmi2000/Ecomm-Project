@@ -61,6 +61,11 @@ form .serror{
     padding: 0.8rem;
 }
 
+input[type="submit"], select{
+    -webkit-appearance: none;
+    appearance: none;
+}
+
 .serror, .serror *{
 	color: rgb(165, 80, 0);
 }
