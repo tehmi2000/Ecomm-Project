@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (getCookie("username") && document.querySelector("#sidemenu")) {
         let apiUrl = `/api/user/${getCookie("username").value}`;
         let div0 = create("DIV");
-        let child = "<a href='/myprofile'><img id='user-photo' src='../assets/images/contacts-filled.png' alt='' class='user-picture'></a><a href='/logout'><button>Logout</button></a>";
+        let child = "<a href='/myprofile'><img id='user-photo' src='../assets/images/contacts-filled.png' alt='' class='user-picture'></a><a href='/logout' class='link-btn'>Logout</a>";
         div0.innerHTML = child;
         document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
         

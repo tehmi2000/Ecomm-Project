@@ -111,7 +111,9 @@ header .section-top{
     background-color: #ccc;
 }
 
-#sidemenu nav button{
+#sidemenu nav a.link-btn, #sidemenu nav button{
+    display: inline-block;
+    font-size: 1.3rem;
     border: none;
     vertical-align: middle;
     background-color: rgb(240, 68, 6);
