@@ -51,6 +51,7 @@ main h1{
 }
 
 marquee{
+    display: none;
     width: 100vw;
     position: sticky;
     top: 0;
