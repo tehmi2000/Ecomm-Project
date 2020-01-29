@@ -184,6 +184,10 @@ const model = function() {
         });
     };
 
+    const submitComplaint = function(req, res) {
+        res.end("Submitted");
+    };
+
     const auth = function(req, res) {
         const user_username = authSanitizer(req.body.username);
         const user_password = authSanitizer(req.body.password);
@@ -293,7 +297,7 @@ const model = function() {
         register,
         vendorRegister,
         update,
-        upload,
+        submitComplaint,
         s3Upload,
         cloudUpload,
         resetHandler: function(req, res) {

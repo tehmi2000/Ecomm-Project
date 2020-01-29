@@ -99,6 +99,7 @@ app.post("/register", controller.register); // Sign up/Registration handler
 app.post("/vendor-register", controller.vendorRegister); // Vendor Sign up/Registration handler
 app.post("/myprofile/update", controller.update); // Profile handler
 app.post("/resetHandler", controller.resetHandler);
+app.post("/submitComplaint", controller.submitComplaint);
 
 app.use("/api", require("./router/apiRoute"));
 app.use("/categories", require("./router/categoryRoute"));
