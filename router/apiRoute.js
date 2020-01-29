@@ -46,8 +46,8 @@ const model = function() {
     	});
     });
 
-    router.get("/vendors/:search", function(req, res) {
-        const searchStr = sqlSanitizer(req.params.search);
+    router.get("/vendors/:id", function(req, res) {
+        const searchStr = sqlSanitizer(req.params.id);
         const sqlQuery = `SELECT * FROM vendors WHERE username='${searchStr}' OR sellerID='${searchStr}'`;
 
         connection.query(sqlQuery, function(err, result) {
@@ -127,8 +127,7 @@ const model = function() {
 
     router.get("/user/:username/getStoreItems", function(req, res) {
         const query = req.query['query'];
-
-        const sqlQuery = `SELECT sellerID FROM vendors WHERE username='${req.params.username}'`;
+        const sqlQuery = `SELECT sellerID FROM vendors WHERE username='${sqlSanitizer(req.params.username)}'`;
 
         connection.query(sqlQuery, function(err, result) {
             if (err) {
@@ -181,7 +180,7 @@ const model = function() {
                 if(err) {
                     log(err);
                 }else{
-                    console.log(item);
+                    // console.log(item);
                     if(item.length > 0){
                         res.json(item);
                     }else{
@@ -224,7 +223,7 @@ const model = function() {
 
         mongoConn.then(client => {
             const collection = client.db(itemsDB).collection(iCollection);
-            collection.find({"published": true}).sort({ numberOfSaves: 1 }).limit(100).toArray(function(err, docs) {
+            collection.find({"published": true}).sort({"numberOfSaves": -1, "postTime": -1 }).limit(100).toArray(function(err, docs) {
                 if(err) {
                     log(err);
                 }else{
@@ -255,8 +254,8 @@ const model = function() {
     });
 
     router.post("/goods/save", function(req, res) {
-        const uploadPath = `https://res.cloudinary.com/https-oneunivers-herokuapp-com/image/upload/univers_product_images`;
         // const uploadPath = `https://s3.amazonaws.com/oneunivers-2-amazons3-bucket/uploads`;
+        const uploadPath = `https://res.cloudinary.com/https-oneunivers-herokuapp-com/image/upload/univers_product_images`;
         const userInput = req.body;
         userInput.postTime = Date.now();
         userInput.numberOfSaves = 0;
@@ -324,13 +323,32 @@ const model = function() {
         const username = formatName(req.params.username);
         const item = req.body.item;
 
+        // Insert document into my saved items DB
         mongoConn.then(client => {
             const collection = client.db(username).collection("savedItems");
 
             collection.updateMany({"_id": item["_id"]}, {$set: item}, {upsert: true}, function(err, result) {
-                if(err) log(err);
-                res.json(result);
+                if(err) {
+                    log(err);
+                }               
             });
+
+        }).catch(error => {
+            log(error);
+        });
+
+        // Update saved count on parent document
+        mongoConn.then(client => {
+            const collection = client.db(itemsDB).collection(iCollection);
+
+            collection.updateOne({"_id": ObjectID(item["_id"])}, {$inc: {"numberOfSaves": 1}}, function(err, result) {
+                if(err) {
+                    log(err);
+                }else{
+                    res.json(result);
+                }
+            });
+
         }).catch(error => {
             log(error);
         });

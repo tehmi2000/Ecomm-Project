@@ -24,7 +24,7 @@ const createItem = function(container, object){
     //         <span class="item-price">NGN21,000 <sup class="strike">NGN29,000</sup></span>
     //     </div>
     // </div>
-
+    console.log(object);
     let price = formatAsMoney(parseInt(object["item-price"]));
     let loadedImage = object["item-image"][0];
 

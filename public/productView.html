@@ -569,7 +569,6 @@
                     }
                 }).then(async function(response) {
                     try {
-                        console.log(response);
                         let result = await response.json();
                         displayResponse("Item has been saved successfully!");
                     } catch (error) {
@@ -602,9 +601,7 @@
                     }
                 }).then(async function(response) {
                     try {
-                        console.log(response);
                         let result = await response.json();
-                        console.log(result);
                         displayResponse("Item has been carted successfully!");
                     } catch (error) {
                         console.error(error);
