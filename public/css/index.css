@@ -70,6 +70,14 @@ marquee{
     margin-top: 0.5rem;
 }
 
+#about-container.pane{
+    padding: 1rem 2rem;
+    margin-top: 3rem;
+    background-color: #fbfbfd;
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px #dfdfe4;
+}
+
 .pane .section-head{
     padding: 0 1rem;
     justify-content: space-between;
@@ -85,6 +93,10 @@ marquee{
     text-transform: uppercase;
 }
 
+#about-container.pane .section-head > *{
+    color: #555;
+}
+
 .pane .section-head > *:last-child{
     margin: auto 0;
 }
@@ -97,9 +109,23 @@ marquee{
     background-color: #f2f2f5;
 }
 
+#about-container.pane .section-body{
+    background-color: transparent;
+}
+
 .pane .section-body .slider{
     width: auto;
     flex-wrap: wrap;
+}
+
+.pane .section-body .content{
+    padding: 0 1rem;
+    width: 100%;
+    display: block;
+    font-size: 1.4rem;
+    line-height: 2;
+    /* font-size: ; */
+    color: #333;
 }
 
 .pane .item{

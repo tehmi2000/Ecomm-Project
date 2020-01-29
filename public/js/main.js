@@ -7,46 +7,48 @@ const closeMenu = function() {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-    if (getCookie("username") && document.querySelector("#sidemenu")) {
-        let apiUrl = `/api/user/${getCookie("username").value}`;
-        let div0 = create("DIV");
-        let child = "<a href='/myprofile'><img id='user-photo' src='../assets/images/contacts-filled.png' alt='' class='user-picture'></a><a href='/logout' class='link-btn'>Logout</a>";
-        div0.innerHTML = child;
-        document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
-        
-        fetch(apiUrl).then(function(response) {
+    try{
+        if (getCookie("username") && document.querySelector("#sidemenu")) {
+            let apiUrl = `/api/user/${getCookie("username").value}`;
+            let div0 = create("DIV");
+            let child = "<a href='/myprofile'><img id='user-photo' src='../assets/images/contacts-filled.png' alt='' class='user-picture'></a><a href='/logout' class='link-btn'>Logout</a>";
+            div0.innerHTML = child;
+            document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
 
-            response.json().then( function(user_data) {
-                if(user_data.profile_picture !== ""){
-                    document.querySelector("#sidemenu #user-photo").src = user_data.profile_picture;
-                }
-            }).catch(function (error) {
+            fetch(apiUrl).then(function(response) {
+                response.json().then( function(user_data) {
+                    if(user_data.profile_picture !== ""){
+                        document.querySelector("#sidemenu #user-photo").src = user_data.profile_picture;
+                    }
+                }).catch(function (error) {
+                    console.error(error);
+                });
+            }).catch(function(error) {
                 console.error(error);
             });
 
-        }).catch(function(error) {
-            console.error(error);
-        });
+            document.querySelector("#sidemenu #controls").style.display = "flex";
+        }
 
-        document.querySelector("#sidemenu #controls").style.display = "flex";
-    }
+        let delay;
+        const dropMenu = document.querySelector(".drop-container");
+
+        if(dropMenu){
+            dropMenu.addEventListener("mouseover", function(evt) {
+                if(delay){
+                    clearTimeout(delay);
+                }
+                document.querySelector(".drop-container .drop-content").style.display = "flex";
+            });
     
-    let delay;
-    const dropMenu = document.querySelector(".drop-container");
-
-    if(dropMenu){
-        dropMenu.addEventListener("mouseover", function(evt) {
-            if(delay){
-                clearTimeout(delay);
-            }
-            document.querySelector(".drop-container .drop-content").style.display = "flex";
-        });
-
-        dropMenu.addEventListener("mouseout", function(evt) {
-            delay = setTimeout(function() {
-                document.querySelector(".drop-container .drop-content").style.display = "none";
-            }, 1000);
-        });
+            dropMenu.addEventListener("mouseout", function(evt) {
+                delay = setTimeout(function() {
+                    document.querySelector(".drop-container .drop-content").style.display = "none";
+                }, 1000);
+            });
+        }
+    }catch(e){
+        alert(e);
     }
 });
 
