@@ -258,14 +258,14 @@
     </header>
 
     <aside id="sidemenu">
-        <nav>
+        <nav class="rows">
             <div>
-                <a href="/login"><button>Login</button></a>
-                <a href="/signup"><button>Sign up</button></a>
+                <a href="/login" class="link-btn">Login</a>
+                <a href="/signup" class="link-btn">Sign up</a>
             </div>
             
             <div>
-                <button id="close-menu-btn" class="icofont-close" onclick="javascript:closeMenu()"></button>
+                <button id="close-menu-btn" class="icofont-close" title="Close Menu" onclick="closeMenu()" onkeydown="closeMenu()" tabindex="0"></button>
             </div>
         </nav>
 
@@ -296,11 +296,11 @@
                 <span class="head">Browse Categories</span>
                 <ul>
                     <li><a href="/categories">All categories</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Electronics</a></li>
-                    <li><a href="#">Phones & Tablets</a></li>
-                    <li><a href="#">Fashion & Beauty</a></li>
-                    <li><a href="#">Break the law</a></li>
+                    <li><a href="/categories/view?query=Fashion">Fashion</a></li>
+                    <li><a href="/categories/view?query=Electronics">Electronics</a></li>
+                    <li><a href="/categories/view?query=Phones%20%26%20Tablet">Phones & Tablets</a></li>
+                    <li><a href="/categories/view?query=Beauty%20%26%20Health%20Care">Beauty & Health Care</a></li>
+                    <li><a href="/categories/view?query=Baby,%20Kids%20%26%20Toys">Baby, Kids & Toys</a></li>
                 </ul>
             </div>
 
@@ -308,10 +308,10 @@
                 <span class="head">Useful Links</span>
                 <ul>
                     <li><a href="#">Getting Started</a></li>
-                    <li><a href="#">Explore</a></li>
+                    <li><a href="/categories">Explore</a></li>
                     <li><a href="/pricing">Pricing</a></li>
                     <li><a href="#">Marketing</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="/support#faq">FAQs</a></li>
                     <li><a href="/support">Support</a></li>
                 </ul>
             </div>

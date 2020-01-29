@@ -19,7 +19,7 @@
     <header>
         <div class="rows section-top">
             <div class="left-tab">
-                <a href="/"><span class="icofont-home"></span></a>
+                <a href="/" class="icofont-home"><span style="display: none;">Home</span></a>
                 <span><a href="/"><img src="/assets/images/fav.png" alt="LOGO" id="logo"></a></span>
             </div>
 
@@ -36,7 +36,7 @@
                     </ul>
                 </span>
 
-                <a href="/categories"><span class="icofont-cart"></span></a>
+                <a href="/categories" class="icofont-cart"><span style="display: none;">Home</span></a>
             </div>
         </div>
     </header>
@@ -47,9 +47,9 @@
         <form action="/auth" method="post" id="login-form" class="cols">
             <div id="error"></div>
             <label for="username">Username</label>
-            <input type="text" name="username" placeholder="Your username" required>
+            <input type="text" id="username" name="username" placeholder="Your username" required>
             <label for="password">Password</label>
-            <input type="password" name="password" placeholder="Your password" required>
+            <input type="password" id="password" name="password" placeholder="Your password" required>
             <input type="submit" value="Log In">
         </form>
         <div class="rows">
