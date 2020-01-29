@@ -224,7 +224,7 @@ marquee{
     }
 
     .pane .item{
-        margin: 0.2rem 0.4rem;
+        margin: 0.4rem 0.4rem;
         /* margin-right: 0; */
         box-shadow: 2px 2px 3px #e5e4fa;
         width: calc(50% - 0.8rem);
