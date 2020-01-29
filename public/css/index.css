@@ -115,7 +115,7 @@ marquee{
     background-repeat: no-repeat;
 }
 
-.pane .dummy.item .item-description >*{
+.pane .dummy.item .item-description > *{
     padding: 0.6rem;
     margin-top: 0.6rem;
 }
@@ -159,6 +159,7 @@ marquee{
 
 .pane .item .item-description > *{
     margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 
