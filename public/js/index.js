@@ -43,7 +43,7 @@ const createItem = function(container, object){
         let div1 = createComponent("DIV", null, ["item-img"]);
             let img0 = create("IMG");
         let div2 = createComponent("DIV", null, ["item-description", "cols"]);
-            let span0 = createComponent("SPAN", object["item-name"]);
+            let span0 = createComponent("SPAN", object["item-name"].toUpperCase());
             let span1 = createComponent("SPAN", price, ["item-price"]);
                 let sup0 = createComponent("SUP", originalPrice, ["strike"]);
 
