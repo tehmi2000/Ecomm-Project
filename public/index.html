@@ -20,7 +20,7 @@
     <header class="cols">
         <div class="rows section-top">
             <div class="left-tab">
-                <span class="icofont-navigation-menu" id="open-menu-btn" title="Side menu button" onclick="javascript:openMenu()" onkeydown="javascript:openMenu()"></span>
+                <span class="icofont-navigation-menu" id="open-menu-btn" title="Side menu button" onclick="openMenu()" onkeydown="openMenu()" tabindex="0"></span>
                 <span><a href="/"><img src="/assets/images/fav.png" alt="LOGO" id="logo"></a></span>
             </div>
 
@@ -39,8 +39,8 @@
             </div>
 
             <div class="middle-tab">
-                <form action="/search" method="get" title="Search Bar" id="search-form" class="rows" onsubmit="return validateSearch()">
-                    <input type="text" name="query" id="searchField" placeholder="Search for an item or thing">
+                <form action="/search" method="get" id="search-form" class="rows" onsubmit="return validateSearch()">
+                    <input type="text" name="query" id="searchField" title="Search Bar" placeholder="Search for an item or thing">
                     <button type="submit"><i class="icofont-search"></i></button>
                 </form>
             </div>
@@ -63,7 +63,7 @@
             </div>
             
             <div>
-                <button id="close-menu-btn" class="icofont-close" title="Close Menu" onclick="javascript:closeMenu()" onkeydown="javascript:closeMenu()"></button>
+                <button id="close-menu-btn" class="icofont-close" title="Close Menu" onclick="closeMenu()" onkeydown="closeMenu()" tabindex="0"></button>
             </div>
         </nav>
 
@@ -131,7 +131,7 @@
 
                     <div class="dummy item cols">
                         <div class="item-img">
-                            <img src alt="">
+                            <img src="" alt="">
                         </div>
                         <div class="item-description cols">
                             <span class="item-name"></span>
@@ -141,7 +141,7 @@
 
                     <div class="dummy item cols">
                         <div class="item-img">
-                            <img src alt="">
+                            <img src="" alt="">
                         </div>
                         <div class="item-description cols">
                             <span class="item-name"></span>
@@ -151,7 +151,7 @@
 
                     <div class="dummy item cols">
                         <div class="item-img">
-                            <img src alt="">
+                            <img src="" alt="">
                         </div>
                         <div class="item-description cols">
                             <span class="item-name"></span>
@@ -161,7 +161,7 @@
 
                     <div class="dummy item cols">
                         <div class="item-img">
-                            <img src alt="">
+                            <img src="" alt="">
                         </div>
                         <div class="item-description cols">
                             <span class="item-name"></span>
@@ -171,7 +171,7 @@
 
                     <div class="dummy item cols">
                         <div class="item-img">
-                            <img src alt="">
+                            <img src="" alt="">
                         </div>
                         <div class="item-description cols">
                             <span class="item-name"></span>

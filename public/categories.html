@@ -18,12 +18,12 @@
     <header class="cols">
         <div class="rows section-top">
             <div class="left-tab">
-                <span class="icofont-navigation-menu" id="open-menu-btn" onclick="javascript:openMenu()"></span>
+                <span class="icofont-navigation-menu" id="open-menu-btn" title="Side menu button" onclick="openMenu()" onkeydown="openMenu()" tabindex="0"></span>
                 <span><a href="/"><img src="/assets/images/fav.png" alt="LOGO" id="logo"></a></span>
             </div>
 
             <div class="right-tab">
-                <a href="/myprofile/orders?sectid=1"><span class="icofont-cart"></span></a>
+                <a href="/myprofile/orders?sectid=1" class="icofont-cart"><span style="display: none;">Cart</span></a>
             </div>
         </div>
 
@@ -38,7 +38,7 @@
 
             <div class="middle-tab">
                 <form action="/search" method="get" id="search-form" class="rows" onsubmit="return validateSearch()">
-                    <input type="text" name="query" id="searchField" placeholder="Search for an item or thing">
+                    <input type="text" name="query" id="searchField" title="Search Bar" placeholder="Search for an item or thing">
                     <button type="submit"><i class="icofont-search"></i></button>
                 </form>
             </div>
@@ -56,12 +56,12 @@
     <aside id="sidemenu">
         <nav class="rows">
             <div>
-                <a href="/login"><button>Login</button></a>
-                <a href="/signup"><button>Sign up</button></a>
+                <a href="/login" class="link-btn">Login</a>
+                <a href="/signup" class="link-btn">Sign up</a>
             </div>
             
             <div>
-                <button id="close-menu-btn" class="icofont-close" onclick="javascript:closeMenu()"></button>
+                <button id="close-menu-btn" class="icofont-close" title="Close Menu" onclick="closeMenu()" onkeydown="closeMenu()" tabindex="0"></button>
             </div>
         </nav>
 
@@ -104,7 +104,7 @@
                 <span class="head">Useful Links</span>
                 <ul>
                     <li><a href="#">Getting Started</a></li>
-                    <li><a href="#">Explore</a></li>
+                    <li><a href="/categories">Explore</a></li>
                     <li><a href="/pricing">Pricing</a></li>
                     <li><a href="#">Marketing</a></li>
                     <li><a href="/support#faq">FAQs</a></li>
@@ -171,22 +171,22 @@
             <div class="cols">
                 <span class="heading">HELP LINKS</span>
                 <a href="/support">Contact Us</a>
-                <a href="">About Us</a>
-                <a href="">Terms and Conditions</a>
+                <a href="#">About Us</a>
+                <a href="#">Terms and Conditions</a>
             </div>
     
             <div class="cols">
                 <span class="heading">QUICK LINKS</span>
-                <a href="">Log In</a>
-                <a href="">About Us</a>
+                <a href="#">Log In</a>
+                <a href="#">About Us</a>
             </div>
 
             <div class="cols">
                 <span class="heading">SOCIAL LINKS</span>
-                <a href="">Whatsapp</a>
-                <a href="">Twitter</a>
-                <a href="">Instagram</a>
-                <a href="">Facebook</a>
+                <a href="#">Whatsapp</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
             </div>
         </div>
 
