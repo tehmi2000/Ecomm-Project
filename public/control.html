@@ -106,7 +106,7 @@
                             </div>
 
                             <div class="rows promo-tab">
-                                <input type="text" placeholder="Promocode or Voucher">
+                                <input type="text" title="Voucher input field" placeholder="Promocode or Voucher">
                                 <button class="promo-apply-btn">Apply</button>
                             </div>
 
@@ -132,7 +132,7 @@
                     </div>
                 </div>
 
-                <section id="orders-box" class="cols">
+                <div id="orders-box" class="cols">
                     <span class="dummy item">
                         <img src="" alt="">
                         <div class="cols">
@@ -180,9 +180,9 @@
                     </div> -->
 
                     <!-- <button onclick="javascript:createItems({title: 'Me areand', qty: 2, price: 'N3,000'})"></button> -->
-                </section>
+                </div>
 
-                <section id="post-box" class="cols">
+                <div id="post-box" class="cols">
                     <form id="addToStore-form" class="cols">
                         <div class="gallery">
                             <div class="status-bar">Uploading Image (1/1)</div>
@@ -222,8 +222,8 @@
                                         <span data-id="color-tab" class="icofont-close"></span>
                                     </div>
                                     <div id="color-props">
-                                        <input type="color" name="item-color" value="#ff4500">
-                                        <input type="color" name="item-color" value="#ff4500">
+                                        <input type="color" name="item-color" value="#ff4500" title="color input">
+                                        <input type="color" name="item-color" value="#ff4500" title="color input">
                                     </div>
                                     <span class="add-prop"><i class="icofont-plus"></i> Extra color</span>
                                 </div>
@@ -234,7 +234,7 @@
                                         <span data-id="size-tab" class="icofont-close"></span>
                                     </div>
                                     <div>
-                                        <select id="">
+                                        <select id="random-size-id" title="Item size select">
                                             <option value="">Select Type</option>
                                         </select>
                                     </div>
@@ -271,9 +271,9 @@
                             <input type="submit" value="Add to Store">
                         </div>
                     </form>
-                </section>
+                </div>
                 
-                <section id="store-box" class="cols">
+                <div id="store-box" class="cols">
                     <div class="vendor-bg-cover">
                         <div class="vendor-notify-box">
 
@@ -308,8 +308,8 @@
                         </div>
                         <div class="rows">
                             <div class="rows">
-                                <button class="icofont-brand-microsoft strip-btn" onclick="gridView()"></button>
-                                <button class="icofont-justify-left strip-btn" onclick="listView()"><i class=""></i></button>
+                                <button class="icofont-brand-microsoft strip-btn" onclick="gridView()" title="Grid View"></button>
+                                <button class="icofont-justify-left strip-btn" onclick="listView()" title="List View"><i class=""></i></button>
                             </div>
                             <a href="/myprofile/orders?sectid=2" class="link-btn">New Item</a>
                         </div>
@@ -375,7 +375,7 @@
                             </button>
                         </span> -->
                     </div>
-                </section>
+                </div>
             </div>
 
             <button class="strip-btn fill-container" data-pay-btn>Pay NGN 32,500 Now</button>
