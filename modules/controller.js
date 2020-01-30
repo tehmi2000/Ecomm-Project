@@ -185,6 +185,9 @@ const model = function() {
     };
 
     const submitComplaint = function(req, res) {
+        const [firstname, lastname] = req.body.fullname.split(" ");
+        const email = req.body['user_email'];
+        emailHandler.sendAcknowledgeSupport(email, firstname, lastname);
         res.end("Submitted");
     };
 
