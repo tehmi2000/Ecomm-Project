@@ -67,12 +67,14 @@
         }
 
         .product-card .product-name{
+            line-height: 1.5;
             font-size: 2.2rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
         }
 
         .product-card .product-short-desc{
+            line-height: 1.5;
             margin-bottom: 1rem;
             font-size: 1.3rem;
             color: #aaa;
@@ -287,7 +289,82 @@
             width: 10rem;
         }
 
+
+        .pane{
+            padding: 1rem 2rem;
+            margin-top: 3rem;
+            background-color: #fbfbfd;
+            border-radius: 5px;
+            box-shadow: 2px 2px 3px #dfdfe4;
+        }
+
+        .pane .section-head{
+            padding: 0 1rem;
+            justify-content: space-between;
+        }
+
+        .pane .section-head h3{
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .pane .section-head > *{
+            color: #444;
+            text-transform: uppercase;
+        }
+
+        .pane .section-head > *:last-child{
+            margin: auto 0;
+        }
+
+        .pane .section-body{
+            width: 100%;
+            overflow-y: auto;
+            height: auto;
+            overflow: auto;
+            background-color: transparent;
+            padding: 2.5rem 0.6rem 1rem;
+        }
+
+        .pane .bars-container{
+            padding: 0 1rem;
+            border-left: 2px solid #999;
+            width: 300px;
+        }
+
+        .pane .overall-rating .rating-bars{
+            background-color: #f3cb1b;
+            margin: 0.3rem 0.2rem;
+            padding: 0.4rem;
+        }
+
+        .pane .avg-container{
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem;
+        }
+
+        .pane .avg-container *{
+            font-weight: 500;
+            line-height: 1.5;
+            font-size: 1.3rem;
+            color: #555;
+        }
+
+        .pane .avg-container *:last-child{
+            font-size: 3rem;
+        }
+
+        .pane .overall-rating .star{
+            font-size: 1rem;
+        }
+
+
         @media only screen and (max-width:800px){
+            header{
+                padding: 0.9rem 1rem;
+            }
+
             main{
                 padding-top: 5px;
             }
@@ -311,10 +388,11 @@
 
             .product-card, .info-card{
                 width: 100%;
-                padding: 2.5vh 5vw;
+                padding: 2vh 5vw;
             }
 
             .product-card .product-img{
+                border-radius: 5px;
                 background-image: none;
                 width: 100%;
                 min-height: 200px;
@@ -337,7 +415,7 @@
 
             .product-card .product-nav{
                 margin-top: 0.5rem;
-                margin-bottom: 3.5rem;
+                margin-bottom: 1.5rem;
             }
 
             .product-card .product-nav > *{
@@ -508,6 +586,48 @@
                 </div>
             </div>
         </div>
+
+        <!-- <section class="pane cols" id="reviews-container">
+            <div class="section-head rows">
+                <h3>Reviews & Ratings</h3>
+            </div>
+            
+            <div class="section-body">
+                <div class="overall-rating">
+                    <div class="rows">
+                        <div class="cols avg-container">
+                            <span>Avg. Rating</span>
+                            <span>4.5</span>
+                        </div>
+                        <div class="cols bars-container">
+                            <div class="rows">
+                                <span>5 <i class="icofont-ui-rating star"></i></span>
+                                <div class="lg-90 rating-bars"></div>
+                            </div>
+                            <div class="rows">
+                                <span>4 <i class="icofont-ui-rating star"></i></span>
+                                <div class="lg-80 rating-bars"></div>
+                            </div>
+                            <div class="rows">
+                                <span>3 <i class="icofont-ui-rating star"></i></span>
+                                <div class="lg-60 rating-bars"></div>
+                            </div>
+                            <div class="rows">
+                                <span>2 <i class="icofont-ui-rating star"></i></span>
+                                <div class="lg-40 rating-bars"></div>
+                            </div>
+                            <div class="rows">
+                                <span>1 <i class="icofont-ui-rating star"></i></span>
+                                <div class="lg-20 rating-bars"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider rows">
+
+                </div>
+            </div>
+        </section> -->
     </main>
 
     <footer class="cols">

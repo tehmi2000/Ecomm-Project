@@ -93,7 +93,7 @@
 
     <script>
         const err_image = `<i class="icofont-close-circled"></i>`;
-        const site_query = get_query()["idn"];
+        const site_query = getQuery()["idn"];
         if(site_query && site_query === "novalid"){
             // console.log(site_query);
             document.querySelector("form #error").innerHTML = err_image + ' <div>No account registered to that email!</div>';
