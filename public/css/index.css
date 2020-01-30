@@ -1,6 +1,3 @@
-/* DARK SHADE WHITE = #f2f2f5
-   LIGHT SHADE WHITE = #fcfcff*/
-
 body{
     background-color: #f2f2f5;
     overflow-x: hidden;
@@ -121,14 +118,12 @@ marquee{
     display: block;
     font-size: 1.4rem;
     line-height: 2;
-    /* font-size: ; */
     color: #333;
 }
 
 .pane .item{
     width: calc((100% - 5rem)/5);
     min-width: calc(90px + 1.8rem);
-    /* overflow: hidden; */
     padding: 0.8rem 0.6rem;
     margin: 0.5rem;
     box-shadow: 2px 2px 3px #dfdfe4;
@@ -143,7 +138,6 @@ marquee{
 
 .pane .dummy.item img, .pane .dummy.item .item-description *{
     background-color: #ccc;
-    /* background-image: url("../assets/images/Loading_icon.gif"); */
     animation: lazy-loading 1.1s ease-out 0s infinite normal forwards;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -179,10 +173,8 @@ marquee{
 }
 
 .item .item-price{
-    /* display: inline; */
     font-weight: bold;
     font-size: 1.3rem;
-    /* text-align: right; */
 }
 
 .item-price sup{
@@ -192,6 +184,7 @@ marquee{
 }
 
 .pane .item .item-description > *{
+    line-height: 1.5;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
 }
@@ -217,12 +210,10 @@ marquee{
 
     .pane{
         margin-top: 0;
-        /* margin: auto; */
     }
 
     .pane .item{
         margin: 0.4rem 0.4rem;
-        /* margin-right: 0; */
         box-shadow: 2px 2px 3px #e5e4fa;
         width: calc(50% - 0.8rem);
         padding: 0.3rem 0.7rem;
@@ -239,7 +230,6 @@ marquee{
 
     .item .item-price{
         font-size: 1.2rem;
-        /* text-align: right; */
     }
 
     .pane .item .item-description{
