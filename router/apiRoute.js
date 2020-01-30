@@ -34,6 +34,48 @@ const model = function() {
         return formattedString;
     };
 
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>....
+    router.post("/goods/upsert", function(req, res) {
+        const nameOfField = req.body['name-of-field'];
+        let value = null;
+        let item = {};
+
+        switch (req.body['type-of-field']) {
+            case "array":
+                value = [];
+                break;
+            
+            case "object":
+                value = {};
+                break;
+
+            case "text":
+                value = req.body['value-of-field'];
+                break;
+
+            default:
+                value = req.body['value-of-field'];
+                break;
+        }
+
+        item[`${nameOfField}`] = value;
+
+        console.log(item);
+
+        mongoConn.then(client => {
+            const collection = client.db(itemsDB).collection(iCollection);
+			
+			collection.updateMany({"published": true}, {$set: item}, {upsert: true}, function(err, result) {
+				if(err) log(err);
+				res.end(JSON.stringify(result));
+			});
+			
+        }).catch(error => {
+            log(error);
+        });
+    });
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
     router.get("/ads/all", function(req, res) {
     	const dirPath = `./public/assets/ads`;
     	fs.readdir(dirPath, (err, files) => {
