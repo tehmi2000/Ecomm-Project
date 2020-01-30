@@ -1,49 +1,46 @@
 const model = function(){
-	const fs = require("fs");
+	const request = require("request");
 	const config = require("./config");
-	const transporter = config.transporter;
-	const mailTransport = config.sgMail;
-	const mailOption = { sender: `'Univers Team' <${config.ePass['user']}>` };
-	let email_template = "<b>Hey</b>";
-
-	const msg = {
-		to: 'tehmi2000@gmail.com',
-		from: "universone132@gmail.com",
-		subject: "Sending is fun",
-		text: '...and easy',
-		html: '<strong>But crazy</strong>'
-	};
-
-	const emailSender = async function(msg) {
-        try {
-			let [result] = await mailTransport.send(msg);
-			return result;
-        } catch (error) {
-            return error;
-        }
-	};
-
-	const validation = async function(receiver){
+	
+	const validation = async function(receiver, firstname, lastname, id){
 		try{
-			fs.readFile("./modules/templates/account_verify.html", "utf8", function(err, content) {
-				if (err) {
-					config.log(err);
-				}else{
-					email_template = content;
-				}
+			const options = { 
+				method: 'POST',
+				url: 'https://api.sendgrid.com/v3/mail/send',
+				headers: {
+					'content-type': 'application/json',
+					authorization: `Bearer ${process.env.SENDGRID_API_KEY}`
+				},
+				body: { 
+					personalizations: [{
+						to: [
+								{
+									email: receiver,
+									name: `${firstname} ${lastname}`
+								}
+						],
+						dynamic_template_data: {
+							last_name: lastname,
+							first_name: firstname,
+							user_id: id,
+							Sender_Name: "Univers",
+							Sender_Address: "No. 14 Wale Erinle Str.",
+							Sender_City: "Itoki-Ota Behind Gas Company",
+							Sender_State: "Ogun State,  Nigeria"
+						},
+						subject: 'Welcome to Univers! Please confirm your registration to get started'
+					}],
+					from: { email: `${config.ePass['user']}`, name: 'Univers Team' },
+					reply_to: { email: `${config.ePass['user']}`, name: 'Univers Team' },
+					template_id: 'd-2d7ba831338f4ed6821fe281b03170e7'
+				},
+				json: true
+			};
+	
+			request(options, function (error, response, body) {
+				if (error) config.log(error);
+				console.log({statusCode: response.statusCode, body: response.body}, body);
 			});
-
-			let deliveryReport = await transporter.sendMail({
-				from: mailOption.sender,
-				to: receiver,
-				subject: "Welcome to Univers! Please confirm your registration to get started",
-				text: "",
-				html: email_template || "<h1>Hi</h1>"
-			});
-
-			console.log("Verification Email with messageID %s sent", deliveryReport.messageId);
-			return deliveryReport;
-
 		}catch(err){
 			config.log("Verification Email sending error");
 			config.log(err);
@@ -53,10 +50,50 @@ const model = function(){
 	const notification = async function(receiver){
 	};
 
+	const resetter = async function(receiver, firstname, lastname, id){
+		const options = { 
+			method: 'POST',
+			url: 'https://api.sendgrid.com/v3/mail/send',
+			headers: {
+				'content-type': 'application/json',
+				authorization: `Bearer ${process.env.SENDGRID_API_KEY}`
+			},
+			body: { 
+				personalizations: [{
+					to: [
+							{
+								email: receiver,
+								name: `${firstname} ${lastname}`
+							}
+					],
+					dynamic_template_data: {
+						last_name: lastname,
+						first_name: firstname,
+						user_id: id,
+						Sender_Name: "Univers",
+						Sender_Address: "No. 14 Wale Erinle Str.",
+						Sender_City: "Itoki-Ota Behind Gas Company",
+						Sender_State: "Ogun State,  Nigeria"
+					},
+					subject: 'Password Reset'
+				}],
+				from: { email: `${config.ePass['user']}`, name: 'Univers Team' },
+				reply_to: { email: `${config.ePass['user']}`, name: 'Univers Team' },
+				template_id: 'd-2d7ba831338f4ed6821fe281b03170e7'
+			},
+			json: true
+		};
+
+		request(options, function (error, response, body) {
+			if (error) config.log(error);
+			console.log({statusCode: response.statusCode});
+		});
+	};
+
 	return {
-		emailSender,
 		sendVerificationMail: validation,
-		sendNotificationMail: notification
+		sendNotificationMail: notification,
+		sendPasswordReset: resetter
 	};
 };
 

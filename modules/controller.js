@@ -3,8 +3,8 @@ const model = function() {
     const AWS = require('aws-sdk');
     const cloudinary = require('cloudinary').v2;
     const mysql_config =  require("./config");
+    const emailHandler = require("./emailHandler");
     const { log } = mysql_config;
-    const { emailSender } = require("./emailHandler");
     const ph = require("./passwordHash");
 
     // AWS CONFIGURATION
@@ -237,7 +237,7 @@ const model = function() {
                         log(err);
                     }else{
                         console.log('Inserted successfully!');
-                        require("./emailHandler").sendVerificationMail(user_email);
+                        emailHandler.sendVerificationMail(user_email, user_firstname, user_lastname, uuid);
                         req.session.username = user_username;
                         res.cookie("username", user_username);
                         res.redirect(`/verification.html?idn=success&generated_uuid=${ph.softEncrypt(uuid)}`);
@@ -304,7 +304,7 @@ const model = function() {
             const account_email = req.body["reset-email"];
             console.log(account_email);
 
-            const query = `SELECT email FROM users WHERE email='${account_email}'`;
+            const query = `SELECT uID, email, firstname, lastname FROM users WHERE email='${account_email}'`;
             mysql_config.connection.query(query, function(err, result){
                 if(err) {
                     log(err);
@@ -314,21 +314,7 @@ const model = function() {
                     if (result.length === 0){
                         res.redirect(`/passwordReset?error=${ph.softEncrypt("not found")}&idn=novalid`);
                     }else{
-                        console.log(req.body);
-                        const msg = {
-                            to: account_email,
-                            from: "universone132@gmail.com",
-                            subject: "Password Reset Request",
-                            text: '...and easy',
-                            html: '<strong>Password reset!</strong>'
-                        };
-
-                        let report = emailSender(msg);
-                        report.then(deliveryReport => {
-                            console.log(deliveryReport);
-                        }).catch(errorReport => {
-                            log(errorReport);
-                        });
+                        emailHandler.sendPasswordReset(account_email, user.firstname, user.lastname, user.uID);
                         res.end("Password Reset!");
                     }
                 }
