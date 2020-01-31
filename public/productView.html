@@ -488,9 +488,7 @@
                 <div class="product-short-desc">Short description text appears here</div>
                 <div id="product-pic" class="product-img"></div>
                 <div class="product-nav">
-                    <span data-nav-one class="active"></span>
-                    <span data-nav-two></span>
-                    <span data-nav-three></span>
+                    <!-- <span data-nav-one class="active"></span> -->
                 </div>
             </div>
             
@@ -693,6 +691,27 @@
             element.classList.add("active")
         };
 
+        const createNav = function(number, img, active) {
+            active = active || false; 
+            
+            let container = document.querySelector(".card-container .product-card .product-nav");
+            let span0 = null;
+            if(active){
+                span0 = createComponent("SPAN", null, ["active"]);
+            }else{
+                span0 = createComponent("SPAN");
+            }
+            
+            span0.setAttribute(`data-nav-${number}`, true);
+            span0.setAttribute("data-pic", img);
+            span0.addEventListener("click", function(evt) {
+                setActive(evt.currentTarget);
+                allFields["frontImage"].style.backgroundImage = `url(${evt.currentTarget.getAttribute("data-pic")})`;
+            });
+
+            container.appendChild(span0);
+        };
+
         let itemID = getQuery()["queryItem"];
         let globalItem = null
         let preferredItem = {};
@@ -704,9 +723,6 @@
             frontImage: document.querySelector(".product-card #product-pic"),
             backImage: document.querySelector(".bg-image-container"),
             price: document.querySelector(".info-card .product-price"),
-            nav1: document.querySelector(".product-card [data-nav-one]"),
-            nav2: document.querySelector(".product-card [data-nav-two]"),
-            nav3: document.querySelector(".product-card [data-nav-three]"),
             discount: document.querySelector('.info-card .discount-label'),
             quantity: document.querySelector('.info-card .pref-options #quantity-input'),
             total: document.querySelector('.info-card .pref-options .total-input'),
@@ -749,26 +765,12 @@
                     }
                     
                     allFields["frontImage"].style.backgroundImage = `url(${item["item-image"][0]})`;
-                    allFields["nav1"].setAttribute("data-pic", item["item-image"][0]);
-                    allFields["nav2"].setAttribute("data-pic", item["item-image"][1]);
-                    allFields["nav3"].setAttribute("data-pic", item["item-image"][2]);
-
-                    allFields["nav1"].addEventListener("click", function(evt) {
-                        setActive(evt.currentTarget);
-                        allFields["frontImage"].style.backgroundImage = `url(${evt.currentTarget.getAttribute("data-pic")})`;
-                        // allFields["backImage"].style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${globalItem["item-image"][1]})`;
-                    });
-
-                    allFields["nav2"].addEventListener("click", function(evt) {
-                        setActive(evt.currentTarget);
-                        allFields["frontImage"].style.backgroundImage = `url(${evt.currentTarget.getAttribute("data-pic")})`;
-                        // allFields["backImage"].style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${globalItem["item-image"][2]})`;
-                    });
-
-                    allFields["nav3"].addEventListener("click", function(evt) {
-                        setActive(evt.currentTarget);
-                        allFields["frontImage"].style.backgroundImage = `url(${evt.currentTarget.getAttribute("data-pic")})`;
-                        // allFields["backImage"].style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${globalItem["item-image"][0]})`;
+                    item["item-image"].forEach((img, index) => {
+                        if(index === 0){
+                            createNav(index, img, true);
+                        }else{
+                            createNav(index, img);
+                        }
                     });
                 }
             } catch (error) {
