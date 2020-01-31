@@ -163,7 +163,7 @@ marquee{
     max-height: 205px;
     min-width: 90px;
     min-height: 180px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .pane .item .item-description{
