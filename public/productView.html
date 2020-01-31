@@ -31,7 +31,7 @@
 
         .bg-image-container{
             width: 100%;
-            height: 88vh;
+            height: 100vh;
             background-color: #eaeaec;
             background-image: linear-gradient(135deg, rgba(167, 62, 1, 0.86) 40%, rgba(30, 143, 255, 0.74) 40%);
             background-image: url("../assets/images/warm-save-wallpaper-dark-texture_1258-284.jpg");
@@ -304,8 +304,9 @@
         }
 
         .pane .section-head h3{
-            font-size: 1.5rem;
-            margin: 1rem 0;
+            font-size: 1.6rem;
+            margin: 2rem 0;
+            padding-top: 1rem;
         }
 
         .pane .section-head > *{
@@ -325,40 +326,6 @@
             background-color: transparent;
             padding: 2.5rem 0.6rem 1rem;
         }
-
-        .pane .bars-container{
-            padding: 0 1rem;
-            border-left: 2px solid #999;
-            width: 300px;
-        }
-
-        .pane .overall-rating .rating-bars{
-            background-color: #f3cb1b;
-            margin: 0.3rem 0.2rem;
-            padding: 0.4rem;
-        }
-
-        .pane .avg-container{
-            justify-content: center;
-            align-items: center;
-            padding: 0.5rem;
-        }
-
-        .pane .avg-container *{
-            font-weight: 500;
-            line-height: 1.5;
-            font-size: 1.3rem;
-            color: #555;
-        }
-
-        .pane .avg-container *:last-child{
-            font-size: 3rem;
-        }
-
-        .pane .overall-rating .star{
-            font-size: 1rem;
-        }
-
 
         @media only screen and (max-width:800px){
             header{
@@ -587,47 +554,19 @@
             </div>
         </div>
 
-        <!-- <section class="pane cols" id="reviews-container">
+        <section class="pane cols" id="reviews-container">
             <div class="section-head rows">
-                <h3>Reviews & Ratings</h3>
+                <h3>Comments & Reviews</h3>
             </div>
             
             <div class="section-body">
-                <div class="overall-rating">
-                    <div class="rows">
-                        <div class="cols avg-container">
-                            <span>Avg. Rating</span>
-                            <span>4.5</span>
-                        </div>
-                        <div class="cols bars-container">
-                            <div class="rows">
-                                <span>5 <i class="icofont-ui-rating star"></i></span>
-                                <div class="lg-90 rating-bars"></div>
-                            </div>
-                            <div class="rows">
-                                <span>4 <i class="icofont-ui-rating star"></i></span>
-                                <div class="lg-80 rating-bars"></div>
-                            </div>
-                            <div class="rows">
-                                <span>3 <i class="icofont-ui-rating star"></i></span>
-                                <div class="lg-60 rating-bars"></div>
-                            </div>
-                            <div class="rows">
-                                <span>2 <i class="icofont-ui-rating star"></i></span>
-                                <div class="lg-40 rating-bars"></div>
-                            </div>
-                            <div class="rows">
-                                <span>1 <i class="icofont-ui-rating star"></i></span>
-                                <div class="lg-20 rating-bars"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div id="wpac-comment"></div>
+                <!-- <a href="https://widgetpack.com" class="wpac-cr">Comments System WIDGET PACK</a> -->
                 <div class="slider rows">
 
                 </div>
             </div>
-        </section> -->
+        </section>
     </main>
 
     <footer class="cols">
@@ -839,6 +778,19 @@
             console.error(error);
         });
 
+    </script>
+    <script type="text/javascript">
+        wpac_init = window.wpac_init || [];
+        wpac_init.push({widget: 'Comment', id: 23145, limit: 5, url: `https://oneunivers.herokuapp.com/view/${itemID}`});
+        (function() {
+            if ('WIDGETPACK_LOADED' in window) return;
+            WIDGETPACK_LOADED = true;
+            var mc = document.createElement('script');
+            mc.type = 'text/javascript';
+            mc.async = true;
+            mc.src = 'https://embed.widgetpack.com/widget.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+        })();
     </script>
 </body>
 </html>
