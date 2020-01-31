@@ -156,7 +156,7 @@ marquee{
 
 .pane .item img{
     margin-top: 0.5rem;
-    background-color: #ccc;
+    background-color: #f8f8f8;
     width: 14vmax;
     height: 16vmax;
     max-width: 180px;
@@ -225,7 +225,7 @@ marquee{
         max-height: 205px;
         min-width: 78%;
         min-height: 180px;
-        object-fit: cover;
+        object-fit: contain;
     }
 
     .item .item-price{
