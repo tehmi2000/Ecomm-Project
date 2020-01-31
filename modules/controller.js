@@ -168,16 +168,14 @@ const model = function() {
 
     const update = function(req, res) {
 
-        const user_username = req.body.username;
-        const user_address = `${req.body.state}, ${req.body.country}`;
-        const user_email = req.body.email;
-        const user_firstname = formatName(req.body.firstname);
-        const user_lastname = formatName(req.body.lastname);
-        const user_phone = req.body.phone;
-        const user_telcode = req.body.telcode;
+        const user_username = authSanitizer(req.body.username);
+        const user_address = `${authSanitizer(req.body.state)}, ${authSanitizer(req.body.country)}`;
+        const user_firstname = authSanitizer(formatName(req.body.firstname));
+        const user_lastname = authSanitizer(formatName(req.body.lastname));
+        const user_phone = authSanitizer(req.body.phone);
+        const user_telcode = authSanitizer(req.body.telcode);
 
-        let query = `UPDATE users SET firstname='${user_firstname}', lastname='${user_lastname}', telcode='${user_telcode}', phone='${user_phone}', email='${user_email}', address='${user_address}' WHERE username='${user_username}'`;
-        
+        let query = `UPDATE users SET firstname='${user_firstname}', lastname='${user_lastname}', telcode='${user_telcode}', phone='${user_phone}', address='${user_address}' WHERE username='${user_username}'`;
         mysql_config.connection.query(query, function(err, result){
             if(err) {
                 log(err);

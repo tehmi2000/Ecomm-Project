@@ -72,7 +72,7 @@ const insertUserData = function(data) {
     };
 
     for (const key of Object.keys(data)) {
-
+        // debugger;
         if(data[key] !== "" && data[key] !== undefined){
 
             switch (key) {
@@ -86,7 +86,7 @@ const insertUserData = function(data) {
                 
                 case "phone":
                     try{
-                        idDisplay[key].innerHTML = `Tel: ${data[key]}`;
+                        idDisplay[key].innerHTML = `Mobile Number: ${data[key]}`;
                         fields[key].value = data[key];
                     }catch(err){
                         console.error(err);
@@ -122,15 +122,15 @@ const insertUserData = function(data) {
 
                 default:
                     try{
-                    
+                        if(fields.hasOwnProperty(key) === true){
+                            fields[key].value = data[key];
+                        }else if(idDisplay.hasOwnProperty(key) === true){
+                            idDisplay[key].innerHTML = data[key];
+                        }
                     }catch(err){
                         console.error(err);
                     }
-                    if(fields.hasOwnProperty(key) === true){
-                        fields[key].value = data[key];
-                    }else if(idDisplay.hasOwnProperty(key) === true){
-                        idDisplay[key].innerHTML = data[key];
-                    }
+                    
                     break;
             }
             // document.querySelector("#sidemenu #user-photo").src = user_data.profile_picture;
