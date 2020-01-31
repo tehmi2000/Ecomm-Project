@@ -113,7 +113,7 @@ input[type="submit"], select{
 }
 
 .drop-container:hover .drop-content{
-    display: block;
+    display: flex;
 }
 
 .toggle-switch{

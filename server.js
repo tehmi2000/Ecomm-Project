@@ -93,6 +93,10 @@ app.get("/vendors/pay/success", controller.paymentSuccess);
 app.get("/vendors/vendor-apply", controller.vendorApplication);
 app.get("/support", controller.support);
 
+app.get('', function(req, res) {
+    res.cookie()
+})
+
 app.post("/upload", controller.cloudUpload);
 app.post("/auth", controller.auth); // Login handler
 app.post("/register", controller.register); // Sign up/Registration handler

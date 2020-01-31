@@ -140,7 +140,11 @@ const model = function() {
                     log(err);
                     res.json([{...err, status: 403}]);
                 }else{
-                    uploadToCloud(uploadedFile.name, `${localPath}/${uploadedFile.name}`);
+                    try{
+                        uploadToCloud(uploadedFile.name, `${localPath}/${uploadedFile.name}`);
+                    }catch(e){
+                        console.error(e);
+                    }
                 }
             });
         }
@@ -210,7 +214,7 @@ const model = function() {
                 }else{
                     if (ph.decrypt(user1.password) === user_password){
                         req.session.username = user_username;
-                        res.cookie("username", user_username);
+                        res.cookie("username", user_username, {maxAge: 72000000});
                         res.redirect(`/?sess=${ph.softEncrypt("success")}&idn=success`);
                     }else{
                         res.redirect(`/login?error=${ph.softEncrypt("not found")}&idn=invalidid`);
@@ -245,7 +249,7 @@ const model = function() {
                         console.log('Inserted successfully!');
                         emailHandler.sendVerificationMail(user_email, user_firstname, user_lastname, uuid);
                         req.session.username = user_username;
-                        res.cookie("username", user_username);
+                        res.cookie("username", user_username, {maxAge: 72000000});
                         res.redirect(`/verification.html?idn=success&generated_uuid=${ph.softEncrypt(uuid)}`);
                     }
                 });
@@ -283,7 +287,8 @@ const model = function() {
                         console.log('New Vendor Profile Inserted successfully!');
                         // require("./emailHandler").sendVerificationMail(user_email);
                         // req.session.username = user_username;
-                        res.cookie(`univers-${username}-sellerID`, sellerID);
+
+                        res.cookie(`univers-${username}-sellerID`, sellerID, {maxAge: 72000000});
                         res.json([{
                             status: 'ok',
                             sellerID,

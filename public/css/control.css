@@ -142,12 +142,6 @@ main{
     background-color: #efefef;
 }
 
-/* #post-box textarea{
-    border: none;
-    padding: 1.5rem 2rem;
-    background-color: #efefef;
-} */
-
 #post-box input[type="color"]{
     padding: 0;
     background-color: unset;
@@ -883,12 +877,17 @@ main{
         margin-top: 0.8rem;
     }
 
+
     .control-body .header{
-        z-index: +100;
+        z-index: +200;
         position: sticky;
         top: 0;
         background-image: none;
         background-color: rgb(226, 62, 2);
+    }
+
+    .drop-container:hover .drop-content{
+        z-index: +300;
     }
 
     .control-body .body{

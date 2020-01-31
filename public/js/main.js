@@ -191,6 +191,75 @@ function getCookie(name){
     }
 }
 
+const preFormatInput = function (content) {
+    content = `<pre>${content}</pre>`;
+
+    while(content.search("\n") > 0){
+        content = content.replace("\n", "<br/>");
+    }
+
+    let formattedContent = "",
+        startBold = false,
+        endBold = false,
+        startItalic = false,
+        endItalic = false,
+        startLink = {
+            state: false,
+            position: null
+        },
+        endLink = {
+            state: false,
+            position: null
+        };
+
+    for (let index = 0; index < content.length; index++) {
+
+        if (content.charAt(index) == '*') {
+            if (startBold == false) {
+                startBold = true;
+                content = `${content.substr(0, index)}<b>${content.substr(index + 1)}`;
+            } else {
+                endBold = true;
+                startBold = false;
+                content = `${content.substr(0, index)}</b>${content.substr(index + 1)}`;
+            }
+        }
+
+        if (content.charAt(index) == '_') {
+            if (startItalic == false) {
+                startItalic = true;
+                content = content.substr(0, index) + "<i>" + content.substr(index + 1);
+            } else {
+                endItalic = true;
+                content = content.substr(0, index) + "</i>" + content.substr(index + 1);
+                endItalic = false;
+                startItalic = false;
+            }
+        }
+
+        if (content.charAt(index) == '~') {
+            try {
+                if (startLink.state == false) {
+                    startLink.state = true;
+                    startLink.position = index;
+                } else {
+
+                    endLink.state = true;
+                    endLink.position = index;
+                    content = content.substr(0, startLink.position) + "<a href=\"https://" + content.substr(startLink.position + 1, endLink.position - startLink.position - 1) + "\">" + content.substr(startLink.position + 1, endLink.position - startLink.position - 1) + "</a>" + content.substr(index + 1);
+                    startLink.position = null;
+                    endLink.state = false;
+                    startLink.state = false;
+                }
+            } catch (e) { console.error(e); }
+        }
+    }
+
+    formattedContent = content.replace("<pre>" , "")
+                              .replace("</pre>","");
+    return formattedContent;
+}
+
 function formatName(str){
     let formattedString = (str.charAt(0)).toUpperCase()+(str.substring(1)).toLowerCase();
     return formattedString;

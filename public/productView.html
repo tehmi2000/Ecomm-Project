@@ -660,9 +660,15 @@
     </footer>
 
     <script>
-        gsap.from(document.querySelector("main .card-container"), 2.5, {marginLeft: "105vw", delay: 0.5, ease: "elastic.out(0.4, 0.2)", onComplete: function() {
-            
-        }});
+        const myDevice = function(x) {
+            if (!x.matches) { // If media query is not true
+                gsap.from(document.querySelector("main .card-container"), 2.5, {marginLeft: "105vw", delay: 0.5, ease: "elastic.out(0.4, 0.2)"});
+            }
+        }
+
+        let x = window.matchMedia("(max-width: 800px)");
+        myDevice(x); // Call listener function at run time
+        x.addListener(myDevice);        
 
         const priceQtyHandler = function(evt) {
             let qty = evt.currentTarget.value;

@@ -131,7 +131,7 @@ const formHandler = function(evt) {
             "item-image": imageField,
             "item-name": document.querySelector("[name='item-name']").value,
             "short-desc": document.querySelector("[name='item-short-desc']").value,
-            "item-desc": document.querySelector("[name='item-desc']").value,
+            "item-desc": preFormatInput(document.querySelector("[name='item-desc']").value),
             categories: categoryField,
             sellerID: document.querySelector("[name='sellerID']").value,
             "item-price": document.querySelector("[name='item-price']").value,
