@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <title>Univers | My Store</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/miniHeader.css">
+    <link rel="stylesheet" href="/css/publicStore.css">
+    <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
+    <script src="/js/main.js"></script>
+    <script src="/js/lib/greensock/minified/gsap.min.js"></script>
+    <script src="/js/publicStore.js"></script>
+</head>
+<body>
+    <header>
+        <div class="rows section-top">
+            <div class="left-tab">
+                <a href="/" class="icofont-home"><span style="display: none;">Home</span></a>
+                <span><a href="/"><img src="/assets/images/fav.png" alt="LOGO" id="logo"></a></span>
+            </div>
+
+            <div class="right-tab">
+                <span class="drop-container">
+                    <span class="drop-button">More<i class="icofont-caret-down"></i></span>
+                    <ul class="drop-content">
+                        <li><a href="#">[Get Started]</a></li>
+                        <li><a href="#">[Explore]</a></li>
+                        <li><a href="#">[Explore]</a></li>
+                        <li><a href="/support/#faq">FAQs</a></li>
+                        <li><a href="/myprofile/orders?sectid=2">Sell An Item</a></li>
+                    </ul>
+                </span>
+
+                <a href="/categories" class="icofont-penalty-card"><span style="display: none;">categories</span></a>
+            </div>
+        </div>
+    </header>
+    <noscript>You need javascript enabled to be able to view this page</noscript>
+    <main>
+        <h1 id="response" class="response-display"></h1>
+        <aside class="control-head">
+            <nav class="navigation">
+                <a href="/publicStore.html" class="nav-child" id="three" data-title="My Store">My Store</a>
+            </nav>
+        </aside>
+
+        <div class="lg-100 control-body">
+            <div class="lg-100 header">
+                <h2 id="title">Nwos Stores</h2>
+                <h5 id="subtitle">Buy affordables</h5>
+            </div>
+
+            <div class="lg-100 body">
+                <div class="vendor-bg-cover">
+                    <div class="vendor-notify-box">
+
+                        <div class="body-box">
+                            <h2>Become a Vendor!</h2>
+                            <p class="vendor-brief-text">
+                                Join our vendors to get your very own store on Univers. By becoming a vendor on this platform 
+                                you are have access to more features, such as:
+                            </p>
+
+                            <ul>
+                                <li class="icofont-">Ability to sell your items</li>
+                                <li class="icofont-">Get to own a store</li>
+                                <li class="icofont-">Unrestricted access to public vendor profiles</li>
+                                <li class="icofont-">Perform transactions off and on-site anytime</li>
+                                <li class="icofont-">Get a vendor license</li>
+                            </ul>
+
+                            <div class="lg-100">
+                                <a href="/vendors/vendor-apply" class="strip-link vendor-apply-btn">Apply Now</a>
+                                <a href="/myprofile/orders?sectid=4" class="strip-link vendor-apply-btn no">Maybe Later?</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-bg-cover">
+                    <div class="payment-popup-box">
+                        <span class="icofont-close close-btn"></span>
+                        <h2>Payment Details</h2>
+                        <div class="cols total-fees">
+                            <div class="rows fee-item">
+                                <span class="fee-title">Cart Total</span>
+                                <span class="fee credit">+ NGN 0.00</span>
+                            </div>
+                            <div class="rows fee-item">
+                                <span class="fee-title">Value Added Tax</span>
+                                <span class="fee debt">- NGN 0.00</span>
+                            </div>
+                            <div class="rows fee-item">
+                                <span class="fee-title">Shipping Fee</span>
+                                <span class="fee debt">- NGN 0.00</span>
+                            </div>
+
+                            <div class="rows promo-tab">
+                                <input type="text" title="Voucher input field" placeholder="Promocode or Voucher">
+                                <button class="promo-apply-btn">Apply</button>
+                            </div>
+
+                            <div class="rows sum-total">
+                                <span>Total: </span>
+                                <span>NGN 0.00</span>
+                            </div>
+                        </div>
+
+                        <h4>Pay Now With</h4>
+                        <div class="lg-100 cols">
+                            <form >
+                                <script src="https://js.paystack.co/v1/inline.js"></script>
+                                <button type="button" onclick="payWithPaystack()"> Pay with Paystack </button> 
+                            </form>
+    
+                            <form >
+                                <script src="https://js.paystack.co/v1/inline.js"></script>
+                                <button type="button" onclick="payWithPaystack()"> Pay with Bank </button> 
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div id="store-box" class="cols">
+                    <div class="vendor-bg-cover">
+                        <div class="vendor-notify-box">
+
+                            <div class="body-box">
+                                <h2>Become a Vendor!</h2>
+                                <p class="vendor-brief-text">
+                                    Join our vendors to get your very own store on Univers. By becoming a vendor on this platform 
+                                    you are have access to more features, such as:
+                                </p>
+    
+                                <ul>
+                                    <li class="icofont-">Ability to sell your items</li>
+                                    <li class="icofont-">Get to own a store</li>
+                                    <li class="icofont-">Unrestricted access to public vendor profiles</li>
+                                    <li class="icofont-">Perform transactions off and on-site anytime</li>
+                                    <li class="icofont-">Get a vendor license</li>
+                                </ul>
+    
+                                <div class="lg-100">
+                                    <a href="/vendors/vendor-apply" class="strip-link vendor-apply-btn">Apply Now</a>
+                                    <a href="/" class="strip-link vendor-apply-btn no">Maybe Later?</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cols store-controls">
+                        <div class="rows">
+                            <div class="rows">
+                                <button class="icofont-brand-microsoft strip-btn" onclick="gridView()" title="Grid View"></button>
+                                <button class="icofont-justify-left strip-btn" onclick="listView()" title="List View"><i class=""></i></button>
+                            </div>
+                            <div class="rows">
+                                <form action="" method="get">
+                                    <input type="text" name="" id="">
+                                    <button type="submit" class="icofont-search"></button>
+                                </form>
+                                <button class="strip-btn icofont-setting">Settings</button>
+                            </div>
+                            
+                            <!-- <a href="/myprofile/orders?sectid=2" class="link-btn">New Item</a> -->
+                        </div>
+                    </div>
+
+                    <div class="rows store-item-container">
+                        <span class="dummy item">
+                            <img src="#" alt="">
+                            <div class="cols">
+                                <span class="item-name"></span>
+                                <span class="item-number cols">
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                                <span class="item-buttons">
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                            </div>
+                        </span>
+    
+                        <span class="dummy item">
+                            <img src="#" alt="">
+                            <div class="cols">
+                                <span class="item-name"></span>
+                                <span class="item-number cols">
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                                <span class="item-buttons">
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                            </div>
+                        </span>
+
+                        <span class="dummy item">
+                            <img src="#" alt="">
+                            <div class="cols">
+                                <span class="item-name"></span>
+                                <span class="item-number cols">
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                                <span class="item-buttons">
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                            </div>
+                        </span>
+    
+                        <!-- <span class="grid store-item gr">
+                            <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
+                            <span class="item-name">Sony Fifa 20 Standard Edition-PS4</span>
+                            <span class="item-qty">Quantity: 1</span>
+                            <span class="item-price">NGN 15,000,000</span>
+                            <div class="rows mod-controls">
+                                <button class="icofont-pencil"></button>
+                                <button class="icofont-bin"></button>
+                            </div>
+                            <button class="toggle-switch publish-btn">
+                                <div class="toggle-ball"></div>
+                            </button>
+                        </span> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- <button class="strip-btn lg-100" data-pay-btn>Pay NGN 32,500 Now</button> -->
+
+            <div class="pagination lg-100 rows">
+                <span>&laquo;</span>
+                <span class="active-page">1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>&raquo;</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="cols">
+        <div class="links rows">
+            <div class="cols">
+                <span class="f-heading">HELP LINKS</span>
+                <a href="/support">Contact Us</a>
+                <a href="#">About Us</a>
+                <a href="#">Terms and Conditions</a>
+            </div>
+    
+            <div class="cols">
+                <span class="f-heading">QUICK LINKS</span>
+                <a href="#">Log In</a>
+                <a href="#">About Us</a>
+            </div>
+
+            <div class="cols">
+                <span class="f-heading">SOCIAL LINKS</span>
+                <a href="#">Whatsapp</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+            </div>
+        </div>
+
+        <div class="lg-100">
+            <span class="rows">Copyright &copy; 2019 Univers.com. All rights reserved</span>
+        </div>
+    </footer>
+</body>
+</html>

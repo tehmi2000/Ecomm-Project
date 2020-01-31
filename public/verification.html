@@ -149,7 +149,7 @@
     </footer>
 
     <script>
-        const query = get_query();
+        const query = getQuery();
         let redirect_url = "?redirect=true&";
 
         for (const key in query) {
@@ -157,7 +157,7 @@
         }
         const redirectButton = document.querySelector("#redirect-home");
         redirectButton.setAttribute("href", `/${redirect_url}`);
-        console.log(redirect_url);
+        // console.log(redirect_url);
     </script>
 </body>
 </html>

@@ -124,8 +124,20 @@
                                             <td role="module-content">
                                               <img data-proportionally-constrained="true" data-responsive="true" src="https://oneunivers.herokuapp.com/assets/images/fav.png" alt="Univers Logo" style="width: auto; height: 2rem; display: block; margin: 0 auto 1rem">
                                               <p style="margin: auto; border: 1px solid #eee; padding: 0.8rem 1rem; line-height: 1.5rem; font-size: 0.8rem; color: #222; box-sizing: border-box;">
-                                                  Hello {{last_name}} {{first_name}},<br/><br/><span>Please verify your email address by clicking the button below or copy this link into any web browser: </span><a href="#">https://oneunivers.herokuapp.com/verification_status?redirect=true&account_holder={{user_id}}</a>
-                                                  <a href="#" style="display:block; margin: 1rem auto; max-width: 300px; min-width: 100px; text-align: center; padding: 0.8rem 2.4rem; background-color: #ff4500; border: none; color: #fff; border-radius: 5px; box-shadow: 1px 1px 2px rgba(185, 91, 3, 0.5); box-sizing: border-box;">Activate Account</a>
+                                                  Hello {{First_Name}} {{Last_Name}},
+                                                  <br/>
+                                                  <br/>
+                                                  <span>Your application for vendorship on <a href="https://oneunivers.herokuapp.com">Univers</a> has successfully been approved. Your details are as follows:
+                                                  <br><br>
+                                                  Vendor ID: {{Seller_Id}}<br>
+                                                  Store Name: {{Vendor_Name}}<br>
+                                                  Public Store: <a href="#">https:oneunivers.herokuapp.com/vendors/public_store/{{Seller_Id}}</a><br>
+                                                  Login Username: {{Username}}<br>
+                                                  <a href="#" style="display:block; margin: 1rem auto; max-width: 300px; min-width: 100px; text-align: center; padding: 0.8rem 2.4rem; background-color: #ff4500; border: none; color: #fff; border-radius: 5px; box-shadow: 1px 1px 2px rgba(185, 91, 3, 0.5); box-sizing: border-box;">View Public Store</a>
+                                                  <br>
+                                                  Kind Regards,<br>
+                                                  Univers Support Team
+                                                  </span>
                                               </p>
                                             </td>
                                           </tr>
