@@ -91,11 +91,10 @@ app.get("/view/:itemID", controller.productView);
 app.get("/pricing", controller.pricing);
 app.get("/vendors/pay/success", controller.paymentSuccess);
 app.get("/vendors/vendor-apply", controller.vendorApplication);
+app.get('/vendors/public_store/:sellerID', controller.publicStore);
 app.get("/support", controller.support);
 
-app.get('', function(req, res) {
-    res.cookie()
-})
+
 
 app.post("/upload", controller.cloudUpload);
 app.post("/auth", controller.auth); // Login handler

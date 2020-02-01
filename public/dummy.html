@@ -1,33 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+	
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Dummy</title>
+    <meta name="description" content="Browse through our fine categories of products to find products that well suit your shopping needs.">
+    <title>Page In-Progress</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/miniHeader.css">
     <link rel="stylesheet" href="/css/dummy.css">
+    <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
+    <script src="/js/main.js"></script>
+    <script src="js/lib/greensock/minified/gsap.min.js"></script>
     <script src="/js/dummy.js"></script>
 </head>
 <body>
-    <form action="/api/goods/upsert" method="POST">
-        <div class="cols">
-            <label for="name-of-field">Name Of Field</label>
-            <input type="text" name="name-of-field" id="name-of-field" placeholder="Enter name of field">
+    <header>
+        <div class="rows section-top">
+            <div class="left-tab">
+                <a href="/" class="icofont-home"><span style="display: none;">Home</span></a>
+                <span><a href="/"><img src="/assets/images/fav.png" alt="LOGO" id="logo"></a></span>
+            </div>
+
+            <div class="right-tab">
+                <span class="drop-container">
+                    <span class="drop-button">More<i class="icofont-caret-down"></i></span>
+                    <ul class="drop-content">
+                        <li><a href="#">[Get Started]</a></li>
+                        <li><a href="#">[Explore]</a></li>
+                        <li><a href="#">[Explore]</a></li>
+                        <li><a href="/support/#faq">FAQs</a></li>
+                        <li><a href="/myprofile/orders?sectid=2">Sell An Item</a></li>
+                    </ul>
+                </span>
+
+                <a href="/categories" class="icofont-penalty-card"><span style="display: none;">categories</span></a>
+            </div>
         </div>
-        <div class="rows">
-            <input type="radio" name="type-of-field" id="array-field" value="array">
-            <label for="array-field">Array</label>
-            <input type="radio" name="type-of-field" id="object-field" value="object">
-            <label for="oject-field">Object</label>
-            <input type="radio" name="type-of-field" id="text-field" value="text">
-            <label for="text-field">Text</label>
+    </header>
+    <main class="cols">
+        <h1><i class="icofont-options"></i> Creating Page...</h1>
+        <p>Page is currently being built, please check back later. Thank you</p>
+    </main>
+    <footer class="cols">
+        <div class="links rows">
+            <div class="cols">
+                <span class="f-heading">HELP LINKS</span>
+                <a href="/support">Contact Us</a>
+                <a href="#">About Us</a>
+                <a href="#">Terms and Conditions</a>
+            </div>
+    
+            <div class="cols">
+                <span class="f-heading">QUICK LINKS</span>
+                <a href="#">Log In</a>
+                <a href="#">About Us</a>
+            </div>
+
+            <div class="cols">
+                <span class="f-heading">SOCIAL LINKS</span>
+                <a href="#">Whatsapp</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+            </div>
         </div>
-        <div class="cols">
-            <label for="value-of-field">Value Of Field</label>
-            <input type="text" name="value-of-field" id="value-of-field" placeholder="Value Of Field">  
+
+        <div class="lg-100">
+            <span class="rows">Copyright &copy; 2019 Univers.com. All rights reserved</span>
         </div>
-        <input type="submit" value="Create Field">
-    </form>
+    </footer>
+
 </body>
 </html>

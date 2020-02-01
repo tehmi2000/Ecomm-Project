@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dummy</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <form action="/api/goods/upsert" method="POST">
+        <div class="cols">
+            <label for="name-of-field">Name Of Field</label>
+            <input type="text" name="name-of-field" id="name-of-field" placeholder="Enter name of field">
+        </div>
+        <div class="rows">
+            <input type="radio" name="type-of-field" id="array-field" value="array">
+            <label for="array-field">Array</label>
+            <input type="radio" name="type-of-field" id="object-field" value="object">
+            <label for="oject-field">Object</label>
+            <input type="radio" name="type-of-field" id="text-field" value="text">
+            <label for="text-field">Text</label>
+        </div>
+        <div class="cols">
+            <label for="value-of-field">Value Of Field</label>
+            <input type="text" name="value-of-field" id="value-of-field" placeholder="Value Of Field">  
+        </div>
+        <input type="submit" value="Create Field">
+    </form>
+</body>
+</html>

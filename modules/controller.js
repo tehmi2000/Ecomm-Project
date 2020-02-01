@@ -43,13 +43,13 @@ const model = function() {
         return formattedString;
     };
 
-    const readFile = function(path, req, res) {
+    const readFile = function(path, request, response) {
         fs.readFile(path, "utf8", function(err, content) {
             if (err) {
                 throw err;
             } else {
-                res.setHeader('Content-Type', 'text/html');
-                res.end(content);
+                response.setHeader('Content-Type', 'text/html');
+                response.end(content);
             }
         });
     };
@@ -343,6 +343,9 @@ const model = function() {
         },
         productView: function(req, res) {
             res.redirect(`/productView.html?queryItem=${req.params.itemID}`);
+        },
+        publicStore: function(req, res) {
+          readFile("./public/dummy.html", req, res);  
         },
         vendorApplication: function(req, res) {
             readFile("./public/vendorApplyForm.html", req, res);
