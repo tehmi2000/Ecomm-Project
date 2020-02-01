@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if(delay){
                     clearTimeout(delay);
                 }
+
                 document.querySelector(".drop-container .drop-content").style.display = "grid";
             });
     

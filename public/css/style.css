@@ -93,6 +93,8 @@ input[type="submit"], select{
     z-index: +10;
     position: absolute;
     list-style-type: none;
+    transition: all 0.2s ease;
+    overflow: hidden;
 }
 
 .drop-content  a:link, .drop-content a:visited{
