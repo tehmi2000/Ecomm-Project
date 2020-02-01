@@ -204,8 +204,9 @@ const getRegion = function(evt) {
 
 const updateHandler = function(evt) {
     evt.preventDefault();
-    document.querySelector("#profile-form input[type='submit']").setAttribute("disabled", true);
-    document.querySelector("#profile-form input[type='submit']").value = "Saving...";
+    const submitButton = document.querySelector("#profile-form input[type='submit']");
+    submitButton.setAttribute("disabled", true);
+    submitButton.value = "Saving...";
 
     let template = {
         username: document.querySelector("[name='username']").value,
@@ -227,8 +228,8 @@ const updateHandler = function(evt) {
         try {
             let updateResult = await response.json();
             alert("Profile Updated Succesfully!");
-            document.querySelector("#profile-form input[type='submit']").removeAttribute("disabled");
-            document.querySelector("#profile-form input[type='submit']").value = "Save";
+            submitButton.removeAttribute("disabled");
+            submitButton.value = "Save";
             window.location.reload();
         } catch (err) {
             console.error(err);
