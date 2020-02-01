@@ -13,11 +13,11 @@ document.addEventListener("DOMContentLoaded", function () {
         errorField.classList.toggle("serror", true);
     }
 
-    const tl = new TimelineMax();
+    const tl = gsap.timeline();
     tl.add(
-        TweenMax.from(document.querySelector("#login-form input[type='submit']"), 0.6, {y: "100vh", ease: Power2.easeOut})
+        gsap.from(document.querySelector("#login-form input[type='submit']"), 0.6, {y: "100vh", ease: Power2.easeOut})
     )
     .add(
-        TweenMax.staggerFrom(document.querySelectorAll("main h1, #login-form+div"), 0.5, {opacity: 0, ease: Power1.easeOut, stagger: 0.2})
+        gsap.from(document.querySelectorAll("main h1, #login-form+div"), 0.5, {opacity: 0, ease: Power1.easeOut, stagger: 0.2})
     );
 });
