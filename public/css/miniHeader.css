@@ -42,26 +42,6 @@ header .section-top{
     box-shadow: 1px 0 4px #e5e5ea;
 }
 
-/* .drop-content > *:last-child{
-    border: none;
-    background-color: rgb(240, 68, 6);
-    border-radius: 5px;
-    padding: 1rem 1.5rem;
-    box-shadow: 2px 2px 3px #e0e0e5;
-}
-
-.drop-content > *:last-child *{
-    color: #fcfcff;
-} */
-
-.drop-container:hover{
-    cursor: pointer;
-}
-
-.drop-container:hover .drop-content{
-    display: flex;
-}
-
 [class*="section"] [class^="icofont-"]{
     font-size: 2rem;
     color: orangered;

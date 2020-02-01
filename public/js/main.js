@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if(delay){
                     clearTimeout(delay);
                 }
-                document.querySelector(".drop-container .drop-content").style.display = "flex";
+                document.querySelector(".drop-container .drop-content").style.display = "grid";
             });
     
             dropMenu.addEventListener("mouseout", function(evt) {

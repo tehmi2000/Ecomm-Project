@@ -89,19 +89,25 @@ input[type="submit"], select{
 
 .drop-content{
     display: none;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(5, auto);
     z-index: +10;
     position: absolute;
     list-style-type: none;
-    justify-content: center;
-    align-items: center;
 }
 
 .drop-content  a:link, .drop-content a:visited{
-    color: #222;
-    font-weight: 600;
+    display: inline-block;
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 500;
     text-transform: capitalize;
     margin: 0.45rem 3vw;
+    transition: all 0.2s ease;
+}
+
+.drop-content a:hover{
+    transform: scale(1.05);
+    color: orangered;
 }
 
 .drop-content li{
@@ -113,7 +119,7 @@ input[type="submit"], select{
 }
 
 .drop-container:hover .drop-content{
-    display: flex;
+    display: grid;
 }
 
 .toggle-switch{
@@ -386,6 +392,15 @@ footer > *:last-child *{
 }
 
 @media only screen and (max-width:800px){
+    .drop-content{
+        grid-template-columns: repeat(3, auto);
+    }
+
+    .drop-content  a:link, .drop-content a:visited{
+        font-size: 1.3rem;
+        font-weight: 600;
+    }
+
     form .serror{
         font-size: 1.2rem;
         border-radius: 2px;
