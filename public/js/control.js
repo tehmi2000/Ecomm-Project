@@ -287,11 +287,15 @@ const getMyStoreItems = function() {
                 }else{
                     document.querySelector("#subtitle").innerHTML = `${result.length} items`;
                     container.innerHTML = "";
-                    result.forEach(item => {
-                        createStoreItem(container, item);
-                    });
+
+                    if(result.length > 0){
+                        forEach(result, function(item) {
+                            createStoreItem(container, item);
+                        });
+                    }else{
+                        createNoItemTag(container, "Nothing in your store yet");
+                    }
                 }
-    
             } catch (error) {
                 console.log(error);
             }
