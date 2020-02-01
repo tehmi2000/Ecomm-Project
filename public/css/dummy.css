@@ -42,22 +42,11 @@ main p{
     }
     
     main h1{
-        text-shadow: 2px 2px 1px #bbb;
-        text-transform: uppercase;
         font-size: 3.5rem;
-        margin: 0;
-    }
-    
-    main h1 [class^="icofont-"]{
-        display: inline-block;
-        transform-origin: center;
-        animation: working 3s linear 1s infinite normal backwards;
     }
     
     main p{
-        font-weight: bold;
-        margin-top: 2rem;
-        font-size: 1.5rem;
+        line-height: 1.5;
     }
 }
 
