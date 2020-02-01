@@ -91,8 +91,7 @@ const model = function(){
 		});
 	};
 
-	const vendorReport = function (receiver, fi) {
-		// d-7385c1c6b75e4727adfd2d91a9556900
+	const vendorReport = function (receiver, vendorName, firstname, lastname, username, sellerID) {
 		const options = {
 			method: 'POST',
 			url: 'https://api.sendgrid.com/v3/mail/send',
@@ -109,18 +108,21 @@ const model = function(){
 							}
 					],
 					dynamic_template_data: {
-						last_name: lastname,
-						first_name: firstname,
+						Last_Name: lastname,
+						First_Name: firstname,
+						Seller_Id: sellerID,
+						Username: username,
+						Vendor_Name: vendorName,
 						Sender_Name: "Univers",
 						Sender_Address: "No. 14 Wale Erinle Str.",
 						Sender_City: "Itoki-Ota Behind Gas Company",
 						Sender_State: "Ogun State,  Nigeria"
 					},
-					subject: 'Univers Support: Request Acknowledgement'
+					subject: 'You Are Now A Certified Vendor On Univers'
 				}],
 				from: { email: `${config.ePass['user']}`, name: 'Univers Team' },
 				reply_to: { email: `${config.ePass['user']}`, name: 'Univers Team' },
-				template_id: 'd-29269701ba134385966ee25efab63fae'
+				template_id: 'd-7385c1c6b75e4727adfd2d91a9556900'
 			},
 			json: true
 		};

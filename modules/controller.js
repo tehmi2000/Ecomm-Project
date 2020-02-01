@@ -266,7 +266,7 @@ const model = function() {
         let vendorCountry = req.body['user-country'];
         let vendorRegion = req.body['user-region'];
 
-        let query = `SELECT uID, username FROM users WHERE email="${vendorEmail}"`;
+        let query = `SELECT uID, username, firstname, lastname FROM users WHERE email="${vendorEmail}"`;
 
         mysql_config.connection.query(query, function(err, users) {
             if(err){
@@ -285,7 +285,7 @@ const model = function() {
                         console.log('New Vendor Profile Inserted successfully!');
                         // require("./emailHandler").sendVerificationMail(user_email);
                         // req.session.username = user_username;
-
+                        emailHandler.sendVendorStatusReport(vendorEmail, vendorName, users[0].firstname, users[0].lastname, users[0].username, sellerID);
                         res.cookie(`univers-${username}-sellerID`, sellerID, {maxAge: 72000000});
                         res.json([{
                             status: 'ok',
