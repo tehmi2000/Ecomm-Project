@@ -221,6 +221,22 @@ main{
 }
 
 #store-box .store-item-container .pane{
+    margin-bottom: 1.5rem;
+}
+
+#store-box .store-item-container .pane-head{
+    padding: 0 1rem;
+    justify-content: space-between;
+}
+
+#store-box .store-item-container .pane-head h3{
+    font-size: 1.5rem;
+    margin: 0.8rem 0;
+}
+
+#store-box .store-item-container .pane-head > *{
+    color: #111;
+    text-transform: uppercase;
 }
 
 #store-box .store-item-container .pane-body{
