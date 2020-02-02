@@ -22,9 +22,62 @@ const createNoItemTag = function(container, text){
     container.innerHTML = `<span id='no-item'>${text}</span>`;
 };
 
+const sortIntoCategories = function (data) {
+    // debugger;
+    const container = document.querySelector("#store-box .store-item-container");
+    const eachCategories = [];
+    const storeFormat = [];
+
+    data.forEach((eachItem) => {
+        if(eachItem.categories.length === 0){
+            eachItem.categories.push("Others");
+        }
+    });
+
+    data.forEach((eachItem, index) => {
+        eachItem.categories.forEach(dataCategory => {
+            if(index === 0){
+                eachCategories.push(dataCategory);
+                storeFormat.push({
+                    heading: dataCategory,
+                    contents: [eachItem]
+                });
+            }else{
+                let isUnique = !eachCategories.some(category => {
+                    return category === dataCategory;
+                });
+
+                if(storeFormat.length > 0){
+                    let hasFormat = storeFormat.findIndex(format => {
+                        return format.heading === dataCategory;
+                    });
+
+                    if(hasFormat > -1){
+                        storeFormat[hasFormat].contents.push(eachItem);
+                    }
+                }
+
+                if(isUnique === true){
+                    eachCategories.push(dataCategory);
+                    storeFormat.push({
+                        heading: dataCategory,
+                        contents: [eachItem]
+                    });
+                }
+            }
+        });
+    });
+
+    console.log(storeFormat);
+    container.innerHTML = "";
+    storeFormat.forEach(format => {
+        createStorePanes(container, format);
+    });
+};
+
 const getMyStoreItems = function() {
-    const fetchItems = function () {
-        fetch(`/api/user/${getCookie("username").value}/getStoreItems`).then(async function(response) {
+    const fetchItems = function (headTitle) {
+        fetch(`/api/user/${getCookie("username").value}/getStoreItems?publishedFlag=true`).then(async function(response) {
             try {
                 let cover = document.querySelector(".vendor-bg-cover");
                 let result = await response.json();
@@ -32,11 +85,9 @@ const getMyStoreItems = function() {
                 if(result.length > 0 && result[0].error){
                     cover.style.top = "0vh";
                 }else{
+                    document.querySelector("#title").innerHTML = headTitle;
                     document.querySelector("#subtitle").innerHTML = `${result.length} items`;
-                    container.innerHTML = "";
-                    result.forEach(item => {
-                        createStoreItem(container, item);
-                    });
+                    sortIntoCategories(result);
                 }
     
             } catch (error) {
@@ -47,7 +98,6 @@ const getMyStoreItems = function() {
         });
     };
 
-    const container = document.querySelector("#store-box .store-item-container");
     document.querySelector(".control-body #store-box").style.display = "flex";
 
     // Check if vendor exists first...
@@ -62,7 +112,7 @@ const getMyStoreItems = function() {
                 let vendorName = formatName(result[0].vendorName);
                 let pageTitle = `Univers | ${vendorName}'s ${(vendorName.endsWith("Store") === true || vendorName.endsWith("Stores"))? '': "Store"}`;
                 document.title = pageTitle;
-                fetchItems();
+                fetchItems(`${vendorName}'s ${(vendorName.endsWith("Store") === true || vendorName.endsWith("Stores"))? '': "Store"}`);
             }
 
         } catch (error) {
@@ -70,7 +120,33 @@ const getMyStoreItems = function() {
         }
     }).catch(function(error) {
         console.log(error);
-    })
+    });
+};
+
+const createStorePanes = function (container, format) {
+    // <div class="cols pane">
+    //     <div class="rows pane-head">
+    //         <h3>Fashion Category</h3>
+    //         <div></div>
+    //     </div>
+    //     <div class="rows pane-body">
+    //     </div>
+    // </div>
+
+    let div0 = createComponent("DIV", null, ["cols", "pane"]);
+        let div01 = createComponent("DIV", null, ["rows", "pane-head"]);
+            let h3 = createComponent("H3", format.heading);
+            let div010 = createComponent("DIV");
+        let div02 = createComponent("DIV", null, ["rows", "pane-body"]);
+
+    div01 = joinComponent(div01, h3, div010);
+
+    format.contents.forEach(item => {
+        createStoreItem(div02, item);
+    });
+
+    div0 = joinComponent(div0, div01, div02);
+    container.appendChild(div0);
 };
 
 const createStoreItem = function(container, object) {
@@ -86,6 +162,7 @@ const createStoreItem = function(container, object) {
     //     <button class="icofont-globe publish-btn"></button>
     // </span>
 
+    // Create store item
     let price = formatAsMoney(parseInt(object['item-price']));
 
     let div0 = createComponent("div", null, ["grid","store-item", "list"]);
