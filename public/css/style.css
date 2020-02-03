@@ -380,7 +380,7 @@ footer > *:last-child *{
 
 .response-display{
     position: fixed;
-    z-index: +100;
+    z-index: +200;
     top: -10rem;
     left: 0;
     width: 100%;

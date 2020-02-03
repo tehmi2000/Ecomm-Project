@@ -283,8 +283,6 @@ const model = function() {
                         res.json([{...err}]);
                     }else{
                         console.log('New Vendor Profile Inserted successfully!');
-                        // require("./emailHandler").sendVerificationMail(user_email);
-                        // req.session.username = user_username;
                         emailHandler.sendVendorStatusReport(vendorEmail, vendorName, users[0].firstname, users[0].lastname, users[0].username, sellerID);
                         res.cookie(`univers-${username}-sellerID`, sellerID, {maxAge: 72000000});
                         res.json([{

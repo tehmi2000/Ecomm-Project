@@ -168,7 +168,7 @@ const model = function() {
     });
 
     router.get("/user/:username/getStoreItems", function(req, res) {
-        const query = req.query['query'];
+        const publishedFlag = req.query['publishedFlag'];
         const sqlQuery = `SELECT sellerID FROM vendors WHERE username='${sqlSanitizer(req.params.username)}'`;
 
         connection.query(sqlQuery, function(err, result) {
@@ -182,7 +182,8 @@ const model = function() {
                     const sellerID = dataOne.sellerID;
                     const collection = client.db(itemsDB).collection(iCollection);
 
-                    collection.find({"sellerID" : sellerID}).sort({postTime: -1}).toArray(function(err, docs) {
+                    const mongoQuery = (publishedFlag)? {$and: [{"published": true}, {"sellerID" : sellerID}]} : {"sellerID" : sellerID};
+                    collection.find(mongoQuery).sort({postTime: -1}).toArray(function(err, docs) {
                         if(err) {
                             log(err);
                         }else{
@@ -324,6 +325,50 @@ const model = function() {
             log(error);
         });
     });
+
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..
+    router.post("/goods/save/:username/deleteFromStore", function(req, res) {
+        const username = sqlSanitizer(formatName(req.params.username));
+        const {itemID} = req.body;
+        
+
+        const query = `SELECT sellerID FROM vendors WHERE username='${username}'`;
+            
+        connection.query(query, function(err, result){
+            if (err) {
+                log(err);
+
+            }else if (result.length > 0){
+                let [user] = result;
+                console.log(itemID, user);
+
+                mongoConn.then(client => {
+                    const collection = client.db(itemsDB).collection(iCollection);
+                    
+                    collection.deleteMany({$and: [{"sellerID": user.sellerID}, {"_id": ObjectID(itemID)}]}, function(err, result) {
+                        if(err) {
+                            log(err);
+                        }else{
+                            res.json(result);
+                        }
+                    });
+                    
+                }).catch(error => {
+                    log(error);
+                });
+
+            }else{
+                res.json([{
+                    error: "NonVendorError",
+                    code: 404,
+                    message: "Not a vendor"
+                }]);
+            }
+        });
+
+        
+    });
+    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..
 
     router.post("/goods/save/:username/addToCart", function(req, res) {
         const username = formatName(req.params.username);

@@ -6,6 +6,9 @@ const globals = {
     },
     saved: {
         items: []
+    },
+    store: {
+        items: []
     }
 };
 
@@ -285,6 +288,7 @@ const getMyStoreItems = function() {
                 if(result.length > 0 && result[0].error){
                     cover.style.top = "0vh";
                 }else{
+                    globals.store.items = result;
                     document.querySelector("#subtitle").innerHTML = `${result.length} items`;
                     container.innerHTML = "";
 
@@ -556,6 +560,44 @@ const createItems = function(items, type) {
 
 };
 
+const removeStoreItem = function(item_id){
+    const container = document.querySelector("#store-box");
+    const apiUrl = `/api/goods/save/${getCookie("username").value}/deleteFromStore`;
+
+    fetch(apiUrl, {
+        method: "POST",
+        body: JSON.stringify({itemID: item_id}),
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        }
+    }).then(async response => {
+        try {
+            let result = await response.json();
+            console.log(result);
+
+            if(result && result.result.n > 0){
+                const element = document.querySelector(`#storeItem_${item_id}`);
+                element.parentNode.removeChild(element);
+                globals.store.items = globals.store.items.filter(item => {
+                    return item[`_id`] !== item_id;
+                });
+                document.querySelector("#subtitle").innerHTML = `${globals.store.items.length} items`;
+                displayResponse("Item has been removed from your store succesfully!")
+                if(globals.store.items.length === 0){
+                    createNoItemTag(container, "No item in your store yet. Click the [NEW ITEM] button to add one.");
+                }
+            }else{
+                displayResponse("An error occured!", {type: "error"});
+            }
+        } catch (error) {
+            console.error(error);
+        }
+        
+    }).catch(error => {
+        console.error(error);
+    });
+};
+
 const createStoreItem = function(container, object) {
     // <span class="grid store-item gr">
     //     <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
@@ -590,6 +632,13 @@ const createStoreItem = function(container, object) {
     button20.setAttribute("title", `Toggle ON/OFF`)
     img0.addEventListener("click", function(evt){
         window.location.href = `/view/${evt.currentTarget.id.split("_")[1]}`;
+    });
+
+    button11.addEventListener('click', function(evt){
+        let confirmation = confirm("Are you sure you want to delete this item from your store?");
+        if(confirmation === true){
+            removeStoreItem(evt.currentTarget.id.split("_")[1]);
+        }
     });
     button20.addEventListener("click", addToggleAction);
     button20.addEventListener("click", togglePublish);

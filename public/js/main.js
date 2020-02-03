@@ -1,3 +1,5 @@
+let mediaX = window.matchMedia("(max-width: 800px)");
+
 const openMenu = function() {
     document.querySelector("#sidemenu").style.marginLeft = "0%";
 };
