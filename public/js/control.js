@@ -9,7 +9,8 @@ const globals = {
     },
     store: {
         items: []
-    }
+    },
+    imgSpace : 4
 };
 
 
@@ -54,12 +55,11 @@ document.addEventListener("DOMContentLoaded", function() {
     
 });
 
-const displayUploadState = function(statusText, end){
+const displayUploadState = function(statusText, end, status){
+    status = status || 200;
     end = end || null;
     const container = document.querySelector("#post-box .gallery .status-bar");
-    // if(container.style.display === "none"){
-        container.style.display = "block";
-    // }
+    container.style.display = "block";
 
     container.innerHTML = statusText;
 
@@ -68,10 +68,17 @@ const displayUploadState = function(statusText, end){
             container.style.display = "none";
         }, 5000);
     }
+
+    if(status >= 400){
+        container.style.backgroundColor = "rgba(255, 25, 25, 0.85)";
+    }else{
+        container.style.backgroundColor = "rgba(54, 177, 248, 0.85)";
+    }
 };
 
 const imageUploadHandler = function(evt){
     const uploadImage = (name, file) => {
+        // debugger
         const fd = new FormData();
         fd.append(name, file);
 
@@ -82,11 +89,17 @@ const imageUploadHandler = function(evt){
             let result = await response.json();
             let [data] = result;
 
-            document.querySelector(`#${name}`).setAttribute("data-version", data.version);
-            console.log(result);
-            if(Object.keys(imgUrls).indexOf(name) === Object.keys(imgUrls).length - 1){
-                displayUploadState("Upload Complete!", true);
+            if(data.status === 200){
+                document.querySelector(`#${name}`).setAttribute("data-version", data.version);
+                document.querySelector(`label[for='${name}']`).innerHTML = "";
+                // console.log(result);
+                if(Object.keys(imgUrls).indexOf(name) === Object.keys(imgUrls).length - 1){
+                    displayUploadState("Upload Complete!", true);
+                }
+            }else{
+                displayUploadState("Upload Failed!", true, data.status);
             }
+
         }).catch(error => {
             console.log(error);
         });
@@ -96,16 +109,41 @@ const imageUploadHandler = function(evt){
     const elementId = evt.target.id;
     const file = evt.target.files[0];
 
-    reader.readAsDataURL(file);
+    if(file){
+        reader.readAsDataURL(file);
+    }
+
     reader.onload = function() {
         const previewElement = document.querySelector(`label[for='${elementId}']`);
         previewElement.innerHTML = "";
         previewElement.style.backgroundImage = `url(${reader.result})`;
-        imgUrls[elementId] = file.name;
-        setTimeout(() => {
+
+        let divB = createComponent("DIV", null, ["rows"]);
+            let uploadB = createComponent("span", null, ["rows", "icofont-check", "img-action"]);
+            let deleteB = createComponent("span", null, ["rows", "icofont-close", "img-action"]);
+
+        divB.setAttribute("id", `${elementId}_action-container`);
+        uploadB.setAttribute("id", `${elementId}_upload-action`);
+        deleteB.setAttribute("id", `${elementId}_delete-action`);
+
+        uploadB.addEventListener("click", function(evt){
             displayUploadState(`Uploading Image (${Object.keys(imgUrls).indexOf(elementId) + 1}/${Object.keys(imgUrls).length})`);
             uploadImage(elementId, file);
-        }, 8000);
+        });
+
+        deleteB.addEventListener("click", function(evt) {
+            previewElement.style.backgroundImage = `none`;
+            previewElement.innerHTML =`Click to insert image<br>(${elementId.split("-")[2]} of 4)`;
+            document.querySelector(`#${elementId}`).value = '';
+            delete imgUrls[elementId];
+            document.querySelector(`#${elementId}`).removeAttribute("disabled");
+        });
+
+        divB = joinComponent(divB, uploadB, deleteB);
+        previewElement.appendChild(divB);
+        document.querySelector(`#${elementId}`).setAttribute("disabled", true);
+
+        imgUrls[elementId] = file.name;
     };
 };
 

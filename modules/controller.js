@@ -143,7 +143,8 @@ const model = function() {
                     try{
                         uploadToCloud(uploadedFile.name, `${localPath}/${uploadedFile.name}`);
                     }catch(e){
-                        console.error(e);
+                        log(e);
+                        res.json([{...e, status: 403}]);
                     }
                 }
             });
