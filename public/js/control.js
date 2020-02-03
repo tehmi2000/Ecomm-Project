@@ -384,7 +384,13 @@ const getSavedItems = function() {
 
             container.innerHTML = "";
             if(items.length > 0){
-                forEach(items, function(item) {
+                let adsPosition = 3;
+                items.forEach(function(item, index) {
+                    if(index === adsPosition){
+                        placeAds(container);
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        adsPosition += 3;
+                    }
                     globals.saved.items.push(item);
                     createItems(item, "save");
                 });
@@ -401,6 +407,25 @@ const getSavedItems = function() {
     }).catch(function(error) {
         console.log(error);
     });
+};
+
+const placeAds = function(container) {
+
+    let adsDiv = createComponent("DIV", null, ["item"]);
+    let script = create('script');
+    let ins = createComponent("INS", null, ["adsbygoogle"]);
+
+    script.setAttribute("async", true);
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+    ins.style.display = "block";
+    ins.style.width = "100%";
+    ins.setAttribute("data-ad-format", "fluid");
+    ins.setAttribute("data-ad-layout-key", "-fb+5w+4e-db+86");
+    ins.setAttribute("data-ad-client", "ca-pub-6903692907552928");
+    ins.setAttribute("data-ad-slot", "9318070099");
+
+    adsDiv = joinComponent(adsDiv, script, ins);
+    container.appendChild(adsDiv);
 };
 
 const calculateBill = function(items){
