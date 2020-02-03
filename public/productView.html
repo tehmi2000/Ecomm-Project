@@ -30,26 +30,20 @@
 
         .bg-image-container{
             width: 100%;
-            height: 100vh;
+            min-height: calc(100vh - 14rem);
             background-color: #eaeaec;
             background-image: linear-gradient(135deg, rgba(167, 62, 1, 0.86) 40%, rgba(30, 143, 255, 0.74) 40%);
             background-image: url("../assets/images/warm-save-wallpaper-dark-texture_1258-284.jpg");
             background-size: cover;
             background-position: center;
             transition: all 0.6s linear;
-        }
-
-        .bg-body-container{
-            width: 100%;
-            height: auto;
+            justify-content: center;
+            align-items: center;
         }
 
         .card-container{
             display: flex;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -43%);
-            position: absolute;
+            margin: 3rem auto;
             box-shadow: 5px 7px 3px rgba(0, 0, 0, 0.5);
             overflow: hidden;
             border-radius: 5px;
@@ -336,20 +330,15 @@
             }
 
             .bg-image-container{
-                display: none;
-                height: 49vh;
+                height: auto;
             }
 
             .card-container{
                 width: 100%;
                 flex-direction: column;
-                left: unset;
-                top: unset;
-                transform: unset;
-                position: relative;
                 box-shadow: none;
                 border-radius: 0;
-                margin: auto;
+                margin: auto 0;
             }
 
             .product-card, .info-card{
@@ -477,76 +466,74 @@
     <main>
         <div id="response" class="response-display">Item was saved to your cart</div>
 
-        <div class="bg-image-container">
-
-        </div>
-
-        <div class="card-container">
-            <div class="product-card">
-                <div class="product-name"></div>
-                <div class="product-short-desc">Short description text appears here</div>
-                <div id="product-pic" class="product-img"></div>
-                <div class="product-nav">
-                    <!-- <span data-nav-one class="active"></span> -->
-                </div>
-            </div>
-            
-            <div class="info-card">
-                <div class="discount-label">
-                    -50% off
-                </div>
-                <div>
-                    <h2>Vendor's Price</h2>
-                    <div class="product-price">NGN 0.00</div>
-                </div>
-
-                <div class="product-info tab-wrapper">
-                    <div class="nav-tabs">
-                        <span class="nav-tab active" data-id="description">Description</span>
-                        <span class="nav-tab" data-id="about-vendor">About Vendor</span>
-                    </div>
-
-                    <div class="tab-content">
-                        <span class="content" id="description">Full description text appears here</span>
-
-                        <span class="content" id="about-vendor">
-
-                        </span>
-                    </div>
-
-                </div>
-
-                <div class="pref-options">
-                    <div class="cols">
-                        <span class="opt-label">COLor</span>
-                        <select name="" id="">
-                            <option value="eee">White</option>
-                        </select>
-                    </div>
-
-                    <div class="cols">
-                        <span class="opt-label">SIZE</span>
-                        <select name="" id="">
-                            <option value="eee">White</option>
-                        </select>
-                    </div>
-
-                    <div class="cols">
-                        <span class="opt-label">Quantity</span>
-                        <input type="number" id="quantity-input" min=1 value="1">
-                    </div>
-
-                    <div class="cols">
-                        <span class="opt-label">Total Price</span>
-                        <span class="total-input">0</span>
+        <div class="rows bg-image-container">
+            <div class="card-container">
+                <div class="product-card">
+                    <div class="product-name"></div>
+                    <div class="product-short-desc">Short description text appears here</div>
+                    <div id="product-pic" class="product-img"></div>
+                    <div class="product-nav">
+                        <!-- <span data-nav-one class="active"></span> -->
                     </div>
                 </div>
-
-                <div>
-                    <div class="product-controls">
-                        <button class="strip-btn">Save Item</button>
-                        <button class="strip-btn"><i class="icofont-cart"></i>ADD to Cart</button>
-                    </div>                 
+                
+                <div class="info-card">
+                    <div class="discount-label">
+                        -50% off
+                    </div>
+                    <div>
+                        <h2>Vendor's Price</h2>
+                        <div class="product-price">NGN 0.00</div>
+                    </div>
+    
+                    <div class="product-info tab-wrapper">
+                        <div class="nav-tabs">
+                            <span class="nav-tab active" data-id="description">Description</span>
+                            <span class="nav-tab" data-id="about-vendor">About Vendor</span>
+                        </div>
+    
+                        <div class="tab-content">
+                            <span class="content" id="description">Full description text appears here</span>
+    
+                            <span class="content" id="about-vendor">
+    
+                            </span>
+                        </div>
+    
+                    </div>
+    
+                    <div class="pref-options">
+                        <div class="cols">
+                            <span class="opt-label">COLor</span>
+                            <select name="" id="">
+                                <option value="eee">White</option>
+                            </select>
+                        </div>
+    
+                        <div class="cols">
+                            <span class="opt-label">SIZE</span>
+                            <select name="" id="">
+                                <option value="eee">White</option>
+                            </select>
+                        </div>
+    
+                        <div class="cols">
+                            <span class="opt-label">Quantity</span>
+                            <input type="number" id="quantity-input" min=1 value="1">
+                        </div>
+    
+                        <div class="cols">
+                            <span class="opt-label">Total Price</span>
+                            <span class="total-input">0</span>
+                        </div>
+                    </div>
+    
+                    <div>
+                        <div class="product-controls">
+                            <button class="strip-btn">Save Item</button>
+                            <button class="strip-btn"><i class="icofont-cart"></i>ADD to Cart</button>
+                        </div>                 
+                    </div>
                 </div>
             </div>
         </div>
@@ -598,7 +585,7 @@
     <script>
         const myDevice = function(x) {
             if (!x.matches) { // If media query is not true
-                gsap.from(document.querySelector("main .card-container"), 2.5, {marginLeft: "105vw", delay: 0.5, ease: "elastic.out(0.4, 0.2)"});
+                gsap.from(document.querySelector("main .card-container"), 1.5, {marginLeft: "100vw", ease: "elastic.out(0.3, 0.2)"});
             }
         }
 
