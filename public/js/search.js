@@ -27,8 +27,13 @@ const fetchData = (searchQuery, formattedQuery) => {
             if(result.length === 0){
                 createNoItemTag(container, formattedQuery);
             }else{
-                result.forEach(item => {
-                    itemList[`${item._id}`] = item;
+                let adsPosition = 3;
+                result.forEach((item, index) => {
+                    if(index === adsPosition){
+                        placeAds(container);
+                        adsPosition += 3;
+                    }
+                    itemList[`${item["_id"]}`] = item;
                     createItem(container, item);
                 });
             }
@@ -46,6 +51,22 @@ const createNoItemTag = function(container, query){
     container.style.alignItems = "center";
     container.innerHTML = `<span id='no-item' class='cols'><img src="../assets/images/portfolium-robot.png" alt=""><span>Sorry, we couldn't find any item that matched '${query}'.</span></span>`;
     createSuggestions(document.querySelector(".pane.sug"), document.querySelector(".pane.sug #suggestion-container"));
+};
+
+const placeAds = function(container) {
+    const adsDiv = createComponent("DIV", null, ["item", "lg-100"]);
+    adsDiv.innerHTML = `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-format="fluid"
+         data-ad-layout-key="-fb+5w+4e-db+86"
+         data-ad-client="ca-pub-6903692907552928"
+         data-ad-slot="9318070099"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>`;
+
+    container.appendChild(adsDiv);
 };
 
 const createItem = function(container, object){
