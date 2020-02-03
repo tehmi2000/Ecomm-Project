@@ -340,7 +340,6 @@ const model = function() {
 
             }else if (result.length > 0){
                 let [user] = result;
-                console.log(itemID, user);
 
                 mongoConn.then(client => {
                     const collection = client.db(itemsDB).collection(iCollection);
