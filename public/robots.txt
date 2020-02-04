@@ -3,3 +3,6 @@ Sitemap: https://oneunivers.herokuapp.com/sitemap.xml
 
 User-agent: *
 Disallow: *--*
+
+User-agent: *
+Allow: /ads.txt
