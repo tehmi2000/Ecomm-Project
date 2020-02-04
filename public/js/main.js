@@ -217,8 +217,8 @@ const preFormatInput = function (content) {
 
     for (let index = 0; index < content.length; index++) {
 
-        if (content.charAt(index) == '*') {
-            if (startBold == false) {
+        if (content.charAt(index) === '*') {
+            if (startBold === false) {
                 startBold = true;
                 content = `${content.substr(0, index)}<b>${content.substr(index + 1)}`;
             } else {
@@ -228,8 +228,8 @@ const preFormatInput = function (content) {
             }
         }
 
-        if (content.charAt(index) == '_') {
-            if (startItalic == false) {
+        if (content.charAt(index) === '_') {
+            if (startItalic === false) {
                 startItalic = true;
                 content = content.substr(0, index) + "<i>" + content.substr(index + 1);
             } else {
@@ -240,9 +240,9 @@ const preFormatInput = function (content) {
             }
         }
 
-        if (content.charAt(index) == '~') {
+        if (content.charAt(index) === '~') {
             try {
-                if (startLink.state == false) {
+                if (startLink.state === false) {
                     startLink.state = true;
                     startLink.position = index;
                 } else {
