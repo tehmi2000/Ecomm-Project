@@ -448,3 +448,14 @@ const formatAsMoney = price => {
 
     return formattedPrice;
 };
+
+if('serviceWorker' in navigator){
+    window.addEventListener('load', ()=>{
+        navigator.serviceWorker.register("/serviceWorkers/univers-sw.js").then(function(reg) {
+            console.log("Service worker is working fine");
+        }).catch(function(err) {
+            console.log(err.message);
+            console.log("Service worker is not supported");
+        });
+    });
+}

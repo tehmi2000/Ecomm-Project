@@ -1,5 +1,3 @@
-// const socket = io();
-
 let images = ["0a9c147c668744d0afcb9d320afa0b73.jpg"];
 let counter = 0;
 
@@ -14,17 +12,6 @@ const prevImage = function(){
 };
 
 const createItem = function(container, object){
-
-    // <div class="item cols">
-    //     <div class="item-img">
-    //         <img src="assets/images/IMG-20180112-WA0009.jpg" alt="Item Image">
-    //     </div>
-    //     <div class="item-description cols">
-    //         <span>Sony Fifa 20 Standard Edition-PS4</span>
-    //         <span class="item-price">NGN21,000 <sup class="strike">NGN29,000</sup></span>
-    //     </div>
-    // </div>
-    // console.log(object);
     let price = formatAsMoney(parseInt(object["item-price"]));
     let loadedImage = object["item-image"][0];
 
@@ -60,16 +47,6 @@ const createItem = function(container, object){
 };
 
 const createDummyItem = function(container, length){
-
-    // <div class="dummy item cols">
-    //     <div class="item-img">
-    //         <img src="" alt="">
-    //     </div>
-    //     <div class="item-description cols">
-    //         <span class="item-name"></span>
-    //         <span class="item-price"></span>
-    //     </div>
-    // </div>
 
     for (let index = 0; index < length; index++) {
         let div0 = createComponent("DIV", null, ["dummy", "item", "cols"]);
@@ -149,16 +126,12 @@ const getRecommended = function() {
 document.addEventListener("DOMContentLoaded", function () {
     createDummyItem(document.querySelector("#most-popular-container.pane .slider"), 5);
     createDummyItem(document.querySelector("#recommended-container.pane .slider"), 5);
-    getAds();
     setInterval(function() {
         nextImage();
     }, 8000);
-
     getMostPopular();
-    // getRecommended();
 });
 
-// socket.on("receive-user-data", function(object) {
-//     alert(JSON.stringify(object));
-//     // document.querySelector("#sidemenu #user-photo").src = object.pp;
-// });
+window.onload = function(evt) {
+    getAds();
+};
