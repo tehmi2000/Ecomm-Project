@@ -135,6 +135,8 @@ const model = function() {
 
         for (const key in file) {
             let uploadedFile = file[key];
+            uploadedFile.name = uploadedFile.name.replace(" ", "");
+            
             uploadedFile.mv(`${localPath}/${uploadedFile.name}`, function(err) {
                 if (err) {
                     log(err);
