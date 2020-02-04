@@ -334,6 +334,10 @@ const getMyStoreItems = function() {
                         forEach(result, function(item) {
                             createStoreItem(container, item);
                         });
+
+                        document.querySelectorAll(".store-item .item-name").forEach(el => {
+                            $clamp(el, {clamp: 2});
+                        });
                     }else{
                         createNoItemTag(container, "Nothing in your store yet");
                     }
@@ -395,6 +399,9 @@ const getSavedItems = function() {
                     createItems(item, "save");
                 });
 
+                document.querySelectorAll(".item .item-name").forEach(el => {
+                    $clamp(el, {clamp: 2});
+                });
                 gsap.from(document.querySelectorAll("#orders-box > *"), 0.6, {x: "100vw", ease: 'Power1.easeOut', stagger: 0.3})
 
             }else{
@@ -471,6 +478,10 @@ const getMyCart = function() {
                 forEach(items, function(item) {
                     globals.cart.items.push(item);
                     createItems(item);
+                });
+
+                document.querySelectorAll(".item .item-name").forEach(el => {
+                    $clamp(el, {clamp: 2});
                 });
 
                 // Animate items

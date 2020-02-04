@@ -436,9 +436,6 @@ main{
     text-transform: capitalize;
     font-size: 1.5rem;
     padding-right: 0.5rem;
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis;
 }
 
 .store-item .item-price{
@@ -954,7 +951,7 @@ main{
     .control-body .item{
         overflow: hidden;
         width: 100%;
-        height: 15rem;
+        min-height: 15rem;
         border: none;
         border-top: 1px solid #eee;
         margin: 0;
@@ -962,6 +959,7 @@ main{
     }
     
     .control-body .item img{
+        height: 100%;
         width: 12.5rem;
         object-fit: contain;
         background-color: #eee;
@@ -972,15 +970,12 @@ main{
     }
     
     .control-body .item .item-name{
-        max-height: 20%;
-        overflow-x: auto;
-        overflow-y: hidden;
         font-size: 1.5rem;
         color: #333;
-        white-space: nowrap;
     }
     
     .control-body .item .item-price{
+        margin-top: 0.5rem;
         font-size: 1.3rem;
     }
     

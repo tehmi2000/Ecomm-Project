@@ -99,6 +99,10 @@ const getMostPopular = function() {
             data.forEach(object => {
                 createItem(container, object);
             });
+
+            document.querySelectorAll(".item .item-description span:first-child").forEach(el => {
+                $clamp(el, {clamp: 3});
+            });
         } catch (error) {
             console.error(error);
         }

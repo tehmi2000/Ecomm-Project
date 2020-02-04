@@ -36,7 +36,11 @@ const fetchData = (searchQuery, formattedQuery) => {
                     }
                     itemList[`${item["_id"]}`] = item;
                     createItem(container, item);
-                });   
+                });
+
+                document.querySelectorAll(".item .item-name a").forEach(el => {
+                    $clamp(el, {clamp: 2});
+                });
             }
 
         } catch (error) {

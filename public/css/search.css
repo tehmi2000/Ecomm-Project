@@ -132,7 +132,8 @@ main h1 > *{
 
 .item img{
     width: 16rem;
-    height: 14rem;
+    max-height: 20rem;
+    min-height: 100%;
     object-fit: contain;
 }
 
