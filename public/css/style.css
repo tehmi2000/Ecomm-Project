@@ -495,3 +495,31 @@ footer > *:last-child *{
         background-image: linear-gradient(135deg, #ccc 60%,  #d0d0d0 75%, #ccc 90%);
     }
 }
+
+@keyframes rolling{
+    0%{
+        transform: rotateZ(0deg);
+    }
+
+    50%{
+        transform: rotateZ(180deg);
+    }
+
+    100%{
+        transform: rotateZ(360deg);
+    }
+}
+
+@keyframes rolling{
+    0%{
+        transform: rotateZ(0deg);
+    }
+
+    50%{
+        transform: rotateZ(180deg);
+    }
+
+    100%{
+        transform: rotateZ(360deg);
+    }
+}

@@ -10,6 +10,21 @@ main{
     margin: 2rem auto 0 auto;
 }
 
+.progress{
+    transform-origin: center;
+    background-color: #999 !important;
+    -webkit-animation: rolling 1.5s linear 0s infinite normal forwards;
+    animation: rolling 1.5s linear 0s infinite normal forwards;
+}
+
+.saving{
+    box-shadow: none !important;
+    outline: none !important;
+    background-color : #999 !important;
+    color: #444 !important;
+}
+
+
 .pagination{
     display: none;
 }
@@ -156,6 +171,7 @@ main{
 #post-box input[type="submit"]{
     width: auto;
     border: none;
+    border-radius: 5px;
     background-color: rgb(240, 68, 6);
     color: #fcfcff;
     padding: 1.5rem 2rem;

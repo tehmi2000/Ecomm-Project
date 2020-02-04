@@ -97,6 +97,9 @@ const imageUploadHandler = function(evt){
                     displayUploadState("Upload Complete!", true);
                 }
             }else{
+                document.querySelector(`#${name}_upload-action`).classList.toggle("progress", false);
+                document.querySelector(`#${name}_upload-action`).classList.toggle("icofont-check", true);
+                document.querySelector(`#${name}_upload-action`).classList.toggle("icofont-refresh", false);
                 displayUploadState("Upload Failed!", true, data.status);
             }
 
@@ -127,6 +130,10 @@ const imageUploadHandler = function(evt){
         deleteB.setAttribute("id", `${elementId}_delete-action`);
 
         uploadB.addEventListener("click", function(evt){
+            // debugger
+            evt.currentTarget.classList.toggle("progress", true);
+            evt.currentTarget.classList.toggle("icofont-check", false);
+            evt.currentTarget.classList.toggle("icofont-refresh", true);
             displayUploadState(`Uploading Image (${Object.keys(imgUrls).indexOf(elementId) + 1}/${Object.keys(imgUrls).length})`);
             uploadImage(elementId, file);
         });
@@ -148,6 +155,20 @@ const imageUploadHandler = function(evt){
 };
 
 const formHandler = function(evt) {
+    const setState = function(state, label) {
+        label = label || "Uploading To Store...";
+        const submitBtn = document.querySelector(`#post-box input[type="submit"]`);
+        if(state === true){
+            submitBtn.value = label;
+            submitBtn.classList.toggle("saving", true);
+            submitBtn.setAttribute("disabled", true);
+        }else{
+            submitBtn.value = "Add to Store";
+            submitBtn.classList.toggle("saving", false);
+            submitBtn.removeAttribute("disabled");
+        }
+    };
+
     evt.preventDefault();
     const submitForm = function(){
         let categoryField = [];
@@ -191,9 +212,11 @@ const formHandler = function(evt) {
                 let result = await response.json();
                 if(!result[`error`]){
                     alert("Saved to Store!");
+                    setState(false);
                     window.location.href = "/myprofile/orders?sectid=3";
                 }else{
                     alert("Something unexpected happened. Try again!");
+                    setState(false);
                 }
                 // alert(result);
             } catch (error) {
@@ -204,11 +227,13 @@ const formHandler = function(evt) {
         });
     };
 
+    setState(true);
     fetch(`/api/vendors/${document.querySelector("[name='sellerID']").value}`).then(async function(response){
         try {
             let result = await response.json();
             if(result.length > 0 && result[0].error){
                 alert("SellerID is Invalid!");
+                setState(false);
             }else{
                 submitForm();
             }
