@@ -590,7 +590,7 @@ const createItems = function(items, type) {
     let price = formatAsMoney(parseInt(items['item-price']));
 
     let div0 = createComponent("div", null, ["item"]);
-        const img0 = create("IMG");
+        const img0 = createComponent("IMG", null, ["lazyload"]);
         let div1 = createComponent("DIV", null, ["info", "cols"]);
             let div10 = createComponent("div", null, ["rows", "top"]);
                 let div101 = createComponent("DIV", `${items['item-brand'] || items['categories'][0]}`, ["item-brand"]);
@@ -603,7 +603,7 @@ const createItems = function(items, type) {
     const mainID = (type === "save")? `savedItem_${items['_id']}`: `cartItem_${items['_id']}`
     div0.setAttribute("id", mainID);
     img0.setAttribute("id", `image_${items['_id']}`);
-    img0.setAttribute("src", `${items['item-image'][0]}`);
+    img0.setAttribute("data-src", `${items['item-image'][0]}`);
     button101.setAttribute("id", `remove_${items['_id']}`);
 
     img0.addEventListener("click", function(evt){
@@ -677,7 +677,7 @@ const createStoreItem = function(container, object) {
     let price = formatAsMoney(parseInt(object['item-price']));
 
     let div0 = createComponent("div", null, ["grid","store-item", "list"]);
-        const img0 = create("IMG");
+        const img0 = createComponent("IMG", null, ["lazyload"]);
         let span1 = createComponent("SPAN", `${object['item-name']}`, ["item-name"]);
         let span2 = createComponent("SPAN", `Quantity: ${object['item-qty']}`, ["item-qty"]);
         let span3 = createComponent("SPAN", `${price}`, ["item-price"]);
@@ -689,7 +689,7 @@ const createStoreItem = function(container, object) {
 
     div0.setAttribute("id", `storeItem_${object['_id']}`);
     img0.setAttribute("id", `image_${object['_id']}`);
-    img0.setAttribute("src", `${object['item-image'][0]}`);
+    img0.setAttribute("data-src", `${object['item-image'][0]}`);
     button11.setAttribute("id", `remove_${object['_id']}`);
     button20.setAttribute("id", `publish_${object['_id']}`);
     button20.setAttribute("title", `Toggle ON/OFF`)

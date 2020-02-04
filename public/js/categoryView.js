@@ -108,7 +108,7 @@ const createItem = function(container, object){
     });
 
     let a0 = createComponent("SPAN", null, ["item"]);
-        let img0 = create("IMG");
+        let img0 = createComponent("IMG", null, ["lazyload"]);
         let span0 = createComponent("SPAN", null, ["lg-100", "cols"]);
             let span1 = createComponent("SPAN", null, ["item-name", "cols"]);
                 let span10 = createComponent("A", object["item-name"], ["strip-link"]);
@@ -123,7 +123,7 @@ const createItem = function(container, object){
     span10.setAttribute("href", `/view/${object._id}`);
     a0.setAttribute("id", object._id);
     a0.setAttribute("data-href", `/view/${object._id}`);
-    img0.setAttribute("src", `${object["item-image"][0]}`);
+    img0.setAttribute("data-src", `${object["item-image"][0]}`);
     button20.setAttribute("id", `save_${object._id}`);
     button21.setAttribute("id", `cart_${object._id}`);
 

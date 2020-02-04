@@ -41,14 +41,14 @@ const createItem = function(container, object){
 
     let a0 = createComponent("A", null, ["strip-link", "item", "cols"]);
         let div1 = createComponent("DIV", null, ["item-img"]);
-            let img0 = create("IMG");
+            let img0 = createComponent("IMG", null, ["lazyload"]);
         let div2 = createComponent("DIV", null, ["item-description", "cols"]);
             let span0 = createComponent("SPAN", object["item-name"].toUpperCase());
             let span1 = createComponent("SPAN", price, ["item-price"]);
                 let sup0 = createComponent("SUP", originalPrice, ["strike"]);
 
     a0.setAttribute("href", `/view/${object._id}`);
-    img0.setAttribute("src", loadedImage);
+    img0.setAttribute("data-src", loadedImage);
     img0.setAttribute("alt", "Item Image");
 
     span1.appendChild(sup0);
