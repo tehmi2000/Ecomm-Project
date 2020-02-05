@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>View Item</title>
+    <title>Product Page</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/miniHeader.css">
     <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
+
     <script src="/js/main.min.js"></script>
     <script src="/js/lib/greensock/minified/gsap.min.js"></script>
     <script data-ad-client="ca-pub-6903692907552928" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -64,6 +65,7 @@
             font-size: 2.2rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
+            margin-top: 0;
         }
 
         .product-card .product-short-desc{
@@ -94,10 +96,10 @@
         }
 
         .product-card .product-nav > *{
-            width: 1rem;
-            height: 1rem;
+            width: 1.5rem;
+            height: 1.5rem;
             background-color: #ccc;
-            margin: 5px 0.8rem;
+            margin: 5px 1rem;
             border-radius: 50%;
             cursor: pointer;
             position: relative;
@@ -109,8 +111,8 @@
 
         .product-card .product-nav .active::after{
             content: "";
-            width: 1.6rem;
-            height: 1.6rem;
+            width: 2.1rem;
+            height: 2.1rem;
             border: 2px solid #e7cb28;
             border-radius: 50%;
             position: absolute;
@@ -374,14 +376,14 @@
             }
 
             .product-card .product-nav > *{
-                width: 0.9rem;
-                height: 0.9rem;
-                margin: 5px 1rem;
+                width: 1rem;
+                height: 1rem;
+                margin: 5px 0.95rem;
             }
 
             .product-card .product-nav .active::after{
-                width: 1.7rem;
-                height: 1.7rem;
+                width: 1.8rem;
+                height: 1.8rem;
                 left: -0.4rem;
                 top: -0.4rem;
             }
@@ -469,21 +471,21 @@
         <div class="rows bg-image-container">
             <div class="card-container">
                 <div class="product-card">
-                    <div class="product-name"></div>
+                    <h1 class="product-name">---</h1>
                     <div class="product-short-desc">Short description text appears here</div>
-                    <div id="product-pic" class="product-img"></div>
+                    <div class="rows slide-container">
+                        <div id="product-pic" class="product-img"></div>
+                    </div>
                     <div class="product-nav">
                         <!-- <span data-nav-one class="active"></span> -->
                     </div>
                 </div>
                 
                 <div class="info-card">
-                    <div class="discount-label">
-                        -50% off
-                    </div>
+                    <div class="discount-label">--</div>
                     <div>
                         <h2>Vendor's Price</h2>
-                        <div class="product-price">NGN 0.00</div>
+                        <div class="product-price">--</div>
                     </div>
     
                     <div class="product-info tab-wrapper">
@@ -493,11 +495,8 @@
                         </div>
     
                         <div class="tab-content">
-                            <span class="content" id="description">Full description text appears here</span>
-    
-                            <span class="content" id="about-vendor">
-    
-                            </span>
+                            <div class="content active" id="description">Full description text appears here</div>
+                            <div class="content" id="about-vendor">Vendor profile would appear here</div>
                         </div>
     
                     </div>
