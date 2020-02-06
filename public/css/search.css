@@ -131,7 +131,7 @@ main h1 > *{
 }
 
 .item img{
-    width: 16rem;
+    width: 20rem;
     max-height: 20rem;
     min-height: 100%;
     object-fit: contain;
@@ -307,6 +307,7 @@ main h1 > *{
     .item img{
         /* display: block; */
         width: 13rem;
+        min-width: 13rem;
         height: 18rem;
         margin: auto;
         background-color: #eee;
