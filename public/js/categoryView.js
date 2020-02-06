@@ -27,9 +27,20 @@ const fetchData = (searchQuery, formattedQuery) => {
             if(result.length === 0){
                 createNoItemTag(container, formattedQuery);
             }else{
-                result.forEach(item => {
+                let adsPosition = 3;
+                result.forEach((item, index) => {
+                    if(index === adsPosition){
+                        placeAds(container);
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        adsPosition += 3;
+                    }
+
                     itemList[`${item._id}`] = item;
                     createItem(container, item);
+                });
+
+                document.querySelectorAll(".item .item-description span:first-child").forEach(el => {
+                    $clamp(el, {clamp: 2});
                 });
             }
 
@@ -46,6 +57,24 @@ const createNoItemTag = function(container, query){
     container.style.alignItems = "center";
     container.innerHTML = `<span id='no-item' class='cols'><img src="../assets/images/portfolium-robot.png" alt=""><span>Sorry, we couldn't find any item in our '${query}' category.</span></span>`;
     createSuggestions(document.querySelector(".pane.sug"), document.querySelector(".pane.sug #suggestion-container"));
+};
+
+const placeAds = function(container) {
+    let adsDiv = createComponent("DIV", null, ["item", "lg-100"]);
+    let script = create('script');
+    let ins = createComponent("INS", null, ["adsbygoogle"]);
+
+    script.setAttribute("async", true);
+    script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+    ins.style.display = "block";
+    ins.style.width = "100%";
+    ins.setAttribute("data-ad-format", "fluid");
+    ins.setAttribute("data-ad-layout-key", "-fb+5w+4e-db+86");
+    ins.setAttribute("data-ad-client", "ca-pub-6903692907552928");
+    ins.setAttribute("data-ad-slot", "9318070099");
+
+    adsDiv = joinComponent(adsDiv, script, ins);
+    container.appendChild(adsDiv);
 };
 
 const createItem = function(container, object){
@@ -124,6 +153,7 @@ const createItem = function(container, object){
     a0.setAttribute("id", object._id);
     a0.setAttribute("data-href", `/view/${object._id}`);
     img0.setAttribute("data-src", `${object["item-image"][0]}`);
+    img0.setAttribute("alt", 'Item-Image');
     button20.setAttribute("id", `save_${object._id}`);
     button21.setAttribute("id", `cart_${object._id}`);
 

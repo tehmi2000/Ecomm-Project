@@ -311,6 +311,8 @@ main h1 > *{
         height: 18rem;
         margin: auto;
         background-color: #eee;
+        border: 1px solid #dfdfdf;
+        border-right: none;
     }
 
     .item > *{
