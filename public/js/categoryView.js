@@ -39,7 +39,7 @@ const fetchData = (searchQuery, formattedQuery) => {
                     createItem(container, item);
                 });
 
-                document.querySelectorAll(".item .item-description span:first-child").forEach(el => {
+                document.querySelectorAll(".item .item-name a:first-child").forEach(el => {
                     $clamp(el, {clamp: 2});
                 });
             }
