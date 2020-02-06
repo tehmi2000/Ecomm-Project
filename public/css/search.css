@@ -150,6 +150,7 @@ main h1 > *{
     font-weight: 500;
     text-transform: uppercase;
     padding-bottom: 0.3rem;
+    line-height: 1.5;
 }
 
 .item .item-name > *, .item .item-control > *{
@@ -187,25 +188,22 @@ main h1 > *{
 }
 
 .item .item-buttons{
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     padding: 1rem;
 }
 
 .item .item-buttons button{
+    /* display: block; */
     z-index: +10;
     text-transform: capitalize;
-    /* font-family: "Open Sans", sans-serif; */
     border: none;
     background-color: #f9f9f9;
     color: rgb(255, 153, 0);
     height: 100%;
     overflow: hidden;
     font-size: 1.3rem;
-    margin-left: 0.45rem;
-    margin-right: 0.45rem;
+    margin: 0 0.45rem;
     padding: 1rem 3rem;
     border-radius: 3px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.26);
@@ -295,22 +293,6 @@ main h1 > *{
         font-size: 1.7em;
     }
 
-    .pane .section-head h3{
-        font-size: 1.3rem;
-    }
-
-    .section-bottom > *:first-child, .section-bottom > *:last-child{
-        display: none;
-    }
-
-    header #search-form{
-        width: 95vw;
-    }
-
-    #slideshow{
-        height: 50vh;
-    }
-
     #item-container{
         flex-direction: column;
     }
@@ -359,24 +341,19 @@ main h1 > *{
     }
 
     .item .item-buttons{
-        /* flex-direction: column; */
-        justify-content: space-between;
-        align-items: flex-start;
         padding: 0.5rem 0;
         margin-left: 0;
-        height: 100%;
     }
-    
+
+    .item .item-buttons button, .item .item-buttons button [class^="icofont-"]{
+        font-size: 1.2em;
+    }
+
     .item .item-buttons button{
         margin-top: 0.4rem;
         margin-bottom: 0.4rem;
         padding: 0.7rem 1.8rem;
-        font-size: 1.2rem;
-        /* box-shadow: none; */
-    }
-
-    .item .item-buttons button:first-child{
-        font-size: 1.2rem;
+        height: 100%;
     }
 
     .dummy.item{

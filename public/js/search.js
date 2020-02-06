@@ -135,7 +135,7 @@ const createItem = function(container, object){
                 let span11 = createComponent("SPAN", `${object["short-desc"] || 'No summary available'}`);
             let span2 = createComponent("SPAN", null, ["item-control", "rows", "lg-100"]);
                 let span20 = createComponent("SPAN", `${price}`, ["item-number"]);
-                let span21 = createComponent("SPAN", null, ["item-buttons"]);
+                let span21 = createComponent("SPAN", null, ["rows", "item-buttons"]);
                     let button20 = create("BUTTON");
                     let button21 = create("BUTTON");
 
@@ -149,8 +149,8 @@ const createItem = function(container, object){
 
     button20.addEventListener("click", saveHandler);
     button21.addEventListener("click", cartHandler);
-    button20.innerHTML = `<i class="icofont-"></i> Save`;
-    button21.innerHTML = `<i class="icofont-cart"></i> CART`;
+    button20.innerHTML = `Save`;
+    button21.innerHTML = `<i class="icofont-cart"></i>`;
 
     span21 = joinComponent(span21, button20, button21);
     span1 = joinComponent(span1, span10, span11);
