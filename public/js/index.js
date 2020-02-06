@@ -101,7 +101,7 @@ const getMostPopular = function() {
             });
 
             document.querySelectorAll(".item .item-description span:first-child").forEach(el => {
-                $clamp(el, {clamp: 3});
+                $clamp(el, {clamp: 2});
             });
         } catch (error) {
             console.error(error);

@@ -147,7 +147,7 @@ main h1 > *{
 }
 
 .item-name > *:first-child{
-    font-weight: bold;
+    font-weight: 500;
     text-transform: uppercase;
     padding-bottom: 0.3rem;
 }
@@ -159,8 +159,8 @@ main h1 > *{
 
 .item .item-name > *:last-child{
     text-align: left;
-    color: #888;
-    margin-top: 1rem;
+    color: #8f8f8f;
+    margin-top: 0.5rem;
 }
 
 .item .item-name > *:last-child::first-letter{
@@ -178,7 +178,7 @@ main h1 > *{
 }
 
 .item .item-number{
-    font-weight: 500;
+    font-weight: bold;
     text-align: right;
     color: #333;
     padding-top: 1rem;
