@@ -1,6 +1,5 @@
 const imgUrls = {};
 const globals = {
-    
 };
 
 
@@ -135,7 +134,7 @@ const createStorePanes = function (container, format) {
 
     let div0 = createComponent("DIV", null, ["cols", "pane"]);
         let div01 = createComponent("DIV", null, ["rows", "pane-head"]);
-            let h3 = createComponent("H3", format.heading);
+            let h3 = createComponent("H3", `${format.heading} CATEGORY`);
             let div010 = createComponent("DIV");
         let div02 = createComponent("DIV", null, ["rows", "pane-body"]);
 
@@ -165,7 +164,7 @@ const createStoreItem = function(container, object) {
     // Create store item
     let price = formatAsMoney(parseInt(object['item-price']));
 
-    let div0 = createComponent("div", null, ["grid","store-item", "list"]);
+    let div0 = createComponent("div", null, ["grid","store-item", "gr"]);
         const img0 = create("IMG");
         let span1 = createComponent("SPAN", `${object['item-name']}`, ["item-name"]);
         let span2 = createComponent("SPAN", `Quantity: ${object['item-qty']}`, ["item-qty"]);

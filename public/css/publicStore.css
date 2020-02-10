@@ -83,7 +83,6 @@ main{
 
 .active, .active > *{
     background-color: transparent;
-    /* border: 2px solid orangered; */
     color: rgb(226, 62, 2);
     font-size: 1.7rem;
 }
@@ -245,7 +244,7 @@ main{
 
 #store-box .store-item{
     border-radius: 2px;
-    box-shadow: 2px 2px 3px #dfdfe4;
+    box-shadow: 0 2px 3px 1px #dfdfe4;
     background-color: #fcfcff;
     width: calc(50% - 1rem);
     height: auto;
