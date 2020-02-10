@@ -346,7 +346,7 @@ const model = function() {
             res.redirect(`/productView.html?queryItem=${req.params.itemID}`);
         },
         publicStore: function(req, res) {
-          readFile("./public/dummy.html", req, res);  
+          readFile("./public/publicStore.html", req, res);  
         },
         vendorApplication: function(req, res) {
             readFile("./public/vendorApplyForm.html", req, res);
