@@ -140,9 +140,10 @@ main{
 }
 
 .control-body .body > *{
+    overflow-x: hidden;
     display: none;
     height: 100%;
-    min-height: 49vmin;
+    min-height: 50vmin;
     padding: 1rem 0;
 }
 
@@ -316,11 +317,21 @@ main{
     align-items: center;
     justify-content: center;
     width: 4rem;
-    height: 3rem;
+    height: 4rem;
     padding: 0.5rem;
     margin: 0.6rem;
     color: orange;
-    border: 2px solid orange;
+    border-radius: 50%;
+    border: 1px solid orange;
+    transition: all 0.3s ease;
+}
+
+#props-box #size-props .size-item:hover{
+    color: white;
+    border-color: dodgerblue;
+    background-color: dodgerblue;
+    box-shadow: 1px 1px 2px rgb(22, 123, 223);
+    cursor: pointer;
 }
 
 .control-body .item{
@@ -732,6 +743,23 @@ main{
     right: 1.2rem;
 }
 
+.payment-popup-box {
+    overflow-y: auto;
+}
+
+.payment-popup-box fieldset{
+    border: 1px solid #ddd; 
+    margin-top: 2rem; 
+    margin-bottom: 0.8rem;
+    padding: 1rem;
+}
+
+.payment-popup-box legend{
+    color: orangered;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
 .payment-popup-box .close-btn{
     float: right;
     vertical-align: middle;
@@ -764,6 +792,11 @@ main{
 }
 
 
+.payment-popup-box .fee-item .fee.normal{
+    font-weight: 500;
+    color: #111;
+}
+
 .payment-popup-box .fee-item .fee.credit{
     color: rgb(24, 170, 24);
 }
@@ -781,10 +814,10 @@ main{
     background-color: #efefef;
 }
 
-.payment-popup-box .promo-tab input[type="text"]{
+.payment-popup-box .input-tab input[type="text"]{
     box-sizing: border-box;
     border: none;
-    background-color: transparent;
+    background-color: #efefef;
     width: 80%;
     padding: 1.5rem 2rem;
 }
@@ -812,10 +845,10 @@ main{
 .payment-popup-box .sum-total *:nth-child(2){
     color: white;
     font-size: 1.5rem;
-    font-weight: normal;
+    font-weight: 600;
     background-color: #ffb01e;
-    padding: 1rem 2rem;
-    border-radius: 5vh 5vh;
+    padding: 0.8rem 1.6rem;
+    border-radius: 5px;
     box-shadow: 1px 1px 2px rgba(7, 7, 7, 0.15);
     /* border-top: 2px solid orangered; */
     /* border-bottom: 2px solid orangered; */

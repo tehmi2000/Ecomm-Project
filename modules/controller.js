@@ -264,7 +264,6 @@ const model = function() {
     const vendorRegister = function(req, res) {
         let vendorEmail = req.body['user-email'];
         let vendorName = req.body['user-brand'];
-        let vendorWebsite = req.body['business-url'];
         let vendorBio = req.body['user-bio'];
         let vendorCountry = req.body['user-country'];
         let vendorRegion = req.body['user-region'];
@@ -278,6 +277,7 @@ const model = function() {
             }else if(users.length > 0){
                 let sellerID = users[0].uID;
                 let username = users[0].username;
+                let vendorWebsite = (req.body['business-url'] === '')? `https://oneunivers.herokuapp.com/vendors/public_store/${sellerID}` : req.body['business-url'];
 
                 let query = `INSERT INTO vendors (sellerID, username, vendorName, email, website, bio, country, region) VALUES ('${sellerID}', '${username}', '${vendorName}', '${vendorEmail}', '${vendorWebsite}', '${vendorBio}', '${vendorCountry}', '${vendorRegion}')`;
                 mysql_config.connection.query(query, function(err){
@@ -286,7 +286,7 @@ const model = function() {
                         res.json([{...err}]);
                     }else{
                         console.log('New Vendor Profile Inserted successfully!');
-                        emailHandler.sendVendorStatusReport(vendorEmail, vendorName, users[0].firstname, users[0].lastname, users[0].username, sellerID);
+                        emailHandler.sendVendorStatusReport(vendorEmail, vendorName, users[0].firstname, users[0].lastname, users[0].username, sellerID, website);
                         res.cookie(`univers-${username}-sellerID`, sellerID, {maxAge: 72000000});
                         res.json([{
                             status: 'ok',

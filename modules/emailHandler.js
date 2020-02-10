@@ -91,7 +91,7 @@ const model = function(){
 		});
 	};
 
-	const vendorReport = function (receiver, vendorName, firstname, lastname, username, sellerID) {
+	const vendorReport = function (receiver, vendorName, firstname, lastname, username, sellerID, website) {
 		const options = {
 			method: 'POST',
 			url: 'https://api.sendgrid.com/v3/mail/send',
@@ -113,6 +113,7 @@ const model = function(){
 						Seller_Id: sellerID,
 						Username: username,
 						Vendor_Name: vendorName,
+						Vendor_Store: website,
 						Sender_Name: "Univers",
 						Sender_Address: "No. 14 Wale Erinle Str.",
 						Sender_City: "Itoki-Ota Behind Gas Company",

@@ -2,7 +2,8 @@ const imgUrls = {};
 const globals = {
     cart: {
         items: [],
-        total: {}
+        total: 0,
+        netTotal: 0
     },
     saved: {
         items: []
@@ -460,15 +461,27 @@ const placeAds = function(container) {
     container.appendChild(adsDiv);
 };
 
-const calculateBill = function(items){
-    globals.cart.total = formatAsMoney(items.reduce((total, current) => {
+const calculateCartTotal = function(items){
+    globals.cart.total = items.reduce((total, current) => {
         const price = current["item-price"];
         const qty = current["item-qty"];
 
         total += parseInt(price) * qty;
         return total;
-    }, 0));
+    }, 0);
 };
+
+const calculateTotalBill = function(){
+    let data = {
+        shipping: 600,
+        cart: globals.cart.total,
+        vat: (7.5/100)*globals.cart.total
+    };
+    return {
+        ...data,
+        total: data.shipping + data.cart + data.vat
+    };
+}
 
 const getMyCart = function() {
     const checkoutBtn = document.querySelector("[data-pay-btn]");
@@ -487,13 +500,19 @@ const getMyCart = function() {
 
             container.innerHTML = "";
             if(items.length > 0){
-                calculateBill(items);
+                calculateCartTotal(items);
 
                 checkoutBtn.style.display = "block";
                 checkoutBtn.innerHTML = `Checkout Now`;
                 checkoutBtn.addEventListener("click", function(){
+                    let bills = calculateTotalBill();
+                    globals.cart.netTotal = bills.total;
+                    document.querySelector("#ship-fee").innerHTML = `+ ${formatAsMoney(bills.shipping)}`;
+                    document.querySelector("#cart-total").innerHTML = formatAsMoney(bills.cart);
+                    document.querySelector("#vat-fee").innerHTML = `+ ${formatAsMoney(bills.vat)}`;
+                    document.querySelector("#total-bill").innerHTML = formatAsMoney(bills.total);
+
                     cover.style.top = "0vh";
-                    // calculateTotalBill();
                 });
 
                 coverClose.addEventListener("click", function(evt) {
@@ -577,7 +596,7 @@ const removeItem = function(item_id, type){
                 globals.cart.items = globals.cart.items.filter(item => {
                     return item[`_id`] !== item_id;
                 });
-                calculateBill(globals.cart.items);
+                calculateCartTotal(globals.cart.items);
                 element.parentNode.removeChild(element);
                 document.querySelector("#subtitle").innerHTML = `${globals.cart.items.length} items`;
                 if(globals.cart.items.length === 0){

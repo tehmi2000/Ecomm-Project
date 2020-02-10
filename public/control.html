@@ -96,39 +96,45 @@
                         <div class="cols total-fees">
                             <div class="rows fee-item">
                                 <span class="fee-title">Cart Total</span>
-                                <span class="fee credit">+ NGN 0.00</span>
+                                <span id="cart-total" class="fee normal">NGN 0.00</span>
                             </div>
                             <div class="rows fee-item">
                                 <span class="fee-title">Value Added Tax</span>
-                                <span class="fee debt">- NGN 0.00</span>
+                                <span id="vat-fee" class="fee debt">+ NGN 0.00</span>
                             </div>
                             <div class="rows fee-item">
                                 <span class="fee-title">Shipping Fee</span>
-                                <span class="fee debt">- NGN 0.00</span>
+                                <span id="ship-fee" class="fee debt">+ NGN 0.00</span>
                             </div>
 
-                            <div class="rows promo-tab">
+                            <div class="rows promo-tab input-tab">
                                 <input type="text" title="Voucher input field" placeholder="Promocode or Voucher">
                                 <button class="promo-apply-btn">Apply</button>
                             </div>
 
                             <div class="rows sum-total">
                                 <span>Total: </span>
-                                <span>NGN 0.00</span>
+                                <span id="total-bill">NGN 0.00</span>
                             </div>
                         </div>
 
-                        <h4>Pay Now With</h4>
+                        <h2>Delivery Details</h2>
                         <div class="lg-100 cols">
-                            <form >
-                                <script src="https://js.paystack.co/v1/inline.js"></script>
-                                <button type="button" onclick="payWithPaystack()"> Pay with Paystack </button> 
-                            </form>
-    
-                            <form >
-                                <script src="https://js.paystack.co/v1/inline.js"></script>
-                                <button type="button" onclick="payWithPaystack()"> Pay with Bank </button> 
-                            </form>
+                            <fieldset>
+                                <legend> Mode Of Delivery </legend>
+                                <div id="" class="rows" style="align-items: center;">
+                                    <input type="radio" name="" id="" disabled checked>
+                                    <label for="">Express Delivery</label>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend> Your Delivery Location </legend>
+                                <div id="" class="rows input-tab" style="align-items: center;">
+                                    <input type="text" name="" id="" style="width: 100% !important;" placeholder="Your preferred delivery address">
+                                </div>
+                            </fieldset>
+                            
                         </div>
                         
                     </div>
