@@ -239,6 +239,10 @@ header #search-form{
     #sidemenu {
         overflow: auto;
     }
+
+    #sidemenu nav:not([id="controls"]){
+        margin-top: 3rem;
+    }
     
     #sidemenu li{
         font-size: 14px;
