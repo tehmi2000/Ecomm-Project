@@ -107,6 +107,10 @@ const createSuggestions = function(pEl, cEl) {
             sugData.forEach(item => {
                 createSugItem(item);
             });
+
+            document.querySelectorAll(".sug-item .item-name").forEach(el => {
+                $clamp(el, {clamp: 3});
+            });
         } catch (error) {
             console.error(error);
         }

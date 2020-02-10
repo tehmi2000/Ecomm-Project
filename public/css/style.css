@@ -255,12 +255,9 @@ input[type="submit"], select{
 
 .pagination{
     box-sizing: border-box;
-    /* display: inline-block; */
-    /* width: auto; */
     justify-content: center;
     bottom: 0;
     margin: 0 auto;
-    /* border: 1px solid salmon; */
 }
 
 .pagination > *{
@@ -272,14 +269,12 @@ input[type="submit"], select{
     -ms-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    /* border: 1px solid #aaa; */
 }
 
 .pagination > *:hover{
     transform: scale(1.3);
     cursor: pointer;
     border: 1px solid #aaa;
-
 }
 
 .pagination .active-page{
