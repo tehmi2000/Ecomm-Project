@@ -550,7 +550,7 @@ main{
     padding: 0.9rem;
     grid-row-gap: 0.5rem;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(12, 2rem);
+    grid-template-rows: repeat(13, 2rem);
     width: 30%;
     min-width: 160px;
 }
@@ -580,12 +580,17 @@ main{
 }
 
 .store-item.gr .mod-controls{
-    grid-row: 12/13;
-    grid-column: 1/4;
+    grid-row: 12/14;
+    grid-column: 1/5;
+    align-items: flex-end;
+}
+
+.store-item.gr .mod-controls button{
+    height: 85%;
 }
 
 .store-item.gr .publish-btn{
-    grid-row: 12/13;
+    grid-row: 13/14;
     grid-column: 6/7;
 }
 
@@ -1009,7 +1014,7 @@ main{
     
     .control-body .item img{
         height: 100%;
-        width: 12.5rem;
+        width: 13rem;
         object-fit: contain;
         background-color: #eee;
     }
@@ -1019,6 +1024,7 @@ main{
     }
     
     .control-body .item .item-name{
+        line-height: 1.5;
         font-size: 1.5rem;
         color: #333;
     }

@@ -46,6 +46,12 @@ button:hover, input[type="submit"]:hover, a:link:hover, header [class="icofont-n
     cursor: pointer;
 }
 
+button i[class^="icofont-"]{
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
 form .serror{
     display: flex;
     flex-direction: row;

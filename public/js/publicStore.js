@@ -171,7 +171,7 @@ const createStoreItem = function(container, object) {
         let span3 = createComponent("SPAN", `${price}`, ["item-price"]);
         let div1 = createComponent("div", null, ["rows", "mod-controls"]);
             let button10 = createComponent("BUTTON", null, ["icofont-ui-love"]);
-            let button11 = createComponent("BUTTON", null, ["icofont-cart"]);
+            let button11 = createComponent("BUTTON", "BUY");
 
     div0.setAttribute("id", `storeItem_${object['_id']}`);
     img0.setAttribute("id", `image_${object['_id']}`);

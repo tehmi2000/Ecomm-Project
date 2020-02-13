@@ -293,7 +293,7 @@ main{
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.26);
 }
 
-.store-item .mod-controls button:first-child{
+.store-item .mod-controls button:last-child{
     border: 1px solid orange;
     background-color: orange;
     color: #fff;
@@ -352,7 +352,7 @@ main{
     padding: 0.9rem;
     grid-row-gap: 0.5rem;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(12, 2rem);
+    grid-template-rows: repeat(13, 2rem);
     width: 30%;
     min-width: 160px;
 }
@@ -382,13 +382,21 @@ main{
 }
 
 .store-item.gr .mod-controls{
-    grid-row: 12/13;
-    grid-column: 1/4;
+    grid-row: 12/14;
+    grid-column: 1/7;
+    align-items: flex-end;
 }
 
-.store-item.gr .publish-btn{
-    grid-row: 12/13;
-    grid-column: 6/7;
+.store-item.gr .mod-controls button{
+    height: 80%;
+    width: 50%;
+    margin: auto 10%;
+}
+
+.store-item.gr .mod-controls button:first-child{
+    height: 90%;
+    width: 20%;
+    margin: auto 0.5rem auto 0;
 }
 
 .dummy.item{
@@ -812,8 +820,17 @@ main{
         grid-column: 6/14;
     }
 
+    .store-item.list .mod-controls button:first-child{
+        width: 25%;
+    }
+
     #store-box .store-item.gr{
         width: 48%;
+    }
+
+    .store-item.gr .mod-controls button:first-child{
+        width: 25%;
+        min-width: 4.5rem;
     }
 
     .dummy.item img{
