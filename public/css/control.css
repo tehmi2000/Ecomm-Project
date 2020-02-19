@@ -6,7 +6,7 @@ main{
     display: flex;
     flex-direction: row;
     margin-top: 2rem;
-    width: 85%;
+    width: 88%;
     margin: 2rem auto 0 auto;
 }
 
@@ -38,7 +38,7 @@ main{
     display: flex;
     flex-direction: column;
     background-color: #f2f1f0;
-    min-width: 180px;
+    min-width: 22rem;
 }
 
 .navigation *{
@@ -134,7 +134,6 @@ main{
 }
 
 .control-body .body{
-    /* height: 50vmin; */
     min-height: 50vmin;
     overflow-y: auto;
 }
@@ -143,7 +142,7 @@ main{
     overflow-x: hidden;
     display: none;
     height: 100%;
-    min-height: 50vmin;
+    min-height: 70vmin;
     padding: 1rem 0;
 }
 
@@ -399,12 +398,9 @@ main{
 }
 
 .item .item-controls button{
-    /* background-image: linear-gradient(135deg, darkred 60%, rgb(143, 34, 34) 60%); */
     background-color: rgb(255, 153, 0);
     color: white;
     text-transform: capitalize;
-    /* width: 3rem;
-    height: 3rem; */
     border: none;
     overflow: hidden;
     border-radius: 3px;
@@ -414,8 +410,6 @@ main{
 }
 
 #store-box{
-    /* display: flex; */
-    /* flex-direction: row; */
     flex-wrap: wrap;
 }
 
@@ -427,7 +421,6 @@ main{
 }
 
 #store-box .store-controls > div{
-    /* font-size: 1.2rem; */
     justify-content: space-between;
     align-items: center;
 }
@@ -871,6 +864,10 @@ main{
     border-radius: 5px;
     background-image: linear-gradient(to right, rgb(184, 49, 0), rgb(184, 0, 0), rgb(184, 49, 0));
     box-shadow: 1px 2px 2px #e0e0e0;
+}
+
+footer{
+    background-color: #eee;
 }
 
 @media only screen and (max-width:800px){
