@@ -112,7 +112,8 @@ const model = function() {
 
             const params = {
                 overwrite: true,
-                public_id: `univers_product_images/${name.split('.')[0]}`
+                public_id: `univers_product_images/${name.split('.')[0]}`,
+                eager: [{quality: "auto:best"}]
             };
 
             cloudinary.uploader.upload(path, params, function(cloudErr, result) {
@@ -120,7 +121,7 @@ const model = function() {
                     log(cloudErr);
                     res.json([{...cloudErr, status: 403}]);
                 }else{
-                    console.log(result);
+                    // console.log(result);
                     res.json([
                         {
                             status: 200, 
@@ -200,9 +201,10 @@ const model = function() {
     };
 
     const auth = function(req, res) {
+        const { redirect_url } = req.body;
         const user_username = authSanitizer(req.body.username);
         const user_password = authSanitizer(req.body.password);
-        // console.log(user_username, user_password);
+        
 
         const query = `SELECT username, password FROM users WHERE username='${user_username}'`;
         mysql_config.connection.query(query, function(err, result){
@@ -216,7 +218,7 @@ const model = function() {
                     if (ph.decrypt(user1.password) === user_password){
                         req.session.username = user_username;
                         res.cookie("username", user_username, {maxAge: 72000000});
-                        res.redirect(`/?sess=${ph.softEncrypt("success")}&idn=success`);
+                        res.redirect(redirect_url || `/?sess=${ph.softEncrypt("success")}&idn=success`);
                     }else{
                         res.redirect(`/login?error=${ph.softEncrypt("not found")}&idn=invalidid`);
                     }
