@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         functionSelector[`${activeSection}`]();
     }else{
-        window.location.replace("/login");
+        window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
     }
 
     document.querySelector("#post-box #addToStore-form").addEventListener("submit", formHandler);

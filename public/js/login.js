@@ -2,7 +2,12 @@ let errorField;
 let query = getQuery();
 
 document.addEventListener("DOMContentLoaded", function () {
-    let err_image = "<i class=\"icofont-close-circled\"></i>";
+
+    if(query["redirect"] && query["redirect"] === "true"){
+        document.querySelector("[name='redirect_url'").value = window.decodeURIComponent(query["redirect_url"]);
+    }
+
+    let err_image = `<i class="icofont-close-circled"></i>`;
     errorField = document.querySelector('#error');
 
 	if (query && query['idn'] && query['idn'] === "invalidid") {
