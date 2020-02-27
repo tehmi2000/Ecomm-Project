@@ -24,7 +24,6 @@ main{
     color: #444 !important;
 }
 
-
 .pagination{
     display: none;
 }
@@ -336,10 +335,10 @@ main{
 .control-body .item{
     display: flex;
     flex-direction: row;
-    width: 90%;
+    width: 95%;
     height: 16rem;
-    border: 1px solid #ddd;
-    margin: 1rem 1rem;
+    border: 1px solid #d9d9d9;
+    margin: 0.7rem 0;
 }
 
 .control-body .item img{
@@ -376,16 +375,17 @@ main{
 }
 
 .control-body .item .item-name{
-    font-weight: bold;
+    font-weight: 400;
     text-align: left;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     /* width: 50%; */
     padding-top: 0.3rem;
 }
 
 .control-body .item .item-price{
-    padding-top: 0.3rem;
-    font-size: 1.2rem;
+    font-weight: bold;
+    padding-top: 1rem;
+    font-size: 1.5rem;
     color: #444;
 }
 
@@ -1027,6 +1027,7 @@ footer{
     }
     
     .control-body .item .item-price{
+        padding-top: 0rem;
         margin-top: 0.5rem;
         font-size: 1.3rem;
     }

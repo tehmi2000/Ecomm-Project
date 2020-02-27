@@ -468,7 +468,7 @@
         <div class="section-top">
             <div class="left-tab">
                 <a href="/"><span class="icofont-home"></span></a>
-                <span><a href="/"><img src="/assets/images/fav.png" alt="LOGO" id="logo"></a></span>
+                <span><a href="/"><img src="/assets/images/fav-logo.png" alt="LOGO" id="logo"></a></span>
             </div>
 
             <div class="right-tab">
@@ -629,7 +629,11 @@
     <script>
         const myDevice = function(x) {
             if (!x.matches) { // If media query is not true
-                gsap.from(document.querySelector("main .card-container"), 1.5, {marginLeft: "100vw", ease: "elastic.out(0.3, 0.2)"});
+                try {
+                    gsap.from(document.querySelector("main .card-container"), 1.5, {marginLeft: "100vw", ease: "elastic.out(0.3, 0.2)"});
+                } catch (error) {
+                    console.error(error);
+                }
             }
         }
 

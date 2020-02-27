@@ -12,7 +12,7 @@ self.addEventListener("install", function(event) {
 				'/assets/icofont/icofont.min.css',
 				'/css/style.min.css',
 				'/js/main.min.js',
-				'/assets/images/fav.png'
+				'/assets/images/fav-logo.png'
 			];
 			return cache.addAll(urlToCache);
 		})
