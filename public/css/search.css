@@ -108,7 +108,7 @@ main h1 > *{
 #item-container{
     display: flex;
     flex-direction: row;
-    min-height: 300px;
+    min-height: auto;
 }
 
 #item-container a:link, #item-container a:visited{

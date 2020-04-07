@@ -818,6 +818,7 @@ main{
     background-color: #efefef;
     width: 80%;
     padding: 1.5rem 2rem;
+    outline: none;
 }
 
 .payment-popup-box .promo-tab button{
@@ -841,15 +842,24 @@ main{
 }
 
 .payment-popup-box .sum-total *:nth-child(2){
-    color: white;
+    color: #ff8b1e;
     font-size: 1.5rem;
     font-weight: 600;
-    background-color: #ffb01e;
+    border: 2px solid #ff8b1e;
     padding: 0.8rem 1.6rem;
     border-radius: 5px;
+    /* background-color: #ffb01e;
     box-shadow: 1px 1px 2px rgba(7, 7, 7, 0.15);
-    /* border-top: 2px solid orangered; */
-    /* border-bottom: 2px solid orangered; */
+    border-bottom: 2px solid orangered; */
+}
+
+.payment-popup-box #confirm-payment-btn{
+    width: 100%;
+    padding: 1.5rem 4.5rem;
+    border-radius: 5px;
+    background-color: #ec4102;
+    color: white;
+    margin-top: 2rem;
 }
 
 [data-pay-btn]{

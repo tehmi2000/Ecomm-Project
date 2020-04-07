@@ -240,18 +240,18 @@ main #profile-form{
     font-size: 14px;
 }
 
-#wallet-section{
+#wallet-section, #records-section{
     margin-bottom: 2rem;
 }
 
-#wallet-section h3{
+#wallet-section h3, #records-section h3{
     color: #555;
     font-size: small;
     padding: 1.5rem 1.5rem;
     background-color: #f0f0f0;
 }
 
-#wallet-section > *{
+#wallet-section > *, #records-section > *{
     width: 100%;
 }
 
@@ -261,13 +261,13 @@ main #profile-form{
     justify-content: space-between;
 }
 
-#wallet-section .trans-container{
+#records-section .trans-container{
     padding: 1rem;
     margin: 0.2rem auto;
     width: 100%;
 }
 
-#wallet-section #no-trans{
+#records-section #no-trans{
     display: flex;
     justify-content: center;
     align-items: center;

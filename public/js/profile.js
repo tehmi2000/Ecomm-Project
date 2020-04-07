@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (getCookie("username")) {
         getUserData(getCookie("username").value);
     }else{
-        window.location.replace("/login");
+        window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
     }
 
     try {
@@ -17,16 +17,16 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".edit-btn").addEventListener("click", function(evt) {
             document.querySelector("#profile-form").style.opacity = 1;
             document.querySelector("#profile-form").style.height = "auto";
-            document.querySelector("#wallet-section").style.opacity = 0;
-            document.querySelector("#wallet-section").style.height = 0;
+            document.querySelector("#records-section").style.opacity = 0;
+            document.querySelector("#records-section").style.height = 0;
 
         });
 
         document.querySelector("#profile-form #minimize-form-btn").addEventListener("click", function(evt) {
             document.querySelector("#profile-form").style.height = 0;
             document.querySelector("#profile-form").style.opacity = 0;
-            document.querySelector("#wallet-section").style.opacity = 1;
-            document.querySelector("#wallet-section").style.height = "auto";
+            document.querySelector("#records-section").style.opacity = 1;
+            document.querySelector("#records-section").style.height = "auto";
         });
 
         document.querySelector("#profile-form").addEventListener("submit", updateHandler);
@@ -40,7 +40,7 @@ const getUserData = function(username){
         try {
             let user_data = await response.json();
             if(user_data.uID === "" || user_data === undefined){
-                window.location.replace("/login");
+                window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
             }else{
                 insertUserData(user_data);
             }

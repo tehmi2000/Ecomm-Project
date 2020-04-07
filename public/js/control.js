@@ -731,7 +731,7 @@ const createStoreItem = function(container, object) {
 
     let price = formatAsMoney(parseInt(object['item-price']));
 
-    let div0 = createComponent("div", null, ["grid","store-item", "list"]);
+    let div0 = createComponent("div", null, ["grid","store-item", "gr"]);
         const img0 = createComponent("IMG", null, ["lazyload"]);
         let span1 = createComponent("SPAN", `${object['item-name']}`, ["item-name"]);
         let span2 = createComponent("SPAN", `Quantity: ${object['item-qty']}`, ["item-qty"]);

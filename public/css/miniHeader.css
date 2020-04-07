@@ -17,7 +17,8 @@ header [class*="section"] *{
 }
 
 header #logo{
-    max-height: 2.35rem;
+    margin-left: 0.7rem;
+    max-height: 2.25rem;
 }
 
 header .section-top{

@@ -13,10 +13,11 @@
     <!-- Global site tag (gtag.js) - Google Analytics --- END --- -->
     
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="View and edit your profile. Manage your transactions and your Univers orders from your account page.">
     <title>My Profile</title>
+    <link rel="shortcut icon" href="/assets/images/logo-2.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/miniHeader.css">
     <link rel="stylesheet" href="/css/profile.css">
@@ -30,7 +31,7 @@
         <div class="section-top">
             <div class="left-tab">
                 <a href="/"><span class="icofont-home"></span></a>
-                <span><a href="/"><img src="/assets/images/fav.png" alt="LOGO" id="logo"></a></span>
+                <span><a href="/"><img src="/assets/images/fav-logo.png" alt="LOGO" id="logo"></a></span>
             </div>
 
             <div class="right-tab">
@@ -42,7 +43,7 @@
                         <li><a href="#">[Explore]</a></li>
                         <li><a href="#">[Marketing]</a></li>
                         <li><a href="/pricing">Pricing</a></li>
-                    <li><a href="/logout">Sign out</a></li>
+                    <li><a href="/logout">Logout</a></li>
                     </ul>
                 </span>
 
@@ -76,6 +77,16 @@
                     <a href="/myprofile/orders?sectid=3">My Store</a>
                     <a href="/myprofile/orders?sectid=1">Shopping Cart</a>
                 </div>
+
+                <div id="wallet-section">
+                    <div class="wallet-div">
+                        <h3>My Wallet</h3>
+                        <div class="balance trans-container rows">
+                            <span>Current Balance</span>
+                            <span data-wallet-balance>NGN 0.00</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="control-body">
@@ -90,7 +101,7 @@
                             <span id="telephone">Phone Number: null</span>
                             <span data-ID>Ref. ID: <i id="uuid"></i></span>
                         </div>
-                        <button class="strip-btn edit-btn">Edit Profile</button>
+                        <button class="strip-btn edit-btn">Update Profile</button>
                     </div>
 
                     <div>
@@ -101,7 +112,7 @@
                             border-radius: 5px;
                             font-size: 1.8rem; 
                             margin: 0.5rem auto 2rem 0;
-                            box-shadow: 2px 2px 2px #999;
+                            box-shadow: 2px 2px 2px rgba(153, 153, 153, 0.69);
                             background-image: linear-gradient(rgb(194, 1, 1), rgb(177, 0, 0));" title="Click to minimize"></span>
 
                             <div class="broken-fields rows">
@@ -161,22 +172,14 @@
                     </div>
                 </section>
 
-                <section id="wallet-section">
-                    <div class="wallet-div">
-                        <h3>My Wallet</h3>
-                        <div class="balance trans-container rows">
-                            <span>Current Balance</span>
-                            <span data-wallet-balance>NGN 0.00</span>
-                        </div>
-                    </div>
-
+                <section id="records-section">
                     <div class="history-div">
-                        <h3>Transactions History</h3>
+                        <h3>Wallet Transaction History</h3>
                         <div id="no-trans" class="trans-container">No transactions yet. All your transactions would appear here.</div>
                     </div>
 
                     <div class="orders-div">
-                        <h3>My Orders</h3>
+                        <h3>Your Orders</h3>
                         <div id="no-trans" class="trans-container">You have not made an order yet. All your orders would appear here.</div>
                     </div>
                 
