@@ -22,7 +22,7 @@ main h1{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-image: url("../assets/ads/0a9c147c668744d0afcb9d320afa0b73.jpg");
+    background-image: url("../assets/ads/null.png");
     -webkit-transition: all 0.2s ease-in;
     -moz-transition: all 0.2s ease-in;
     -ms-transition: all 0.2s ease-in;
@@ -111,6 +111,7 @@ marquee{
 .pane .section-body .slider{
     width: auto;
     flex-wrap: wrap;
+    overflow: hidden;
 }
 
 .pane .section-body .content{
@@ -130,6 +131,11 @@ marquee{
     box-shadow: 2px 2px 3px #dfdfe4;
     background-color: rgb(252, 252, 255);
     justify-content: space-between;
+    transition: all 0.2s ease;
+}
+
+.pane .item:hover{
+    transform: scale(1.03);
 }
 
 .pane .item *{

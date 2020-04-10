@@ -1,4 +1,4 @@
-let images = ["0a9c147c668744d0afcb9d320afa0b73.jpg"];
+let images = ["null.png"];
 let counter = 0;
 
 const nextImage = function(){
