@@ -793,6 +793,10 @@ main{
     .control-body .item .item-controls{
         bottom: 0.3rem;
     }
+
+    .store-item .item-name{
+        font-size: 1.3rem;
+    }
     
     .item .item-controls button{
         background-color: rgb(255, 153, 0);
