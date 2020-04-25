@@ -14,9 +14,11 @@ const globals = {
     imgSpace : 4
 };
 
+
 document.addEventListener("DOMContentLoaded", function() {
+
     if(getCookie("username")){
-        getMyCart();
+        getSavedItems();
     }else{
         window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
     }
@@ -26,6 +28,47 @@ const createNoItemTag = function(container, text){
     container.style.justifyContent = "center";
     container.style.alignItems = "center";
     container.innerHTML = `<span id='no-item'>${text}</span>`;
+};
+
+const getSavedItems = function() {
+    document.querySelector(".control-body #orders-box").style.display = "flex";
+
+    fetch(`/api/user/${getCookie("username").value}/getSavedItems`).then(async function(response) {
+        try {
+            let items = await response.json();
+            const container = document.querySelector("#orders-box");
+
+            // console.log(items);
+            document.querySelector("#subtitle").innerHTML = `${items.length} items`;
+
+            container.innerHTML = "";
+            if(items.length > 0){
+                let adsPosition = 3;
+                items.forEach(function(item, index) {
+                    if(index === adsPosition){
+                        placeAds(container);
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        adsPosition += 3;
+                    }
+                    globals.saved.items.push(item);
+                    createItems(item, "save");
+                });
+
+                document.querySelectorAll(".item .item-name").forEach(el => {
+                    $clamp(el, {clamp: 2});
+                });
+                gsap.from(document.querySelectorAll("#orders-box > *"), 0.6, {x: "100vw", ease: 'Power1.easeOut', stagger: 0.3})
+
+            }else{
+                createNoItemTag(container, "No saved item yet");
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }).catch(function(error) {
+        console.log(error);
+    });
 };
 
 const placeAds = function(container) {
@@ -45,87 +88,6 @@ const placeAds = function(container) {
 
     adsDiv = joinComponent(adsDiv, script, ins);
     container.appendChild(adsDiv);
-};
-
-const calculateCartTotal = function(items){
-    globals.cart.total = items.reduce((total, current) => {
-        const price = current["item-price"];
-        const qty = current["item-qty"];
-
-        total += parseInt(price) * qty;
-        return total;
-    }, 0);
-};
-
-const calculateTotalBill = function(){
-    let data = {
-        shipping: 600,
-        cart: globals.cart.total,
-        vat: (7.5/100)*globals.cart.total
-    };
-    return {
-        ...data,
-        total: data.shipping + data.cart + data.vat
-    };
-};
-
-const getMyCart = function() {
-    const checkoutBtn = document.querySelector("[data-pay-btn]");
-    document.querySelector(".control-body #orders-box").style.display = "flex";
-
-    fetch(`/api/user/${getCookie("username").value}/getCart`).then(async function(response) {
-        try {
-            let items = await response.json();
-            const container = document.querySelector("#orders-box");
-            let cover = document.querySelector(".payment-bg-cover");
-            let coverClose = document.querySelector(".payment-bg-cover .close-btn");
-
-            document.querySelector("#subtitle").innerHTML = `${items.length} items`;
-            // console.log(items);
-
-            container.innerHTML = "";
-            if(items.length > 0){
-                calculateCartTotal(items);
-
-                checkoutBtn.style.display = "block";
-                checkoutBtn.innerHTML = `Checkout Now`;
-                checkoutBtn.addEventListener("click", function(){
-                    let bills = calculateTotalBill();
-                    globals.cart.netTotal = bills.total;
-                    document.querySelector("#ship-fee").innerHTML = `+ ${formatAsMoney(bills.shipping)}`;
-                    document.querySelector("#cart-total").innerHTML = formatAsMoney(bills.cart);
-                    document.querySelector("#vat-fee").innerHTML = `+ ${formatAsMoney(bills.vat)}`;
-                    document.querySelector("#total-bill").innerHTML = formatAsMoney(bills.total);
-
-                    cover.style.top = "0vh";
-                });
-
-                coverClose.addEventListener("click", function(evt) {
-                    cover.style.top = "-120vh";
-                })
-
-                forEach(items, function(item) {
-                    globals.cart.items.push(item);
-                    createItems(item);
-                });
-
-                document.querySelectorAll(".item .item-name").forEach(el => {
-                    $clamp(el, {clamp: 2});
-                });
-
-                // Animate items
-                gsap.from(document.querySelectorAll("#orders-box > *"), 0.6, {x: "100vw", ease: 'Power1.easeOut', stagger: 0.3})
-
-            }else{
-                createNoItemTag(container, "No item in your cart yet");
-            }
-
-        } catch (error) {
-            console.log(error);
-        }
-    }).catch(function(error) {
-        console.log(error);
-    });
 };
 
 const removeItem = function(item_id, type){
@@ -229,6 +191,33 @@ const createItems = function(items, type) {
 
 };
 
+const createCheckOption = function(container, option) {
+    // <input type="checkbox" name="categories" id="">
+    // <label for="">Fasion</label>
+
+    const id = `cat-option-${genHex(4)}`;
+    let span0 = create("SPAN");
+    const input0 = create("INPUT");
+    const label0 = createComponent("LABEL", option.title);
+
+    span0.classList.add("wrapper");
+    input0.setAttribute("type", "checkbox");
+    input0.setAttribute("name", "categories");
+    input0.setAttribute("value", option.title);
+    input0.setAttribute("id", id);
+    label0.setAttribute("for", id);
+
+    input0.addEventListener("change", function(evt) {
+        if(evt.target.checked === true){
+            document.querySelector(`[value='${evt.target.value}']+label`).style.color = "orangered";
+        }else{
+            document.querySelector(`[value='${evt.target.value}']+label`).style.color = "black";
+        }
+    });
+
+    span0 = joinComponent(span0, input0, label0);
+    container.appendChild(span0);
+};
 
 
 

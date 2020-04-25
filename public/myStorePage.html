@@ -16,17 +16,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="">
-    <title>Univers | Manage your shop items</title>
+    <title>Univers | My Store</title>
     <link rel="shortcut icon" href="/assets/images/logo-2.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/miniHeader.css">
     <link rel="stylesheet" href="/css/control.css">
+    <link rel="stylesheet" href="/css/myStorePage.css">
     <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
     <script src="/js/main.min.js"></script>
     <script src="/js/lib/lazysizes.min.js"></script>
     <script src="/js/lib/clamp.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js" async defer></script>
-    <script src="/js/control.js"></script>
+    <script src="/js/myStorePage.js"></script>
     
 </head>
 <body>
@@ -60,7 +61,7 @@
             <nav class="navigation">
                 <a href="/myprofile/orders?sectid=1" class="nav-child" id="one" data-title="My Cart">My Cart</a>
                 <a href="/myprofile/orders?sectid=4" class="nav-child" id="four" data-title="Saved Items">Saved Items</a>
-                <a href="/myprofile/orders?sectid=3" class="nav-child" id="three" data-title="My Store">My Store</a>
+                <a href="/myprofile/orders?sectid=3" class="nav-child active" id="three" data-title="My Store">My Store</a>
                 <div class="drop-extra">
                     <a href="/myprofile/orders?sectid=2" id="two" data-title="Sell Item">Sell Item</a>
                 </div>
@@ -69,8 +70,8 @@
 
         <div class="lg-100 control-body">
             <div class="lg-100 header">
-                <h2 id="title">Title</h2>
-                <h5 id="subtitle">Sub-Text</h5>
+                <h2 id="title">My Store</h2>
+                <h5 id="subtitle"></h5>
             </div>
 
             <div class="lg-100 body">
@@ -99,231 +100,6 @@
                             
                         </div>
                     </div>
-                </div>
-
-                <div class="payment-bg-cover">
-                    <div class="payment-popup-box">
-                        <span class="icofont-close close-btn"></span>
-                        <h2>Payment Details</h2>
-                        <div class="cols total-fees">
-                            <div class="rows fee-item">
-                                <span class="fee-title">Cart Total</span>
-                                <span id="cart-total" class="fee normal">NGN 0.00</span>
-                            </div>
-                            <div class="rows fee-item">
-                                <span class="fee-title">Value Added Tax</span>
-                                <span id="vat-fee" class="fee debt">+ NGN 0.00</span>
-                            </div>
-                            <div class="rows fee-item">
-                                <span class="fee-title">Shipping Fee</span>
-                                <span id="ship-fee" class="fee debt">+ NGN 0.00</span>
-                            </div>
-
-                            <div class="rows promo-tab input-tab">
-                                <input type="text" title="Voucher input field" placeholder="Promocode or Voucher">
-                                <button class="promo-apply-btn">Apply</button>
-                            </div>
-
-                            <div class="rows sum-total">
-                                <span>Total: </span>
-                                <span id="total-bill">NGN 0.00</span>
-                            </div>
-                        </div>
-
-                        <h2>Delivery Details</h2>
-                        <div class="lg-100 cols">
-                            <fieldset>
-                                <legend> Mode Of Delivery </legend>
-                                <div id="" class="rows" style="align-items: center;">
-                                    <input type="radio" name="" id="" disabled checked>
-                                    <label for="">Express Delivery</label>
-                                </div>
-                            </fieldset>
-
-                            <fieldset>
-                                <legend> Your Delivery Location </legend>
-                                <div id="" class="rows input-tab" style="align-items: center;">
-                                    <input type="text" name="" id="" style="width: 100% !important;" placeholder="Your preferred delivery address">
-                                </div>
-                            </fieldset>
-                        </div>
-                        
-                        <button id="confirm-payment-btn" class="strip-btn">Proceed with payments</button>
-                    </div>
-                </div>
-
-                <div id="orders-box" class="cols">
-                    <span class="dummy item">
-                        <img src="#" alt="">
-                        <div class="cols">
-                            <span class="item-name"></span>
-                            <span class="item-number cols">
-                                <span></span>
-                                <span></span>
-                            </span>
-                            <span class="item-buttons">
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </div>
-                    </span>
-
-                    <span class="dummy item">
-                        <img src="#" alt="">
-                        <div class="cols">
-                            <span class="item-name"></span>
-                            <span class="item-number cols">
-                                <span></span>
-                                <span></span>
-                            </span>
-                            <span class="item-buttons">
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </div>
-                    </span>
-
-                    <span class="dummy item">
-                        <img src="#" alt="">
-                        <div class="cols">
-                            <span class="item-name"></span>
-                            <span class="item-number cols">
-                                <span></span>
-                                <span></span>
-                            </span>
-                            <span class="item-buttons">
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </div>
-                    </span>
-
-                    <span class="dummy item">
-                        <img src="#" alt="">
-                        <div class="cols">
-                            <span class="item-name"></span>
-                            <span class="item-number cols">
-                                <span></span>
-                                <span></span>
-                            </span>
-                            <span class="item-buttons">
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </div>
-                    </span>
-
-                    <!-- <div class="item">
-                        <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
-                        <div class="info cols">
-                            <div class="rows top">
-                                <div class="item-brand">fashion</div>
-                                <button class="strip-btn icofont-close"></button>
-                            </div>
-                            
-                            <span class="item-name">Sony Fifa 20 Standard Edition-PS4</span>
-                            <span class="item-price">N15,000,000</span>
-                            <span class="item-controls">
-                                <button class="">Save Item</button>
-                            </span>
-                        </div>
-                    </div> -->
-
-                    <!-- <button onclick="javascript:createItems({title: 'Me areand', qty: 2, price: 'N3,000'})"></button> -->
-                </div>
-
-                <div id="post-box" class="cols">
-                    <form id="addToStore-form" class="cols">
-                        <div class="gallery">
-                            <div class="status-bar">Uploading Image (1/1)</div>
-                            <label for="preview-image-1">Click to insert image<br>(1 of 4)</label>
-                            <input type="file" name="item-image" id="preview-image-1" accept="image/*">
-    
-                            <label for="preview-image-2">Click to insert image<br>(2 of 4)</label>
-                            <input type="file" name="item-image" id="preview-image-2" accept="image/*">
-    
-                            <label for="preview-image-3">Click to insert image<br>(3 of 4)</label>
-                            <input type="file" name="item-image" id="preview-image-3" accept="image/*">
-
-                            <label for="preview-image-4">Click to insert image<br>(4 of 4)</label>
-                            <input type="file" name="item-image" id="preview-image-4" accept="image/*">
-                        </div>
-    
-                        <label for="item-name">Name of Item</label>
-                        <input type="text" name="item-name" id="item-name" maxlength=100 placeholder="Enter the name of item here" required>
-    
-                        <label for="item-short-desc">Product Summary</label>
-                        <input type="text" name="item-short-desc" id="item-short-desc" maxlength=60 placeholder="Short summary of your product (60 characters max)" required>
-
-                        <label for="item-desc">Full Description</label>
-                        <textarea rows="7" name="item-desc" id="item-desc" placeholder="Describe the product fully here"></textarea>
-    
-                        <label for="option-box">Categories</label>
-                        <div id="option-box" class="rows">
-                            <!-- <span class="wrapper">
-                                <input type="checkbox" name="categories" id="" value="">
-                                <label for="">Fasion</label>
-                            </span> -->
-                        </div>
-
-                        <label for="props-box">Properties</label>
-                        <div class="cols">
-                            <div id="props-box" class="cols">
-                                <div id="color-tab" class="cols">
-                                    <div class="rows heading">
-                                        <span>Item Colors</span>
-                                        <span data-id="color-tab" class="icofont-close"></span>
-                                    </div>
-                                    <div id="color-props">
-                                        <input type="color" name="item-color" value="#ff4500" title="color input">
-                                        <input type="color" name="item-color" value="#ff4500" title="color input">
-                                    </div>
-                                    <span class="add-prop"><i class="icofont-plus"></i> Extra color</span>
-                                </div>
-
-                                <div id="size-tab" class="cols">
-                                    <div class="rows heading">
-                                        <span>Item Sizes</span>
-                                        <span data-id="size-tab" class="icofont-close"></span>
-                                    </div>
-                                    <div>
-                                        <select id="random-size-id" title="Item size select">
-                                            <option value="">Select Type</option>
-                                        </select>
-                                    </div>
-                                    <div id="size-props" class="rows">
-                                        <!-- <span class="size-item rows">S</span> -->
-                                    </div>
-                                    <span class="add-prop"><i class="icofont-plus"></i> Extra size</span>
-                                </div>
-                            </div>
-
-                            <div class="tab-controls cols">
-                                <span data-id="size-tab" class="add-prop">Add Sizes</span>
-                                <span data-id="color-tab" class="add-prop">Add Color</span>
-                                <span data-id="weight-tab" class="add-prop">Add Weight</span>
-                            </div>
-                        </div>
-    
-                        <label for="sellerID">Vendor's ID&nbsp;<a href="/myprofile" target="_blank" class="icofont-info-circle" style="text-decoration: none;"></a></label>
-                        <input type="text" name="sellerID" id="sellerID" placeholder="Enter your Vendor ID" required>
-    
-                        <div class="broken-fields rows">
-                            <div class="lg-100 cols">
-                                <label for="item-price" class="label">Price</label>
-                                <input type="number" name="item-price" id="item-price" placeholder="Enter price of item" required>
-                            </div>
-                            
-                            <div class=" lg-100 cols">
-                                <label for="item-qty" class="label">Quantity</label>
-                                <input type="number" name="item-qty" id="item-qty" placeholder="Enter number of items here" required>
-                            </div>
-                        </div>
-    
-                        <div>
-                            <input type="submit" value="Add to Store">
-                        </div>
-                    </form>
                 </div>
                 
                 <div id="store-box" class="cols">
@@ -430,8 +206,6 @@
                     </div>
                 </div>
             </div>
-
-            <button class="strip-btn lg-100" data-pay-btn>Pay NGN 32,500 Now</button>
 
             <div class="pagination lg-100 rows">
                 <span>&laquo;</span>

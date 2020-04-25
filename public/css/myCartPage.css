@@ -1,18 +1,3 @@
-
-.progress{
-    transform-origin: center;
-    background-color: #999 !important;
-    -webkit-animation: rolling 1.5s linear 0s infinite normal forwards;
-    animation: rolling 1.5s linear 0s infinite normal forwards;
-}
-
-.saving{
-    box-shadow: none !important;
-    outline: none !important;
-    background-color : #999 !important;
-    color: #444 !important;
-}
-
 .pagination{
     display: none;
 }
@@ -301,134 +286,6 @@ footer{
 }
 
 @media only screen and (max-width:800px){
-    body{
-        background-color: #f0f0f3;
-    }
-
-    main{
-        flex-direction: column;
-        margin: 0;
-        padding: 0;
-        width: auto;
-        margin-top: 1rem;
-    }
-
-    .control-head{
-        padding: 0;
-        margin-bottom: 0;
-        box-shadow: none;
-    }
-    
-    .navigation{
-        width: 100%;
-        flex-direction: row;
-        justify-content: unset;
-        background-color: transparent;
-        padding: 0;
-    }
-    
-    .navigation > *{
-        border-radius: 0.5rem 0.5rem 0 0;
-        background-color: #fafafd;
-        cursor: pointer;
-        font-size: 1.3rem;
-        margin: 0 0.2rem;
-    }
-
-    .navigation .nav-child{
-        text-align: center;
-        padding: 1rem 0;
-        width: 100%;
-    }
-    
-    .navigation > *:hover{
-        background-color: transparent;
-    }
-
-/*  */
-    .nav-child:hover+.drop-extra, .drop-extra:hover{
-        opacity: 0;
-    }
-
-    .nav-child+.drop-extra > *, .nav-child:hover+.drop-extra > *{
-        padding: 0; 
-    }
-
-    .nav-child:hover+.drop-extra > *, .drop-extra:hover > *{
-        height: 0;
-    }
-/*  */
-
-    .navigation .nav-child:hover, .drop-extra > *:hover{
-        border: none;
-        color: #444;;
-        background-color: transparent;
-        font-size: 1.3rem;
-        transform: scale(1.1);
-    }
-    
-    .active, .active > *{
-        font-weight: normal;
-        color: #f4f3f2;
-        background-color: rgb(226, 62, 2);
-    }
-
-
-    .control-body{
-        margin-left: 0;
-    }
-
-    .control-body h2{
-        font-size: x-large;
-        margin-top: 0rem;
-    }
-    
-    .control-body h5{
-        margin-top: 0.8rem;
-    }
-
-
-    .control-body .header{
-        z-index: +200;
-        position: sticky;
-        top: 0;
-        background-image: none;
-        background-color: rgb(226, 62, 2);
-    }
-
-    .drop-container:hover .drop-content{
-        z-index: +300;
-    }
-
-    .control-body .body{
-        min-height: 80vmax;
-    }
-    
-    .control-body .body > *{
-        padding: 1rem;
-        min-height: 79vmax;
-    }
-
-    #post-box .gallery label{
-        width: 46%;
-        margin: 0.6rem 2%;
-        min-width: 100px;
-        height: 15rem;
-        color: #b9b9b9;
-        font-size: 1.4rem;
-        font-weight: 500;
-        padding: 1rem;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-        background-color: #eeeeee;
-    }
-
-    #post-box label[for="option-box"] + #option-box > *{
-        width: 50%;
-    }
-
-    /*  */
     .control-body .item{
         overflow: hidden;
         width: 100%;
@@ -474,28 +331,6 @@ footer{
         padding: 1rem 3rem;
     }
 
-    #store-box .store-item.list{
-        grid-column-gap: 1rem;
-        width: 100%;
-    }
-
-    .store-item.list > *{
-        grid-column: 6/13;
-    }
-
-    .store-item.list img{
-        grid-column: 1/6;
-    }
-
-    .store-item.list .mod-controls{
-        grid-row: 6/8;
-        grid-column: 6/10;
-    }
-
-    #store-box .store-item.gr{
-        width: 48%;
-    }
-
     .dummy.item img{
         width: 35%;
     }
@@ -523,16 +358,6 @@ footer{
         padding: 2rem;
         margin: 0;
         transform: translate(12%, 12%);
-    }
-
-    .vendor-notify-box .body-box{
-        margin: auto;
-        transform: translateY(10%);
-        width: 90%;
-    }
-
-    .vendor-brief-text + ul{
-        width: 95%;
     }
 
     .payment-popup-box .total-fees{
@@ -578,11 +403,5 @@ footer{
         margin: 1rem auto;
         border-radius: 5px;
         box-shadow: 1px 2px 2px #e0e0e0;
-    }
-}
-
-@media only screen and (min-width: 650px) and (max-width: 920px){
-    .vendor-notify-box .body-box{
-        transform: translateY(15%);
     }
 }
