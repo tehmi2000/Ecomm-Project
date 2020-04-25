@@ -295,7 +295,7 @@ input[type="submit"], select{
 .sug-item{
     align-items: center;
     width: auto;
-    max-width: 45%;
+    max-width: 35rem;
     border-radius: 3.25rem;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
     background-color: #fafafc;
@@ -314,12 +314,20 @@ input[type="submit"], select{
     border-radius: 50%;
     background-color: #ccc;
 }
-
+ 
 .sug-item .item-name{
-    font-weight: 500;
+    line-height: 1.5;
+    font-weight: 400;
     font-size: 1.2rem;
-    min-width: 5rem;
+    min-width: 8rem;
     padding: 0 1rem;
+}
+
+[class*="item"] img{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-image: url("../assets/images/nullimg.png");
 }
 
 footer{

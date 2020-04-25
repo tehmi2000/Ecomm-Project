@@ -51,6 +51,7 @@ const getAllCategories = function() {
             const tl = gsap.timeline();
             tl.from(document.querySelectorAll("#item-container > *"), 0.4, {x: "-100vw", ease: Power2.easeOut, stagger: 0.2});
 
+            createSuggestions(document.querySelector(".pane.sug"), document.querySelector(".pane.sug #suggestion-container"));
         } catch (err) {
             console.error(err);
         }

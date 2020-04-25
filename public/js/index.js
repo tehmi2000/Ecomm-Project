@@ -113,11 +113,40 @@ const getMostPopular = function() {
 };
 
 const getRecommended = function() {
+    const container = document.querySelector("#recommended-container.pane .slider");
     fetch(`/api/goods/all/recommended`).then(function(response) {
 
         response.json().then( function(result) {
+            // console.log(result);
             let data = dataValidation(result).data;
-            
+
+            // Randomly pick items from the item set to display
+            randData = (function(arr) {
+                let retArr = [];
+                let randIndex = 0;
+                let selectedItem = null;
+
+                while (retArr.length < 10){
+                    randIndex = Math.ceil((Math.random() * (arr.length - 1)));
+                    selectedItem = arr[randIndex];
+
+                    // console.log("length:", arr.length, "randIndex:", randIndex, "sItem:", selectedItem);
+                    retArr.push(selectedItem);
+                    arr = arr.filter((item) => {
+                        return item["_id"] !== selectedItem["_id"];
+                    });
+                }
+                return retArr;
+            }(data));
+
+            container.innerHTML = "";
+            randData.forEach(object => {
+                createItem(container, object);
+            });
+
+            document.querySelectorAll(".item .item-description span:first-child").forEach(el => {
+                $clamp(el, {clamp: 2});
+            });
         }).catch(function (error) {
             console.error(error);
         });
@@ -134,6 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
         nextImage();
     }, 8000);
     getMostPopular();
+    getRecommended();
 });
 
 window.onload = function(evt) {

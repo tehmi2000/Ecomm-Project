@@ -164,9 +164,9 @@ marquee{
 .pane .item img{
     margin-top: 0.5rem;
     background-color: #f8f8f8;
-    width: 14vmax;
+    width: 100%;
     height: 16vmax;
-    max-width: 180px;
+    max-width: 100%;
     max-height: 205px;
     min-width: 90px;
     min-height: 180px;

@@ -278,6 +278,24 @@ const model = function() {
         });
     });
 
+    router.get("/goods/all/recommended", function(req, res) {
+        console.log("Requesting recommended items...")
+        const query = req.query['query'];
+
+        mongoConn.then(client => {
+            const collection = client.db(itemsDB).collection(iCollection);
+            collection.find({"published": true}).sort({"postTime": -1 }).limit(100).toArray(function(err, docs) {
+                if(err) {
+                    log(err);
+                }else{
+                    res.json(docs);
+                }
+            });
+        }).catch(error => {
+            log(error);
+        });
+    });
+
     router.post("/goods/save/:username/publish", function(req, res) {
         const username = formatName(req.params.username);
         const {itemID, state} = req.body;
@@ -326,7 +344,6 @@ const model = function() {
         });
     });
 
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..
     router.post("/goods/save/:username/deleteFromStore", function(req, res) {
         const username = sqlSanitizer(formatName(req.params.username));
         const {itemID} = req.body;
@@ -367,7 +384,6 @@ const model = function() {
 
         
     });
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..
 
     router.post("/goods/save/:username/addToCart", function(req, res) {
         const username = formatName(req.params.username);

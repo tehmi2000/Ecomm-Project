@@ -109,7 +109,7 @@ const createSuggestions = function(pEl, cEl) {
             });
 
             document.querySelectorAll(".sug-item .item-name").forEach(el => {
-                $clamp(el, {clamp: 3});
+                $clamp(el, {clamp: 2});
             });
         } catch (error) {
             console.error(error);

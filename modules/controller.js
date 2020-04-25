@@ -342,7 +342,29 @@ const model = function() {
             readFile("./public/profile.html", req, res);
         },
         control: function(req, res) {
-            readFile("./public/control.html", req, res);
+            let { sectid } = req.query;
+            switch (sectid) {
+                case "1":
+                    readFile("./public/myCartPage.html", req, res);
+                    break;
+
+                case "2":
+                    readFile("./public/sellerPage.html", req, res);
+                    break;
+
+                case "3":
+                    readFile("./public/myStorePage.html", req, res);
+                    break;
+
+                case "4":
+                    readFile("./public/mySavedPage.html", req, res);
+                    break;
+            
+                default:
+                    readFile("./public/dummy.html", req, res);
+                    break;
+            }
+            
         },
         productView: function(req, res) {
             res.redirect(`/productView.html?queryItem=${req.params.itemID}`);

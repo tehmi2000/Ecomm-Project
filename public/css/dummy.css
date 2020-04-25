@@ -20,7 +20,7 @@ main > *{
     color: #888;
 }
 
-main h1{
+main [data-3d]{
     color: white;
     text-shadow: 3px 2px 1px #999;
     text-transform: uppercase;
@@ -28,7 +28,7 @@ main h1{
     margin: 0;
 }
 
-main h1 [class^="icofont-"]{
+main [class^="icofont-options"]{
     display: inline-block;
     transform-origin: center;
     animation: working 3s linear 1s infinite normal backwards;
