@@ -27,6 +27,10 @@ main h1{
     flex-wrap: wrap;
 }
 
+#item-container *{
+    transition: all 0.5s ease;
+}
+
 .item{
     text-decoration: none;
     width: 14.6%;
@@ -36,7 +40,12 @@ main h1{
     margin: 0.9rem 1%;
     box-shadow: 2px 2px 3px #dfdfe4;
     background-color: #fcfcff;
+    border-radius: 5px;
     justify-content: space-between;
+}
+
+.item:hover{
+    transform: scale(1.03) !important;
 }
 
 .item *{
@@ -48,24 +57,25 @@ main h1{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 100%;
     margin: 0 auto;
     height: 12vmax;
     max-height: 205px;
-    /* min-width: 90px; */
     min-height: 100px;
-    /* border: 1px solid salmon; */
 }
 
 .item .item-img [class^="icofont-"]{
     width: auto;
     font-size: 8rem;
     color: rgb(182, 52, 4);
+    background-color: rgba(0, 0, 0, 0.07);
+    padding: 0.5rem;
+    border-radius: 50%;
 }
 
 .item .item-description{
     padding: 0 2%;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     font-size: 1.2rem;
 }
 

@@ -134,6 +134,15 @@ const readOctet = function(path) {
     });
 };
 
+const generateRandomColor = function () {
+    
+    let red = (Math.random() * 225) + 1;
+    let blue = (Math.random() * 225) + 1;
+    let green = (Math.random() * 225) + 1;
+
+    let color = `rgb(${red}, ${green}, ${blue})`;
+    return color;
+};
 
 // if('serviceWorker' in navigator){
 //     window.addEventListener('load', ()=>{

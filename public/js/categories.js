@@ -1,5 +1,5 @@
 const createItem = function(container, object){
-
+ 
     // <a href="" class="item cols">
     //     <div class="cols">
     //         <div class="item-img">
@@ -23,6 +23,8 @@ const createItem = function(container, object){
     div1.classList.add("item-img");
     div2.classList.add("item-description", "cols");
     i0.classList.add(object.image);
+    i0.style.color = "#fcfcfc";
+    span0.style.color = "#fcfcfc";
 
     a0.setAttribute("href", `/categories/view?query=${window.encodeURIComponent(object.title)}`);
     div1 = joinComponent(div1, i0);
@@ -30,6 +32,7 @@ const createItem = function(container, object){
     div0 = joinComponent(div0, div1, div2);
     a0 = joinComponent(a0, div0);
 
+    a0.style.backgroundColor = generateRandomColor();
     container.appendChild(a0);
 };
 
