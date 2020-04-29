@@ -31,8 +31,8 @@ main{
 
 .login{
     width: 50vmin;
+    min-width: 280px;
     max-width: 400px;
-    /* height: 50vmin; */
     border-radius: 10px;
     background-color: white;
     padding: 2rem;
@@ -63,7 +63,18 @@ main{
     background-color: orangered;
 }
 
+main .login-extra{
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+main .login-extra a{
+    color: white;
+}
+
 main .exp-container{
+    display: block;
+    width: 40%;
     opacity: 0;
     position: absolute;
     left: 55vw;
@@ -73,4 +84,25 @@ main .exp-container{
 
 main .exp-container .exp-text{
     display: block;
+}
+
+@media only screen and (max-width:800px){
+    .login{
+        margin-top: 10rem;
+        position: relative !important;
+    }
+
+    main .login-extra a{
+        font-weight: 500;
+    }
+
+    main .exp-container{
+        opacity: 0;
+        width: 80%;
+        position: relative;
+        left: unset;
+        transform: none !important;
+        font-size: 1.5rem;
+        margin: 1rem auto;
+    }
 }

@@ -15,7 +15,7 @@ const startAnimation = function(tl) {
     const b = function() {
         const element = document.querySelector("main *:nth-child(3)");
 
-        gsap.set(element, {y: "-55vh"});
+        gsap.set(element, {y: "-60vh"});
         return gsap.to(element, 1.5, {
             opacity: 1,
             delay: 0.6,
@@ -28,18 +28,46 @@ const startAnimation = function(tl) {
     const c = function() {
         const elementParent = document.querySelector("main .login");
         const elementChildren = document.querySelectorAll("main .login *");
+        let anim = null;
 
-        return gsap.to(elementParent, 1, {
-            opacity: 1,
-            scale: 1,
-            y: "-5vh",
-            delay: 2.2,
-            onComplete: function() {
-                gsap.to(elementChildren, 1, {opacity: 1, scale: 1, ease: "Power1.easeOut", stagger: 0.3, onComplete: function() {
-                    gsap.to(elementParent, 0.5, {x: "-20vw", ease: "Power1.easeOut"});
-                }});
+        const myDevice = function(x) {
+            if (!x.matches) { // If media query is not true
+                try {
+                    anim = gsap.to(elementParent, 1, {
+                        opacity: 1,
+                        scale: 1,
+                        y: "-5vh",
+                        delay: 2.2,
+                        onComplete: function() {
+                            gsap.to(elementChildren, 1, {opacity: 1, scale: 1, ease: "Power1.easeOut", stagger: 0.3, onComplete: function() {
+                                gsap.to(elementParent, 0.5, {x: "-20vw", ease: "Power1.easeOut"});
+                            }});
+                        }
+                    });
+                } catch (error) {
+                    console.error(error);
+                }
+            } else {
+                try {
+                    anim = gsap.to(elementParent, 1, {
+                        opacity: 1,
+                        scale: 1,
+                        delay: 2.2,
+                        onComplete: function() {
+                            gsap.to(elementChildren, 1, {opacity: 1, scale: 1, ease: "Power1.easeOut", stagger: 0.3});
+                        }
+                    });
+                } catch (error) {
+                    console.error(error);
+                }
             }
-        });
+        };
+
+        let x = window.matchMedia("(max-width: 800px)");
+        myDevice(x); // Call listener function at run time
+        x.addListener(myDevice);
+
+        return anim;
     };
 
     const d = function() {
