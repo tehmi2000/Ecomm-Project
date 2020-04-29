@@ -65,7 +65,7 @@ main{
 
 main .login-extra{
     font-size: 1.5rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 }
 
 main .login-extra a{
@@ -84,11 +84,12 @@ main .exp-container{
 
 main .exp-container .exp-text{
     display: block;
+    line-height: 1.5;
 }
 
 @media only screen and (max-width:800px){
     .login{
-        margin-top: 3rem;
+        margin-top: 1.7rem;
         position: relative !important;
     }
 
