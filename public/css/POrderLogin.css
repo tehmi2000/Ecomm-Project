@@ -24,6 +24,13 @@ main{
     color: white;
 }
 
+.welcome{
+    color: white;
+    font-size: 4rem;
+    font-weight: 400;
+    top: -10vh;
+}
+
 .login, .login *{
     /* opacity: 0; */
     justify-content: center;
@@ -88,6 +95,11 @@ main .exp-container .exp-text{
 }
 
 @media only screen and (max-width:800px){
+    .welcome{
+        font-size: 2.7rem;
+        top: unset;
+    }
+
     .login{
         margin-top: 1.7rem;
         position: relative !important;
@@ -98,6 +110,7 @@ main .exp-container .exp-text{
     }
 
     main .exp-container{
+        display: none;
         opacity: 0;
         width: 80%;
         position: relative;

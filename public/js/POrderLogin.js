@@ -33,7 +33,7 @@ const startAnimation = function(tl) {
         const myDevice = function(x) {
             if (!x.matches) { // If media query is not true
                 try {
-                    anim = gsap.to(elementParent, 1, {
+                    anim = gsap.to(elementParent, 0.8, {
                         opacity: 1,
                         scale: 1,
                         y: "-5vh",
@@ -49,7 +49,7 @@ const startAnimation = function(tl) {
                 }
             } else {
                 try {
-                    anim = gsap.to(elementParent, 1, {
+                    anim = gsap.to(elementParent, 0.8, {
                         opacity: 1,
                         scale: 1,
                         delay: 2.2,
@@ -75,21 +75,32 @@ const startAnimation = function(tl) {
 
         return gsap.to(element, 1, {
             opacity: 1,
-            delay: 2.7,
+            delay: 2.5,
             y: "-10vh",
             onComplete: function() {
-                gsap.to(document.querySelector("header"), 1, {opacity: 1, position: "relative", height: "auto", ease: "elastic.out(1, 0.3)"});
+                gsap.to(document.querySelector("header"), 1, {opacity: 1, position: "relative", height: "auto", ease: "elastic.out(1, 0.3)", onComplete: function() {
+                    gsap.to(document.querySelector("main"), 0.4, {height: "calc(100vh - 4.3rem)", ease: "Power1.easeOut"});
+                }});
             }
         });
     };
-    
+
+    const e = function() {
+        const element = document.querySelectorAll("main .login-extra, main > *:nth-child(4)");
+        return gsap.to(element, 1, {
+            opacity: 1,
+            delay: 1
+        });
+    };
+
     // Add animation fragments to timeline, tl...
     tl.add(gsap.set(document.querySelector("header"), {height: "0", opacity: 0, position: "absolute"}))
     .add(gsap.set(document.querySelector("main"), {height: "100vh"}))
     .add(a())
     .add(b())
     .add(c())
-    .add(d());
+    .add(d())
+    .add(e());
 
     return tl;
 };
@@ -97,6 +108,7 @@ const startAnimation = function(tl) {
 document.addEventListener("DOMContentLoaded", function() {
     const tl = gsap.timeline();
     tl.add(gsap.set(document.querySelector(".login, .login *"), {opacity: 0}))
-    .add(gsap.set(document.querySelector(".login"), {scale: 0.5}));
+    .add(gsap.set(document.querySelector(".login"), {scale: 0.5}))
+    .add(gsap.set(document.querySelectorAll("main .login-extra, main > *:nth-child(4)"), {opacity: 0}));
     startAnimation(tl);
 });
