@@ -31,7 +31,7 @@ main{
 
 .login{
     width: 50vmin;
-    min-width: 280px;
+    min-width: 300px;
     max-width: 400px;
     border-radius: 10px;
     background-color: white;
@@ -88,7 +88,7 @@ main .exp-container .exp-text{
 
 @media only screen and (max-width:800px){
     .login{
-        margin-top: 10rem;
+        margin-top: 3rem;
         position: relative !important;
     }
 
