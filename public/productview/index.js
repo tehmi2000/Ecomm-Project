@@ -110,6 +110,7 @@ const setDominantColor = function (img) {
 
 const generateTestImage = function(src){
     let img00 = new Image(150, 150);
+    img00.crossOrigin = "anonymous";
     img00.src = `${src}`;
     return img00;
 };
