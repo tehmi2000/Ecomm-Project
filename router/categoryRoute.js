@@ -13,10 +13,6 @@ const model = function() {
         });
     };
 
-    router.get("/", function(req, res) {
-        readFile("./public/categories.html", req, res);
-    });
-
     router.get("/view", function(req, res) {
         readFile("./public/categoryView.html", req, res);
     });

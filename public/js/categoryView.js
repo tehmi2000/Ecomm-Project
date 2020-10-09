@@ -105,14 +105,14 @@ const createItem = function(container, object){
 
     const saveHandler = function(evt) {
         const itemID = evt.currentTarget.id.split("_")[1];
-        const apiurl = `/api/goods/save/${getCookie("username").value}/addToSavedItems`;
+        const apiurl = `/api/goods/save/${getCookie("univers-username").value}/addToSavedItems`;
         const successResponse = "Item has been saved successfully!";
         actionHandler(itemID, apiurl, successResponse);
     };
 
     const cartHandler = function(evt) {
         const itemID = evt.currentTarget.id.split("_")[1];
-        const apiurl = `/api/goods/save/${getCookie("username").value}/addToCart`;
+        const apiurl = `/api/goods/save/${getCookie("univers-username").value}/addToCart`;
         const successResponse = "Item has been carted successfully!";
         actionHandler(itemID, apiurl, successResponse);
     };

@@ -17,7 +17,7 @@ const globals = {
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    if(getCookie("username")){
+    if(getCookie("univers-username")){
         getMyStoreItems();
     }else{
         window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
@@ -33,7 +33,7 @@ const createNoItemTag = function(container, text){
 
 const getMyStoreItems = function() {
     const fetchItems = function () {
-        fetch(`/api/user/${getCookie("username").value}/getStoreItems`).then(async function(response) {
+        fetch(`/api/user/${getCookie("univers-username").value}/getStoreItems`).then(async function(response) {
             try {
                 // debugger;
                 let cover = document.querySelector(".vendor-bg-cover");
@@ -70,7 +70,7 @@ const getMyStoreItems = function() {
     document.querySelector(".control-body #store-box").style.display = "flex";
 
     // Check if vendor exists first...
-    fetch(`/api/vendors/${getCookie("username").value}`).then(async function(response) {
+    fetch(`/api/vendors/${getCookie("univers-username").value}`).then(async function(response) {
         try {
             let cover = document.querySelector(".vendor-bg-cover");
             let result = await response.json();
@@ -112,7 +112,7 @@ const togglePublish = function(evt) {
     const target = evt.currentTarget;
     const itemID = target.id.split("_")[1];
     const state = target.classList.contains('on');
-    const apiUrl = `/api/goods/save/${getCookie("username").value}/publish`;
+    const apiUrl = `/api/goods/save/${getCookie("univers-username").value}/publish`;
 
     target.setAttribute("disabled", true);
 
@@ -144,7 +144,7 @@ const togglePublish = function(evt) {
 
 const removeStoreItem = function(item_id){
     const container = document.querySelector("#store-box");
-    const apiUrl = `/api/goods/save/${getCookie("username").value}/deleteFromStore`;
+    const apiUrl = `/api/goods/save/${getCookie("univers-username").value}/deleteFromStore`;
 
     fetch(apiUrl, {
         method: "POST",

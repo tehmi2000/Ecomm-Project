@@ -58,7 +58,7 @@ const model = function(){
     	password: process.env.MYSQL_PASS,
     	database: "mvqa2ejzg5zltrc0"
     });
-
+    
     // ATLAS MONGODB CONNECTION
     const MONGO_URL = process.env.MONGO_CONNECTION_STRING;
 
@@ -72,7 +72,7 @@ const model = function(){
 
 	const log = function(err) {
 		let content = `${(new Date).toUTCString()}: ${JSON.stringify(err)}` + "\n";
-		fs.appendFile("./error_log.txt", content, function(err) {
+		fs.appendFile("./stderr.log", content, function(err) {
 			if(err){
 				console.log(err);
 			}

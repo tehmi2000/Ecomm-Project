@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics --- START--- -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157804114-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-157804114-1', { 'optimize_id': 'GTM-KZC2BV6'});
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics --- END --- -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product Page</title>
+    <link rel="shortcut icon" href="../assets/images/logo-2.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/miniHeader.css">
+    <link rel="stylesheet" href="../assets/icofont/icofont.min.css">
+    <link rel="stylesheet" href="index.css">
+
+    <script src="../js/main.min.js"></script>
+    <script src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js" async defer></script>
+    <script data-ad-client="ca-pub-6903692907552928" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="section-top">
+            <div class="left-tab">
+                <a href="/"><span class="icofont-home"></span></a>
+                <span><a href="/"><img src="/assets/images/fav-logo.png" alt="LOGO" id="logo"></a></span>
+            </div>
+
+            <div class="right-tab">
+                <span class="drop-container">
+                    <span class="drop-button">More<i class="icofont-caret-down"></i></span>
+                    <ul class="drop-content">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">[Explore]</a></li>
+                        <li><a href="/myprofile/orders?sectid=4">To Saved Items</a></li>
+                        <li><a href="/myprofile/orders?sectid=1">To Cart</a></li>
+                        <li><a href="/support">Support</a></li>
+                        <li><a href="/support#faq">FAQs</a></li>
+                    </ul>
+                </span>
+
+                <a href="/myprofile/orders?sectid=1"><span class="icofont-cart"></span></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div id="response" class="response-display">Item was saved to your cart</div>
+
+        <div class="rows bg-image-container">
+            <div class="card-container">
+                <div class="product-card">
+                    <h1 class="product-name">---</h1>
+                    <div class="product-short-desc">Short description text appears here</div>
+                    <div class="rows slide-container">
+                        <div id="product-pic" class="product-img"></div>
+                    </div>
+                    <div class="product-nav">
+                        <!-- <span data-nav-one class="active"></span> -->
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="discount-label">--</div>
+                    <div>
+                        <h2>Vendor's Price</h2>
+                        <div class="product-price">--</div>
+                    </div>
+    
+                    <div class="product-info tab-wrapper">
+                        <div class="nav-tabs">
+                            <span class="nav-tab active" data-id="description">Description</span>
+                            <span class="nav-tab" data-id="about-vendor">About Vendor</span>
+                        </div>
+    
+                        <div class="tab-content">
+                            <div class="cols content active" id="description">
+                                <div class="" id="full-desc">
+                                    Full description text appears here
+                                </div>
+                                
+                                <div class="rows pref-options">
+                                    <div class="rows lg-100">
+                                        <div class="cols opt">
+                                            <span class="opt-label">Color</span>
+                                            <select name="item-color" id="item-color">
+                                                <option value="">-- Select --</option>
+                                            </select>
+                                        </div>
+                    
+                                        <div class="cols opt">
+                                            <span class="opt-label">SIZE</span>
+                                            <select name="item-size" id="item-size">
+                                                <option value="">-- Select --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="rows lg-100">
+                                        <div class="cols opt">
+                                            <span class="opt-label">Quantity</span>
+                                            <input type="number" id="quantity-input" class="lg-100" min=1 value="1">
+                                        </div>
+                    
+                                        <div class="cols opt total">
+                                            <span class="opt-label">Total Price</span>
+                                            <span class="total-input">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cols content" id="about-vendor" style="margin-bottom: 3rem;">
+                                <div class="rows">
+                                    <span id="vendorName">Vendor Name</span>
+                                </div>
+                                <div class="cols">
+                                   <span>Vendor profile would appear here</span>
+                                   <div class="rows" style="align-items: center;">
+                                       <i class="icofont-google-map"> </i> 
+                                       <span id="vendorAddress">Region, Country</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="" id="store-link" class="link-btn" style="text-align: center; margin-top: 1rem; border: 1px solid #cce; border-radius: 3px; width: 30%; min-width: 150px;">Visit Store <i class="icofont-"></i></a>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                    <div>
+                        <div class="product-controls">
+                            <button class="strip-btn">Save Item</button>
+                            <button class="strip-btn"><i class="icofont-cart"></i>BUY NOW</button>
+                        </div>                 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="pane cols" id="reviews-container">
+            <div class="section-head rows">
+                <h3>Comments & Reviews</h3>
+            </div>
+            
+            <div class="section-body">
+                <div id="wpac-comment"></div>
+                <!-- <a href="https://widgetpack.com" class="wpac-cr">Comments System WIDGET PACK</a> -->
+                <div class="slider rows">
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="cols">
+        <div class="links rows">
+            <div class="cols">
+                <span class="f-heading">HELP LINKS</span>
+                <a href="/support">Contact Us</a>
+                <a href="#">About Us</a>
+                <a href="#">Terms and Conditions</a>
+            </div>
+    
+            <div class="cols">
+                <span class="f-heading">QUICK LINKS</span>
+                <a href="/login">Log In</a>
+                <a href="/support#faq">FAQs</a>
+            </div>
+
+            <div class="cols">
+                <span class="f-heading">SOCIAL LINKS</span>
+                <a href="https://wa.me/2349059620514?text=Hello%20Univers,%20I%20would%20like%20to%20know%20more%20about%20you">Whatsapp</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+            </div>
+        </div>
+
+        <div class="fill-container">
+            <span class="rows">Copyright &copy; 2019 Univers.com. All rights reserved</span>
+        </div>
+    </footer>
+
+    <!-- Comment Widget By WidgetPack -->
+    <script type="text/javascript">
+        wpac_init = window.wpac_init || [];
+        wpac_init.push({widget: 'Comment', id: 23145, limit: 5, url: `https://oneunivers.herokuapp.com/view/${itemID}`});
+        (function() {
+            if ('WIDGETPACK_LOADED' in window) return;
+            WIDGETPACK_LOADED = true;
+            var mc = document.createElement('script');
+            mc.type = 'text/javascript';
+            mc.async = true;
+            mc.src = 'https://embed.widgetpack.com/widget.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+        })();
+    </script>
+</body>
+</html>

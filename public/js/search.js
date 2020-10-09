@@ -86,7 +86,7 @@ const createItem = function(container, object){
     const cartHandler = function(evt) {
         const itemID = evt.currentTarget.id.split("_")[1];
 
-        fetch(`/api/goods/save/${getCookie("username").value}/addToCart`, {
+        fetch(`/api/goods/save/${getCookie("univers-username").value}/addToCart`, {
             method: "post",
             body: JSON.stringify({
                 item: itemList[itemID]

@@ -10,8 +10,8 @@ const closeMenu = function() {
 
 document.addEventListener("DOMContentLoaded", function () {
     try{
-        if (getCookie("username") && document.querySelector("#sidemenu")) {
-            let apiUrl = `/api/user/${getCookie("username").value}`;
+        if (getCookie("univers-username") && document.querySelector("#sidemenu")) {
+            let apiUrl = `/api/user/${getCookie("univers-username").value}`;
             let div0 = create("DIV");
             let child = "<a href='/myprofile'><img id='user-photo' src='../assets/images/contacts-filled.png' alt='' class='user-picture'></a><a href='/logout' class='link-btn'>Logout</a>";
             div0.innerHTML = child;

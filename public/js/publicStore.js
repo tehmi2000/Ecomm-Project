@@ -4,7 +4,7 @@ const globals = {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    if(getCookie("username")){
+    if(getCookie("univers-username")){
         document.querySelector("#three").classList.add("active");
         document.querySelector("#title").innerHTML = document.querySelector("#three").getAttribute("data-title");
         document.querySelector("#subtitle").innerHTML = "Sell your products";
@@ -76,7 +76,7 @@ const sortIntoCategories = function (data) {
 
 const getMyStoreItems = function() {
     const fetchItems = function (headTitle) {
-        fetch(`/api/user/${getCookie("username").value}/getStoreItems?publishedFlag=true`).then(async function(response) {
+        fetch(`/api/user/${getCookie("univers-username").value}/getStoreItems?publishedFlag=true`).then(async function(response) {
             try {
                 let cover = document.querySelector(".vendor-bg-cover");
                 let result = await response.json();
@@ -100,7 +100,7 @@ const getMyStoreItems = function() {
     document.querySelector(".control-body #store-box").style.display = "flex";
 
     // Check if vendor exists first...
-    fetch(`/api/vendors/${getCookie("username").value}`).then(async function(response) {
+    fetch(`/api/vendors/${getCookie("univers-username").value}`).then(async function(response) {
         try {
             let cover = document.querySelector(".vendor-bg-cover");
             let result = await response.json();

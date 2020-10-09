@@ -16,7 +16,7 @@ const globals = {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    if(getCookie("username")){
+    if(getCookie("univers-username")){
         showPostForm();
     }else{
         window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
@@ -291,7 +291,7 @@ const showPostForm = function() {
     getAllSizes();
 
     // Check for vendorship...
-    fetch(`/api/vendors/${getCookie("username").value}`).then(async function(response) {
+    fetch(`/api/vendors/${getCookie("univers-username").value}`).then(async function(response) {
         try {
             let cover = document.querySelector(".vendor-bg-cover");
             let result = await response.json();
@@ -332,7 +332,7 @@ const removeItem = function(item_id, type){
     const checkoutBtn = document.querySelector("[data-pay-btn]");
     const apiUrl = (type === "save")? 'removeFromSaved' : 'removeFromCart';
 
-    fetch(`/api/goods/save/${getCookie("username").value}/${apiUrl}`, {
+    fetch(`/api/goods/save/${getCookie("univers-username").value}/${apiUrl}`, {
         method: "POST",
         body: JSON.stringify({itemID: item_id}),
         headers: {

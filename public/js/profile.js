@@ -2,8 +2,8 @@ let flagCountry = false;
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    if (getCookie("username")) {
-        getUserData(getCookie("username").value);
+    if (getCookie("univers-username")) {
+        getUserData(getCookie("univers-username").value);
     }else{
         window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
     }

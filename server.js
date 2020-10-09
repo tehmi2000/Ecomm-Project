@@ -25,6 +25,15 @@ const { connection, userTableExist, categoryTableExist, vendorTableExist, log, m
 //     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 //     next();
 // });
+// let requestLog = {
+//     ip: req.ip,
+//     url: req.url,
+//     data: {
+//         body: null,
+//         conditions: []
+//     },
+//     application: req.headers['user-agent']
+// }
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 app.use("/", express.static(__dirname + "/public"));
@@ -80,8 +89,6 @@ mongoConn.then(client => {
 //     response.redirect(`https://${request.headers.host}${request.url}`);
 // });
 app.get("/", controller.dashboard);
-app.get("/login", controller.login);
-app.get("/signup", controller.signup);
 app.get("/passwordReset", controller.reset);
 app.get("/logout", controller.logout);
 app.get("/myprofile", controller.myprofile);

@@ -111,7 +111,7 @@ const model = function() {
     router.get("/user/:username", function(req, res){
         const username = sqlSanitizer(req.params.username);
 
-        if(username === req.session.username){
+        if(username === req.session["univers-username"]){
             const query = `SELECT uID, firstname, lastname, username, phone, email, address, profile_picture FROM users WHERE username='${username}'`;
             connection.query(query, function(err, result){
                 if (err) {

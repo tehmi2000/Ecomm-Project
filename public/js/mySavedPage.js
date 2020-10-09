@@ -17,7 +17,7 @@ const globals = {
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    if(getCookie("username")){
+    if(getCookie("univers-username")){
         getSavedItems();
     }else{
         window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
@@ -33,7 +33,7 @@ const createNoItemTag = function(container, text){
 const getSavedItems = function() {
     document.querySelector(".control-body #orders-box").style.display = "flex";
 
-    fetch(`/api/user/${getCookie("username").value}/getSavedItems`).then(async function(response) {
+    fetch(`/api/user/${getCookie("univers-username").value}/getSavedItems`).then(async function(response) {
         try {
             let items = await response.json();
             const container = document.querySelector("#orders-box");
@@ -95,7 +95,7 @@ const removeItem = function(item_id, type){
     const checkoutBtn = document.querySelector("[data-pay-btn]");
     const apiUrl = (type === "save")? 'removeFromSaved' : 'removeFromCart';
 
-    fetch(`/api/goods/save/${getCookie("username").value}/${apiUrl}`, {
+    fetch(`/api/goods/save/${getCookie("univers-username").value}/${apiUrl}`, {
         method: "POST",
         body: JSON.stringify({itemID: item_id}),
         headers: {

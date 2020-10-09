@@ -216,8 +216,8 @@ const model = function() {
                     res.redirect(`/login?error=${ph.softEncrypt("not found")}&idn=novalid`);
                 }else{
                     if (ph.decrypt(user1.password) === user_password){
-                        req.session.username = user_username;
-                        res.cookie("username", user_username, {maxAge: 72000000});
+                        req.session["univers-username"] = user_username;
+                        res.cookie("univers-username", user_username, {maxAge: 72000000});
                         res.redirect(redirect_url || `/?sess=${ph.softEncrypt("success")}&idn=success`);
                     }else{
                         res.redirect(`/login?error=${ph.softEncrypt("not found")}&idn=invalidid`);
@@ -251,8 +251,8 @@ const model = function() {
                     }else{
                         console.log('Inserted successfully!');
                         emailHandler.sendVerificationMail(user_email, user_firstname, user_lastname, uuid);
-                        req.session.username = user_username;
-                        res.cookie("username", user_username, {maxAge: 72000000});
+                        req.session[`univers-username`] = user_username;
+                        res.cookie("univers-username", user_username, {maxAge: 72000000});
                         res.redirect(`/verification.html?idn=success&generated_uuid=${ph.softEncrypt(uuid)}`);
                     }
                 });
@@ -367,7 +367,7 @@ const model = function() {
             
         },
         productView: function(req, res) {
-            res.redirect(`/productView.html?queryItem=${req.params.itemID}`);
+            res.redirect(`/productview?queryItem=${req.params.itemID}`);
         },
         publicStore: function(req, res) {
           readFile("./public/publicStore.html", req, res);  
@@ -378,12 +378,6 @@ const model = function() {
         paymentSuccess: function(req, res) {
             readFile("./public/payment_success.html", req, res);
         },
-        login: function(req, res) {
-            readFile("./public/login.html", req, res);
-        },
-        signup: function(req, res) {
-            readFile("./public/signup.html", req, res);
-        },
         reset: function(req, res) {
             readFile("./public/reset.html", req, res);
         },
@@ -392,7 +386,7 @@ const model = function() {
                 if (err) {
                     log(err);
                 } else {
-                    res.clearCookie("username");
+                    res.clearCookie("univers-username");
                     res.redirect("/login");
                 }
             });
