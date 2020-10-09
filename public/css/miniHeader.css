@@ -7,6 +7,10 @@ header{
     background-color: #fcfcff;
 }
 
+header .mini a{
+    margin: auto 1rem;
+}
+
 header [class*="section"]{
     padding: 0.4rem 0;
     width: 100%;

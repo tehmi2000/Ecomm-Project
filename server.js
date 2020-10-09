@@ -88,6 +88,7 @@ mongoConn.then(client => {
 // app.get("*", function(request, response) {
 //     response.redirect(`https://${request.headers.host}${request.url}`);
 // });
+
 app.get("/", controller.dashboard);
 app.get("/passwordReset", controller.reset);
 app.get("/logout", controller.logout);
@@ -95,13 +96,10 @@ app.get("/myprofile", controller.myprofile);
 app.get("/myprofile/orders", controller.control);
 app.get("/search", controller.search);
 app.get("/view/:itemID", controller.productView);
-app.get("/pricing", controller.pricing);
 app.get("/vendors/pay/success", controller.paymentSuccess);
 app.get("/vendors/vendor-apply", controller.vendorApplication);
 app.get('/vendors/public_store/:sellerID', controller.publicStore);
 app.get("/support", controller.support);
-
-
 
 app.post("/upload", controller.cloudUpload);
 app.post("/auth", controller.auth); // Login handler
