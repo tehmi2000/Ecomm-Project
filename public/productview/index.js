@@ -110,6 +110,7 @@ const setDominantColor = function (img) {
 
 const generateTestImage = function(src){
     let img00 = new Image(150, 150);
+    img00.crossOrigin = "anonymous";
     img00.src = `${src}`;
     return img00;
 };
@@ -143,6 +144,8 @@ const createNav = function(number, img, active) {
 
     container.appendChild(span0);
 };
+
+// http://localhost:1234/assets/images/ExchangeLogo.png
 
 const fetchProduct = function () {
     fetch(`/api/goods/${itemID}`).then(async function(response) {
