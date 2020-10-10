@@ -1,7 +1,7 @@
 const model = function() {
     const router = require("express").Router();
     const fs = require("fs");
-    const { log, connection, mongoConn, itemsDB, iCollection, ObjectID } =  require("../modules/config");
+    const { log, connection, mongoConn, itemsDB, iCollection, ObjectID, voucherCollection } =  require("../modules/config");
 
     const sqlSanitizer = function(input) {
 
@@ -34,7 +34,6 @@ const model = function() {
         return formattedString;
     };
 
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>....
     router.post("/goods/upsert", function(req, res) {
         const nameOfField = req.body['name-of-field'];
         let value = null;
@@ -74,7 +73,6 @@ const model = function() {
             log(error);
         });
     });
-    // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     router.get("/ads/all", function(req, res) {
     	const dirPath = `./public/assets/ads`;
@@ -204,6 +202,7 @@ const model = function() {
         });
     });
 
+
     router.get("/goods/item-sizes", function(req, res) {
         fs.readFile("./router/support/product-sizes.json", "utf8", function(err, content) {
             if (err) {
@@ -260,7 +259,6 @@ const model = function() {
         });
     });
 
-    
     router.get("/goods/all/mostPopular", function(req, res) {
         const query = req.query['query'];
 
@@ -475,6 +473,33 @@ const model = function() {
 
     });
 
+
+    router.post("/vouchers/:username/confirmVoucher", function(req, res) {
+        const username = formatName(req.params.username);
+        const { voucherName } = req.body;
+
+        mongoConn.then(client => {
+            const collection = client.db(itemsDB).collection(voucherCollection);
+            // const mongoQuery = {$and: [{"voucherName": voucherName}, {"validity": true}]};
+            const mongoQuery = {"voucherName": voucherName};
+
+			collection.findOne(mongoQuery).then(voucher => {
+                let formattedVoucher = voucher;
+                formattedVoucher.isValid = Date.now() < formattedVoucher.expiryDate;
+                console.log(formattedVoucher);
+                res.json(formattedVoucher);
+			}).catch(error => {
+                log(error);
+            });
+			
+        }).catch(error => {
+            log(error);
+        });
+    });
+
+    router.post("/vouchers/:username/redeemVoucher", function(req, res) {
+
+    });
     router.get("/categories", function(req, res) {
         const query = `SELECT * FROM categories WHERE 1`;
             

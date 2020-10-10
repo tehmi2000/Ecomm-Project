@@ -111,6 +111,7 @@ app.post("/submitComplaint", controller.submitComplaint);
 
 app.use("/api", require("./router/apiRoute"));
 app.use("/categories", require("./router/categoryRoute"));
+app.use("/payment", require("./router/paymentRoute"))
 
 // SOCKET CONNECTION
 io.on("connection", (socket) => {

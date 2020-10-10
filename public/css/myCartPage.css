@@ -217,6 +217,18 @@
     background-color: #efefef;
 }
 
+.payment-popup-box #promo-container .promo-item{
+    margin-bottom: 1rem;
+    padding: 1rem;
+    color: green;
+    background-color: rgba(101, 221, 101, 0.5);
+    justify-content: space-between;
+}
+
+.payment-popup-box #promo-container .promo-item button{
+    padding: 0 1rem;
+}
+
 .payment-popup-box .input-tab input[type="text"]{
     box-sizing: border-box;
     border: none;
@@ -283,6 +295,16 @@
 
 footer{
     background-color: #eee;
+}
+
+.clicked{
+    outline: none;
+    background-color: #bdbdbd !important;
+    color: #888 !important;
+}
+
+.clicked:hover{
+    cursor: not-allowed;
 }
 
 @media only screen and (max-width:800px){
@@ -392,7 +414,7 @@ footer{
     }
     
     .payment-popup-box .sum-total *:nth-child(2){
-        color: white;
+        /* color: white; */
         font-size: 1.2rem;
         padding: 0.8rem 1.5rem;
     }

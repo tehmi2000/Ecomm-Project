@@ -33,22 +33,13 @@ const model = function(){
     // LOCALHOST CONNECTION
     // const conn = mysql.createConnection({
     //     host: 'localhost',
-    // 	port: 3306,
+    //     port: 3306,
     //     user: 'root',
    	//     password: '',
     //     database: "ecomm_db"
     // });
     
     // const MONGO_URL = "mongodb://localhost:27017";
-
-    // AZURE MYSQL CONNECTION
-    // const conn = mysql.createConnection({
-    //     host: "temi.mysql.database.azure.com",
-    //     port: 3306,
-    //     user: "temi@temi",
-    //     password: "Re$et@103",
-    //     database: "ecomm_db"
-    // });
     
     // JAWDB MYSQL CONNECTION
     const conn = mysql.createConnection({
@@ -128,6 +119,7 @@ const model = function(){
         mongoConn,
         itemsDB: "globalDB",
         iCollection: "goods",
+        voucherCollection: "vouchers",
         userTableExist,
         categoryTableExist,
         vendorTableExist,

@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="">
-    <title>Univers || My Cart</title>
+    <title>Univers | My Cart</title>
     <link rel="shortcut icon" href="/assets/images/logo-2.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/miniHeader.css">
@@ -94,9 +94,21 @@
                                 <span id="ship-fee" class="fee debt">+ NGN 0.00</span>
                             </div>
 
+                            <div id="promo-container" class="lg-100 cols promo-container">
+
+                                <!-- <div class="lg-100 rows promo-item">
+                                    <span>BF-JULY120</span>
+                                    <span class="rows">
+                                        <span>- NGN 0.00</span>
+                                        <button class="strip-btn icofont-close" style="padding: 0 1rem;"></button>
+                                    </span>
+                                </div> -->
+                                
+                            </div>
+
                             <div class="rows promo-tab input-tab">
-                                <input type="text" title="Voucher input field" placeholder="Promocode or Voucher">
-                                <button class="promo-apply-btn">Apply</button>
+                                <input type="text" name="promo-code" title="Voucher input field" placeholder="Promocode or Voucher">
+                                <button id="promo-apply-btn" class="promo-apply-btn">Apply</button>
                             </div>
 
                             <div class="rows sum-total">
@@ -107,18 +119,23 @@
 
                         <h2>Delivery Details</h2>
                         <div class="lg-100 cols">
-                            <fieldset>
+                            <fieldset class="rows">
                                 <legend> Mode Of Delivery </legend>
-                                <div id="" class="rows" style="align-items: center;">
-                                    <input type="radio" name="" id="" disabled checked>
-                                    <label for="">Express Delivery</label>
+                                <div class="rows" style="align-items: center;">
+                                    <input type="radio" name="mode-of-delivery" id="express-delivery" value="express" disabled checked>
+                                    <label for="express-delivery">Express Delivery</label>
+                                </div>
+
+                                <div class="rows" style="align-items: center;">
+                                    <input type="radio" name="mode-of-delivery" id="pickup-delivery" value="pickup" disabled>
+                                    <label for="pickup-delivery">Pick-Up Station (coming soon)</label>
                                 </div>
                             </fieldset>
 
                             <fieldset>
                                 <legend> Your Delivery Location </legend>
-                                <div id="" class="rows input-tab" style="align-items: center;">
-                                    <input type="text" name="" id="" style="width: 100% !important;" placeholder="Your preferred delivery address">
+                                <div class="rows input-tab" style="align-items: center;">
+                                    <input type="text" name="delivery-location" id="delivery-location" style="width: 100% !important;" placeholder="Your preferred delivery address">
                                 </div>
                             </fieldset>
                         </div>
@@ -208,7 +225,7 @@
                 </div>
             </div>
 
-            <button class="strip-btn lg-100" data-pay-btn>Pay NGN 32,500 Now</button>
+            <button class="strip-btn lg-100" data-pay-btn>---</button>
 
             <div class="pagination lg-100 rows">
                 <span>&laquo;</span>

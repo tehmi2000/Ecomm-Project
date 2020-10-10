@@ -3,7 +3,8 @@ const globals = {
     cart: {
         items: [],
         total: 0,
-        netTotal: 0
+        netTotal: 0,
+        vouchers: []
     },
     saved: {
         items: []
@@ -16,11 +17,28 @@ const globals = {
 
 document.addEventListener("DOMContentLoaded", function() {
     if(getCookie("univers-username")){
+        loadHandlers();
         getMyCart();
     }else{
         window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
     }
 });
+
+const loadHandlers = function () {
+    let paymentBtn = document.querySelector("#confirm-payment-btn");
+    let promoApplyBtn = document.querySelector("#promo-apply-btn");
+
+    paymentBtn.addEventListener("click", function (ev) {
+        let target = ev.currentTarget;
+        if(!target.classList.contains("clicked")){
+            target.classList.add("clicked");
+            target.textContent = "Loading payment gateway...";
+            getPaymentParams();
+        }
+    });
+
+    promoApplyBtn.addEventListener("click", createPromo);
+};
 
 const createNoItemTag = function(container, text){
     container.style.justifyContent = "center";
@@ -57,15 +75,18 @@ const calculateCartTotal = function(items){
     }, 0);
 };
 
-const calculateTotalBill = function(){
+const calculateTotalBill = function(vouchers = []){
     let data = {
         shipping: 600,
         cart: globals.cart.total,
         vat: (7.5/100)*globals.cart.total
     };
+
     return {
         ...data,
-        total: data.shipping + data.cart + data.vat
+        total: (data.shipping + data.cart + data.vat) - vouchers.reduce((total, nextVoucher) => {
+            return total + nextVoucher.voucherValue;
+        }, 0)
     };
 };
 
@@ -126,6 +147,29 @@ const getMyCart = function() {
     }).catch(function(error) {
         console.log(error);
     });
+};
+
+const calculateVoucherValue = function ({voucherType, voucherValue}) {
+    if(voucherType === "percent"){
+        return globals.cart.total * (voucherValue/100);
+    }
+
+    return voucherValue;
+};
+
+const getPaymentParams = function () {
+    let voucher = (document.querySelector(`[name="promo-code"]`).value === '')? null : document.querySelector(`[name="promo-code"]`).value;
+    let modeOfDelivery = document.querySelector(`[name="mode-of-delivery"]`).value;
+    let deliveryLocation = (document.querySelector(`[name="delivery-location"]`).value === '')? null : document.querySelector(`[name="delivery-location"]`).value;
+
+    let paymentParams = {
+        netTotal: globals.cart.netTotal,
+        promocode: voucher,
+        modeOfDelivery,
+        deliveryLocation
+    };
+
+    console.log(paymentParams);
 };
 
 const removeItem = function(item_id, type){
@@ -227,6 +271,133 @@ const createItems = function(items, type) {
     div0 = joinComponent(div0, img0, div1);
     container.appendChild(div0);
 
+};
+
+const removePromo = function(promoId){
+    const container = document.querySelector("#orders-box");
+    const checkoutBtn = document.querySelector("[data-pay-btn]");
+    const apiUrl = (type === "save")? 'removeFromSaved' : 'removeFromCart';
+
+    fetch(`/api/goods/save/${getCookie("univers-username").value}/${apiUrl}`, {
+        method: "POST",
+        body: JSON.stringify({itemID: item_id}),
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        }
+    }).then(async response => {
+        try {
+            let result = await response.json();
+            if(result && type === null){
+                const element = document.querySelector(`#cartItem_${item_id}`);
+                globals.cart.items = globals.cart.items.filter(item => {
+                    return item[`_id`] !== item_id;
+                });
+                calculateCartTotal(globals.cart.items);
+                element.parentNode.removeChild(element);
+                document.querySelector("#subtitle").innerHTML = `${globals.cart.items.length} items`;
+                if(globals.cart.items.length === 0){
+                    createNoItemTag(container, "No item in your cart yet");
+                    checkoutBtn.style.display = "none";
+                }
+            }else{
+                const element = document.querySelector(`#savedItem_${item_id}`);
+                globals.saved.items = globals.saved.items.filter(item => {
+                    return item[`_id`] !== item_id;
+                });
+                element.parentNode.removeChild(element);
+                document.querySelector("#subtitle").innerHTML = `${globals.saved.items.length} items`;
+                if(globals.saved.items.length === 0){
+                    createNoItemTag(container, "No item saved yet");
+                }
+            }
+        } catch (error) {
+            console.error(error);
+        }
+        
+    }).catch(error => {
+        console.error(error);
+    });
+};
+
+const createPromo = function(ev) {
+    // <div class="lg-100 rows promo-item">
+    //     <span>BF-JULY120</span>
+    //     <span class="rows">
+    //         <span>- NGN 0.00</span>
+    //         <button class=" " style=""></button>
+    //     </span>
+    // </div>
+
+    let voucherInput = document.querySelector(`[name="promo-code"]`);
+    let voucherInputValue = voucherInput.value;
+
+    const createPromoElement = function (data) {
+        const container = document.querySelector("#promo-container");
+        let price = formatAsMoney(data.voucherValue);
+
+        let div0 = createComponent("DIV", null, ["lg-100", "rows", "promo-item"]);
+        let span0 = createComponent("SPAN", `${data.voucherName}`);
+        let span1 = createComponent("SPAN", null, ["rows"]);
+        let span10 = createComponent("SPAN", `- ${price}`);
+        let button10 = createComponent("BUTTON", null, ["strip-btn", "icofont-close"]);
+
+        span1 = joinComponent(span1, span10, button10);
+        div0 = joinComponent(div0, span0, span1);
+
+        container.appendChild(div0);
+    };
+
+    const validateVoucher = function (userVoucherName) {
+        let apiUrl = `/api/vouchers/${getCookie("univers-username").value}/confirmVoucher`;
+        userVoucherName = userVoucherName.trim();
+
+        fetch(apiUrl, {
+            method: "POST",
+            body: JSON.stringify({voucherName: userVoucherName}),
+            headers: {
+                "Content-Type": "application/json;charset=utf-8"
+            }
+        }).then(async response => {
+            try {
+                let result = await response.json();
+                console.log(result);
+
+                if(result !== null && result.isValid === true){
+                    let { voucherName } = result;
+                    let voucherValue = calculateVoucherValue(result);
+                    let data = {
+                        voucherValue,
+                        voucherName
+                    };
+                    const voucherIsUsed = globals.cart.vouchers.findIndex(eachVoucher => {
+                        return eachVoucher.voucherName === voucherName;
+                    });
+
+                    // If voucher is not currently being used by client...
+                    if(voucherIsUsed < 0){
+
+                        globals.cart.vouchers.push(Object.assign({}, result, {...data}));
+                        console.log(globals.cart.vouchers);
+                        globals.cart.netTotal = calculateTotalBill(globals.cart.vouchers).total;
+                        createPromoElement(data);
+                        document.querySelector("#total-bill").innerHTML = formatAsMoney(globals.cart.netTotal);
+                    }
+                }else{
+
+                }
+                
+            } catch (error) {
+                console.error(error);
+            }
+        }).catch(error => {
+            console.error(error);
+        });
+    };
+    
+    if(voucherInputValue.length > 2){
+        validateVoucher(voucherInputValue);
+        voucherInput.value = '';l
+    }
 };
 
 
