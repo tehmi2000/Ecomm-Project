@@ -2,7 +2,10 @@ const model = function() {
     const router = require("express").Router();
     const fs = require("fs");
     const request = require("request");
-    const { log, connection, mongoConn, itemsDB, iCollection, ObjectID, voucherCollection } =  require("../modules/config");
+    const crypto = require("crypto");
+
+    const secret = process.env.PAYSTACK_SECRET_KEY;
+    const { log } =  require("../modules/config");
 
     const sqlSanitizer = input => {
         return input.replace(/ /g, '')
@@ -34,26 +37,18 @@ const model = function() {
         return formattedString;
     };
 
-    router.get("/", function(req, res) {
-        const options = {
-            hostname: "api.paystack.co",
-            port: 443,
-            path: "/bank/resolve?accountnumber=0001234567&bankcode=058",
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`
-            }
-        };
+    // <<<<<<<<<<<<<<<<<<<<<<<<<<<< ROUTES <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-		request(options).then(async response => {
-            console.log({statusCode: response.statusCode});
-            
-		}).catch(error => {
-            log(error);
-        });
-
-        res.json({});
-        
+    router.post("/webhook", function(req, res) {
+        let whitelistIP = ["52.31.139.75", "52.49.173.169", "52.214.14.220"];
+        //validate event
+        let hash = crypto.createHmac('sha512', secret).update(JSON.stringify(req.body)).digest('hex');
+        if (hash == req.headers['x-paystack-signature']) {
+            // Retrieve the request's body
+            var event = req.body;
+            // Do something with event  
+        }
+        res.send(200);
     });
 
     return router;
