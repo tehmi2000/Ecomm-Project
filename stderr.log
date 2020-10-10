@@ -292,3 +292,5 @@ Sat, 10 Oct 2020 06:12:29 GMT: {}
 Sat, 10 Oct 2020 06:12:57 GMT: {}
 Sat, 10 Oct 2020 06:13:33 GMT: {}
 Sat, 10 Oct 2020 07:59:45 GMT: {}
+Sat, 10 Oct 2020 13:18:40 GMT: {"name":"MongoParseError"}
+Sat, 10 Oct 2020 13:18:43 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.170' (using password: NO)","sqlState":"28000","fatal":true}
