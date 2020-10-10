@@ -18,7 +18,7 @@
     "compression": "1.7.4",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.6",
+    "express-fileupload": "^1.1.10",
     "express-session": "^1.17.0",
     "helmet": "3.21.2",
     "mongodb": "^3.3.3",
