@@ -345,3 +345,6 @@ Sat, 10 Oct 2020 14:42:15 GMT: {"name":"MongoParseError"}
 Sat, 10 Oct 2020 14:42:16 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.170' (using password: NO)","sqlState":"28000","fatal":true}
 Sat, 10 Oct 2020 14:44:32 GMT: {"name":"MongoParseError"}
 Sat, 10 Oct 2020 14:44:32 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.170' (using password: NO)","sqlState":"28000","fatal":true}
+Sat, 10 Oct 2020 15:24:24 GMT: {}
+Sun, 11 Oct 2020 07:43:19 GMT: {"name":"MongoParseError"}
+Sun, 11 Oct 2020 07:43:19 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","host":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","port":3306,"fatal":true}

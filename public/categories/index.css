@@ -28,7 +28,7 @@ main h1{
 }
 
 #item-container *{
-    transition: all 0.5s ease;
+    transition: all 0.4s ease;
 }
 
 .item{
@@ -89,16 +89,16 @@ main h1{
 .dummy.item .item-img, .dummy.item .item-description{
     background-color: #ccc;
     animation: lazy-loading 1.1s ease-out 0s infinite normal forwards;
-    padding: 0.9rem 2rem;
+    padding: 0.7rem 2rem;
 }
 
 .dummy.item .item-img{
-    width: 60%;
+    width: 80%;
 }
 
 .dummy.item .item-description{
     margin: 1rem auto 0;
-    width: 80%;
+    width: 60%;
 }
 
 @media only screen and (max-width:800px){

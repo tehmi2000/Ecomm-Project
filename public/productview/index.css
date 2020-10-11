@@ -439,6 +439,16 @@ main{
         margin-bottom: 3rem;
     }
 
+    .product-controls button{
+        color: #010916;
+        border-width: 1px;
+        font-weight: 500;
+    }
+
+    .product-controls button:last-child{
+        border-width: 1px;
+    }
+
 }
 
 @-webkit-keyframes bounce{

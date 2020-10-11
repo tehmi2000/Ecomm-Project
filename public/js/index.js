@@ -1,14 +1,24 @@
 let images = ["null.png"];
 let counter = 0;
 
+const setImage = function(counter){
+    counter = (counter === images.length-1)? 0 : counter + 1;
+    if(images[counter] !== null && images[counter] !== undefined){
+        document.querySelector("#banner").style.backgroundImage = `url(../assets/adverts/${images[counter]})`;
+    }else{
+        document.querySelector("#banner").style.backgroundImage = `url(../assets/images/null.png)`;
+    }
+    
+};
+
 const nextImage = function(){
     counter = (counter === images.length-1)? 0 : counter + 1;
-    document.querySelector("#banner").style.backgroundImage = `url(../assets/ads/${images[counter]})`;
+    setImage(counter);
 };
 
 const prevImage = function(){
     counter = (counter === 0)? images.length-1 : counter - 1;
-    document.querySelector("#banner").style.backgroundImage = `url(../assets/ads/${images[counter]})`;
+    setImage(counter);
 };
 
 const createItem = function(container, object){
@@ -68,19 +78,20 @@ const createDummyItem = function(container, length){
 };
 
 const getAds = function() {
-    const apiUrl = "/api/ads/all";
-    fetch(apiUrl).then(async response => {
+    const apiUrl = "/api/adverts/all";
+    fetch(apiUrl).then(async function(response) {
         try {
             let result = await response.json();
             let data = dataValidation(result).data;
+            // console.log(data);
             images = data;
             // Pick any of the ads to show next
             counter = Math.round(Math.random() * images.length);
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }).catch(error => {
-        console.log(error);
+        console.error(error);
     });
 };
 
@@ -159,13 +170,14 @@ const getRecommended = function() {
 document.addEventListener("DOMContentLoaded", function () {
     createDummyItem(document.querySelector("#most-popular-container.pane .slider"), 5);
     createDummyItem(document.querySelector("#recommended-container.pane .slider"), 5);
-    setInterval(function() {
-        nextImage();
-    }, 8000);
+    
     getMostPopular();
     getRecommended();
 });
 
 window.onload = function(evt) {
     getAds();
+    setInterval(function() {
+        nextImage();
+    }, 8000);
 };

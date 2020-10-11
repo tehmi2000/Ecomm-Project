@@ -178,40 +178,40 @@ const createItem = function(container, object){
 const createDummyItem = function(container, number){
 
     // <span class="dummy item">
-    //     <img src="" alt="">
-    //     <span class="item-name cols">
-    //         <span></span>
-    //         <span></span>
-    //     </span>
-    //     <span class="item-number cols">
-    //         <span></span>
-    //     </span>
-    //     <span class="item-buttons">
-    //         <span></span>
-    //         <span></span>
+    //     <img src="#" alt="">
+    //     <span class="cols lg-80">
+    //         <span class="item-name"></span>
+    //         <span class="item-desc"></span>
+    //         <span class="bottom-wrapper rows">
+    //             <span class="item-price"></span>
+    //             <span class="rows item-buttons">
+    //                 <span></span>
+    //                 <span></span>
+    //             </span>
+    //         </span>
     //     </span>
     // </span>
 
     for(let n = 0; n < number; n++){
         let a0 = createComponent("SPAN", null, ["dummy", "item"]);
         let img0 = create("IMG");
-        let span0 = createComponent("SPAN", null, ["item-name", "cols"]);
-            let span1 = create("SPAN");
-            let span2 = create("SPAN");
-        let span3 = createComponent("SPAN", null, ["item-number", "cols"]);
-            let span4 = create("SPAN");
-        let span5 = createComponent("SPAN", null, ["item-buttons"]);
-            let span6 = create("SPAN");
-            let span7 = create("SPAN");
+        let span0 = createComponent("SPAN", null, ["cols", "lg-80"]);
+            let span1 = createComponent("SPAN", null, ["item-name"]);
+            let span2 = createComponent("SPAN", null, ["item-desc"]);
+            let span3 = createComponent("SPAN", null, ["bottom-wrapper", "rows"]);
+                let span4 = createComponent("SPAN", null, ["item-price"]);
+                let span5 = createComponent("SPAN", null, ["rows", "item-buttons"]);
+                    let span6 = create("SPAN");
+                    let span7 = create("SPAN");
 
         img0.setAttribute("src", ``);
         img0.setAttribute("alt", ``);
 
         span5 = joinComponent(span5, span6, span7);
-        span3 = joinComponent(span3, span4);
-        span0 = joinComponent(span0, span1, span2);
+        span3 = joinComponent(span3, span4, span5);
+        span0 = joinComponent(span0, span1, span2, span3);
 
-        a0 = joinComponent(a0, img0, span0, span3, span5);
+        a0 = joinComponent(a0, img0, span0);
 
         container.appendChild(a0);
     }

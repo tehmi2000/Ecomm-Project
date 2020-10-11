@@ -74,8 +74,8 @@ const model = function() {
         });
     });
 
-    router.get("/ads/all", function(req, res) {
-    	const dirPath = `./public/assets/ads`;
+    router.get("/adverts/all", function(req, res) {
+    	const dirPath = `./public/assets/adverts`;
     	fs.readdir(dirPath, (err, files) => {
     		if (err) {
     			throw err;
