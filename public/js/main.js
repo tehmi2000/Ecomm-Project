@@ -8,6 +8,17 @@ const closeMenu = function() {
     document.querySelector("#sidemenu").style.marginLeft = "-150%";
 };
 
+fetch("/api/countries/currency").then(async response => {
+    try {
+        let result = await response.json();
+        // console.log(result);
+    } catch (error) {
+        console.error(error);
+    }
+}).catch(error => {
+    console.error(error);
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     try{
         if (getCookie("univers-username") && document.querySelector("#sidemenu")) {
@@ -62,11 +73,6 @@ const addToggleAction = function(evt) {
 
 const createSuggestions = function(pEl, cEl) {
     const createSugItem = function(props) {
-        // <span class="rows sug-item">
-        //     <img src="" alt="">
-        //     <span class="item-name"></span>
-        // </span>
-
         let span0 = createComponent("SPAN", null, ["rows", "sug-item"]);
             let img0 = create("IMG");
             let span01 = createComponent("SPAN", null, ["item-name"]);

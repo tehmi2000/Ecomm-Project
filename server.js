@@ -14,7 +14,7 @@ const compression = require("compression");
 const PORT = (process.env.PORT === "" || process.env.PORT === null || process.env.PORT === undefined)? 5000 : process.env.PORT;
 const controller = require("./modules/controller");
 const config =  require("./modules/config");
-const { connection, userTableExist, categoryTableExist, vendorTableExist, log, mongoConn } = config;
+const { connection, userTableExist, categoryTableExist, vendorTableExist, log, mongoConn, updateExchangeRates, insertExchangeRates, itemsDB, iCollection, ratesCollection } = config;
 
 // APPLICATION SETUP
 
@@ -70,8 +70,6 @@ connection.connect(function(err) {
 });
 
 mongoConn.then(client => {
-
-    const {itemsDB, iCollection} = config;
     const collection = client.db(itemsDB).collection(iCollection);
     // collection.dropIndexes();
     // collection.createIndex({"item-name": "text", "categories": "text"}).then(response => {
@@ -83,6 +81,30 @@ mongoConn.then(client => {
 }).catch(error => {
     log(error);
 });
+
+// Update exchange rates data
+mongoConn.then(client => {
+    // Get current exchange rates...
+    let collection = client.db(itemsDB).collection(ratesCollection);
+    collection.find({}).toArray((err, [result]) => {
+        if (err) log(err);
+
+        if(result && result.lastModified !== config.fullDate){
+            console.log("Updating data instead");
+            updateExchangeRates();
+        }else{
+            if(!result){
+                console.log("Inserting data instead");
+                insertExchangeRates();
+            }
+        }
+        // console.log(result);
+    });
+
+}).catch(error => {
+    log(error);
+});
+
 
 // APPLICATION ROUTING
 // app.get("*", function(request, response) {

@@ -1,14 +1,16 @@
 let images = ["null.png"];
+let adsLinks = ["#"];
 let counter = 0;
 
 const setImage = function(counter){
     counter = (counter === images.length-1)? 0 : counter + 1;
     if(images[counter] !== null && images[counter] !== undefined){
+        document.querySelector("#visit-ad-link").setAttribute("data-src", adsLinks[counter]);
         document.querySelector("#banner").style.backgroundImage = `url(../assets/adverts/${images[counter]})`;
     }else{
+        document.querySelector("#visit-ad-link").setAttribute("data-src", "#");
         document.querySelector("#banner").style.backgroundImage = `url(../assets/images/null.png)`;
     }
-    
 };
 
 const nextImage = function(){
@@ -83,8 +85,14 @@ const getAds = function() {
         try {
             let result = await response.json();
             let data = dataValidation(result).data;
-            // console.log(data);
-            images = data;
+            console.log(data);
+            images = data.map(each => {
+                return each.image;
+            });
+            adsLinks = data.map(each => {
+                return (each.href === null)? "#" : each.href;
+            });
+
             // Pick any of the ads to show next
             counter = Math.round(Math.random() * images.length);
         } catch (error) {
@@ -170,12 +178,17 @@ const getRecommended = function() {
 document.addEventListener("DOMContentLoaded", function () {
     createDummyItem(document.querySelector("#most-popular-container.pane .slider"), 5);
     createDummyItem(document.querySelector("#recommended-container.pane .slider"), 5);
-    
+
     getMostPopular();
     getRecommended();
+
+    document.querySelector("#visit-ad-link").addEventListener("click", function (ev) {
+        window.location.href = ev.currentTarget.getAttribute("data-src");
+    });
 });
 
 window.onload = function(evt) {
+    
     getAds();
     setInterval(function() {
         nextImage();

@@ -187,7 +187,7 @@ const formHandler = function(evt) {
                 if(!result[`error`]){
                     alert("Saved to Store!");
                     setState(false);
-                    window.location.href = "/myprofile/orders?sectid=3";
+                    window.location.href = "/myprofile/products/my-store/";
                 }else{
                     alert("Something unexpected happened. Try again!");
                     setState(false);
@@ -327,51 +327,51 @@ const placeAds = function(container) {
     container.appendChild(adsDiv);
 }
 
-const removeItem = function(item_id, type){
-    const container = document.querySelector("#orders-box");
-    const checkoutBtn = document.querySelector("[data-pay-btn]");
-    const apiUrl = (type === "save")? 'removeFromSaved' : 'removeFromCart';
+// const removeItem = function(item_id, type){
+//     const container = document.querySelector("#orders-box");
+//     const checkoutBtn = document.querySelector("[data-pay-btn]");
+//     const apiUrl = (type === "save")? 'removeFromSaved' : 'removeFromCart';
 
-    fetch(`/api/goods/save/${getCookie("univers-username").value}/${apiUrl}`, {
-        method: "POST",
-        body: JSON.stringify({itemID: item_id}),
-        headers: {
-            "Content-Type": "application/json; charset=utf-8"
-        }
-    }).then(async response => {
-        try {
-            let result = await response.json();
-            if(result && type === null){
-                const element = document.querySelector(`#cartItem_${item_id}`);
-                globals.cart.items = globals.cart.items.filter(item => {
-                    return item[`_id`] !== item_id;
-                });
-                calculateCartTotal(globals.cart.items);
-                element.parentNode.removeChild(element);
-                document.querySelector("#subtitle").innerHTML = `${globals.cart.items.length} items`;
-                if(globals.cart.items.length === 0){
-                    createNoItemTag(container, "No item in your cart yet");
-                    checkoutBtn.style.display = "none";
-                }
-            }else{
-                const element = document.querySelector(`#savedItem_${item_id}`);
-                globals.saved.items = globals.saved.items.filter(item => {
-                    return item[`_id`] !== item_id;
-                });
-                element.parentNode.removeChild(element);
-                document.querySelector("#subtitle").innerHTML = `${globals.saved.items.length} items`;
-                if(globals.saved.items.length === 0){
-                    createNoItemTag(container, "No item saved yet");
-                }
-            }
-        } catch (error) {
-            console.error(error);
-        }
+//     fetch(`/api/goods/save/${getCookie("univers-username").value}/${apiUrl}`, {
+//         method: "POST",
+//         body: JSON.stringify({itemID: item_id}),
+//         headers: {
+//             "Content-Type": "application/json; charset=utf-8"
+//         }
+//     }).then(async response => {
+//         try {
+//             let result = await response.json();
+//             if(result && type === null){
+//                 const element = document.querySelector(`#cartItem_${item_id}`);
+//                 globals.cart.items = globals.cart.items.filter(item => {
+//                     return item[`_id`] !== item_id;
+//                 });
+//                 calculateCartTotal(globals.cart.items);
+//                 element.parentNode.removeChild(element);
+//                 document.querySelector("#subtitle").innerHTML = `${globals.cart.items.length} items`;
+//                 if(globals.cart.items.length === 0){
+//                     createNoItemTag(container, "No item in your cart yet");
+//                     checkoutBtn.style.display = "none";
+//                 }
+//             }else{
+//                 const element = document.querySelector(`#savedItem_${item_id}`);
+//                 globals.saved.items = globals.saved.items.filter(item => {
+//                     return item[`_id`] !== item_id;
+//                 });
+//                 element.parentNode.removeChild(element);
+//                 document.querySelector("#subtitle").innerHTML = `${globals.saved.items.length} items`;
+//                 if(globals.saved.items.length === 0){
+//                     createNoItemTag(container, "No item saved yet");
+//                 }
+//             }
+//         } catch (error) {
+//             console.error(error);
+//         }
         
-    }).catch(error => {
-        console.error(error);
-    });
-};
+//     }).catch(error => {
+//         console.error(error);
+//     });
+// };
 
 const createCheckOption = function(container, option) {
     // <input type="checkbox" name="categories" id="">

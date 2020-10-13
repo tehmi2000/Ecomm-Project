@@ -229,16 +229,23 @@
     padding: 0 1rem;
 }
 
+.payment-popup-box .input-tab{
+    justify-content: space-between;
+    border-radius: 5px;
+    width: 100%;
+}
+
 .payment-popup-box .input-tab input[type="text"]{
     box-sizing: border-box;
     border: none;
     background-color: #efefef;
-    width: 80%;
+    width: calc(100% - 3rem);
     padding: 1.5rem 2rem;
     outline: none;
 }
 
 .payment-popup-box .promo-tab button{
+    
     box-sizing: border-box;
     border: none;
     background-color: transparent;

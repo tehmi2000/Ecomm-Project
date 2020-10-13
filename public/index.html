@@ -16,7 +16,7 @@
 
     <!-- Load all js scripts -->
     <script src="/js/main.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js" async defer></script>
+    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js"></script>
     <script src="/js/lib/lazysizes.min.js"></script>
     <script src="/js/lib/clamp.min.js"></script>
     <script src="/js/index.min.js"></script>
@@ -41,7 +41,7 @@
             </div>
 
             <div class="right-tab">
-                <a href="/myprofile/orders?sectid=1" class="icofont-cart"><span style="display: none;">Cart</span></a>
+                <a href="/myprofile/products/my-cart" class="icofont-cart"><span style="display: none;">Cart</span></a>
             </div>
         </div>
 
@@ -84,23 +84,23 @@
         </nav>
 
         <nav id="controls" class="panel rows">
-            <a href="/myprofile/orders?sectid=2" class="panel-pad cols">
+            <a href="/myprofile/products/sell-a-product" class="panel-pad cols">
                 <i class="pad-img icofont-food-cart"></i>
                 <span class="pad-txt">Sell A Product</span>
             </a>
 
-            <a href="/myprofile/orders?sectid=3" class="panel-pad cols">
+            <a href="/myprofile/products/my-store" class="panel-pad cols">
                 <i class="pad-img icofont-notepad"></i>
                 <span class="pad-txt">My Store</span>
             </a>
 
-            <a href="/myprofile/orders?sectid=1" class="panel-pad cols">
+            <a href="/myprofile/products/my-cart" class="panel-pad cols">
                 <i class="pad-img icofont-cart"></i>
-                <span class="pad-txt">View My Cart</span>
+                <span class="pad-txt">My Cart</span>
             </a>
 
-            <a href="/myprofile/orders?sectid=4" class="panel-pad cols">
-                <i class="pad-img icofont-restaurant"></i>
+            <a href="/myprofile/products/saved-items" class="panel-pad cols">
+                <i class="pad-img icofont-ui-rating"></i>
                 <span class="pad-txt">Saved Items</span>
             </a>
         </nav>
@@ -210,7 +210,7 @@
         <div id="banner" class="cols">
             <div class="button-container">
                 <button class="icofont-rounded-left" onclick="prevImage()"></button>
-                <button id="visit-ad-link">Check it out</button>
+                <button id="visit-ad-link" data-src="#">Check it out</button>
                 <button class="icofont-rounded-right" onclick="nextImage()"></button>
             </div>
         </div>
@@ -325,7 +325,7 @@
             <div class="cols">
                 <span class="f-heading">HELP LINKS</span>
                 <a href="/support">Contact Us</a>
-                <a href="#">Privacy policies</a>
+                <a href="/privacy_policy">Privacy policies</a>
                 <a href="#">Terms and Conditions</a>
             </div>
     

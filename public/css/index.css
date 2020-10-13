@@ -70,7 +70,7 @@ main h1{
 }
 
 #banner:hover .button-container button{
-    opacity: 0;
+    /* opacity: 0; */
     background-color: #fff;
 }
 

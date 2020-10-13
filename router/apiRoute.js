@@ -81,7 +81,9 @@ const model = function() {
     			throw err;
     		}else{
     			// console.log(files);
-    			res.json(files);
+    			res.json(files.map(nameOfAds => {
+                    return {href: null, image: nameOfAds};
+                }));
     		}
     	});
     });
@@ -500,6 +502,7 @@ const model = function() {
     router.post("/vouchers/:username/redeemVoucher", function(req, res) {
 
     });
+
     router.get("/categories", function(req, res) {
         const query = `SELECT * FROM categories WHERE 1`;
             
@@ -560,6 +563,15 @@ const model = function() {
         });
     });
 
+    router.get("/countries/currency", function(req, res) {
+        fs.readFile("./router/support/currencies.json", "utf8", function(err, content) {
+            if (err) {
+                log(err);
+            } else {
+                res.json(JSON.parse(content));
+            }
+        });
+    });
     return router;
 };
 

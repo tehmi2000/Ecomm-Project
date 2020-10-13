@@ -16,18 +16,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="">
-    <title>Univers | My Cart</title>
+    <title>Univers | My Saved Items</title>
     <link rel="shortcut icon" href="/assets/images/logo-2.png" type="image/x-icon">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/miniHeader.css">
     <link rel="stylesheet" href="/css/control.css">
-    <link rel="stylesheet" href="/css/myCartPage.css">
+    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
     <script src="/js/main.min.js"></script>
     <script src="/js/lib/lazysizes.min.js"></script>
     <script src="/js/lib/clamp.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js" async defer></script>
-    <script src="/js/myCartPage.js"></script>
+    <script src="index.js"></script>
     
 </head>
 
@@ -47,7 +47,7 @@
                     <ul class="drop-content">
                         <li><a href="/">Home</a></li>
                         <li><a href="/myprofile">My Profile</a></li>
-                        <li><a href="/myprofile/orders?sectid=2">Sell An Item</a></li>
+                        <li><a href="/myprofile/products/sell-a-product">Sell An Item</a></li>
                         <li><a href="/support">Support</a></li>
                         <li><a href="/support/#faq">FAQs</a></li>
                     </ul>
@@ -60,90 +60,22 @@
         <h1 id="response" class="response-display"></h1>
         <aside class="control-head">
             <nav class="navigation">
-                <a href="/myprofile/orders?sectid=1" class="nav-child active" id="one" data-title="My Cart">My Cart</a>
-                <a href="/myprofile/orders?sectid=4" class="nav-child" id="four" data-title="Saved Items">Saved Items</a>
-                <a href="/myprofile/orders?sectid=3" class="nav-child" id="three" data-title="My Store">My Store</a>
+                <a href="/myprofile/products/my-cart" class="nav-child" id="one" data-title="My Cart">My Cart</a>
+                <a href="/myprofile/products/saved-items" class="nav-child active" id="four" data-title="Saved Items">Saved Items</a>
+                <a href="/myprofile/products/my-store" class="nav-child" id="three" data-title="My Store">My Store</a>
                 <div class="drop-extra">
-                    <a href="/myprofile/orders?sectid=2" id="two" data-title="Sell Item">Sell Item</a>
+                    <a href="/myprofile/products/sell-a-product" id="two" data-title="Sell Item">Sell Item</a>
                 </div>
             </nav>
         </aside>
 
         <div class="lg-100 control-body">
             <div class="lg-100 header">
-                <h2 id="title">My Cart</h2>
+                <h2 id="title">Saved Items</h2>
                 <h5 id="subtitle"></h5>
             </div>
 
             <div class="lg-100 body">
-                <div class="payment-bg-cover">
-                    <div class="payment-popup-box">
-                        <span class="icofont-close close-btn"></span>
-                        <h2>Payment Details</h2>
-                        <div class="cols total-fees">
-                            <div class="rows fee-item">
-                                <span class="fee-title">Cart Total</span>
-                                <span id="cart-total" class="fee normal">NGN 0.00</span>
-                            </div>
-                            <div class="rows fee-item">
-                                <span class="fee-title">Value Added Tax</span>
-                                <span id="vat-fee" class="fee debt">+ NGN 0.00</span>
-                            </div>
-                            <div class="rows fee-item">
-                                <span class="fee-title">Shipping Fee</span>
-                                <span id="ship-fee" class="fee debt">+ NGN 0.00</span>
-                            </div>
-
-                            <div id="promo-container" class="lg-100 cols promo-container">
-
-                                <!-- <div class="lg-100 rows promo-item">
-                                    <span>BF-JULY120</span>
-                                    <span class="rows">
-                                        <span>- NGN 0.00</span>
-                                        <button class="strip-btn icofont-close" style="padding: 0 1rem;"></button>
-                                    </span>
-                                </div> -->
-                                
-                            </div>
-
-                            <div class="rows promo-tab input-tab">
-                                <input type="text" name="promo-code" title="Voucher input field" placeholder="Promocode or Voucher">
-                                <button id="promo-apply-btn" class="promo-apply-btn">Apply</button>
-                            </div>
-
-                            <div class="rows sum-total">
-                                <span>Total: </span>
-                                <span id="total-bill">NGN 0.00</span>
-                            </div>
-                        </div>
-
-                        <h2>Delivery Details</h2>
-                        <div class="lg-100 cols">
-                            <fieldset class="rows">
-                                <legend> Mode Of Delivery </legend>
-                                <div class="rows" style="align-items: center;">
-                                    <input type="radio" name="mode-of-delivery" id="express-delivery" value="express" disabled checked>
-                                    <label for="express-delivery">Express Delivery</label>
-                                </div>
-
-                                <div class="rows" style="align-items: center;">
-                                    <input type="radio" name="mode-of-delivery" id="pickup-delivery" value="pickup" disabled>
-                                    <label for="pickup-delivery">Pick-Up Station (coming soon)</label>
-                                </div>
-                            </fieldset>
-
-                            <fieldset>
-                                <legend> Your Delivery Location </legend>
-                                <div class="rows input-tab" style="align-items: center;">
-                                    <input type="text" name="delivery-location" id="delivery-location" style="width: 100% !important;" placeholder="Your preferred delivery address">
-                                </div>
-                            </fieldset>
-                        </div>
-                        
-                        <button id="confirm-payment-btn" class="strip-btn">Proceed with payments</button>
-                    </div>
-                </div>
-
                 <div id="orders-box" class="cols">
                     <span class="dummy item">
                         <img src="#" alt="">
@@ -204,28 +136,8 @@
                             </span>
                         </div>
                     </span>
-
-                    <!-- <div class="item">
-                        <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
-                        <div class="info cols">
-                            <div class="rows top">
-                                <div class="item-brand">fashion</div>
-                                <button class="strip-btn icofont-close"></button>
-                            </div>
-                            
-                            <span class="item-name">Sony Fifa 20 Standard Edition-PS4</span>
-                            <span class="item-price">N15,000,000</span>
-                            <span class="item-controls">
-                                <button class="">Save Item</button>
-                            </span>
-                        </div>
-                    </div> -->
-
-                    <!-- <button onclick="javascript:createItems({title: 'Me areand', qty: 2, price: 'N3,000'})"></button> -->
                 </div>
             </div>
-
-            <button class="strip-btn lg-100" data-pay-btn>---</button>
 
             <div class="pagination lg-100 rows">
                 <span>&laquo;</span>

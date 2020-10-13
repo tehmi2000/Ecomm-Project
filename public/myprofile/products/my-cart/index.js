@@ -15,6 +15,8 @@ const globals = {
     imgSpace : 4
 };
 
+// document.addEventListener("")
+
 document.addEventListener("DOMContentLoaded", function() {
     if(getCookie("univers-username")){
         loadHandlers();
@@ -27,13 +29,16 @@ document.addEventListener("DOMContentLoaded", function() {
 const loadHandlers = function () {
     let paymentBtn = document.querySelector("#confirm-payment-btn");
     let promoApplyBtn = document.querySelector("#promo-apply-btn");
+    let listOfSelectors = ['[name="delivery-location"]'];
 
     paymentBtn.addEventListener("click", function (ev) {
         let target = ev.currentTarget;
-        if(!target.classList.contains("clicked")){
-            target.classList.add("clicked");
-            target.textContent = "Loading payment gateway...";
-            getPaymentParams();
+        if(isDataProvidedComplete(listOfSelectors)){
+            if(!target.classList.contains("clicked")){
+                target.classList.add("clicked");
+                target.textContent = "Loading payment gateway...";
+                getPaymentParams();
+            }
         }
     });
 
@@ -157,20 +162,63 @@ const calculateVoucherValue = function ({voucherType, voucherValue}) {
     return voucherValue;
 };
 
+const isDataProvidedComplete = function (listOfElementSelectors) {
+    return listOfElementSelectors.map(selector => {
+        let element = document.querySelector(`${selector}`);
+        let valueIsEmpty = (element.value === '' || element.value.length <= 2);
+
+        if(valueIsEmpty === true){
+            element.style.border = "1px solid red";
+            return false;
+        }else{
+            element.style.border = "none";
+            return true;
+        }
+    })
+    .reduce((currentValue, nextValue) => {
+        return currentValue && nextValue;
+    });
+}
+
 const getPaymentParams = function () {
-    let voucher = (document.querySelector(`[name="promo-code"]`).value === '')? null : document.querySelector(`[name="promo-code"]`).value;
     let modeOfDelivery = document.querySelector(`[name="mode-of-delivery"]`).value;
     let deliveryLocation = (document.querySelector(`[name="delivery-location"]`).value === '')? null : document.querySelector(`[name="delivery-location"]`).value;
 
     let paymentParams = {
+        nameOfBuyer: null,
+        emailOfBuyer: "tehmi2000@gmail.com",
+        items: globals.cart.items,
         netTotal: globals.cart.netTotal,
-        promocode: voucher,
+        vouchers: globals.cart.vouchers,
         modeOfDelivery,
         deliveryLocation
     };
 
-    console.log(paymentParams);
+    loadPaystackGateway(paymentParams);
 };
+
+const loadPaystackGateway = function (allCartData) {
+    let handler = PaystackPop.setup({
+        key: 'pk_test_340f998043f5a426e2cedcd469fc8fb90c4a35eb',
+        email: allCartData.emailOfBuyer,
+        amount: allCartData.netTotal * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
+        currency: 'NGN', // Use GHS for Ghana Cedis or USD for US Dollars
+        channels: ['card', 'bank', 'ussd', 'bank_transfer'],
+        firstname: "Temiloluwa",
+        lastname: "Ogunbanjo",
+        reference: genHex(8), // Replace with a reference you generated
+        callback: function(response) {
+          //this happens after the payment is completed successfully
+          let reference = response.reference;
+          alert('Payment complete! Reference: ' + reference);
+        },
+        onClose: function() {
+          alert('Transaction was not completed, window closed.');
+        },
+      });
+
+      handler.openIframe();  
+}
 
 const removeItem = function(item_id, type){
     const container = document.querySelector("#orders-box");

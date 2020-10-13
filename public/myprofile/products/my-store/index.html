@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+
+    <title>Univers | My Store</title>
+
+    <link rel="shortcut icon" href="/assets/images/logo-2.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/miniHeader.css">
+    <link rel="stylesheet" href="/css/control.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
+
+    <script src="/js/main.min.js"></script>
+    <script src="/js/lib/lazysizes.min.js"></script>
+    <script src="/js/lib/clamp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js" async defer></script>
+    <script src="index.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics --- START--- -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157804114-1"></script>
     <script>
@@ -11,23 +30,6 @@
         gtag('config', 'UA-157804114-1', { 'optimize_id': 'GTM-KZC2BV6'});
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics --- END --- -->
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="">
-    <title>Univers | My Store</title>
-    <link rel="shortcut icon" href="/assets/images/logo-2.png" type="image/x-icon">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/miniHeader.css">
-    <link rel="stylesheet" href="/css/control.css">
-    <link rel="stylesheet" href="/css/myStorePage.css">
-    <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
-    <script src="/js/main.min.js"></script>
-    <script src="/js/lib/lazysizes.min.js"></script>
-    <script src="/js/lib/clamp.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js" async defer></script>
-    <script src="/js/myStorePage.js"></script>
     
 </head>
 
@@ -47,7 +49,7 @@
                     <ul class="drop-content">
                         <li><a href="/">Home</a></li>
                         <li><a href="/myprofile">My Profile</a></li>
-                        <li><a href="/myprofile/orders?sectid=2">Sell An Item</a></li>
+                        <li><a href="/myprofile/products/sell-a-product">Sell An Item</a></li>
                         <li><a href="/support">Support</a></li>
                         <li><a href="/support/#faq">FAQs</a></li>
                     </ul>
@@ -60,11 +62,11 @@
         <h1 id="response" class="response-display"></h1>
         <aside class="control-head">
             <nav class="navigation">
-                <a href="/myprofile/orders?sectid=1" class="nav-child" id="one" data-title="My Cart">My Cart</a>
-                <a href="/myprofile/orders?sectid=4" class="nav-child" id="four" data-title="Saved Items">Saved Items</a>
-                <a href="/myprofile/orders?sectid=3" class="nav-child active" id="three" data-title="My Store">My Store</a>
+                <a href="/myprofile/products/my-cart" class="nav-child" id="one" data-title="My Cart">My Cart</a>
+                <a href="/myprofile/products/saved-items" class="nav-child" id="four" data-title="Saved Items">Saved Items</a>
+                <a href="/myprofile/products/my-store" class="nav-child active" id="three" data-title="My Store">My Store</a>
                 <div class="drop-extra">
-                    <a href="/myprofile/orders?sectid=2" id="two" data-title="Sell Item">Sell Item</a>
+                    <a href="/myprofile/products/sell-a-product" id="two" data-title="Sell Item">Sell Item</a>
                 </div>
             </nav>
         </aside>
@@ -95,8 +97,8 @@
                             </ul>
 
                             <div class="lg-100">
-                                <a href="/vendors/vendor-apply" class="strip-link vendor-apply-btn">Apply Now</a>
-                                <a href="/myprofile/orders?sectid=4" class="strip-link vendor-apply-btn no">Maybe Later?</a>
+                                <a href="/vendors/vendor-apply" class="strip-link vendor-apply-btn">GET STARTED</a>
+                                <a href="/myprofile/products/saved-items" class="strip-link vendor-apply-btn no">Maybe Later?</a>
                             </div>
                             
                         </div>
@@ -141,7 +143,7 @@
                                 <button class="icofont-brand-microsoft strip-btn" onclick="gridView()" title="Grid View"></button>
                                 <button class="icofont-justify-left strip-btn" onclick="listView()" title="List View"><i class=""></i></button>
                             </div>
-                            <a href="/myprofile/orders?sectid=2" class="link-btn">New Item</a>
+                            <a href="/myprofile/products/sell-a-product" class="link-btn">New Item</a>
                         </div>
                     </div>
 
