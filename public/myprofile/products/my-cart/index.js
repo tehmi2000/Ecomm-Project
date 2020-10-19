@@ -1,3 +1,7 @@
+if(!getCookie("univers-username")){
+    window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
+};
+
 const imgUrls = {};
 const globals = {
     cart: {
@@ -18,12 +22,8 @@ const globals = {
 // document.addEventListener("")
 
 document.addEventListener("DOMContentLoaded", function() {
-    if(getCookie("univers-username")){
-        loadHandlers();
-        getMyCart();
-    }else{
-        window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
-    }
+    loadHandlers();
+    getMyCart();
 });
 
 const loadHandlers = function () {
@@ -198,27 +198,56 @@ const getPaymentParams = function () {
 };
 
 const loadPaystackGateway = function (allCartData) {
+    console.log(allCartData);
+
     let handler = PaystackPop.setup({
         key: 'pk_test_340f998043f5a426e2cedcd469fc8fb90c4a35eb',
         email: allCartData.emailOfBuyer,
-        amount: allCartData.netTotal * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
+        amount: Math.round(allCartData.netTotal) * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
         currency: 'NGN', // Use GHS for Ghana Cedis or USD for US Dollars
         channels: ['card', 'bank', 'ussd', 'bank_transfer'],
         firstname: "Temiloluwa",
         lastname: "Ogunbanjo",
         reference: genHex(8), // Replace with a reference you generated
         callback: function(response) {
-          //this happens after the payment is completed successfully
-          let reference = response.reference;
-          alert('Payment complete! Reference: ' + reference);
+            //this happens after the payment is completed successfully
+            let reference = response.reference;
+            allCartData.reference = reference;
+            handleCartPaymentSuccess(allCartData);
         },
         onClose: function() {
-          alert('Transaction was not completed, window closed.');
+            let paymentBtn = document.querySelector("#confirm-payment-btn");
+            if (!paymentBtn.classList.contains("clicked")){
+                paymentBtn.classList.remove("clicked");
+            }
+            paymentBtn.textContent = "Proceed to payment";
+            alert('Transaction was not completed, window closed.');
         },
       });
 
       handler.openIframe();  
-}
+};
+
+const handleCartPaymentSuccess = function (data) {
+    let apiUrl = "";
+    let apiOptions = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json;charset=utf-8" }
+    };
+
+    fetch(apiUrl, apiOptions).then(async response => {
+        try {
+            let result = await response.json();
+            console.log(result);
+
+        } catch (error) {
+            console.error(error);
+        }
+    }).catch(error => {
+        console.error(error);
+    })
+};
 
 const removeItem = function(item_id, type){
     const container = document.querySelector("#orders-box");

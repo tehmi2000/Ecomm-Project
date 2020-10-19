@@ -18,15 +18,15 @@
     <title>Search results</title>
 
     <link rel="shortcut icon" href="../assets/images/logo-2.png" type="image/x-icon">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/fullHeader.css">
+    <link rel="stylesheet" href="../css/style.min.css">
+    <link rel="stylesheet" href="../css/fullHeader.min.css">
     <link rel="stylesheet" href="../assets/icofont/icofont.min.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.min.css">
     
     <script src="../js/main.min.js"></script>
     <script src="../js/lib/lazysizes.min.js"></script>
     <script src="../js/lib/clamp.min.js"></script>
-    <script src="index.js"></script>
+    <script src="index.min.js"></script>
     <script data-ad-client="ca-pub-6903692907552928" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body>
@@ -45,7 +45,7 @@
         <div class="rows section-bottom">
             <div class="left-tab">
                 <ul class="rows">
-                    <li><a href="#">Get Started</a></li>
+                    <li><a href="/get_started">Get Started</a></li>
                     <li><a href="/categories">Explore</a></li>
                     <li><a href="/pricing">Pricing</a></li>
                 </ul>
@@ -69,16 +69,27 @@
     </header>
     <noscript>You need javascript enabled to be able to view this page</noscript>
 
-    <div id="filter" class="fill-container rows">
-        <span data-filter-tab class="rows fill-container" onclick="displayFilters()">
-            <span>Select Filter</span>
+    <div id="modifiers" class="lg-100 rows">
+        <div data-filter-tab class="rows lg-100" onclick="displayFilters()">
+            <div class="rows" style="align-items: center;">
+                <i class="icofont-filter"></i>
+                <span style="margin-left: 0.5rem;">Filter By</span>
+            </div>
             <i class="icofont-caret-down"></i>
-        </span>
-        <button data-apply-btn>Filter</button>
+        </div>
+
+        <div data-filter-tab class="rows lg-100" onclick="displayFilters()">
+            <div class="rows" style="align-items: center;">
+                <i class="icofont-sort"></i>
+                <span style="margin-left: 0.5rem;">Sort By</span>
+            </div>
+            <i class="icofont-caret-down"></i>
+        </div>
     </div>
 
-    <div id="filter-content">
+    <div id="modifiers-content">
         <button onclick="displayFilters()">Close</button>
+        <button data-apply-btn>Apply</button>
     </div>
 
     <aside id="sidemenu">
@@ -131,7 +142,7 @@
             <div class="side-links cols">
                 <span class="head">Useful Links</span>
                 <ul>
-                    <li><a href="#">Getting Started</a></li>
+                    <li><a href="/get_started">Get Started</a></li>
                     <li><a href="/categories">Explore</a></li>
                     <li><a href="/pricing">Pricing</a></li>
                     <li><a href="/other_platforms">Other Platforms</a></li>

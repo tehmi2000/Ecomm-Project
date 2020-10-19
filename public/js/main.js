@@ -29,9 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
             document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
 
             fetch(apiUrl).then(function(response) {
-                response.json().then( function(user_data) {
-                    if(user_data.profile_picture !== ""){
-                        document.querySelector("#sidemenu #user-photo").src = user_data.profile_picture;
+                response.json().then( function(userData) {
+                    if(userData.profile_picture !== ""){
+                        document.querySelector("#sidemenu #user-photo").src = userData.profile_picture;
                     }
                 }).catch(function (error) {
                     console.error(error);

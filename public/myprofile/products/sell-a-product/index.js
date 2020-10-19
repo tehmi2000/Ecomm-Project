@@ -1,3 +1,7 @@
+if(!getCookie("univers-username")){
+    window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
+};
+
 const imgUrls = {};
 const globals = {
     cart: {
@@ -16,11 +20,7 @@ const globals = {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    if(getCookie("univers-username")){
-        showPostForm();
-    }else{
-        window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
-    }
+    showPostForm();
 
     document.querySelector("#post-box #addToStore-form").addEventListener("submit", formHandler);
     document.querySelectorAll("#post-box [name='item-image']").forEach(element => {

@@ -7,20 +7,33 @@
     <title>Get Started</title>
     <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/miniHeader.min.css">
     <link rel="stylesheet" href="/css/fullHeader.min.css">
-    <link rel="stylesheet" href="/css/get-started.css">
+
+    <link rel="stylesheet" href="index.css">
     <script src="/js/lib/color-thief/color-thief.umd.js"></script>
-    <script src="/js/getstarted.js"></script>
+    <script src="/js/main.min.js"></script>
+    <script src="index.js"></script>
 </head>
 <body>
+    <style>
+       
+
+    </style>
     <header>
-        <div class="rows section-top">
-            <div class="left-tab">
-                <a href="/" class="icofont-home"><span style="display: none;">Home</span></a>
-                <span><a href="/"><img src="/assets/images/fav-logo.png" alt="LOGO" id="logo"></a></span>
+        <div class="rows section-bottom">
+            <div class="rows left-tab">
+                <span class="icofont-navigation-menu"></span>
+                <span style="font-size: 1.3rem; margin-left: 0.3rem;">MENU</span>
             </div>
 
-            <div class="right-tab">
+            <div class="middle-tab">
+                <a href="/"><img src="/assets/images/fav-logo.png" alt="LOGO" id="logo"></a>
+            </div>
+
+            <div class="rows right-tab">
+                <a href="#">REGISTER</a>
+                <a href="#">LOGIN</a>
                 <span class="drop-container">
                     <span class="drop-button">More<i class="icofont-caret-down"></i></span>
                     <ul class="drop-content">
@@ -31,16 +44,52 @@
                         <li><a href="/support/#faq">FAQs</a></li>
                     </ul>
                 </span>
-
-                <a href="/categories" class="icofont-penalty-card"><span style="display: none;">categories</span></a>
             </div>
         </div>
     </header>
 
-    <main>
-        <div class="productcontainer">
-            <img src="assets/images/" alt="">
+    <main class="cols">
+        <div class="cols intro">
+            <h1>Shopping made easy with <b style="color: orange;">Univers</b></h1>
+            <span class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, laboriosam debitis repudiandae hic corrupti, vero perspiciatis consectetur quo nam ut dolorum! Exercitationem nihil ipsum adipisci eum et aperiam deserunt quam?</span>
+            <button>Let's Go</button>
         </div>
+
+        <div class="rows intro-links">
+            <a href="/" class="cols link-element-wrapper">
+                <div class="rows link-element-img"><i class="icofont-cart"></i></div>
+                <div class="link-element-text">Start Shopping</div>
+            </a>
+
+            <a href="/vendors/vendor-apply" class="cols link-element-wrapper">
+                <div class="rows link-element-img"><i class="icofont-man-in-glasses"></i></div>
+                <div class="link-element-text">Become A Vendor</div>
+            </a>
+
+            <a href="/other_platforms" class="cols link-element-wrapper">
+                <div class="rows link-element-img"><i class="icofont-layers"></i></div>
+                <div class="link-element-text">Other Platforms</div>
+            </a>
+
+            <a href="/support" class="cols link-element-wrapper">
+                <div class="rows link-element-img"><i class="icofont-phone"></i></div>
+                <div class="link-element-text">Contact Us</div>
+            </a>
+        </div>
+
+        <!-- <div class="rows lg-100" style="margin-top: 10rem; background-color: transparent; height: 200px; justify-content: center;">
+            <div class="cols dumitem">
+                <i class="icofont"></i>
+                <h3></h3>
+                <span></span>
+            </div>
+
+            <div class="cols dumitem">
+                <i class="icofont"></i>
+                <h3></h3>
+                <span></span>
+            </div>
+        </div> -->
     </main>
     
     <footer class="cols">
@@ -72,5 +121,18 @@
             <span class="rows">Copyright &copy; 2019 Univers.com. All rights reserved</span>
         </div>
     </footer>
+    <!-- <script>
+        let dialog = document.querySelector("dialog");
+        let closeBtn = document.querySelector("#close");
+        let openBtn = document.querySelector("#openmodal");
+        
+        openBtn.addEventListener("click", function (ev) {
+            dialog.showModal();
+        });
+
+        closeBtn.addEventListener("click", function (ev) {
+            dialog.close();
+        });
+    </script> -->
 </body>
 </html>

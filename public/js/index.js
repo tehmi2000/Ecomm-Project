@@ -48,7 +48,7 @@ const createItem = function(container, object){
 
     a0.setAttribute("href", `/view/${object._id}`);
     img0.setAttribute("data-src", loadedImage);
-    img0.setAttribute("alt", "Item Image");
+    img0.setAttribute("alt", `${object["item-name"]}`);
 
     span1.appendChild(sup0);
     div1 = joinComponent(div1, img0);
@@ -69,7 +69,6 @@ const createDummyItem = function(container, length){
             let span1 = createComponent("SPAN", null, ["item-price"]);
 
         img0.setAttribute("src", "");
-        img0.setAttribute("alt", "");
 
         div2 = joinComponent(div2, span0, span1);
         div1 = joinComponent(div1, img0);
@@ -85,7 +84,7 @@ const getAds = function() {
         try {
             let result = await response.json();
             let data = dataValidation(result).data;
-            console.log(data);
+            // console.log(data);
             images = data.map(each => {
                 return each.image;
             });
@@ -176,8 +175,8 @@ const getRecommended = function() {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-    createDummyItem(document.querySelector("#most-popular-container.pane .slider"), 5);
-    createDummyItem(document.querySelector("#recommended-container.pane .slider"), 5);
+    // createDummyItem(document.querySelector("#most-popular-container.pane .slider"), 5);
+    // createDummyItem(document.querySelector("#recommended-container.pane .slider"), 5);
 
     getMostPopular();
     getRecommended();

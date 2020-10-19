@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 const displayFilters = () => {
-    const element = document.querySelector("#filter + #filter-content");
+    const element = document.querySelector("#modifiers + #modifiers-content");
     element.style.display = (element.style.display === "flex")? "none" : "flex";
 };
 

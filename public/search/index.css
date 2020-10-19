@@ -7,51 +7,53 @@ body{
     overflow-x: hidden;
 }
 
-#filter, #filter-content{
-    justify-content: space-between;
+#modifiers, #modifiers-content{
     align-items: center;
     background-color: #fcfcff;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
 }
 
-#filter{
+#modifiers{
+    /* justify-content: ; */
     box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.13);
-    padding: 0.5rem 1rem;
+    /* padding: 0.5rem 1rem; */
 }
 
-#filter-content{
+#modifiers-content{
     padding: 0.5rem 0.7rem;
 }
 
-#filter-content button, #filter button{
+#modifiers-content button, #modifiers button{
     border: none;
     padding: 8px 24px;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-#filter [data-filter-tab]{
-    padding: 1rem;
-    width: 30%;
+#modifiers [data-filter-tab]{
+    padding: 1.6rem 2rem;
+    width: 25%;
     justify-content: space-between;
+    text-transform: capitalize;
     align-items: center;
     background-color: #f5f5f5;
-    color: #888;
+    color: rgb(22, 22, 22);
     border-radius: 2px;
+    border-right: 1px solid #bbb;
 }
 
-#filter [data-filter-tab]:active{
+#modifiers [data-filter-tab]:last-child{
+    border-right: none;
+}
+
+#modifiers [data-filter-tab]:active{
     background-color: rgba(73, 164, 255, 0.25);
 }
 
-#filter [data-filter-tab]:hover{
+#modifiers [data-filter-tab]:hover{
     cursor: pointer;
 }
 
-#filter [data-apply-btn]{
-    
-}
-
-#filter + #filter-content{
+#modifiers + #modifiers-content{
     display: none;
     position: fixed;
     width: 100%;
@@ -311,6 +313,10 @@ main h1 > *{
 @media only screen and (max-width:850px){
     main h1{
         font-size: 1.7em;
+    }
+
+    #modifiers [data-filter-tab]{
+        width: 50%;
     }
 
     #item-container{

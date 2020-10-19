@@ -1,12 +1,12 @@
+if(!getCookie("univers-username")){
+    window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
+};
+
 let flagCountry = false;
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    if (getCookie("univers-username")) {
-        getUserData(getCookie("univers-username").value);
-    }else{
-        window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
-    }
+    getUserData(getCookie("univers-username").value);
 
     try {
         document.querySelector("#copy-id").addEventListener("click", copyToClipboard);
