@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
 const createNoItemTag = function(container, text){
     container.style.justifyContent = "center";
     container.style.alignItems = "center";
-    container.innerHTML = `<span id='no-item'>${text}</span>`;
+    container.innerHTML = `<span id='no-item'>${text}</span><a id="go-shopping-btn" href="/">START SHOPPING</a>`;
 };
 
 const getSavedItems = function() {
@@ -170,6 +170,7 @@ const createItems = function(items, type) {
     const mainID = (type === "save")? `savedItem_${items['_id']}`: `cartItem_${items['_id']}`
     div0.setAttribute("id", mainID);
     img0.setAttribute("id", `image_${items['_id']}`);
+    img0.setAttribute("alt", `${items['item-name'].toUpperCase()}`);
     img0.setAttribute("data-src", `${items['item-image'][0]}`);
     button101.setAttribute("id", `remove_${items['_id']}`);
 

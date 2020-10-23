@@ -30,6 +30,9 @@
     <!-- Global site tag (gtag.js) - Google Analytics --- END --- -->
 </head>
 <body>
+    <style>
+        
+    </style>
     <header class="cols">
         <div class="rows section-top">
             <div class="left-tab">
@@ -53,7 +56,7 @@
 
             <div class="middle-tab">
                 <form action="/search" method="get" id="search-form" class="rows" onsubmit="return validateSearch()">
-                    <input type="text" name="query" id="searchField" title="Search Bar" placeholder="Search for an item or thing">
+                    <input type="text" name="query" id="searchField" title="Search Bar" placeholder="Search by product, brand or categories">
                     <button type="submit"><i class="icofont-search"></i></button>
                 </form>
             </div>
@@ -130,14 +133,59 @@
     </aside>
 
     <main>
+        <section class="pane cols" id="categories-container">
+            <div class="section-head rows">
+                <h3>Check Our Categories</h3>
+                <a href="/categories">View All</a>
+            </div>
+
+            <div class="section-body">
+                <div class="slider rows">
+                    <div class="catitem dummy cols">
+                        <div class="item-img"></div>
+                        <span class="item-name"></span>
+                    </div>
+
+                    <div class="catitem dummy cols">
+                        <div class="item-img"></div>
+                        <span class="item-name"></span>
+                    </div>
+
+                    <div class="catitem dummy cols">
+                        <div class="item-img"></div>
+                        <span class="item-name"></span>
+                    </div>
+
+                    <div class="catitem dummy cols">
+                        <div class="item-img"></div>
+                        <span class="item-name"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="pane cols" id="most-popular-container">
             <div class="section-head rows">
-                <h3>Latest trends</h3>
-                <a href="/categories">View all</a>
+                <h3>Our Newest Products</h3>
+                <a href="/categories">Explore</a>
             </div>
             
             <div class="section-body">
                 <div class="slider rows">
+                    <!-- <a class="strip-link item cols" style="overflow: hidden !important;">
+                        <div class="item-discount">-50%</div>
+                        <div class="item-img">
+                            <img src="#">
+                        </div>
+                        <div class="item-description cols">
+                            <span class="item-name">The Product Name</span>
+                            <span class="item-price">NGN 2,500.00 <sup>NGN 5,000.00</sup></span>
+                        </div>
+                        <div class="rows" style="align-items: center;">
+                            <img class="item-delivery-method" src="assets/images/ExchangeLogo.png">
+                            <span class="rows item-location icofont-airplane-alt"></span>
+                        </div>
+                    </a> -->
 
                     <div class="dummy item cols">
                         <div class="item-img">

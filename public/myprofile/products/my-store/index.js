@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
 const createNoItemTag = function(container, text){
     container.style.justifyContent = "center";
     container.style.alignItems = "center";
-    container.innerHTML = `<span id='no-item'>${text}</span>`;
+    container.innerHTML = `<span id='no-item'>${text}</span><a id="go-shopping-btn" href="/">START SHOPPING</a>`;
 };
 
 const getMyStoreItems = function() {

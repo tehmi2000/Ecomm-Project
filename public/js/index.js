@@ -39,43 +39,58 @@ const createItem = function(container, object){
 
 
     let a0 = createComponent("A", null, ["strip-link", "item", "cols"]);
+        let div0 = createComponent("DIV", `-${object[`price-discount`] || '0'}%`, ["item-discount"]);
         let div1 = createComponent("DIV", null, ["item-img"]);
             let img0 = createComponent("IMG", null, ["lazyload"]);
         let div2 = createComponent("DIV", null, ["item-description", "cols"]);
-            let span0 = createComponent("SPAN", object["item-name"].toUpperCase());
+            let span0 = createComponent("SPAN", object["item-name"]);
             let span1 = createComponent("SPAN", price, ["item-price"]);
                 let sup0 = createComponent("SUP", originalPrice, ["strike"]);
+        let div3 = createComponent("DIV", null, ["rows"]);
+            let imgaa = createComponent("IMG", null, ["item-delivery-method"]);
+            let spanaa = createComponent("SPAN", null, ["rows", "item-location", "icofont-airplane-alt"]);
 
     a0.setAttribute("href", `/view/${object._id}`);
     img0.setAttribute("data-src", loadedImage);
-    img0.setAttribute("alt", `${object["item-name"]}`);
+    img0.setAttribute("alt", `${object["item-name"].toLowerCase()}`);
+
+    imgaa.setAttribute("src", `/assets/images/oneExpress.png`);
+    if(object[`price-discount`]){
+        div0.style.opacity = 1;
+    }
+
+    if(object[`item-location`]){
+        spanaa.style.opacity = 1;
+    }
+
+    imgaa.style.opacity = 0.8;
+    div3.style.alignItems = "flex-end";
 
     span1.appendChild(sup0);
     div1 = joinComponent(div1, img0);
     div2 = joinComponent(div2, span0, span1);
-    a0 = joinComponent(a0, div1, div2);
+    div3 = joinComponent(div3, imgaa, spanaa);
+    a0 = joinComponent(a0, div0, div1, div2, div3);
 
     container.appendChild(a0);
 };
 
-const createDummyItem = function(container, length){
+const createCategoryItem = function(container, listOfobjects){
+    let bgColors = ["orange", "dodgerblue", "brown", "crimson"];
+    listOfobjects = listOfobjects.slice(0, 6);
 
-    for (let index = 0; index < length; index++) {
-        let div0 = createComponent("DIV", null, ["dummy", "item", "cols"]);
-        let div1 = createComponent("DIV", null, ["item-img"]);
-            let img0 = create("IMG");
-        let div2 = createComponent("DIV", null, ["item-description", "cols"]);
-            let span0 = createComponent("SPAN", null);
-            let span1 = createComponent("SPAN", null, ["item-price"]);
+    container.innerHTML = "";
+    listOfobjects.forEach((category, index) => {
+        let a0 = createComponent("a", null, ["catitem", "cols"]);
+        let div1 = createComponent("DIV", null, ["rows", "item-img", `${category['image']}`]);
+        let div2 = createComponent("DIV", category['title'], ["item-name"]);
 
-        img0.setAttribute("src", "");
+        a0 = joinComponent(a0, div1, div2);
+        a0.style.backgroundColor = bgColors[index] || generateRandomColor();
+        a0.setAttribute("href", `/categories/view?query=${window.encodeURIComponent(category['title'].toLowerCase())}`);
 
-        div2 = joinComponent(div2, span0, span1);
-        div1 = joinComponent(div1, img0);
-        div0 = joinComponent(div0, div1, div2);
-
-        container.appendChild(div0);   
-    }
+        container.appendChild(a0);
+    });
 };
 
 const getAds = function() {
@@ -109,7 +124,7 @@ const getMostPopular = function() {
 
         try {
             let result = await response.json();
-            // console.log(result);
+            console.log(result);
             container.innerHTML = "";
             let data = dataValidation(result).data;
 
@@ -174,12 +189,29 @@ const getRecommended = function() {
     });
 };
 
+const getCategories = function() {
+    const container = document.querySelector("#categories-container .slider");
+    fetch(`/api/categories`).then(async response => {
+        try {
+            let result = await response.json();
+            let data = dataValidation(result).data;
+
+            createCategoryItem(container, data);
+        } catch (error) {
+            console.error(error);
+        }
+    }).catch(function(error) {
+        console.error(error);
+    });
+};
+
 document.addEventListener("DOMContentLoaded", function () {
     // createDummyItem(document.querySelector("#most-popular-container.pane .slider"), 5);
     // createDummyItem(document.querySelector("#recommended-container.pane .slider"), 5);
 
     getMostPopular();
     getRecommended();
+    getCategories();
 
     document.querySelector("#visit-ad-link").addEventListener("click", function (ev) {
         window.location.href = ev.currentTarget.getAttribute("data-src");

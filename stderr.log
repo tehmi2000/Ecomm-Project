@@ -417,3 +417,20 @@ Mon, 12 Oct 2020 19:22:29 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall"
 Mon, 12 Oct 2020 19:23:07 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
 Mon, 12 Oct 2020 19:23:30 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
 Tue, 13 Oct 2020 04:43:31 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Tue, 13 Oct 2020 16:52:47 GMT: {"name":"MongoParseError"}
+Tue, 13 Oct 2020 16:52:48 GMT: {"name":"MongoParseError"}
+Tue, 13 Oct 2020 16:52:49 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user ''@'129.205.112.170' (using password: NO)","sqlState":"28000","fatal":true}
+Tue, 13 Oct 2020 16:55:28 GMT: {"name":"MongoParseError"}
+Tue, 13 Oct 2020 16:55:29 GMT: {"name":"MongoParseError"}
+Wed, 14 Oct 2020 09:09:11 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Fri, 16 Oct 2020 03:56:03 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Fri, 16 Oct 2020 12:23:31 GMT: {"code":"ER_ACCESS_DENIED_ERROR","errno":1045,"sqlMessage":"Access denied for user 'root'@'localhost' (using password: NO)","sqlState":"28000","fatal":true}
+Fri, 16 Oct 2020 23:50:15 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Sun, 18 Oct 2020 04:05:16 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Mon, 19 Oct 2020 10:12:10 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Mon, 19 Oct 2020 11:16:23 GMT: {"name":"MongoParseError"}
+Mon, 19 Oct 2020 11:16:24 GMT: {"name":"MongoParseError"}
+Mon, 19 Oct 2020 11:16:24 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","host":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","port":3306,"fatal":true}
+Tue, 20 Oct 2020 08:08:27 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Thu, 22 Oct 2020 11:39:50 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Fri, 23 Oct 2020 03:21:08 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}

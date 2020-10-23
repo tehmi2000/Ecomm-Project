@@ -5,35 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Get Started</title>
+    <!-- Load CSS all stylesheets -->
+    <link rel="shortcut icon" href="/assets/images/logo-2.png" type="image/x-icon">
     <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/miniHeader.min.css">
     <link rel="stylesheet" href="/css/fullHeader.min.css">
 
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.min.css">
     <script src="/js/lib/color-thief/color-thief.umd.js"></script>
     <script src="/js/main.min.js"></script>
-    <script src="index.js"></script>
+    <script src="index.min.js"></script>
 </head>
 <body>
-    <style>
-       
-
-    </style>
     <header>
         <div class="rows section-bottom">
-            <div class="rows left-tab">
+            <div class="rows left-tab" id="open-menu-btn" title="Side menu button" onclick="openMenu()" onkeydown="openMenu()" tabindex="0">
                 <span class="icofont-navigation-menu"></span>
-                <span style="font-size: 1.3rem; margin-left: 0.3rem;">MENU</span>
-            </div>
-
-            <div class="middle-tab">
                 <a href="/"><img src="/assets/images/fav-logo.png" alt="LOGO" id="logo"></a>
             </div>
 
             <div class="rows right-tab">
-                <a href="#">REGISTER</a>
-                <a href="#">LOGIN</a>
+                <a href="/signup">REGISTER</a>
+                <a href="/login">LOGIN</a>
                 <span class="drop-container">
                     <span class="drop-button">More<i class="icofont-caret-down"></i></span>
                     <ul class="drop-content">
@@ -47,7 +41,67 @@
             </div>
         </div>
     </header>
+    <noscript>You need javascript enabled to be able to view this page</noscript>
+    <aside id="sidemenu">
+        <nav class="rows">
+            <div>
+                <a href="/login" class="link-btn">Login</a>
+                <a href="/signup" class="link-btn">Sign up</a>
+            </div>
+            
+            <div>
+                <button id="close-menu-btn" class="icofont-close" title="Close Menu" onclick="closeMenu()" onkeydown="closeMenu()" tabindex="0"></button>
+            </div>
+        </nav>
 
+        <nav id="controls" class="panel rows">
+            <a href="/myprofile/products/sell-a-product" class="panel-pad cols">
+                <i class="pad-img icofont-food-cart"></i>
+                <span class="pad-txt">Sell A Product</span>
+            </a>
+
+            <a href="/myprofile/products/my-store" class="panel-pad cols">
+                <i class="pad-img icofont-notepad"></i>
+                <span class="pad-txt">My Store</span>
+            </a>
+
+            <a href="/myprofile/products/my-cart" class="panel-pad cols">
+                <i class="pad-img icofont-cart"></i>
+                <span class="pad-txt">My Cart</span>
+            </a>
+
+            <a href="/myprofile/products/saved-items" class="panel-pad cols">
+                <i class="pad-img icofont-ui-rating"></i>
+                <span class="pad-txt">Saved Items</span>
+            </a>
+        </nav>
+
+        <div>
+            <div class="side-links cols">
+                <span class="head">Browse Categories</span>
+                <ul>
+                    <li><a href="/categories">All categories</a></li>
+                    <li><a href="/categories/view?query=fashion">Fashion</a></li>
+                    <li><a href="/categories/view?query=electronics">Electronics</a></li>
+                    <li><a href="/categories/view?query=phones%20%26%20tablet">Phones & Tablets</a></li>
+                    <li><a href="/categories/view?query=beauty%20%26%20health%20care">Beauty & Health Care</a></li>
+                    <li><a href="/categories/view?query=baby,%20kids%20%26%20toys">Baby, Kids & Toys</a></li>
+                </ul>
+            </div>
+
+            <div class="side-links cols">
+                <span class="head">Useful Links</span>
+                <ul>
+                    <li><a href="/get_started">Get Started</a></li>
+                    <li><a href="/categories">Explore</a></li>
+                    <li><a href="/pricing">Pricing</a></li>
+                    <li><a href="/other_platforms">Other Platforms</a></li>
+                    <li><a href="/support#faq">FAQs</a></li>
+                    <li><a href="/support">Support</a></li>
+                </ul>
+            </div>
+        </div>
+    </aside>
     <main class="cols">
         <div class="cols intro">
             <h1>Shopping made easy with <b style="color: orange;">Univers</b></h1>

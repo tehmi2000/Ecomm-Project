@@ -133,7 +133,7 @@ const createItem = function(container, object){
 
     let price = parseInt(object["item-price"]).toLocaleString(undefined, {
         style: "currency",
-        currency: "NGN"
+        currency: currencyLocale
     });
 
     let a0 = createComponent("SPAN", null, ["item"]);
@@ -153,7 +153,7 @@ const createItem = function(container, object){
     a0.setAttribute("id", object._id);
     a0.setAttribute("data-href", `/view/${object._id}`);
     img0.setAttribute("data-src", `${object["item-image"][0]}`);
-    img0.setAttribute("alt", 'Item-Image');
+    img0.setAttribute("alt", `${object["item-name"].toLowerCase()}`);
     button20.setAttribute("id", `save_${object._id}`);
     button21.setAttribute("id", `cart_${object._id}`);
 
@@ -205,7 +205,6 @@ const createDummyItem = function(container, number){
                     let span7 = create("SPAN");
 
         img0.setAttribute("src", ``);
-        img0.setAttribute("alt", ``);
 
         span5 = joinComponent(span5, span6, span7);
         span3 = joinComponent(span3, span4, span5);

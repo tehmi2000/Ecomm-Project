@@ -33,8 +33,7 @@ main h1{
 
 .item{
     text-decoration: none;
-    width: 14.6%;
-    /* min-width: calc(90px + 1.8rem); */
+    width: 23%;
     overflow: hidden;
     padding: 0.8rem 0.6rem;
     margin: 0.9rem 1%;

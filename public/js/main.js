@@ -1,4 +1,5 @@
 let mediaX = window.matchMedia("(max-width: 800px)");
+let currencyLocale = 'NGN';
 
 const openMenu = function() {
     document.querySelector("#sidemenu").style.marginLeft = "0%";
@@ -8,10 +9,11 @@ const closeMenu = function() {
     document.querySelector("#sidemenu").style.marginLeft = "-150%";
 };
 
+// GET USER's COUNTRY's CURRENCY
 fetch("/api/countries/currency").then(async response => {
     try {
         let result = await response.json();
-        // console.log(result);
+        console.log(result);
     } catch (error) {
         console.error(error);
     }
@@ -462,7 +464,7 @@ const formatAsMoney = price => {
 
     let formattedPrice = price.toLocaleString(undefined, {
         style: "currency",
-        currency: "NGN"
+        currency: currencyLocale
     });
 
     return formattedPrice;

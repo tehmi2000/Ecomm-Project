@@ -1,22 +1,9 @@
-body{
-    background-color: #fcfcff;
-}
-
 main{
     display: flex;
     flex-direction: row;
     margin-top: 2rem;
     width: 88%;
     margin: 2rem auto 0 auto;
-}
-
-.pagination{
-    display: none;
-}
-
-.control-head{
-    padding: 1rem;
-    padding-top: 0;
 }
 
 .navigation{
@@ -39,7 +26,6 @@ main{
     -webkit-transition: all 0.2s ease;
     -moz-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    /* border-bottom: 1px solid red; */
 }
 
 .nav-child:hover+.drop-extra, .drop-extra:hover{
@@ -83,7 +69,6 @@ main{
 
 .active, .active > *{
     background-color: transparent;
-    /* border: 2px solid orangered; */
     color: rgb(226, 62, 2);
     font-size: 1.7rem;
 }
@@ -92,7 +77,6 @@ main{
     background-color: #fcfcff;
     margin-left: 1.5rem;
 }
-
 
 .control-body .header{
     margin: 0;
@@ -131,46 +115,15 @@ main{
     padding: 1rem 0;
 }
 
-.control-body .item{
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    height: 16rem;
-    border: 1px solid #d9d9d9;
-    margin: 0.7rem 0;
-}
-
-.control-body .item img{
-    padding: 0.1rem;
-    width: 16rem;
-    height: 100%;
-    object-fit: contain;
-    background-color: #eee;
-}
-
-.control-body .item div.info{
-    position: relative;
-    padding: 0.5rem 1rem;
-    width: 100%;
-}
-
-.item div.info .top{
-    /* border: 1px solid red; */
-    justify-content: space-between;
-    align-items: center;
-}
-
-.item .top .item-brand{
-    text-transform: capitalize;
-    font-size: 1.1rem;
-    padding: 0.3rem 1rem;
-    background-color: #ddd;
-    color: #888;
-}
-
-.item .top button{
-    padding: 0.5rem;
+.control-body #go-shopping-btn{
+    display: block;
+    margin-top: 2rem;
+    background-color: #ec4102;
+    color: white;
+    padding: 1.5rem 3rem;
+    border-radius: 5vh;
     font-size: 1.3rem;
+    box-shadow: 1px 3px 5px #bdbdbd;
 }
 
 .control-body .item .item-name{

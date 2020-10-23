@@ -32,12 +32,12 @@
     <header class="cols">
         <div class="rows section-top">
             <div class="left-tab">
-                <span class="icofont-navigation-menu" id="open-menu-btn" onclick="javascript:openMenu()"></span>
+                <span class="icofont-navigation-menu" id="open-menu-btn" title="Side menu button" onclick="openMenu()" onkeydown="openMenu()" tabindex="0"></span>
                 <span><a href="/"><img src="/assets/images/fav-logo.png" alt="LOGO" id="logo"></a></span>
             </div>
 
             <div class="right-tab">
-                <a href="/myprofile/products/my-cart"><span class="icofont-cart"></span></a>
+                <a href="/myprofile/products/my-cart" class="icofont-cart"><span style="display: none;">Cart</span></a>
             </div>
         </div>
 
@@ -52,7 +52,7 @@
 
             <div class="middle-tab">
                 <form action="/search" method="get" id="search-form" class="rows" onsubmit="return validateSearch()">
-                    <input type="text" name="query" id="searchField" placeholder="Search for an item or thing">
+                    <input type="text" name="query" id="searchField" title="Search Bar" placeholder="Search by product, brand or categories">
                     <button type="submit"><i class="icofont-search"></i></button>
                 </form>
             </div>
@@ -67,15 +67,17 @@
         </div>
     </header>
 
+    <noscript>You need javascript enabled to be able to view this page</noscript>
+
     <aside id="sidemenu">
         <nav class="rows">
             <div>
-                <a href="/login"><button>Login</button></a>
-                <a href="/signup"><button>Sign up</button></a>
+                <a href="/login" class="link-btn">Login</a>
+                <a href="/signup" class="link-btn">Sign up</a>
             </div>
             
             <div>
-                <button id="close-menu-btn" class="icofont-close" onclick="javascript:closeMenu()"></button>
+                <button id="close-menu-btn" class="icofont-close" title="Close Menu" onclick="closeMenu()" onkeydown="closeMenu()" tabindex="0"></button>
             </div>
         </nav>
 
@@ -127,9 +129,9 @@
             </div>
         </div>
     </aside>
-    <noscript>You need javascript enabled to be able to view this page</noscript>
+
     <main>
-        <div id="response" class="response-display">Item waas saved to your cart</div>
+        <div id="response" class="response-display">Item was saved to your cart</div>
         <h1>Categories <i class="icofont-double-right"></i> <a href="/categories">all</a> <i class="icofont-double-right"></i> <span id="query"></span></h1>
 
         <section class="pane cols">

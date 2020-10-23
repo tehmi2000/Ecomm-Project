@@ -161,7 +161,7 @@ marquee{
     padding: 0.8rem 0.6rem;
     margin: 0.5rem;
     box-shadow: 2px 2px 3px #dfdfe4;
-    background-color: rgb(252, 252, 255);
+    background-color: #fcfcff;
     justify-content: space-between;
     transition: all 0.2s ease;
 }
@@ -175,13 +175,6 @@ marquee{
     color: black;
 }
 
-.pane .dummy.item img, .pane .dummy.item .item-description *{
-    background-color: #ccc;
-    animation: lazy-loading 1.1s ease-out 0s infinite normal forwards;
-    background-position: 50%;
-    background-repeat: no-repeat;
-}
-
 .pane .dummy.item .item-description > *{
     padding: 0.6rem;
     margin-top: 0.6rem;
@@ -191,6 +184,43 @@ marquee{
     display: block;
     height: 100%;
     margin: 0 auto;
+}
+
+.pane .item img.item-delivery-method{
+    background-image: none;
+    height: 2rem;
+    width: auto;
+    min-height: unset;
+    margin: 0;
+    opacity: 0.8;
+}
+
+.pane .item .item-discount{
+    
+    width: 6rem;
+    padding: 0.5rem;
+    background-color: rgba(255, 166, 0, 0.78);
+    border-radius: 0 5vh 5vh 0;
+    color: white;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.pane .item .item-location{
+    width: 3rem;
+    min-height: 3rem;
+    background-color: rgba(2, 127, 252, 0.90);
+    margin-left: auto;
+    border-top-left-radius: 70%;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1rem;
+    padding: 5px;
+}
+
+.pane .item .item-discount, .pane .item .item-location, .pane .item img.item-delivery-method{
+    opacity: 0;
 }
 
 .pane .item img{
@@ -216,7 +246,7 @@ marquee{
     font-size: 1.3rem;
 }
 
-.item-price sup{
+.item .item-price sup{
     color: #777;
     margin-left: 0.4rem;
     text-decoration: line-through;
@@ -226,8 +256,73 @@ marquee{
     line-height: 1.5;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
+    text-transform: capitalize;
 }
 
+#categories-container.pane .section-body{
+    overflow-x: hidden;
+}
+
+#categories-container.pane .section-body .slider{
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+}
+
+.pane .catitem{
+    width: calc(25% - 1rem);
+    min-width: calc(25% - 1rem);
+    background-color: #fcfcff;
+    box-shadow: 2px 2px 3px #dfdfe4;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin: 0.5rem;
+    padding: 2rem 1rem;
+    font-size: 1.3rem;
+    transition: all 0.25s ease;
+}
+
+.pane .catitem:hover{
+    transform: scale(1.05);
+    box-shadow: 0px 3px 8px #dfdfe4;
+}
+
+.pane .catitem .item-img{
+    justify-content: center;
+    align-items: center;
+    min-height: 3rem;
+    min-width: 3rem;
+    font-size: 4rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.15);
+    margin-bottom: 1rem;
+}
+
+.pane .catitem .item-name{
+    padding: 0.5rem;
+    width: 90%;
+    text-align: center;
+}
+
+.pane .catitem.dummy > *{
+    padding: 0.8rem;
+}
+
+.pane .catitem.dummy .item-img{
+    padding: 1rem;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+}
+
+.pane .dummy.item img, .pane .dummy.item .item-description *, .pane .catitem.dummy > *{
+    background-color: #ccc;
+    animation: lazy-loading 1.1s ease-out 0s infinite normal forwards;
+    background-position: 50%;
+    background-repeat: no-repeat;
+}
 
 @media only screen and (max-width:800px){
     .section-bottom > *:first-child, .section-bottom > *:last-child{
@@ -251,6 +346,10 @@ marquee{
         margin-top: 0;
     }
 
+    #categories-container.pane .section-body, #categories-container.pane .section-body .slider{
+        overflow-x: auto;
+    }
+    
     .pane .item{
         margin: 0.4rem 0.4rem;
         box-shadow: 2px 2px 3px #e5e4fa;
@@ -279,4 +378,29 @@ marquee{
         margin-top: 0.9rem;
         text-align: center;
     }
+
+    .pane .catitem{
+        width: calc(50% - 1rem);
+        min-width: calc(50% - 1rem);
+        padding: 1rem;
+        font-size: 1.3rem;
+    }
+    
+    .pane .catitem .item-img{
+        /* justify-content: center;
+        align-items: center;
+        height: 3rem;
+        width: 3rem;
+        font-size: 3rem;
+        /* background-color: #fff;
+        margin-bottom: 1rem; */
+    }
+    
+    .pane .catitem .item-name{
+        /* padding: 0.5rem;
+        width: 90%;
+        text-align: center; */
+        /* background-color: #fff; */
+    }
+    
 }

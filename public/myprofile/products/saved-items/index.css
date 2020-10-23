@@ -13,10 +13,11 @@
 
 .control-body .item img{
     padding: 0.1rem;
-    width: 16rem;
+    width: 18rem;
     height: 100%;
     object-fit: contain;
     background-color: #eee;
+    border: 1px solid #ccc;
 }
 
 .control-body .item div.info{
