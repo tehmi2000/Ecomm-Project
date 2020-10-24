@@ -54,7 +54,7 @@ const createItem = function(container, object){
     img0.setAttribute("data-src", loadedImage);
     img0.setAttribute("alt", `${object["item-name"].toLowerCase()}`);
 
-    imgaa.setAttribute("src", `/assets/images/oneExpress.png`);
+    imgaa.setAttribute("src", `/assets/images/express.png`);
     if(object[`price-discount`]){
         div0.style.opacity = 1;
     }
@@ -63,7 +63,7 @@ const createItem = function(container, object){
         spanaa.style.opacity = 1;
     }
 
-    imgaa.style.opacity = 0.8;
+    imgaa.style.opacity = 0.7;
     div3.style.alignItems = "flex-end";
 
     span1.appendChild(sup0);
@@ -124,7 +124,7 @@ const getMostPopular = function() {
 
         try {
             let result = await response.json();
-            console.log(result);
+            // console.log(result);
             container.innerHTML = "";
             let data = dataValidation(result).data;
 

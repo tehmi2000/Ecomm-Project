@@ -23,17 +23,33 @@ fetch("/api/countries/currency").then(async response => {
 
 document.addEventListener("DOMContentLoaded", function () {
     try{
-        if (getCookie("univers-username") && document.querySelector("#sidemenu")) {
+        if (getCookie("univers-username")) {
+            let dataUser = null;
             let apiUrl = `/api/user/${getCookie("univers-username").value}`;
-            let div0 = create("DIV");
-            let child = "<a href='/myprofile'><img id='user-photo' src='../assets/images/contacts-filled.png' alt='' class='user-picture'></a><a href='/logout' class='link-btn'>Logout</a>";
-            div0.innerHTML = child;
-            document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
+            let sideMenu = document.querySelector("#sidemenu");
+            let userIcon = document.querySelector("#user-icon");
 
             fetch(apiUrl).then(function(response) {
                 response.json().then( function(userData) {
-                    if(userData.profile_picture !== ""){
-                        document.querySelector("#sidemenu #user-photo").src = userData.profile_picture;
+                    if(sideMenu && userData.profile_picture){
+                        let div0 = create("DIV");
+                        let child = "<a href='/myprofile'><img id='user-photo' src='../assets/images/contacts-filled.png' alt='' class='user-picture'></a><a href='/logout' class='link-btn'>Logout</a>";
+                        div0.innerHTML = child;
+                        document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
+                        if(userData.profile_picture !== ""){
+                            document.querySelector("#sidemenu #user-photo").src = userData.profile_picture;
+                        }
+                        document.querySelector("#sidemenu #controls").style.display = "flex";
+                    }
+        
+                    if(userIcon){
+                        if(userData !== null && userData.firstname){
+                            userIcon.classList.toggle("active-user", true);
+                            userIcon.classList.toggle("icofont-user-alt-7", false);
+                            userIcon.innerHTML = `<span>${userData.firstname.substr(0, 1).toUpperCase()}</span>`;
+                            userIcon.title = `Logged in as ${userData.username}`;
+                        }
+                        
                     }
                 }).catch(function (error) {
                     console.error(error);
@@ -41,8 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }).catch(function(error) {
                 console.error(error);
             });
-
-            document.querySelector("#sidemenu #controls").style.display = "flex";
         }
 
         let delay;
