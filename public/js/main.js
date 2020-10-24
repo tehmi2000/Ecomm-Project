@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             userIcon.innerHTML = `<span>${userData.firstname.substr(0, 1).toUpperCase()}</span>`;
                             userIcon.title = `Logged in as ${userData.username}`;
                         }
-                        
                     }
                 }).catch(function (error) {
                     console.error(error);

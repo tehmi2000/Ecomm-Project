@@ -86,9 +86,10 @@ marquee{
     margin-bottom: 1.7rem;
     padding: 1rem;
     color: white;
-    border-top: 1px solid rgb(138, 23, 2);
-    border-bottom: 1px solid rgb(138, 23, 2);
-    background-color: rgb(126, 16, 2);
+    border: 1px solid, none, 1px solid, none;
+    border-top-color: #8a1702;
+    border-bottom-color: #8a1702;
+    background-color: brown;
 }
 
 .pane{

@@ -67,6 +67,8 @@ main{
 .name-header .btn-logout{
     border: 1px solid #dfdfdf;
     color: #dfdfdf;
+    min-width: 67px;
+    display: block;
 }
 
 .main-body{
@@ -87,6 +89,17 @@ main{
     width: 20%;
 }
 
+.main-body .control-head #head-intro{
+    display: none;
+    font-size: 1.8rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: #fff;
+    font-weight: 600;
+    border-bottom: 1px solid #3e3e3e;
+}
+
 .main-body .control-body{
     padding: 1rem;
     padding-top: 0;
@@ -95,8 +108,6 @@ main{
 }
 
 .control-head .navigation{
-    display: flex;
-    flex-direction: column;
     background-color: #f2f1f0;
     /* min-width: 180px; */
 }
@@ -139,6 +150,7 @@ main{
     padding: 1rem;
     color: #444;
     background-color: silver;
+    min-width: 80px;
 }
 
 #profile-section .uuid-wrapper #uuid{
@@ -349,16 +361,27 @@ main #profile-form{
 
     .main-body .control-head{
         position: fixed;
-        padding: 0;
-        width: auto;
+        top: 0;
+        padding: 5px;
+        width: 100%;
         height: 100vh;
-        min-width: 180px;
-        margin-top: -2rem;
-        margin-left: calc(-2.8rem - 180px);
-        /* border: 1px solid saddlebrown; */
+        margin: 0;
+        margin-left: -101vw;
+        background-color: #222;
+        box-shadow: none;
     }
+
+    .main-body .control-head #head-intro{
+        display: flex;
+    }
+
     .control-head .navigation{
-        box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.43);
+        background-color: transparent;
+        /* box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.43); */
+    }
+
+    .control-head .navigation > *{
+        color: #eee;
     }
 
     .main-body .control-body{
@@ -441,10 +464,4 @@ main #profile-form{
     #profile-form .broken-fields{
         flex-direction: column;
     }
-
-    /* #profile-form img#user-picture{
-        width: 24vw;
-        height: 24vw;
-        border-radius: 30% 50% 50% 50%;
-    } */
 }

@@ -19,7 +19,9 @@ const displayFilters = () => {
 
 const fetchData = (searchQuery, formattedQuery) => {
     const container = document.querySelector("#item-container");
-    fetch(`/api/goods/all/search?query=${searchQuery}`).then(async function(response) {
+    let apiUrl = `/api/goods/all/search?query=${searchQuery}`;
+    
+    fetch(apiUrl).then(async function(response) {
         try {
             let result = await response.json();
 

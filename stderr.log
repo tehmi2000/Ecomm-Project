@@ -435,3 +435,20 @@ Tue, 20 Oct 2020 08:08:27 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall"
 Thu, 22 Oct 2020 11:39:50 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
 Fri, 23 Oct 2020 03:21:08 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
 Sat, 24 Oct 2020 02:32:56 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Sat, 24 Oct 2020 13:54:14 GMT: {"ok":0,"errmsg":"unknown operator: $exist","code":2,"codeName":"BadValue","name":"MongoError"}
+Sat, 24 Oct 2020 14:06:53 GMT: {"ok":0,"errmsg":"unknown top level operator: $gte","code":2,"codeName":"BadValue","name":"MongoError"}
+Sat, 24 Oct 2020 14:08:53 GMT: {"ok":0,"errmsg":"unknown top level operator: $gte","code":2,"codeName":"BadValue","name":"MongoError"}
+Sat, 24 Oct 2020 15:04:19 GMT: {}
+Sat, 24 Oct 2020 15:04:30 GMT: {}
+Sat, 24 Oct 2020 15:06:18 GMT: "fashion is not defined"
+Sat, 24 Oct 2020 15:09:43 GMT: "fashion is not defined"
+Sat, 24 Oct 2020 15:12:40 GMT: "Fashion is not defined"
+Sat, 24 Oct 2020 15:13:00 GMT: "Electronics is not defined"
+Sat, 24 Oct 2020 15:13:05 GMT: "Others is not defined"
+Sat, 24 Oct 2020 15:13:41 GMT: "fashion is not defined"
+Sat, 24 Oct 2020 15:13:41 GMT: {"ok":0,"errmsg":"$or/$and/$nor entries need to be full objects","code":2,"codeName":"BadValue","name":"MongoError"}
+Sat, 24 Oct 2020 15:14:21 GMT: "fashion is not defined"
+Sat, 24 Oct 2020 15:14:21 GMT: {"ok":0,"errmsg":"$or/$and/$nor entries need to be full objects","code":2,"codeName":"BadValue","name":"MongoError"}
+Sat, 24 Oct 2020 15:22:42 GMT: {"name":"MongoParseError"}
+Sat, 24 Oct 2020 15:22:42 GMT: {"name":"MongoParseError"}
+Sat, 24 Oct 2020 15:22:42 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","host":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","port":3306,"fatal":true}

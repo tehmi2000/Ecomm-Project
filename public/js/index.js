@@ -160,11 +160,14 @@ const getRecommended = function() {
                 let selectedItem = null;
 
                 while (retArr.length < 10){
+                    // Assign a random index to randIndex
                     randIndex = Math.ceil((Math.random() * (arr.length - 1)));
+                    // Use random index to select a random item
                     selectedItem = arr[randIndex];
 
-                    // console.log("length:", arr.length, "randIndex:", randIndex, "sItem:", selectedItem);
+                    // Store selected item in retArr(returned array)
                     retArr.push(selectedItem);
+                    // Remove the selected item from the main array to avoid duplicates
                     arr = arr.filter((item) => {
                         return item["_id"] !== selectedItem["_id"];
                     });
@@ -183,6 +186,47 @@ const getRecommended = function() {
         }).catch(function (error) {
             console.error(error);
         });
+
+    }).catch(function(error) {
+        console.error(error);
+    });
+};
+
+const getDiscountedProducts = function () {
+    const parentContainer = document.querySelector("#discounted-container.pane");
+    const container = document.querySelector("#discounted-container.pane .slider");
+    let apiUrl = `/api/goods/all/with-filter/?discount=true`;
+
+    fetch(apiUrl).then(async response => {
+
+        try {
+            let result = await response.json();
+            let data = dataValidation(result).data;
+            if(data.length > 0){
+                container.innerHTML = "";
+                data.forEach(object => {
+                    createItem(container, object);
+                });
+
+                document.querySelectorAll(".item .item-description span:first-child").forEach(el => {
+                    $clamp(el, {clamp: 2});
+                });
+            }
+            
+            else {
+                container.style.justifyContent = 'center';
+                container.style.alignItems = 'center';
+                container.style.color = "#999";
+                container.style.fontSize = "1.3rem";
+                container.style.padding = "3rem";
+                container.innerHTML = "<i>No discounted product available at the moment!</i>";
+            }
+
+            console.log(data);
+            
+        } catch (error) {
+            console.error(error);
+        }
 
     }).catch(function(error) {
         console.error(error);
@@ -210,8 +254,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // createDummyItem(document.querySelector("#recommended-container.pane .slider"), 5);
 
     getMostPopular();
-    getRecommended();
     getCategories();
+    getDiscountedProducts();
+    getRecommended();
 
     document.querySelector("#visit-ad-link").addEventListener("click", function (ev) {
         window.location.href = ev.currentTarget.getAttribute("data-src");
@@ -219,7 +264,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 window.onload = function(evt) {
-    
     getAds();
     setInterval(function() {
         nextImage();

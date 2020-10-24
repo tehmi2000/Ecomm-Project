@@ -171,8 +171,8 @@ const formHandler = function(evt) {
             "item-desc": preFormatInput(document.querySelector("[name='item-desc']").value),
             categories: categoryField,
             sellerID: document.querySelector("[name='sellerID']").value,
-            "item-price": document.querySelector("[name='item-price']").value,
-            "item-qty": document.querySelector("[name='item-qty']").value
+            "item-price": parseFloat(document.querySelector("[name='item-price']").value),
+            "item-qty": parseInt(document.querySelector("[name='item-qty']").value)
         };
 
         fetch(`/api/goods/save`, {

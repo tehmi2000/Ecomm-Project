@@ -248,10 +248,109 @@ const model = function() {
         mongoConn.then(client => {
             const collection = client.db(itemsDB).collection(iCollection);
             collection.find({$and:[{"published": true}, {$text: {$search: pattern}}]}).toArray(function(err, docs) {
-
                 if(err) {
                     log(err);
                 }else{
+                    res.json(docs);
+                }
+            });
+
+        }).catch(error => {
+            log(error);
+        });
+    });
+
+    router.get("/goods/all/with-filter", function(req, res) {
+
+        const convertQueryToUsableObject = function (query) {
+            const usableQuery = {};
+
+            Object.keys(query).forEach(key => {
+                // if value is comma separated like "10, 11, 12"...
+                if (query[key].search(',') > -1) usableQuery[key] = query[key].split(',').map(eachStr => eachStr.trim());
+
+                // if value is dash separated like "10 - 12"...
+                else if (query[key].search('-') > -1){
+                    let modValue = query[key].split('-').map(eachStr => parseInt(eachStr.trim())); // [10, 12]
+                    usableQuery[key] = {
+                        min: modValue[0],
+                        max: modValue[modValue.length - 1]
+                    };
+                }
+
+                // Other values should be assigned directly
+                else {
+                    try {
+                        usableQuery[key] = eval(query[key]);
+                    } catch (error) {
+                        log(error.message);
+                        usableQuery[key] = query[key];
+                    }
+                }
+            });
+
+            return usableQuery;
+        };
+
+        const buildMongoQuery = filters => {
+            const retValue = {$and: [{"published": true}]};
+            let listOfFilterKeys = Object.keys(filters);
+
+            listOfFilterKeys.forEach(key => {
+                let subQuery = null;
+                switch (key) {
+                    case "searchQuery":
+                        subQuery = {
+                            $text: {
+                                $search: filters[key]
+                            }
+                        };
+                        break;
+
+                    case "discount":
+                        subQuery = {"price-discount": {$exists: filters[key]}};
+                        break;
+
+                    case "discountRange":
+                        subQuery = {
+                            $and: [
+                                {"price-discount": {'$gte': filters[key].min}},
+                                {"price-discount": {'$lte': filters[key].max}}
+                            ]
+                        };
+                        break;
+
+                    case "priceRange":
+                        subQuery = {
+                            $and: [
+                                {"item-price": {'$gte': filters[key].min}},
+                                {"item-price": {'$lte': filters[key].max}}
+                            ]
+                        };
+                        break;
+
+                    default:
+
+                        break;
+                }
+
+                retValue['$and'] = (retValue['$and'])? retValue['$and'].concat(subQuery) : [subQuery];
+            });
+            
+            // console.log(retValue);
+            return retValue;
+        };
+
+        const convertedQuery = convertQueryToUsableObject(req.query);
+        let mongoQuery = buildMongoQuery(convertedQuery);
+
+        mongoConn.then(client => {
+            const collection = client.db(itemsDB).collection(iCollection);
+            collection.find(mongoQuery).toArray(function(err, docs) {
+                if(err) {
+                    log(err);
+                }else{
+                    console.log(docs);
                     res.json(docs);
                 }
             });

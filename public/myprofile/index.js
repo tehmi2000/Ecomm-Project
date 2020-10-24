@@ -15,12 +15,16 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".name-header .icofont-navigation-menu").addEventListener("click", function(evt) {
             document.querySelector(".main-body .control-head").style.marginLeft = "0px";
         });
+        
+        document.querySelector(".main-body .control-head #close-control").addEventListener("click", function(evt) {
+            document.querySelector(".main-body .control-head").style.marginLeft = "-101vw";
+        });
+
         document.querySelector(".edit-btn").addEventListener("click", function(evt) {
             document.querySelector("#profile-form").style.opacity = 1;
             document.querySelector("#profile-form").style.height = "auto";
             document.querySelector("#records-section").style.opacity = 0;
             document.querySelector("#records-section").style.height = 0;
-
         });
 
         document.querySelector("#profile-form #minimize-form-btn").addEventListener("click", function(evt) {
