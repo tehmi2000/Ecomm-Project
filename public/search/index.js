@@ -1,8 +1,12 @@
-const itemList = {};
+let itemList = {};
+let filters = {};
 
 document.addEventListener("DOMContentLoaded", function() {
     const queryText = window.decodeURIComponent(getQuery().query);
     const displayQueryElement = document.querySelector("#query");
+    const filterBtn = document.querySelector("#modifiers-content button[data-apply-btn]");
+    const clearFilterBtn = document.querySelector("#modifiers-content [data-clear-btn]");
+    const filterForm = document.querySelector("form#modifiers-content");
 
     let formattedQuery = queryText.split("+").join(" ");
     displayQueryElement.innerHTML = ` ${formattedQuery}`;
@@ -10,6 +14,23 @@ document.addEventListener("DOMContentLoaded", function() {
     if(queryText && queryText !== ""){
         fetchData(queryText, formattedQuery);
     }
+
+    filterBtn.addEventListener("click", ev => {
+        let target = ev.currentTarget;
+        target.textContent = "applying filters..."
+        target.classList.toggle("animate-filtering");
+    });
+
+    clearFilterBtn.addEventListener("click", ev => {
+        window.location.reload();
+    });
+
+    filterForm.addEventListener("submit", ev => {
+        ev.preventDefault();
+        filterSearch(queryText, `${formattedQuery} (filtered)`);
+    });
+
+    loadFilterHandlers();
 });
 
 const displayFilters = () => {
@@ -17,10 +38,90 @@ const displayFilters = () => {
     element.style.display = (element.style.display === "flex")? "none" : "flex";
 };
 
+const buildFilterQuery = function (encodedSearchQuery) {
+    let apiUrl = `/api/goods/all/with-filter?`;
+    let searchQueryUrl = `searchQuery=${encodedSearchQuery}`;
+    let tempApiUrl = ''
+
+    Object.keys(filters).forEach( key => {
+        let urlVersion = null;
+        
+        switch(key){
+            case "priceRange":
+                urlVersion = `${filters[key].min || 0}-${filters[key].max || 999999999999999}`;
+                break;
+
+            case "discountRange":
+                urlVersion = `${filters[key].min || 0}-${filters[key].max || 999999999999999}`;
+                break;
+
+            default:
+                urlVersion = `${filters[key]}`;
+                break;
+        }
+        
+        tempApiUrl = (urlVersion === null)? tempApiUrl : `${tempApiUrl}&${key}=${urlVersion}`;
+    });
+    
+    apiUrl += searchQueryUrl + tempApiUrl;
+    console.log(apiUrl);
+    return apiUrl;
+};
+
+const filterSearch = (searchQuery, formattedQuery) => {
+    const displayQueryElement = document.querySelector("#query");
+    const container = document.querySelector("#item-container");
+    const filterBtn = document.querySelector("#modifiers-content button[data-apply-btn]");
+    let apiUrl = buildFilterQuery(window.encodeURIComponent(searchQuery));
+
+    container.innerHTML = "";
+    createDummyItem(container, 6);
+    setTimeout(() => {
+        displayFilters();
+    }, 2000);
+    
+    fetch(apiUrl).then(async function(response) {
+        try {
+            let result = await response.json();
+            console.log(result);
+
+            container.innerHTML = "";
+            itemList = {};
+            filterBtn.textContent = "Apply";
+            filterBtn.classList.toggle("animate-filtering", false);
+            displayQueryElement.innerHTML = ` ${formattedQuery}`;
+
+            if(result.length === 0){
+                createNoItemTag(container, formattedQuery);
+            }else{
+                let adsPosition = 3;
+                result.forEach((item, index) => {
+                    if(index === adsPosition){
+                        placeAds(container);
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        adsPosition += 3;
+                    }
+                    itemList[`${item["_id"]}`] = item;
+                    createItem(container, item);
+                });
+
+                document.querySelectorAll(".item .item-name a:first-child").forEach(el => {
+                    $clamp(el, {clamp: 2});
+                });
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }).catch(function(error) {
+        console.log(error);
+    });
+};
+
 const fetchData = (searchQuery, formattedQuery) => {
     const container = document.querySelector("#item-container");
     let apiUrl = `/api/goods/all/search?query=${searchQuery}`;
-    
+
     fetch(apiUrl).then(async function(response) {
         try {
             let result = await response.json();
@@ -58,6 +159,27 @@ const createNoItemTag = function(container, query){
     container.style.alignItems = "center";
     container.innerHTML = `<span id='no-item' class='cols'><img src="../assets/images/portfolium-robot.png" alt=""><span>Sorry, we couldn't find any item that matched '${query}'.</span></span>`;
     createSuggestions(document.querySelector(".pane.sug"), document.querySelector(".pane.sug #suggestion-container"));
+};
+
+const loadFilterHandlers = function(){
+    let minPriceInput = document.querySelector("#modifiers-content [name='min-price-range']");
+    let maxPriceInput = document.querySelector("#modifiers-content [name='max-price-range']");
+    let discountOnlyCheck = document.querySelector("#modifiers-content [name='is-discounted']");
+
+    minPriceInput.addEventListener("input", e => {
+        if(!filters.priceRange) filters.priceRange = {};
+        filters.priceRange.min = (e.currentTarget.value === '')? 0 : parseInt(e.currentTarget.value);
+    });
+
+    maxPriceInput.addEventListener("input", e => {
+        if(!filters.priceRange) filters.priceRange = {};
+        filters.priceRange.max = (e.currentTarget.value === '')? 999999999999999 : parseInt(e.currentTarget.value);
+    });
+
+    discountOnlyCheck.addEventListener("change", e => {
+        filters.discount = (!filters.discount)? true : !filters.discount;
+        console.log(filters);
+    });
 };
 
 const placeAds = function(container) {
@@ -170,44 +292,39 @@ const createItem = function(container, object){
 const createDummyItem = function(container, number){
 
     // <span class="dummy item">
-    //     <img src="" alt="">
-    //     <span class="item-name cols">
-    //         <span></span>
-    //         <span></span>
-    //     </span>
-    //     <span class="item-number cols">
-    //         <span></span>
-    //     </span>
-    //     <span class="item-buttons">
-    //         <span></span>
-    //         <span></span>
+    //     <img src="#" alt="">
+    //     <span class="cols lg-80">
+    //         <span class="item-name"></span>
+    //         <span class="item-desc"></span>
+    //         <span class="bottom-wrapper rows">
+    //             <span class="item-price"></span>
+    //             <span class="rows item-buttons">
+    //                 <span></span>
+    //                 <span></span>
+    //             </span>
+    //         </span>
     //     </span>
     // </span>
 
     for(let n = 0; n < number; n++){
-        let a0 = create("SPAN");
-        let img0 = create("IMG");
-        let span0 = create("SPAN");
-            let span1 = create("SPAN");
-            let span2 = create("SPAN");
-        let span3 = create("SPAN");
-            let span4 = create("SPAN");
-        let span5 = create("SPAN");
-            let span6 = create("SPAN");
-            let span7 = create("SPAN");
-
-        a0.classList.add("dummy", "item");
-        span0.classList.add("item-name", "cols");
-        span3.classList.add("item-number", "cols");
-        span5.classList.add("item-buttons");
+        let a0 = createComponent("SPAN", null, ["dummy", "item"]);
+            let img0 = create("IMG");
+            let span0 = createComponent("SPAN", null, ["cols", "lg-80"]);
+                let span1 = createComponent("SPAN", null, ["item-name"]);
+                let span2 = createComponent("SPAN", null, ["item-desc"]);
+                let span3 = createComponent("SPAN", null, ["bottom-wrapper", "rows"]);
+                    let span4 = createComponent("SPAN", null, ["item-price"]);
+                    let span5 = createComponent("SPAN", null, ["rows", "item-buttons"]);
+                        let span6 = create("SPAN");
+                        let span7 = create("SPAN");
 
         img0.setAttribute("src", ``);
 
         span5 = joinComponent(span5, span6, span7);
-        span3 = joinComponent(span3, span4);
-        span0 = joinComponent(span0, span1, span2);
+        span3 = joinComponent(span3, span4, span5);
+        span0 = joinComponent(span0, span1, span2, span3);
 
-        a0 = joinComponent(a0, img0, span0, span3, span5);
+        a0 = joinComponent(a0, img0, span0);
 
         container.appendChild(a0);
     }

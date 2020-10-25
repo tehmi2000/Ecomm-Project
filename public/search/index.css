@@ -23,6 +23,16 @@ body{
     padding: 0.5rem 0.7rem;
 }
 
+#modifiers-content h3.filter-heading{
+    margin-bottom: 1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+#modifiers-content .summary-content{
+    padding-left: 2rem;
+}
+
 #modifiers-content button, #modifiers button{
     border: none;
     padding: 8px 24px;
@@ -55,12 +65,52 @@ body{
 
 #modifiers + #modifiers-content{
     display: none;
-    position: fixed;
+    position: absolute;
     width: 100%;
-    left: 50%;
-    transform: translate(-50%, 5%);
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.05);
+    z-index: +999;
+    margin-top: 0.4rem;
+    /* left: 50%;
+    transform: translate(-50%, 5%); */
+    box-shadow: 2px 2px 6px #999;
+    /* box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.05); */
     /* border-radius: 5px; */
+}
+
+#modifiers + #modifiers-content summary{
+    font-size: 1.3rem;
+    padding: 2rem;
+    box-shadow: 0px 0px 2px #ccc;
+    transition: border 0.1s linear, padding 0.2s linear;
+    /* margin-bottom: 1rem; */
+}
+
+#modifiers + #modifiers-content summary:hover{
+    cursor: pointer;
+    border-left: 4px solid #e93e00;
+    padding-left: 3.5rem;
+}
+
+#modifiers-content button[data-apply-btn]{
+    outline: none;
+    border-radius: 5vh;
+    margin: 2rem;
+    width: 40%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: orangered;
+    color: white;
+    padding: 1.5rem 2rem;
+    transform-origin: center;
+    transition: padding 0.3s ease-out;
+}
+
+#modifiers-content button[data-apply-btn].animate-filtering{
+    color: #111;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: #555;
+    animation: filtering 3s ease 0s infinite backwards alternate;
 }
 
 main{
@@ -387,5 +437,23 @@ main h1 > *{
     
     .dummy.item{
         width: 97%;
+    }
+}
+
+@keyframes filtering{
+    0%{
+        margin-left: auto;
+    }
+
+    20%{
+        margin-left: 40%;
+    }
+
+    50%{
+        margin-left: 10%;
+    }
+
+    100%{
+        margin-left: 70%;
     }
 }

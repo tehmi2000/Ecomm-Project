@@ -452,3 +452,17 @@ Sat, 24 Oct 2020 15:14:21 GMT: {"ok":0,"errmsg":"$or/$and/$nor entries need to b
 Sat, 24 Oct 2020 15:22:42 GMT: {"name":"MongoParseError"}
 Sat, 24 Oct 2020 15:22:42 GMT: {"name":"MongoParseError"}
 Sat, 24 Oct 2020 15:22:42 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","host":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","port":3306,"fatal":true}
+Sun, 25 Oct 2020 02:59:34 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Sun, 25 Oct 2020 03:41:36 GMT: "fashion is not defined"
+Sun, 25 Oct 2020 03:46:43 GMT: "fashion is not defined"
+Sun, 25 Oct 2020 05:01:52 GMT: "fashion is not defined"
+Sun, 25 Oct 2020 05:03:26 GMT: "fashion is not defined"
+Sun, 25 Oct 2020 05:03:49 GMT: "fashion is not defined"
+Sun, 25 Oct 2020 05:04:14 GMT: "fashion is not defined"
+Sun, 25 Oct 2020 05:16:19 GMT: "fashion is not defined"
+Sun, 25 Oct 2020 05:16:51 GMT: "fashion is not defined"
+Sun, 25 Oct 2020 05:17:05 GMT: "fashion is not defined"
+Sun, 25 Oct 2020 05:31:25 GMT: "fashion is not defined"
+Sun, 25 Oct 2020 05:42:57 GMT: {"name":"MongoParseError"}
+Sun, 25 Oct 2020 05:42:57 GMT: {"name":"MongoParseError"}
+Sun, 25 Oct 2020 05:42:57 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","host":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","port":3306,"fatal":true}

@@ -88,9 +88,104 @@
         </div>
     </div>
 
-    <form id="modifiers-content">
-        <span onclick="displayFilters()">Close</span>
+    <form id="modifiers-content" class="cols" style="align-items: unset;">
+        <div class="rows" style="justify-content: space-between; align-items: center; padding: 1rem 1.5rem; margin-bottom: 3rem;">
+            <span style="font-size: 1.5rem; text-transform: uppercase;">Select your preferred filter</span>
+            <span onclick="displayFilters()" style="color: orangered;"><i class="icofont-close"></i> Close</span>
+        </div>
         
+        <details>
+            <summary>Price</summary>
+            <div class="cols summary-content">
+                <h3 class="filter-heading">Enter A Price Range</h3>
+                <div class="rows">
+                    <label for="">Min Price</label>
+                    <div class="cols">
+                        <input type="number" name="min-price-range" id="min-price-range" value="0" min="0">
+                    </div>
+                </div>
+                
+                <div class="rows">
+                    <label for="">Max Price</label>
+                    <div class="cols">
+                        <input type="number" name="max-price-range" id="max-price-range" value="0" min="0">
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Discount</summary>
+            <div class="cols summary-content">
+                <div class="rows">
+                    <input type="checkbox" name="is-discounted" id="is-discounted">
+                    <label for="is-discounted">Products With Discount Only?</label>
+                </div>
+
+                <div class="cols">
+                    <label for="">Discount Range</label>
+                    <div class="rows">
+                        <label for="min-discount-range">Min. Discount</label>
+                        <div class="cols">
+                            <input type="number" name="min-discount-range" id="min-discount-range" value="0" min="0" max="100">
+                        </div>
+                    </div>
+                    
+                    <div class="rows">
+                        <label for="max-discount-range">Max. Discount</label>
+                        <div class="cols">
+                            <input type="number" name="max-discount-range" id="max-discount-range" value="0" min="0" max="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Gender</summary>
+            <div class="cols summary-content">
+                <h3 class="filter-heading">Select a gender type</h3>
+                <div class="rows">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Male</label>
+                </div>
+
+                <div class="rows">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Female</label>
+                </div>
+
+                <div class="rows">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Unisex</label>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Brand</summary>
+            <div class="cols summary-content">
+                
+            </div>
+        </details>
+
+        <details>
+            <summary>Sizes</summary>
+            <div class="cols summary-content">
+
+                <div class="rows">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Small</label>
+                </div>
+
+                <div class="rows">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Medium</label>
+                </div>
+            </div>
+        </details>
+
+        <span data-clear-btn onclick="clearFilters()" style="color: orangered; display: block; margin: 2rem auto 0;">Clear All Filters</span>
         <button data-apply-btn>Apply</button>
     </form>
 
