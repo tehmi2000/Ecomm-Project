@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Browse through our fine categories of products to find products that well suit your shopping needs.">
+    <title>Univers | Categories</title>
+
+    <link rel="shortcut icon" href="/assets/images/logo-2.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <link rel="stylesheet" href="/css/fullHeader.min.css">
+    <link rel="stylesheet" href="/css/filterSort.css">
+    <link rel="stylesheet" href="index.min.css">
+    <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
+
+    <script src="/js/main.min.js"></script>
+    <script src="/js/lib/lazysizes.min.js"></script>
+    <script src="/js/lib/clamp.min.js"></script>
+    <script src="index.min.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics --- START--- -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157804114-1"></script>
     <script>
@@ -11,21 +28,6 @@
         gtag('config', 'UA-157804114-1', { 'optimize_id': 'GTM-KZC2BV6'});
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics --- END --- -->
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Browse through our fine categories of products to find products that well suit your shopping needs.">
-    <title>Univers | Categories</title>
-    <link rel="shortcut icon" href="/assets/images/logo-2.png" type="image/x-icon">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/fullHeader.css">
-    <link rel="stylesheet" href="/css/search.css">
-    <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
-    <script src="/js/main.min.js"></script>
-    <script src="/js/lib/lazysizes.min.js"></script>
-    <script src="/js/lib/clamp.min.js"></script>
-    <script src="/js/categoryView.js"></script>
 </head>
 
 <body>
@@ -70,6 +72,125 @@
 
     <noscript>You need javascript enabled to be able to view this page</noscript>
 
+    <div id="modifiers" class="lg-100 rows">
+        <div data-filter-tab class="rows lg-100" onclick="displayFilters()">
+            <div class="rows" style="align-items: center;">
+                <i class="icofont-filter"></i>
+                <span style="margin-left: 0.5rem;">Filter By</span>
+            </div>
+            <i class="icofont-caret-down"></i>
+        </div>
+
+        <div data-filter-tab class="rows lg-100" onclick="displayFilters()">
+            <div class="rows" style="align-items: center;">
+                <i class="icofont-sort"></i>
+                <span style="margin-left: 0.5rem;">Sort By</span>
+            </div>
+            <i class="icofont-caret-down"></i>
+        </div>
+    </div>
+
+    <form id="modifiers-content" class="cols" style="align-items: unset;">
+        <div class="rows" style="justify-content: space-between; align-items: center; padding: 1rem 1.5rem; margin-bottom: 3rem;">
+            <span style="font-size: 1.5rem; text-transform: uppercase;">Select your preferred filter</span>
+            <span onclick="displayFilters()" style="color: orangered;"><i class="icofont-close"></i> Close</span>
+        </div>
+        
+        <details>
+            <summary>Price</summary>
+            <div class="cols summary-content">
+                <h3 class="filter-heading">Enter A Price Range</h3>
+                <div class="rows">
+                    <label for="">Min Price</label>
+                    <div class="cols">
+                        <input type="number" name="min-price-range" id="min-price-range" value="0" min="0">
+                    </div>
+                </div>
+                
+                <div class="rows">
+                    <label for="">Max Price</label>
+                    <div class="cols">
+                        <input type="number" name="max-price-range" id="max-price-range" value="0" min="0">
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Discount</summary>
+            <div class="cols summary-content">
+                <div class="rows">
+                    <input type="checkbox" name="is-discounted" id="is-discounted">
+                    <label for="is-discounted">Products With Discount Only?</label>
+                </div>
+
+                <div class="cols">
+                    <label for="">Discount Range</label>
+                    <div class="rows">
+                        <label for="min-discount-range">Min. Discount</label>
+                        <div class="cols">
+                            <input type="number" name="min-discount-range" id="min-discount-range" value="0" min="0" max="100">
+                        </div>
+                    </div>
+                    
+                    <div class="rows">
+                        <label for="max-discount-range">Max. Discount</label>
+                        <div class="cols">
+                            <input type="number" name="max-discount-range" id="max-discount-range" value="0" min="0" max="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Gender</summary>
+            <div class="cols summary-content">
+                <h3 class="filter-heading">Select a gender type</h3>
+                <div class="rows">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Male</label>
+                </div>
+
+                <div class="rows">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Female</label>
+                </div>
+
+                <div class="rows">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Unisex</label>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Brand</summary>
+            <div class="cols summary-content">
+                
+            </div>
+        </details>
+
+        <details>
+            <summary>Sizes</summary>
+            <div class="cols summary-content">
+
+                <div class="rows">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Small</label>
+                </div>
+
+                <div class="rows">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Medium</label>
+                </div>
+            </div>
+        </details>
+
+        <span data-clear-btn onclick="clearFilters()" style="color: orangered; display: block; margin: 2rem auto 0;">Clear All Filters</span>
+        <button data-apply-btn>Apply</button>
+    </form>
+    
     <aside id="sidemenu">
         <nav class="rows">
             <div>

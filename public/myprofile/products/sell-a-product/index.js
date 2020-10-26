@@ -160,9 +160,12 @@ const formHandler = function(evt) {
         });
 
         // Rewrite the content of each image field
-        for (let i = 1; i <= Object.keys(imgUrls).length; i++) {
-            imageField[i-1] = `v${imageField[i-1]}/` + imgUrls[`preview-image-${i}`];
-        }
+        imageField = imageField.map((imgVersionNumber, index) => {
+            return `v${imgVersionNumber}/` + imgUrls[`preview-image-${index + 1}`];
+        });
+        // for (let i = 1; i <= Object.keys(imgUrls).length; i++) {
+        // imageField[i-1] = `v${imageField[i-1]}/` + imgUrls[`preview-image-${i}`];
+        // }
 
         const bodyValue = {
             "item-image": imageField,

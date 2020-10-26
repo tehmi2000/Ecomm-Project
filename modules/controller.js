@@ -2,9 +2,9 @@ const model = function() {
     const fs = require("fs");
     const AWS = require('aws-sdk');
     const cloudinary = require('cloudinary').v2;
-    const mysql_config =  require("./config");
+    const mySQLConfig =  require("./config");
     const emailHandler = require("./emailHandler");
-    const { log } = mysql_config;
+    const { log } = mySQLConfig;
     const ph = require("./passwordHash");
 
     // AWS CONFIGURATION
@@ -136,7 +136,7 @@ const model = function() {
 
         for (const key in file) {
             let uploadedFile = file[key];
-            uploadedFile.name = uploadedFile.name.replace(" ", "");
+            uploadedFile.name = uploadedFile.name.replace(" ", "").replace("jpeg", "jpg");
             
             uploadedFile.mv(`${localPath}/${uploadedFile.name}`, function(err) {
                 if (err) {
@@ -180,7 +180,7 @@ const model = function() {
         const user_telcode = authSanitizer(req.body.telcode);
 
         let query = `UPDATE users SET firstname='${user_firstname}', lastname='${user_lastname}', telcode='${user_telcode}', phone='${user_phone}', address='${user_address}' WHERE username='${user_username}'`;
-        mysql_config.connection.query(query, function(err, result){
+        mySQLConfig.connection.query(query, function(err, result){
             if(err) {
                 log(err);
             }else{
@@ -207,7 +207,7 @@ const model = function() {
         
 
         const query = `SELECT username, password FROM users WHERE username='${user_username}'`;
-        mysql_config.connection.query(query, function(err, result){
+        mySQLConfig.connection.query(query, function(err, result){
             if(err) {
                 log(err);
             }else{
@@ -238,13 +238,13 @@ const model = function() {
 
         let query = `SELECT username, email FROM users WHERE username="${user_username}" OR email="${user_email}"`;
 
-        mysql_config.connection.query(query, function(err, existing_users) {
+        mySQLConfig.connection.query(query, function(err, existing_users) {
             if(err){
                 log(err);
             }else if(existing_users.length === 0){
                 let query = `INSERT INTO users (uID, username, password, firstname, lastname, telcode, phone, email, address, profile_picture, verification_status) VALUES ('${uuid}', '${user_username}', '${ph.encrypt(user_password)}', '${user_firstname}', '${user_lastname}', '', '', '${user_email}', '', '/assets/images/contacts-filled.png', false)`;
 
-                mysql_config.connection.query(query, function(err){
+                mySQLConfig.connection.query(query, function(err){
 
                     if(err) {
                         log(err);
@@ -272,7 +272,7 @@ const model = function() {
 
         let query = `SELECT uID, username, firstname, lastname FROM users WHERE email="${vendorEmail}"`;
 
-        mysql_config.connection.query(query, function(err, users) {
+        mySQLConfig.connection.query(query, function(err, users) {
             if(err){
                 log(err);
                 res.json([{...err}]);
@@ -282,7 +282,7 @@ const model = function() {
                 let vendorWebsite = (req.body['business-url'] === '')? `https://oneunivers.herokuapp.com/vendors/public_store/${sellerID}` : req.body['business-url'];
 
                 let query = `INSERT INTO vendors (sellerID, username, vendorName, email, website, bio, country, region) VALUES ('${sellerID}', '${username}', '${vendorName}', '${vendorEmail}', '${vendorWebsite}', '${vendorBio}', '${vendorCountry}', '${vendorRegion}')`;
-                mysql_config.connection.query(query, function(err){
+                mySQLConfig.connection.query(query, function(err){
                     if (err) {
                         log(err);
                         res.json([{...err}]);
@@ -317,7 +317,7 @@ const model = function() {
             console.log(account_email);
 
             const query = `SELECT uID, email, firstname, lastname FROM users WHERE email='${account_email}'`;
-            mysql_config.connection.query(query, function(err, result){
+            mySQLConfig.connection.query(query, function(err, result){
                 if(err) {
                     log(err);
                 }else{

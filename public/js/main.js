@@ -1,13 +1,17 @@
 let mediaX = window.matchMedia("(max-width: 800px)");
 let currencyLocale = 'NGN';
 
-const openMenu = function() {
-    document.querySelector("#sidemenu").style.marginLeft = "0%";
-};
-
-const closeMenu = function() {
-    document.querySelector("#sidemenu").style.marginLeft = "-150%";
-};
+// INSTALL SERVICE WORKER
+if('serviceWorker' in navigator){
+    window.addEventListener('load', ()=>{
+        navigator.serviceWorker.register("/workers/univers-sw.js").then(function(reg) {
+            console.log("Service worker is working fine");
+        }).catch(function(err) {
+            console.log(err.message);
+            console.log("Service worker could not intall");
+        });
+    });
+}
 
 // GET USER's COUNTRY's CURRENCY
 fetch("/api/countries/currency").then(async response => {
@@ -80,6 +84,14 @@ document.addEventListener("DOMContentLoaded", function () {
         alert(e);
     }
 });
+
+const openMenu = function() {
+    document.querySelector("#sidemenu").style.marginLeft = "0%";
+};
+
+const closeMenu = function() {
+    document.querySelector("#sidemenu").style.marginLeft = "-150%";
+};
 
 const addToggleAction = function(evt) {
     console.log("on");
@@ -482,14 +494,3 @@ const formatAsMoney = price => {
 
     return formattedPrice;
 };
-
-if('serviceWorker' in navigator){
-    window.addEventListener('load', ()=>{
-        navigator.serviceWorker.register("/serviceWorkers/univers-sw.js").then(function(reg) {
-            console.log("Service worker is working fine");
-        }).catch(function(err) {
-            console.log(err.message);
-            console.log("Service worker is not supported");
-        });
-    });
-}

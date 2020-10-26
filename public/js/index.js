@@ -63,7 +63,7 @@ const createItem = function(container, object){
         spanaa.style.opacity = 1;
     }
 
-    imgaa.style.opacity = 0.7;
+    imgaa.setAttribute("style", `opacity: 0.7;height: 2rem;width: auto;object-fit: contain;`);
     div3.style.alignItems = "flex-end";
 
     span1.appendChild(sup0);

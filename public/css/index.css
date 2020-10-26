@@ -201,15 +201,11 @@ marquee{
 
 .pane .item img.item-delivery-method{
     background-image: none;
-    height: 2rem;
-    width: auto;
     min-height: unset;
     margin: 0;
-    opacity: 0.8;
 }
 
 .pane .item .item-discount{
-    
     width: 6rem;
     padding: 0.5rem;
     background-color: rgba(255, 166, 0, 0.78);
@@ -386,22 +382,4 @@ marquee{
         padding: 1rem;
         font-size: 1.3rem;
     }
-    
-    .pane .catitem .item-img{
-        /* justify-content: center;
-        align-items: center;
-        height: 3rem;
-        width: 3rem;
-        font-size: 3rem;
-        /* background-color: #fff;
-        margin-bottom: 1rem; */
-    }
-    
-    .pane .catitem .item-name{
-        /* padding: 0.5rem;
-        width: 90%;
-        text-align: center; */
-        /* background-color: #fff; */
-    }
-    
 }

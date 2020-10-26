@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
 const fetchData = (searchQuery, formattedQuery) => {
     const container = document.querySelector("#item-container");
     let apiUrl = `/api/goods/all/search?query=${searchQuery}`;
-    
+
     fetch(apiUrl).then(async function(response) {
         try {
             let result = await response.json();
@@ -57,7 +57,7 @@ const fetchData = (searchQuery, formattedQuery) => {
 const createNoItemTag = function(container, query){
     container.style.justifyContent = "center";
     container.style.alignItems = "center";
-    container.innerHTML = `<span id='no-item' class='cols'><img src="../assets/images/portfolium-robot.png" alt=""><span>Sorry, we couldn't find any item in our '${query}' category.</span></span>`;
+    container.innerHTML = `<span id='no-item' class='cols'><img src="/assets/images/portfolium-robot.png" alt=""><span>Sorry, we couldn't find any item in our '${query}' category.</span></span>`;
     createSuggestions(document.querySelector(".pane.sug"), document.querySelector(".pane.sug #suggestion-container"));
 };
 

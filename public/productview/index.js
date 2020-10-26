@@ -145,8 +145,6 @@ const createNav = function(number, img, active) {
     container.appendChild(span0);
 };
 
-// http://localhost:1234/assets/images/ExchangeLogo.png
-
 const fetchProduct = function () {
     fetch(`/api/goods/${itemID}`).then(async function(response) {
         try {
@@ -233,20 +231,5 @@ const loadNeededElement = function () {
 document.addEventListener("DOMContentLoaded", function () {
     ct = new ColorThief();
     loadNeededElement();
-
-    // myDevice = function(x) {
-    //     if (!x.matches) { // If media query is not true
-    //         try {
-    //             gsap.from(document.querySelector("main .card-container"), 1.5, {marginLeft: "100vw", ease: "elastic.out(0.3, 0.2)"});
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     }
-    // }
-
-    // let x = window.matchMedia("(max-width: 800px)");
-    // myDevice(x); // Call listener function at run time
-    // x.addListener(myDevice);        
-
     fetchProduct();
 });

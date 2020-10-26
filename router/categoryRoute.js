@@ -18,7 +18,7 @@ const model = function() {
     });
 
     router.get("/all", function(req, res) {
-        readFile("./public/categories.html", req, res);
+        res.redirect("/categories");
     });
 
     return router;

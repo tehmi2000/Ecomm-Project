@@ -250,7 +250,7 @@ main{
 
 .tab-content .content{
     display: none;
-    color: #ddd;
+    color: #656565;
     text-transform: none;
     font-size: 1.3rem;
     font-weight: lighter;
@@ -284,7 +284,7 @@ main{
     text-transform: uppercase;
     margin-left: 2px;
     margin-bottom: 3px;
-    color: #889;
+    color: #445;
 }
 
 .pref-options select, .pref-options input, .total-input{
