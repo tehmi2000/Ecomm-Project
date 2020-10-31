@@ -9,97 +9,132 @@
 
 <url>
   <loc>https://oneunivers.herokuapp.com/</loc>
-  <lastmod>2020-04-25T23:35:28+00:00</lastmod>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://oneunivers.herokuapp.com/myprofile/orders?sectid=1</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
+  <loc>https://oneunivers.herokuapp.com/myprofile/</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://oneunivers.herokuapp.com/categories</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
+  <loc>https://oneunivers.herokuapp.com/myprofile/products/my-cart/</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://oneunivers.herokuapp.com/pricing</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
+  <loc>https://oneunivers.herokuapp.com/get_started/</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://oneunivers.herokuapp.com/support</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
+  <loc>https://oneunivers.herokuapp.com/categories/</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://oneunivers.herokuapp.com/login</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
+  <loc>https://oneunivers.herokuapp.com/pricing/</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://oneunivers.herokuapp.com/signup</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
+  <loc>https://oneunivers.herokuapp.com/other_platforms/</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
   <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://oneunivers.herokuapp.com/myprofile/orders?sectid=2</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://oneunivers.herokuapp.com/myprofile/orders?sectid=3</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://oneunivers.herokuapp.com/myprofile/orders?sectid=4</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://oneunivers.herokuapp.com/categories/view?query=Fashion</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://oneunivers.herokuapp.com/categories/view?query=Electronics</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://oneunivers.herokuapp.com/categories/view?query=Phones%20%26%20Tablet</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://oneunivers.herokuapp.com/categories/view?query=Beauty%20%26%20Health%20Care</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://oneunivers.herokuapp.com/categories/view?query=Baby,%20Kids%20%26%20Toys</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://oneunivers.herokuapp.com/myprofile</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
-  <priority>0.64</priority>
 </url>
 <url>
   <loc>https://oneunivers.herokuapp.com/support/</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/login/</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/signup/</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/myprofile/products/sell-a-product/</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/myprofile/products/my-store/</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/myprofile/products/saved-items/</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/categories/view/?query=Fashion</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/categories/view/?query=Electronics</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/categories/view/?query=Phones%20%26%20Tablet</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/categories/view/?query=Beauty%20%26%20Health%20Care</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/categories/view/?query=Baby,%20Kids%20%26%20Toys</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/privacy_policy/</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/categories/view/?query=fashion</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/categories/view/?query=electronics</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/categories/view/?query=phones%20%26%20tablet</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/categories/view/?query=beauty%20%26%20health%20care</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://oneunivers.herokuapp.com/categories/view/?query=baby,%20kids%20%26%20toys</loc>
+  <lastmod>2020-10-31T14:47:20+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://oneunivers.herokuapp.com/vendors/vendor-apply</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
+  <lastmod>2020-10-31T15:03:24+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://oneunivers.herokuapp.com/passwordReset</loc>
-  <lastmod>2020-04-25T23:37:46+00:00</lastmod>
+  <lastmod>2020-10-31T15:03:24+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 
