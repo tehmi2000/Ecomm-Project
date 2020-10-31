@@ -466,3 +466,12 @@ Sun, 25 Oct 2020 05:31:25 GMT: "fashion is not defined"
 Sun, 25 Oct 2020 05:42:57 GMT: {"name":"MongoParseError"}
 Sun, 25 Oct 2020 05:42:57 GMT: {"name":"MongoParseError"}
 Sun, 25 Oct 2020 05:42:57 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","host":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","port":3306,"fatal":true}
+Mon, 26 Oct 2020 01:59:58 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Tue, 27 Oct 2020 11:24:18 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Wed, 28 Oct 2020 09:28:58 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Thu, 29 Oct 2020 02:29:22 GMT: {"errno":"ECONNREFUSED","code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":3306,"fatal":true}
+Thu, 29 Oct 2020 02:29:22 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Thu, 29 Oct 2020 02:29:31 GMT: {"errno":"ECONNREFUSED","code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":3306,"fatal":true}
+Fri, 30 Oct 2020 03:41:44 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Fri, 30 Oct 2020 15:14:10 GMT: {"errno":"ECONNREFUSED","code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":3306,"fatal":true}
+Sat, 31 Oct 2020 03:52:27 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
