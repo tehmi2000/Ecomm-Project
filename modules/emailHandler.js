@@ -39,7 +39,7 @@ const model = function(){
 	
 			request(options, function (error, response, body) {
 				if (error) config.log(error);
-				console.log({statusCode: response.statusCode, body: response.body}, body);
+				console.log({statusCode: (response)? response.statusCode : 404});
 			});
 		}catch(err){
 			config.log("Verification Email sending error");
@@ -87,7 +87,7 @@ const model = function(){
 
 		request(options, function (error, response, body) {
 			if (error) config.log(error);
-			console.log({statusCode: response.statusCode});
+			console.log({statusCode: (response)? response.statusCode : 404});
 		});
 	};
 
@@ -130,7 +130,7 @@ const model = function(){
 
 		request(options, function (error, response, body) {
 			if (error) config.log(error);
-			console.log({statusCode: response.statusCode});
+			console.log({statusCode: (response)? response.statusCode : 404});
 		});
 	};
 
@@ -169,7 +169,7 @@ const model = function(){
 
 		request(options, function (error, response, body) {
 			if (error) config.log(error);
-			console.log({statusCode: response.statusCode});
+			console.log({statusCode: (response)? response.statusCode : 404});
 		});
 	};
 
