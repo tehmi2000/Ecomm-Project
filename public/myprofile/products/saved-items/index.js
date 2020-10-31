@@ -154,7 +154,7 @@ const createItems = function(items, type) {
     //         </span>
     //     </div>
     // </div>
-    let price = formatAsMoney(parseInt(items['item-price']));
+    let price = formatAsMoney(parseInt(items['item-price']), currencyLocale);
 
     let div0 = createComponent("div", null, ["item"]);
         const img0 = createComponent("IMG", null, ["lazyload"]);

@@ -1,3 +1,4 @@
+// If no user is logged in, redirect to login page
 if(!getCookie("univers-username")){
     window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
 };
@@ -199,37 +200,39 @@ const getPaymentParams = function () {
 
 const loadPaystackGateway = function (allCartData) {
     console.log(allCartData);
+    allCartData.reference = genHex(12);
+    handleCartPaymentSuccess(allCartData);
 
-    let handler = PaystackPop.setup({
-        key: 'pk_test_340f998043f5a426e2cedcd469fc8fb90c4a35eb',
-        email: allCartData.emailOfBuyer,
-        amount: Math.round(allCartData.netTotal) * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
-        currency: 'NGN', // Use GHS for Ghana Cedis or USD for US Dollars
-        channels: ['card', 'bank', 'ussd', 'bank_transfer'],
-        firstname: "Temiloluwa",
-        lastname: "Ogunbanjo",
-        reference: genHex(8), // Replace with a reference you generated
-        callback: function(response) {
-            //this happens after the payment is completed successfully
-            let reference = response.reference;
-            allCartData.reference = reference;
-            handleCartPaymentSuccess(allCartData);
-        },
-        onClose: function() {
-            let paymentBtn = document.querySelector("#confirm-payment-btn");
-            if (!paymentBtn.classList.contains("clicked")){
-                paymentBtn.classList.remove("clicked");
-            }
-            paymentBtn.textContent = "Proceed to payment";
-            alert('Transaction was not completed, window closed.');
-        },
-      });
+    // let handler = PaystackPop.setup({
+    //     key: 'pk_test_340f998043f5a426e2cedcd469fc8fb90c4a35eb',
+    //     email: allCartData.emailOfBuyer,
+    //     amount: Math.round(allCartData.netTotal) * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
+    //     currency: 'NGN', // Use GHS for Ghana Cedis or USD for US Dollars
+    //     channels: ['card', 'bank', 'ussd', 'bank_transfer'],
+    //     firstname: "Temiloluwa",
+    //     lastname: "Ogunbanjo",
+    //     reference: genHex(8), // Replace with a reference you generated
+    //     callback: function(response) {
+    //         //this happens after the payment is completed successfully
+    //         let reference = response.reference;
+    //         allCartData.reference = reference;
+    //         handleCartPaymentSuccess(allCartData);
+    //     },
+    //     onClose: function() {
+    //         let paymentBtn = document.querySelector("#confirm-payment-btn");
+    //         if (!paymentBtn.classList.contains("clicked")){
+    //             paymentBtn.classList.remove("clicked");
+    //         }
+    //         paymentBtn.textContent = "Proceed to payment";
+    //         alert('Transaction was not completed, window closed.');
+    //     },
+    //   });
 
       handler.openIframe();  
 };
 
 const handleCartPaymentSuccess = function (data) {
-    let apiUrl = "";
+    let apiUrl = `/api/goods/order/${getCookie('univers-username').value}/initiate`;
     let apiOptions = {
         method: "POST",
         body: JSON.stringify(data),
@@ -314,7 +317,7 @@ const createItems = function(items, type) {
     //         </span>
     //     </div>
     // </div>
-    let price = formatAsMoney(parseInt(items['item-price']));
+    let price = formatAsMoney(parseInt(items['item-price']), currencyLocale);
 
     let div0 = createComponent("div", null, ["item"]);
         const img0 = createComponent("IMG", null, ["lazyload"]);

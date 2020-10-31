@@ -115,7 +115,7 @@ app.get("/", controller.dashboard);
 app.get("/passwordReset", controller.reset);
 app.get("/logout", controller.logout);
 app.get("/myprofile/orders", controller.control);
-app.get("/view/:itemID", controller.productView);
+// app.get("/view/:itemID", controller.productView);
 app.get("/vendors/pay/success", controller.paymentSuccess);
 app.get("/vendors/vendor-apply", controller.vendorApplication);
 app.get('/vendors/public_store/:sellerID', controller.publicStore);

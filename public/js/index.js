@@ -24,7 +24,7 @@ const prevImage = function(){
 };
 
 const createItem = function(container, object){
-    let price = formatAsMoney(parseInt(object["item-price"]));
+    let price = formatAsMoney(parseInt(object["item-price"]), currencyLocale);
     let loadedImage = object["item-image"][0];
 
     let originalPrice = (function(){
@@ -51,6 +51,7 @@ const createItem = function(container, object){
             let spanaa = createComponent("SPAN", null, ["rows", "item-location", "icofont-airplane-alt"]);
 
     a0.setAttribute("href", `/view/${object._id}`);
+    // div1.setAttribute("data-expand", '-20');
     img0.setAttribute("data-src", loadedImage);
     img0.setAttribute("alt", `${object["item-name"].toLowerCase()}`);
 
@@ -60,7 +61,10 @@ const createItem = function(container, object){
     }
 
     if(object[`item-location`]){
-        spanaa.style.opacity = 1;
+        // If location of item is not in local region, indicate it...
+        if(object[`item-location`] !== loggedInUserData){
+            spanaa.style.opacity = 1;
+        }
     }
 
     imgaa.setAttribute("style", `opacity: 0.7;height: 2rem;width: auto;object-fit: contain;`);
@@ -193,7 +197,6 @@ const getRecommended = function() {
 };
 
 const getDiscountedProducts = function () {
-    const parentContainer = document.querySelector("#discounted-container.pane");
     const container = document.querySelector("#discounted-container.pane .slider");
     let apiUrl = `/api/goods/all/with-filter/?discount=true`;
 
@@ -222,7 +225,7 @@ const getDiscountedProducts = function () {
                 container.innerHTML = "<i>No discounted product available at the moment!</i>";
             }
 
-            console.log(data);
+            // console.log(data);
             
         } catch (error) {
             console.error(error);

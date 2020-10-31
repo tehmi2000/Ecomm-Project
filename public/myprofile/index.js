@@ -43,11 +43,11 @@ document.addEventListener("DOMContentLoaded", function () {
 const getUserData = function(username){
     fetch(`/api/user/${username}`).then(async function(response) {
         try {
-            let user_data = await response.json();
-            if(user_data.uID === "" || user_data === undefined){
+            let userData = await response.json();
+            if(userData.uID === "" || userData === undefined){
                 window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
             }else{
-                insertUserData(user_data);
+                insertUserData(userData);
             }
         } catch (err) {
             console.error(err);
@@ -149,7 +149,7 @@ const insertUserData = function(data) {
                     
                     break;
             }
-            // document.querySelector("#sidemenu #user-photo").src = user_data.profile_picture;
+            // document.querySelector("#sidemenu #user-photo").src = userData.profile_picture;
         }
     }
 };

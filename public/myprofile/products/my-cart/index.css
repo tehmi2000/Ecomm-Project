@@ -147,30 +147,30 @@
     transition: all 0.6s ease;
 }
 
-.payment-popup-box {
+[class$="popup-box"]{
     overflow-y: auto;
 }
 
-.payment-popup-box fieldset{
+[class$="popup-box"] fieldset{
     border: 1px solid #ddd; 
     margin-top: 2rem; 
     margin-bottom: 0.8rem;
     padding: 1rem;
 }
 
-.payment-popup-box legend{
+[class$="popup-box"] legend{
     color: orangered;
     font-weight: 500;
     font-size: 1.1rem;
 }
 
-.payment-popup-box .close-btn{
+[class$="popup-box"] .close-btn{
     float: right;
     vertical-align: middle;
     font-size: 1.5rem;
 }
 
-.payment-popup-box .total-fees{
+[class$="popup-box"] .total-fees{
     margin: 2rem auto;
     font-size: 1.4rem;
     align-items: flex-end;
@@ -178,38 +178,38 @@
     margin-left: auto;
 }
 
-.payment-popup-box .total-fees .fee-item{
+[class$="popup-box"] .total-fees .fee-item{
     width: 100%;
     /* border: 1px solid red; */
     justify-content: space-between;
     margin-bottom: 1rem;
 }
 
-.payment-popup-box .fee-item .fee{
+[class$="popup-box"] .fee-item .fee{
     font-size: 1.3rem;
 }
 
-.payment-popup-box .fee-item .fee-title{
+[class$="popup-box"] .fee-item .fee-title{
     color: #777;
     font-weight: 500;
     text-transform: uppercase;
 }
 
 
-.payment-popup-box .fee-item .fee.normal{
+[class$="popup-box"] .fee-item .fee.normal{
     font-weight: 500;
     color: #111;
 }
 
-.payment-popup-box .fee-item .fee.credit{
+[class$="popup-box"] .fee-item .fee.credit{
     color: rgb(24, 170, 24);
 }
 
-.payment-popup-box .fee-item .fee.debt{
+[class$="popup-box"] .fee-item .fee.debt{
     color: rgb(255, 6, 6);
 }
 
-.payment-popup-box .promo-tab{
+[class$="popup-box"] .promo-tab{
     justify-content: space-between;
     margin-top: 3rem;
     border-radius: 5px;
@@ -218,7 +218,7 @@
     background-color: #efefef;
 }
 
-.payment-popup-box #promo-container .promo-item{
+[class$="popup-box"] #promo-container .promo-item{
     margin-bottom: 1rem;
     padding: 1rem;
     color: green;
@@ -226,17 +226,17 @@
     justify-content: space-between;
 }
 
-.payment-popup-box #promo-container .promo-item button{
+[class$="popup-box"] #promo-container .promo-item button{
     padding: 0 1rem;
 }
 
-.payment-popup-box .input-tab{
+[class$="popup-box"] .input-tab{
     justify-content: space-between;
     border-radius: 5px;
     width: 100%;
 }
 
-.payment-popup-box .input-tab input[type="text"]{
+[class$="popup-box"] .input-tab input[type="text"]{
     box-sizing: border-box;
     border: none;
     background-color: #efefef;
@@ -245,7 +245,7 @@
     outline: none;
 }
 
-.payment-popup-box .promo-tab button{
+[class$="popup-box"] .promo-tab button{
     
     box-sizing: border-box;
     border: none;
@@ -255,7 +255,7 @@
     color: orange;
 }
 
-.payment-popup-box .sum-total{
+[class$="popup-box"] .sum-total{
     align-items: baseline;
     margin-top: 1.5rem;
     font-weight: 500;
@@ -266,7 +266,7 @@
     text-transform: capitalize;
 }
 
-.payment-popup-box .sum-total *:nth-child(2){
+[class$="popup-box"] .sum-total *:nth-child(2){
     color: #ff8b1e;
     font-size: 1.5rem;
     font-weight: 600;
@@ -278,7 +278,7 @@
     border-bottom: 2px solid orangered; */
 }
 
-.payment-popup-box #confirm-payment-btn{
+[class$="popup-box"] #confirm-payment-btn{
     width: 100%;
     padding: 1.5rem 4.5rem;
     border-radius: 5px;
@@ -390,38 +390,38 @@ footer{
         transform: translate(12%, 12%);
     }
 
-    .payment-popup-box .total-fees{
+    [class$="popup-box"] .total-fees{
         margin: 3rem auto;
         font-size: 1.2rem;
     }
     
-    .payment-popup-box .total-fees .fee-item{
+    [class$="popup-box"] .total-fees .fee-item{
         margin-bottom: 1rem;
     }
     
-    .payment-popup-box .fee-item .fee{
+    [class$="popup-box"] .fee-item .fee{
         font-size: 1.12rem;
     }
     
-    .payment-popup-box .promo-tab{
+    [class$="popup-box"] .promo-tab{
         margin-top: 2rem;
         border-radius: 3px;
     }
     
-    .payment-popup-box .promo-tab input[type="text"]{
+    [class$="popup-box"] .promo-tab input[type="text"]{
         padding: 1.5rem 2rem;
     }
     
-    .payment-popup-box .promo-tab button{
+    [class$="popup-box"] .promo-tab button{
         padding: 1.5rem 2rem;
     }
     
-    .payment-popup-box .sum-total{
+    [class$="popup-box"] .sum-total{
         margin-top: 3rem;
         font-size: 1.5rem;
     }
     
-    .payment-popup-box .sum-total *:nth-child(2){
+    [class$="popup-box"] .sum-total *:nth-child(2){
         /* color: white; */
         font-size: 1.2rem;
         padding: 0.8rem 1.5rem;

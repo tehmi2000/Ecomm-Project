@@ -8,13 +8,18 @@ self.addEventListener("install", function(event) {
 			console.log("Opened Cache!");
 			var urlToCache = [
 				'/',
-				'/assets/images/portfolium-robot.png',
 				'/assets/icofont/icofont.min.css',
 				'/css/style.min.css',
-				'/js/main.min.js',
+				"/assets/images/logo-2.png",
+				'/assets/images/portfolium-robot.png',
 				'/assets/images/fav-logo.png',
 				'/assets/images/express.png',
 				'/assets/images/nullimg.png',
+				'/assets/icofont/fonts/icofont.woff2',
+				'/js/main.min.js',
+				'/js/lib/lazysizes.min.js',
+				'/js/lib/clamp.min.js',
+				'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js'
 			];
 			return cache.addAll(urlToCache);
 		})

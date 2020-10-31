@@ -204,6 +204,27 @@ const model = function() {
         });
     });
 
+    router.get("/user/:username/getOrderItems", function(req, res) {
+        const publishedFlag = req.query['publishedFlag'];
+
+        mongoConn.then(client => {
+            const [dataOne] = result;
+            const sellerID = dataOne.sellerID;
+            const collection = client.db(itemsDB).collection(iCollection);
+
+            const mongoQuery = (publishedFlag)? {$and: [{"published": true}, {"sellerID" : sellerID}]} : {"sellerID" : sellerID};
+            collection.find(mongoQuery).sort({postTime: -1}).toArray(function(err, docs) {
+                if(err) {
+                    log(err);
+                }else{
+                    res.json(docs);
+                }
+            });
+        }).catch(error => {
+            log(error);
+        });
+
+    });
 
     router.get("/goods/item-sizes", function(req, res) {
         fs.readFile("./router/support/product-sizes.json", "utf8", function(err, content) {
@@ -574,6 +595,23 @@ const model = function() {
 
     });
 
+    router.post("/goods/order/:username/initiate", function(req, res) {
+        const username = formatName(req.params.username);
+        const listOfOrders = req.body || [];
+
+        mongoConn.then(client => {
+            const collection = client.db(username).collection("myOrders");
+			
+			collection.insertMany(listOfOrders, function(err, { result }) {
+				if(err) log(err);
+				res.json(result);
+			});
+			
+        }).catch(error => {
+            log(error);
+        });
+    });
+
 
     router.post("/vouchers/:username/confirmVoucher", function(req, res) {
         const username = formatName(req.params.username);
@@ -662,7 +700,7 @@ const model = function() {
         });
     });
 
-    router.get("/countries/currency", function(req, res) {
+    router.get("/currency/get-exchange-rate", function(req, res) {
         fs.readFile("./router/support/currencies.json", "utf8", function(err, content) {
             if (err) {
                 log(err);

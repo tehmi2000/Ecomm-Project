@@ -1,0 +1,311 @@
+.progress{
+    transform-origin: center;
+    background-color: #999 !important;
+    -webkit-animation: rolling 1.5s linear 0s infinite normal forwards;
+    animation: rolling 1.5s linear 0s infinite normal forwards;
+}
+
+.saving{
+    box-shadow: none !important;
+    outline: none !important;
+    background-color : #999 !important;
+    color: #444 !important;
+}
+
+.control-body #post-box{
+    font-size: 1.2rem;
+}
+
+#post-box input:not([type="submit"]), #post-box textarea{
+    /* width: 100%; */
+    border: none;
+    padding: 1.5rem 2rem;
+    background-color: #efefef;
+}
+
+#post-box input[type="color"]{
+    padding: 0;
+    background-color: unset;
+    width: 4rem;
+    height: 4rem;
+    margin: 0;
+    margin-right: 1rem;
+    border: none;
+    outline: none;
+}
+
+#post-box input[type="submit"]{
+    display: block;
+    width: auto;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(240, 68, 6);
+    color: #fcfcff;
+    padding: 1.5rem 2rem;
+    margin: 1.5rem auto 0.9rem auto;
+    box-shadow: 1px 1px 2px rgba(185, 91, 3, 0.637);
+}
+
+#post-box form label, #post-box .label{
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#post-box details summary{
+    padding: 2rem;
+    box-shadow: 1px 1px 5px #ddd;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    outline: none;
+}
+
+#post-box .gallery{
+    /* position: relative; */
+    flex-wrap: nowrap;
+    /* justify-content: space-between; */
+    border: 1px dashed #777;
+    padding: 1.5rem 1rem;
+    width: 100%;
+    /* overflow-x: auto; */
+    margin: 0.5rem 0 0rem 0;
+}
+
+#post-box .gallery .status-bar{
+    display: none;
+    color: #f0f0f0;
+    border-radius: 5px;
+    /* border: 1px solid #0e6ba1; */
+    background-color: rgba(54, 177, 248, 0.85);
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.30);
+    padding: 1rem;
+    position: absolute;
+    top: 1rem;
+}
+
+#post-box .gallery input[type="file"]{
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+    z-index: -5;
+}
+
+#post-box label[for="option-box"] + #option-box{
+    padding: 1rem 0.2rem;
+    flex-wrap: wrap;
+    border: 1px solid #ccc;
+}
+
+#post-box label[for="option-box"] + #option-box > *{
+    width: 20%;
+}
+
+#post-box #option-box input[type="checkbox"]{
+    margin-left: 2rem;
+    margin-right: 0.7rem;
+}
+
+#post-box label[for="props-box"] + div .add-prop{
+    color: dodgerblue;
+    font-size: 1.2rem;
+    /* text-decoration: ; */
+}
+
+#post-box label[for="props-box"] + div .add-prop:hover{
+    cursor: pointer;
+}
+
+#post-box #props-box > *{
+    display: none;
+    padding: 0.5rem 1rem 1rem;
+    margin: 1rem 0;
+    border: 1px solid #ddd;
+}
+
+#props-box [id$="-props"]{
+    margin: 0.3rem 0;
+}
+
+#props-box > * .heading{
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#props-box #size-tab select{
+    background-color: rgb(126, 126, 126);
+    color: #efefef;
+    border: none;
+    padding: 1rem 1.5rem;
+}
+
+#props-box #size-props{
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+
+#props-box #size-props .size-item{
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    padding: 0.5rem;
+    margin: 0.6rem;
+    color: orange;
+    border-radius: 50%;
+    border: 1px solid orange;
+    transition: all 0.3s ease;
+}
+
+#props-box #size-props .size-item:hover{
+    color: white;
+    border-color: dodgerblue;
+    background-color: dodgerblue;
+    box-shadow: 1px 1px 2px rgb(22, 123, 223);
+    cursor: pointer;
+}
+
+[class$="bg-cover"]{
+    display: flex !important;
+    z-index: +200;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.459);
+    top: -120vmax;
+    left: 0;
+    transition: all 0.6s ease;
+}
+
+[class$="bg-cover"] > *{
+    width: 50vw;
+    height: 80vmin;
+    padding: 4rem;
+    border-radius: 5px;
+    transform: translate(50%, 12%);
+    background-color: #fcfcff;
+    text-transform: uppercase;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+[class$="bg-cover"] button, [class$="bg-cover"] [class*="btn"]{
+    transition: all 0.2s linear;
+}
+
+[class$="bg-cover"] button:hover, [class$="bg-cover"] [class*="btn"]:hover{
+    transform: scale(1.02);
+}
+
+.vendor-notify-box *{
+    position: relative;
+}
+
+.vendor-notify-box .body-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    transform: translateY(20%);
+    width: 80%;
+}
+
+.vendor-notify-box .vendor-brief-text, .vendor-brief-text + ul li{
+    color: #666;
+    font-size: 1.2rem;
+    text-transform: none;
+}
+
+.vendor-brief-text + ul{
+    list-style-type: none;
+    margin: 0.5rem;
+    width: 85%;
+}
+.vendor-brief-text + ul li{
+    padding: 0;
+    margin-bottom: 1.3rem;
+}
+
+.vendor-brief-text + ul li::before{
+    font-weight: bold;
+    content: "\eed6";
+    color: dodgerblue;
+    margin-right: 1rem;
+}
+
+.vendor-notify-box .vendor-apply-btn{
+    position: relative;
+    display: block;
+    text-transform: capitalize;
+    text-align: center;
+    padding: 1.2rem 3.6rem;
+    border-radius: 5vh;
+    background-color: orangered;
+    font-size: 1.5rem;
+    color: #fff;
+    min-width: 100px;
+    max-width: 300px;
+    margin: auto;
+    margin-top: 1rem;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
+}
+
+.vendor-apply-btn.no{
+    border: 2px solid #aaa; /*#15df10*/
+    color: #777;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+/* .vendor-apply-btn.no:hover::after{
+    content: "😭";
+    position: absolute;
+    font-size: 2.2rem;
+    top: 0.7rem;
+    right: 1.2rem;
+} */
+
+@media only screen and (max-width:800px){
+    #post-box .gallery label{
+        width: 46%;
+        margin: 0.6rem 2%;
+        min-width: 100px;
+        height: 15rem;
+        color: #b9b9b9;
+        font-size: 1.4rem;
+        font-weight: 500;
+        padding: 1rem;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        background-color: #eeeeee;
+    }
+
+    #post-box label[for="option-box"] + #option-box > *{
+        width: 50%;
+    }
+
+    [class$="bg-cover"] > *{
+        width: 80vw;
+        min-height: 80vh;
+        overflow: auto;
+        padding: 2rem;
+        margin: 0;
+        transform: translate(12%, 12%);
+    }
+
+    .vendor-notify-box .body-box{
+        margin: auto;
+        transform: translateY(10%);
+        width: 90%;
+    }
+
+    .vendor-brief-text + ul{
+        width: 95%;
+    }
+}
+
+@media only screen and (min-width: 650px) and (max-width: 920px){
+    .vendor-notify-box .body-box{
+        transform: translateY(15%);
+    }
+}

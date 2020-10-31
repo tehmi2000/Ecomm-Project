@@ -1,4 +1,3 @@
-let myDevice = null;
 let itemID = getQuery()["queryItem"];
 let globalItem = null
 let preferredItem = {};
@@ -9,7 +8,7 @@ const priceQtyHandler = function(evt) {
     let qty = evt.currentTarget.value;
     let price = qty * parseInt(globalItem["item-price"]);
 
-    allFields["total"].innerHTML = formatAsMoney(price);
+    allFields["total"].innerHTML = formatAsMoney(price, currencyLocale);
     preferredItem["item-qty"] = qty;
     preferredItem["item-price"] = price;
 };
@@ -131,9 +130,9 @@ const createNav = function(number, img, active) {
     span0.addEventListener("click", function(evt) {
         setActiveNav(evt.currentTarget);
         let navImage = evt.currentTarget.getAttribute("data-pic");
-        let imgSource = (navImage === '')? "../assets/images/nullimg.png" : navImage;
+        let imgSource = (navImage === '')? "/assets/images/nullimg.png" : navImage;
 
-        console.log(imgSource);
+        // console.log(imgSource);
 
         allFields["frontImage"].style.backgroundImage = `url(${imgSource})`;
         let img00 = generateTestImage(`${imgSource}`);
@@ -165,10 +164,10 @@ const fetchProduct = function () {
                 cartBtn.addEventListener("click", cartHandler);
                 quantity.addEventListener("change", priceQtyHandler);
     
-                let price = formatAsMoney(parseInt(item["item-price"]));
+                let price = formatAsMoney(parseInt(item["item-price"]), currencyLocale);
     
                 allFields["price"].innerHTML = price;
-                allFields["total"].innerHTML = formatAsMoney(parseInt(item["item-price"]) * quantity.value);;
+                allFields["total"].innerHTML = formatAsMoney(parseInt(item["item-price"]) * quantity.value, currencyLocale);;
                 preferredItem["item-qty"] = 1;
                 
                 document.title = `Univers | ${item["item-name"].toUpperCase()}`;

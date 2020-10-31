@@ -27,10 +27,6 @@ main h1{
     flex-wrap: wrap;
 }
 
-#item-container *{
-    transition: all 0.4s ease;
-}
-
 .item{
     text-decoration: none;
     width: 23%;
@@ -39,7 +35,7 @@ main h1{
     margin: 0.9rem 1%;
     box-shadow: 2px 2px 3px #dfdfe4;
     background-color: #fcfcff;
-    border-radius: 5px;
+    border-radius: 10px;
     justify-content: space-between;
 }
 
@@ -49,11 +45,10 @@ main h1{
 
 .item *{
     width: 100%;
+    transition: all 0.2s linear;
 }
 
 .item .item-img{
-    display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
@@ -64,11 +59,12 @@ main h1{
 
 .item .item-img [class^="icofont-"]{
     width: auto;
-    font-size: 8rem;
+    font-size: 5vw;
     color: rgb(182, 52, 4);
     background-color: rgba(0, 0, 0, 0.07);
     padding: 0.5rem;
     border-radius: 50%;
+    overflow: hidden;
 }
 
 .item .item-description{
@@ -83,6 +79,40 @@ main h1{
     font-size: 1.5rem;
     color: #333;
     /* font-weight: bold; */
+}
+
+.item .item-description .hidden-info{
+    /* display: block; */
+    line-height: 1.5;
+    padding: 0;
+    color: transparent;
+    height: 0;
+    background-color: transparent;
+    border-radius: 10px;
+    font-size: 1.33rem;
+    max-width: 85%;
+    margin: 1rem auto 0.5rem;
+    overflow: hidden;
+}
+
+.item:hover .item-description .category-title{
+    font-weight: 500;
+}
+
+.item:hover .item-description .hidden-info{
+    height: 6.6rem;
+    padding: 0.5rem 2rem;
+    color: #eeeeef;
+    background-color: rgba(0, 0, 0, 0.07);
+}
+
+.item:hover .item-img{
+    height: auto;
+}
+
+.item:hover .item-img [class^="icofont-"]{
+    font-size: 5rem;
+    padding: 1.5rem;
 }
 
 .dummy.item .item-img, .dummy.item .item-description{

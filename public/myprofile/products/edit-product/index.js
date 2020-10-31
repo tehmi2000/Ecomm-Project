@@ -7,16 +7,13 @@ const globals = {
     imgSpace : 4
 };
 
-
 document.addEventListener("DOMContentLoaded", function() {
-    showPostForm();
+    // showPostForm();
 
     // document.querySelector("#post-box #addToStore-form").addEventListener("submit", formHandler);
-    document.querySelectorAll("#post-box .preview-pane .preview-img").forEach(element => {
-        element.addEventListener("click", function (ev) {
-            
-        });
-    });
+    // document.querySelectorAll("#post-box [name='item-image']").forEach(element => {
+    //     element.addEventListener("change", imageUploadHandler);
+    // });
     
 });
 
@@ -281,18 +278,18 @@ const showPostForm = function() {
     });
 
     // Check for vendorship...
-    fetch(`/api/vendors/${getCookie("univers-username").value}`).then(async function(response) {
-        try {
-            let cover = document.querySelector(".vendor-bg-cover");
-            let result = await response.json();
+    // fetch(`/api/vendors/${getCookie("univers-username").value}`).then(async function(response) {
+    //     try {
+    //         let cover = document.querySelector(".vendor-bg-cover");
+    //         let result = await response.json();
 
-            if(result.length > 0 && result[0].error) cover.style.top = "0vh";
-        } catch (error) {
-            console.log(error);
-        }
-    }).catch(function(error) {
-        console.log(error);
-    });
+    //         if(result.length > 0 && result[0].error) cover.style.top = "0vh";
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }).catch(function(error) {
+    //     console.log(error);
+    // });
 
     // Load all categories...
     getAllCategories();

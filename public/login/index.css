@@ -1,7 +1,7 @@
 /* DARK SHADE WHITE = #f2f2f5
    LIGHT SHADE WHITE = #fcfcff*/
 
-   body{
+body{
     background-color: #f2f2f5;
     overflow-x: hidden;
 }
@@ -58,7 +58,7 @@ main form{
     font-size: 12px;
 }
 
-#login-form+div{
+#login-form + div{
     margin: auto;
     width: 36%;
     width: 35vw;
@@ -67,7 +67,7 @@ main form{
     align-items: center;
 }
 
-#login-form+div a{
+#login-form + div a{
     color: rgb(255, 86, 56);
     text-decoration: none;
     font-size: 13px;
@@ -78,13 +78,7 @@ main form{
         width: 80vw;
     }
 
-    form .serror{
-    }
-    
-    .serror .icofont-close-circled{
-    }
-
-    #login-form+div{
+    #login-form + div{
         width: 80vw;
     }
 }

@@ -1,89 +1,8 @@
-let mediaX = window.matchMedia("(max-width: 800px)");
+// <*><*><*><*><*><*><*><*><*><*><*><*><*><*><*> DEFINE FUNCTIONS AND VARIABLES <*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*>
+
 let currencyLocale = 'NGN';
-
-// INSTALL SERVICE WORKER
-if('serviceWorker' in navigator){
-    window.addEventListener('load', ()=>{
-        navigator.serviceWorker.register("/workers/univers-sw.js").then(function(reg) {
-            console.log("Service worker is working fine");
-        }).catch(function(err) {
-            console.log(err.message);
-            console.log("Service worker could not intall");
-        });
-    });
-}
-
-// GET USER's COUNTRY's CURRENCY
-fetch("/api/countries/currency").then(async response => {
-    try {
-        let result = await response.json();
-        console.log(result);
-    } catch (error) {
-        console.error(error);
-    }
-}).catch(error => {
-    console.error(error);
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    try{
-        if (getCookie("univers-username")) {
-            let dataUser = null;
-            let apiUrl = `/api/user/${getCookie("univers-username").value}`;
-            let sideMenu = document.querySelector("#sidemenu");
-            let userIcon = document.querySelector("#user-icon");
-
-            fetch(apiUrl).then(function(response) {
-                response.json().then( function(userData) {
-                    if(sideMenu && userData.profile_picture){
-                        let div0 = create("DIV");
-                        let child = "<a href='/myprofile'><img id='user-photo' src='../assets/images/contacts-filled.png' alt='' class='user-picture'></a><a href='/logout' class='link-btn'>Logout</a>";
-                        div0.innerHTML = child;
-                        document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
-                        if(userData.profile_picture !== ""){
-                            document.querySelector("#sidemenu #user-photo").src = userData.profile_picture;
-                        }
-                        document.querySelector("#sidemenu #controls").style.display = "flex";
-                    }
-        
-                    if(userIcon){
-                        if(userData !== null && userData.firstname){
-                            userIcon.classList.toggle("active-user", true);
-                            userIcon.classList.toggle("icofont-user-alt-7", false);
-                            userIcon.innerHTML = `<span>${userData.firstname.substr(0, 1).toUpperCase()}</span>`;
-                            userIcon.title = `Logged in as ${userData.username}`;
-                        }
-                    }
-                }).catch(function (error) {
-                    console.error(error);
-                });
-            }).catch(function(error) {
-                console.error(error);
-            });
-        }
-
-        let delay;
-        const dropMenu = document.querySelector(".drop-container");
-
-        if(dropMenu){
-            dropMenu.addEventListener("mouseover", function(evt) {
-                if(delay){
-                    clearTimeout(delay);
-                }
-
-                document.querySelector(".drop-container .drop-content").style.display = "grid";
-            });
-    
-            dropMenu.addEventListener("mouseout", function(evt) {
-                delay = setTimeout(function() {
-                    document.querySelector(".drop-container .drop-content").style.display = "none";
-                }, 1000);
-            });
-        }
-    }catch(e){
-        alert(e);
-    }
-});
+let loggedInUserData = null;
+let exchangeRates = null;
 
 const openMenu = function() {
     document.querySelector("#sidemenu").style.marginLeft = "0%";
@@ -152,21 +71,6 @@ const createSuggestions = function(pEl, cEl) {
     });
 };
 
-const readOctet = function(path) {
-    fetch(path, {
-        mode: 'no-cors'
-    }).then(async response => {
-        try {
-            let result = await response.json();
-            console.log(result);
-        } catch (error) {
-            console.error(error);
-        }
-    }).catch(error => {
-        console.error(error);
-    });
-};
-
 const generateRandomColor = function () {
     
     let red = (Math.random() * 225) + 1;
@@ -177,51 +81,49 @@ const generateRandomColor = function () {
     return color;
 };
 
-// if('serviceWorker' in navigator){
-//     window.addEventListener('load', ()=>{
-//         navigator.serviceWorker.register("/hitmee-sw.js").then(function(reg) {
-//             console.log("Service worker is working fine");
-            
-//             function updateReady(worker) {
-//                 let answerToUpdate = confirm("An update to the page is available, do you wish to receive updates now?");
-                
-//                 if(answerToUpdate != true) return;
-//                 worker.postMessage({action : 'skipWaiting'});
-//             }
+const fetchAndCacheData = async (apiUrl, successCallback, errorCallback, options) => {
+    errorCallback = errorCallback || function (error) { console.error(error)};
+    options = options || { cacheName: 'univers-cache-v2'};
+
+    const fetchAndStoreData = async function (storedResponse) {
+        storedResponse = storedResponse || null;
+        let response = (storedResponse === null)? await fetch(apiUrl) : storedResponse;
+        let clonedResponse = response.clone();
+        let result = await response.json();
+        successCallback(result);
+        return clonedResponse;
+    };
+
+    try {
+        if('caches' in window){
+            caches.open(options.cacheName).then(cache => {
+                cache.match(apiUrl).then(async cacheResult => {
+                    if(cacheResult === undefined || cacheResult === null){
+                        let res = await fetchAndStoreData();
+                        return cache.put(apiUrl, res);
+                    }else{
+                        let result = await cacheResult.json();
+                        successCallback(result);
+                    }
+                }).catch(error => {
+                    errorCallback(error);
+                });
+            }).catch(error => {
+                errorCallback(error);
+            });
+        }
         
-//             if(!navigator.serviceWorker.controller) return;
-        
-//             if(reg.waiting){
-//                 updateReady(reg.waiting);
-//                 return;
-//             }else if(reg.installing){
-//                 reg.installing.addEventListener("statechange", function(){
-//                     if (this.state == "installed"){
-//                         updateReady(reg.installing);
-//                     }
-//                 });
-//                 return;
-//             }else{
-//                 reg.addEventListener("updatefound", function(){
-//                     updateReady(reg.installing);
-//                     reg.installing.addEventListener("statechange", function(){
-//                         if (this.state == "installed"){
-//                             return;
-//                         }
-//                     });
-//                 });
-//             }
-            
-//             navigator.serviceWorker.addEventListener('controllerchange', function(event) {
-//                 window.location.reload();
-//             });
-        
-//         }).catch(function(err) {
-//             console.log(err.message);
-//             console.log("Service worker is not supported");
-//         });
-//     }); 
-// }
+        else{
+            let response = await fetch(apiUrl);
+            let result = await response.json();
+            successCallback(result);
+        }
+
+        // console.log(result);
+    } catch (error) {
+        errorCallback(error);
+    }
+};                                                                                                                              
 
 function formatTime(hours, minutes) {
     const ampm = (hours >= 12)? 'PM' : 'AM';
@@ -314,8 +216,6 @@ function formatName(str){
     return formattedString;
 }
 
-// Custom helper functions 
-
 function genHex(length){
     length = length || 16;
     let counter = 0;
@@ -329,16 +229,16 @@ function genHex(length){
     return generated_hex;
 }
 
-function getQuery() {
+const getQuery = function() {
     const object = {};
-    const query_list = window.location.search.substring(1).split('&');
+    const queryList = window.location.search.substring(1).split('&');
 
-    for (let index = 0; index < query_list.length; index++){
-        object[query_list[index].split('=')[0]] = query_list[index].split('=')[1];
+    for (let index = 0; index < queryList.length; index++){
+        object[queryList[index].split('=')[0]] = queryList[index].split('=')[1];
     }
     
     return object;
-}
+};
 
 function get(selector) {
     return document.getElementById(selector);
@@ -375,7 +275,6 @@ const dataValidation = data => {
     result.data = data;
     return result;
 };
-
 
 function create(element) {
     return document.createElement(element);
@@ -438,7 +337,8 @@ const displayResponse = function(response, options) {
     }, 3000);
 };
 
-const formatAsMoney = price => {
+const formatAsMoney = (price, destinationCurrency) => {
+    destinationCurrency = destinationCurrency || "USD";
     const countries = [
         {
             code: "US",
@@ -487,6 +387,8 @@ const formatAsMoney = price => {
         }
     ];
 
+    price = convertCurrencies(price, destinationCurrency);
+
     let formattedPrice = price.toLocaleString(undefined, {
         style: "currency",
         currency: currencyLocale
@@ -494,3 +396,111 @@ const formatAsMoney = price => {
 
     return formattedPrice;
 };
+
+const convertCurrencies = function(price, destinationCurrency){
+    let baseCurrency = "USD";
+    let rate = 1;
+    if (exchangeRates !== null){
+        let tempRates = exchangeRates;
+        delete tempRates.id;
+        delete tempRates.lastModified;
+        Object.keys(tempRates).forEach(nameOfCurrency => {
+            let seperatedCurrency = nameOfCurrency.substr(3);
+            if(seperatedCurrency === destinationCurrency.toUpperCase()){
+                rate = exchangeRates[`${nameOfCurrency}`];
+            }
+        });
+        // console.log(rate);
+    }
+    return price * rate;
+}
+
+// <*><*><*><*><*><*><*><*><*><*><*><*><*><*><*> CODE STARTS HERE<*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*>
+
+// INSTALL SERVICE WORKER
+if('serviceWorker' in navigator){
+    window.addEventListener('load', ()=>{
+        navigator.serviceWorker.register("/workers/univers-sw.js").then(function(reg) {
+            console.log("Service worker is working fine");
+        }).catch(function(err) {
+            console.log(err.message);
+            console.log("Service worker could not intall");
+        });
+    });
+}                                                                                                                        
+
+document.addEventListener("DOMContentLoaded", function () {
+    // GET USER's COUNTRY's CURRENCY
+    let exchangeRateApiUrl = "/api/currency/get-exchange-rate";
+    let currencySuccessCallback = result => { if (result.id === "ratesdata") exchangeRates = result };
+
+    fetchAndCacheData(exchangeRateApiUrl, currencySuccessCallback);
+
+    try{
+        if (getCookie("univers-username")) {
+            let apiUrl = `/api/user/${getCookie("univers-username").value}`;
+            let sideMenu = document.querySelector("#sidemenu");
+            let userIcon = document.querySelector("#user-icon");
+
+            let userdataSuccessCallback = function (userData) {
+                // Save user's data
+                loggedInUserData = userData;
+
+                // If page has sidemenu modify with user data
+                if(sideMenu && userData.profile_picture){
+                    let div0 = create("DIV");
+                    let child = "<a href='/myprofile'><img id='user-photo' src='../assets/images/contacts-filled.png' alt='' class='user-picture'></a><a href='/logout' class='link-btn'>Logout</a>";
+                    div0.innerHTML = child;
+                    document.querySelector("#sidemenu nav div:first-child").replaceWith(div0);
+                    if(userData.profile_picture !== ""){
+                        document.querySelector("#sidemenu #user-photo").src = userData.profile_picture;
+                    }
+                    document.querySelector("#sidemenu #controls").style.display = "flex";
+                }
+    
+                // If page has user account icon, modify with user data
+                if(userIcon){
+                    if(userData !== null && userData.firstname){
+                        userIcon.classList.toggle("active-user", true);
+                        userIcon.classList.toggle("icofont-user-alt-7", false);
+                        userIcon.innerHTML = `<span>${userData.firstname.substr(0, 1).toUpperCase()}</span>`;
+                        userIcon.title = `Logged in as ${userData.username}`;
+                    }
+                }
+            };
+
+            fetch(apiUrl).then(async response => {
+                try {
+                    let result = await response.json();
+                    userdataSuccessCallback(result);
+                } catch (error) {
+                   console.error(error); 
+                }
+            }).catch(error => {
+                console.error(error);
+            });
+        }
+
+        let delay = null;
+        const dropMenu = document.querySelector(".drop-container");
+
+        if(dropMenu){
+            dropMenu.addEventListener("mouseover", function(evt) {
+                if(delay){
+                    clearTimeout(delay);
+                }
+
+                document.querySelector(".drop-container .drop-content").style.display = "grid";
+            });
+    
+            dropMenu.addEventListener("mouseout", function(evt) {
+                delay = setTimeout(function() {
+                    document.querySelector(".drop-container .drop-content").style.display = "none";
+                }, 1000);
+            });
+        }
+    }catch(e){
+        alert(e);
+    }
+});
+

@@ -191,7 +191,7 @@ const createStoreItem = function(container, object) {
     //     <button class="icofont-globe publish-btn"></button>
     // </span>
 
-    let price = formatAsMoney(parseInt(object['item-price']));
+    let price = formatAsMoney(parseInt(object['item-price']), currencyLocale);
 
     let div0 = createComponent("div", null, ["grid","store-item", "gr"]);
         const img0 = createComponent("IMG", null, ["lazyload"]);

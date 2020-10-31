@@ -246,11 +246,8 @@ const createItem = function(container, object){
     //      </span>
     // </a>
 
-    let price = parseInt(object["item-price"]).toLocaleString(undefined, {
-        style: "currency",
-        currency: "NGN"
-    });
-
+    let price = formatAsMoney(parseInt(object["item-price"]), currencyLocale);
+    
     let a0 = createComponent("SPAN", null, ["item"]);
         let img0 = createComponent("IMG", null, ["lazyload"]);
         let span0 = createComponent("SPAN", null, ["lg-100", "cols"]);
