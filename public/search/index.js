@@ -246,7 +246,7 @@ const createItem = function(container, object){
     //      </span>
     // </a>
 
-    let price = formatAsMoney(parseInt(object["item-price"]), currencyLocale);
+    let price = formatAsMoney(parseFloat(object["item-price"]), currencyLocale);
     
     let a0 = createComponent("SPAN", null, ["item"]);
         let img0 = createComponent("IMG", null, ["lazyload"]);

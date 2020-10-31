@@ -24,14 +24,14 @@ const prevImage = function(){
 };
 
 const createItem = function(container, object){
-    let price = formatAsMoney(parseInt(object["item-price"]), currencyLocale);
+    let price = formatAsMoney(parseFloat(object["item-price"]), currencyLocale);
     let loadedImage = object["item-image"][0];
 
     let originalPrice = (function(){
-        let intPrice = parseInt(object["item-price"]);
+        let intPrice = parseFloat(object["item-price"]);
         
         if(object[`price-discount`]){
-            return `${formatAsMoney(intPrice / (100 - parseInt(object[`price-discount`])))}`
+            return `${formatAsMoney(intPrice / (100 - parseFloat(object[`price-discount`])), currencyLocale)}`
         }else{
             return ``;
         }
