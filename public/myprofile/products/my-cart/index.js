@@ -72,20 +72,21 @@ const placeAds = function(container) {
 };
 
 const calculateCartTotal = function(items){
-    globals.cart.total = items.reduce((total, current) => {
+    let summedTotal = items.reduce((total, current) => {
         const price = current["item-price"];
         const qty = current["item-qty"];
 
         total += parseInt(price) * qty;
         return total;
     }, 0);
+    globals.cart.total = convertCurrencies(summedTotal, currencyLocale) ;
 };
 
 const calculateTotalBill = function(vouchers = []){
     let data = {
-        shipping: 600,
+        shipping: convertCurrencies(2, currencyLocale),
         cart: globals.cart.total,
-        vat: (7.5/100)*globals.cart.total
+        vat: (5/100) * globals.cart.total
     };
 
     return {
@@ -160,7 +161,7 @@ const calculateVoucherValue = function ({voucherType, voucherValue}) {
         return globals.cart.total * (voucherValue/100);
     }
 
-    return voucherValue;
+    return convertCurrencies(voucherValue, currencyLocale);
 };
 
 const isDataProvidedComplete = function (listOfElementSelectors) {
@@ -185,48 +186,57 @@ const getPaymentParams = function () {
     let modeOfDelivery = document.querySelector(`[name="mode-of-delivery"]`).value;
     let deliveryLocation = (document.querySelector(`[name="delivery-location"]`).value === '')? null : document.querySelector(`[name="delivery-location"]`).value;
 
-    let paymentParams = {
-        nameOfBuyer: null,
-        emailOfBuyer: "tehmi2000@gmail.com",
-        items: globals.cart.items,
-        netTotal: globals.cart.netTotal,
-        vouchers: globals.cart.vouchers,
-        modeOfDelivery,
-        deliveryLocation
-    };
-
-    loadPaystackGateway(paymentParams);
+    if(loggedInUserData !== null){
+        let userParams = {
+            firstname: loggedInUserData.firstname,
+            lastname: loggedInUserData.lastname,
+            emailOfBuyer: loggedInUserData.email
+        };
+    
+        let paymentParams = {
+            items: globals.cart.items,
+            netTotal: globals.cart.netTotal,
+            vouchers: globals.cart.vouchers,
+            modeOfDelivery,
+            deliveryLocation
+        };
+    
+        let allParameters = Object.assign({}, userParams, paymentParams);
+        loadPaystackGateway(allParameters);
+    }else{
+        window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
+    }    
 };
 
 const loadPaystackGateway = function (allCartData) {
     console.log(allCartData);
     allCartData.reference = genHex(12);
-    handleCartPaymentSuccess(allCartData);
+    // handleCartPaymentSuccess(allCartData);
 
-    // let handler = PaystackPop.setup({
-    //     key: 'pk_test_340f998043f5a426e2cedcd469fc8fb90c4a35eb',
-    //     email: allCartData.emailOfBuyer,
-    //     amount: Math.round(allCartData.netTotal) * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
-    //     currency: 'NGN', // Use GHS for Ghana Cedis or USD for US Dollars
-    //     channels: ['card', 'bank', 'ussd', 'bank_transfer'],
-    //     firstname: "Temiloluwa",
-    //     lastname: "Ogunbanjo",
-    //     reference: genHex(8), // Replace with a reference you generated
-    //     callback: function(response) {
-    //         //this happens after the payment is completed successfully
-    //         let reference = response.reference;
-    //         allCartData.reference = reference;
-    //         handleCartPaymentSuccess(allCartData);
-    //     },
-    //     onClose: function() {
-    //         let paymentBtn = document.querySelector("#confirm-payment-btn");
-    //         if (!paymentBtn.classList.contains("clicked")){
-    //             paymentBtn.classList.remove("clicked");
-    //         }
-    //         paymentBtn.textContent = "Proceed to payment";
-    //         alert('Transaction was not completed, window closed.');
-    //     },
-    //   });
+    let handler = PaystackPop.setup({
+        key: 'pk_test_340f998043f5a426e2cedcd469fc8fb90c4a35eb',
+        email: allCartData.emailOfBuyer,
+        amount: Math.round(allCartData.netTotal) * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
+        currency: currencyLocale, // Use GHS for Ghana Cedis or USD for US Dollars
+        channels: ['card', 'bank', 'ussd', 'bank_transfer'],
+        firstname: formatName(allCartData.firstname),
+        lastname: formatName(allCartData.lastname),
+        reference: genHex(8), // Replace with a reference you generated
+        callback: function(response) {
+            //this happens after the payment is completed successfully
+            let reference = response.reference;
+            allCartData.reference = reference;
+            handleCartPaymentSuccess(allCartData);
+        },
+        onClose: function() {
+            let paymentBtn = document.querySelector("#confirm-payment-btn");
+            if (!paymentBtn.classList.contains("clicked")){
+                paymentBtn.classList.remove("clicked");
+            }
+            paymentBtn.textContent = "Proceed to payment";
+            alert('Transaction was not completed, window closed.');
+        },
+      });
 
       handler.openIframe();  
 };

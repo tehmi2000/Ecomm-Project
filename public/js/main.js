@@ -1,8 +1,8 @@
 // <*><*><*><*><*><*><*><*><*><*><*><*><*><*><*> DEFINE FUNCTIONS AND VARIABLES <*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*>
-
 let currencyLocale = 'NGN';
 let loggedInUserData = null;
 let exchangeRates = null;
+let randWorker = undefined;
 
 const openMenu = function() {
     document.querySelector("#sidemenu").style.marginLeft = "0%";
@@ -339,53 +339,53 @@ const displayResponse = function(response, options) {
 
 const formatAsMoney = (price, destinationCurrency) => {
     destinationCurrency = destinationCurrency || "USD";
-    const countries = [
-        {
-            code: "US",
-            currency: "USD",
-            country: 'United States'
-        },
-        {
-            code: "NG",
-            currency: "NGN",
-            country: 'Nigeria'
-        },
-        {
-            code: 'KE',
-            currency: 'KES',
-            country: 'Kenya'
-        },
-        {
-            code: 'UG',
-            currency: 'UGX',
-            country: 'Uganda'
-        },
-        {
-            code: 'RW',
-            currency: 'RWF',
-            country: 'Rwanda'
-        },
-        {
-            code: 'TZ',
-            currency: 'TZS',
-            country: 'Tanzania'
-        },
-        {
-            code: 'ZA',
-            currency: 'ZAR',
-            country: 'South Africa'
-        },
-        {
-            code: 'CM',
-            currency: 'XAF',
-            country: 'Cameroon'
-        },
-        {
-            code: 'GH',
-            currency: 'GHS',
-            country: 'Ghana'
-        }
-    ];
+    // const countries = [
+    //     {
+    //         code: "US",
+    //         currency: "USD",
+    //         country: 'United States'
+    //     },
+    //     {
+    //         code: "NG",
+    //         currency: "NGN",
+    //         country: 'Nigeria'
+    //     },
+    //     {
+    //         code: 'KE',
+    //         currency: 'KES',
+    //         country: 'Kenya'
+    //     },
+    //     {
+    //         code: 'UG',
+    //         currency: 'UGX',
+    //         country: 'Uganda'
+    //     },
+    //     {
+    //         code: 'RW',
+    //         currency: 'RWF',
+    //         country: 'Rwanda'
+    //     },
+    //     {
+    //         code: 'TZ',
+    //         currency: 'TZS',
+    //         country: 'Tanzania'
+    //     },
+    //     {
+    //         code: 'ZA',
+    //         currency: 'ZAR',
+    //         country: 'South Africa'
+    //     },
+    //     {
+    //         code: 'CM',
+    //         currency: 'XAF',
+    //         country: 'Cameroon'
+    //     },
+    //     {
+    //         code: 'GH',
+    //         currency: 'GHS',
+    //         country: 'Ghana'
+    //     }
+    // ];
 
     price = convertCurrencies(price, destinationCurrency);
 
@@ -427,15 +427,15 @@ if('serviceWorker' in navigator){
             console.log("Service worker could not intall");
         });
     });
-}                                                                                                                        
+}
+
+let currencySuccessCallback = result => { if (result.id === "ratesdata") exchangeRates = result };
+let exchangeRateApiUrl = "/api/currency/get-exchange-rate";
+fetchAndCacheData(exchangeRateApiUrl, currencySuccessCallback);
 
 document.addEventListener("DOMContentLoaded", function () {
     // GET USER's COUNTRY's CURRENCY
-    let exchangeRateApiUrl = "/api/currency/get-exchange-rate";
-    let currencySuccessCallback = result => { if (result.id === "ratesdata") exchangeRates = result };
-
-    fetchAndCacheData(exchangeRateApiUrl, currencySuccessCallback);
-
+    console.time("startscript");
     try{
         if (getCookie("univers-username")) {
             let apiUrl = `/api/user/${getCookie("univers-username").value}`;
@@ -444,7 +444,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let userdataSuccessCallback = function (userData) {
                 // Save user's data
-                loggedInUserData = userData;
+                loggedInUserData = (userData.email === '' || userData.email === null)? null : userData;
 
                 // If page has sidemenu modify with user data
                 if(sideMenu && userData.profile_picture){
@@ -502,5 +502,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }catch(e){
         alert(e);
     }
+    console.timeEnd("startscript");
 });
+
+
 

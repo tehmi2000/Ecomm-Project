@@ -602,7 +602,7 @@ const model = function() {
         mongoConn.then(client => {
             const collection = client.db(username).collection("myOrders");
 			
-			collection.insertMany(listOfOrders, function(err, { result }) {
+			collection.insertMany(listOfOrders, function(err, result) {
 				if(err) log(err);
 				res.json(result);
 			});

@@ -19,6 +19,7 @@ self.addEventListener("install", function(event) {
 				'/js/main.min.js',
 				'/js/lib/lazysizes.min.js',
 				'/js/lib/clamp.min.js',
+				'/js/lib/color-thief/color-thief.min.js',
 				'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js'
 			];
 			return cache.addAll(urlToCache);

@@ -14,12 +14,10 @@ const priceQtyHandler = function(evt) {
 };
 
 const saveHandler = function(evt) {
-    const itemID = evt.currentTarget.id.split("_")[1];
     const savedItem = Object.assign({}, globalItem, preferredItem);
 
     if(getCookie("univers-username")){
         fetch(`/api/goods/save/${getCookie("univers-username").value}/addToSavedItems`, {
-            
             method: "post",
             body: JSON.stringify({
                 item: savedItem
@@ -39,14 +37,13 @@ const saveHandler = function(evt) {
         }); 
     }else{
         displayResponse("You need to sign in first!");
-        setTimeout(()=>{
+        setTimeout(() => {
             window.location.href = `/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`;
         }, 2999);
     }
 };
 
 const cartHandler = function(evt) {
-    const itemID = evt.currentTarget.id.split("_")[1];
     const cartItem = Object.assign({}, globalItem, preferredItem);
     console.log(cartItem);
 
@@ -193,8 +190,6 @@ const fetchProduct = function () {
                         createNav(index, img);
                     }
                 });
-
-                
             }
         } catch (error) {
             console.error(error);

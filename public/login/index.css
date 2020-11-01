@@ -27,7 +27,6 @@ main *{
 
 main form{
     width: 50rem;
-    width: 35vw;
     margin: 2rem auto 1rem auto;
     padding: 2rem;
     border-radius: 5px;
@@ -60,11 +59,15 @@ main form{
 
 #login-form + div{
     margin: auto;
-    width: 36%;
-    width: 35vw;
     padding: 0.5rem 1rem;
     justify-content: space-between;
     align-items: center;
+}
+
+main form, #login-form + div{
+    width: 36%;
+    width: 45vw;
+    max-width: 48rem;
 }
 
 #login-form + div a{

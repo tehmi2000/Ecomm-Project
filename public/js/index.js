@@ -26,17 +26,14 @@ const prevImage = function(){
 const createItem = function(container, object){
     let price = formatAsMoney(parseFloat(object["item-price"]), currencyLocale);
     let loadedImage = object["item-image"][0];
+    let originalPrice = '';
 
-    let originalPrice = (function(){
-        let intPrice = parseFloat(object["item-price"]);
-        
-        if(object[`price-discount`]){
+    if(object[`price-discount`]){
+        originalPrice = (function(){
+            let intPrice = parseFloat(object["item-price"]);
             return `${formatAsMoney(intPrice / (100 - parseFloat(object[`price-discount`])), currencyLocale)}`
-        }else{
-            return ``;
-        }
-    }());
-
+        }());
+    }
 
     let a0 = createComponent("A", null, ["strip-link", "item", "cols"]);
         let div0 = createComponent("DIV", `-${object[`price-discount`] || '0'}%`, ["item-discount"]);
@@ -89,9 +86,9 @@ const createCategoryItem = function(container, listOfobjects){
         let div1 = createComponent("DIV", null, ["rows", "item-img", `${category['image']}`]);
         let div2 = createComponent("DIV", category['title'], ["item-name"]);
 
+        a0.setAttribute("href", `/categories/view?query=${window.encodeURIComponent(category['title'].toLowerCase())}`);
         a0 = joinComponent(a0, div1, div2);
         a0.style.backgroundColor = bgColors[index] || generateRandomColor();
-        a0.setAttribute("href", `/categories/view?query=${window.encodeURIComponent(category['title'].toLowerCase())}`);
 
         container.appendChild(a0);
     });
@@ -113,6 +110,11 @@ const getAds = function() {
 
             // Pick any of the ads to show next
             counter = Math.round(Math.random() * images.length);
+            // Start interval
+            setInterval(function() {
+                nextImage();
+            }, 8500);
+
         } catch (error) {
             console.error(error);
         }
@@ -151,46 +153,68 @@ const getMostPopular = function() {
 
 const getRecommended = function() {
     const container = document.querySelector("#recommended-container.pane .slider");
-    fetch(`/api/goods/all/recommended`).then(function(response) {
-
-        response.json().then( function(result) {
-            // console.log(result);
+    fetch(`/api/goods/all/recommended`).then(async function(response) {
+        try {
+            let result = await response.json();
             let data = dataValidation(result).data;
+            let randData;
 
             // Randomly pick items from the item set to display
-            randData = (function(arr) {
-                let retArr = [];
-                let randIndex = 0;
-                let selectedItem = null;
-
-                while (retArr.length < 10){
-                    // Assign a random index to randIndex
-                    randIndex = Math.ceil((Math.random() * (arr.length - 1)));
-                    // Use random index to select a random item
-                    selectedItem = arr[randIndex];
-
-                    // Store selected item in retArr(returned array)
-                    retArr.push(selectedItem);
-                    // Remove the selected item from the main array to avoid duplicates
-                    arr = arr.filter((item) => {
-                        return item["_id"] !== selectedItem["_id"];
-                    });
+            if (window.Worker){
+                if(randWorker !== undefined) {
+                    try {
+                        randWorker.terminate();
+                    } catch (error) {
+                        console.error(error);
+                    } finally {
+                        randWorker = undefined;
+                    }
                 }
-                return retArr;
-            }(data));
-
-            container.innerHTML = "";
-            randData.forEach(object => {
-                createItem(container, object);
-            });
+                    
+                randWorker = new Worker('/workers/randomize-ww.js');
+                randWorker.postMessage(data);
+                randWorker.onmessage = function(e) {
+                    randData = e.data;
+                    randWorker.terminate();
+                    randWorker = undefined;
+                    container.innerHTML = "";
+                    randData.forEach(object => {
+                        createItem(container, object);
+                    });
+                };
+            }else{
+                randData = (function(arr) {
+                    let retArr = [];
+                    let randIndex = 0;
+                    let selectedItem = null;
+    
+                    while (retArr.length < 10){
+                        // Assign a random index to randIndex
+                        randIndex = Math.ceil((Math.random() * (arr.length - 1)));
+                        // Use random index to select a random item
+                        selectedItem = arr[randIndex];
+    
+                        // Store selected item in retArr(returned array)
+                        retArr.push(selectedItem);
+                        // Remove the selected item from the main array to avoid duplicates
+                        arr = arr.filter((item) => {
+                            return item["_id"] !== selectedItem["_id"];
+                        });
+                    }
+                    return retArr;
+                }(data));
+                container.innerHTML = "";
+                randData.forEach(object => {
+                    createItem(container, object);
+                });
+            }
 
             document.querySelectorAll(".item .item-description span:first-child").forEach(el => {
                 $clamp(el, {clamp: 2});
             });
-        }).catch(function (error) {
+        } catch (error) {
             console.error(error);
-        });
-
+        }
     }).catch(function(error) {
         console.error(error);
     });
@@ -266,9 +290,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-window.onload = function(evt) {
+window.onload = function() {
     getAds();
-    setInterval(function() {
-        nextImage();
-    }, 8000);
 };
