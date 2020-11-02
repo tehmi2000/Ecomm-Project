@@ -13,7 +13,7 @@ header{
 
 header *{
     color: #333;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 header .section-bottom{
@@ -112,8 +112,8 @@ main .intro-links{
     height: 7rem;
     border-radius: 50%;
     border: 15px solid;
-    border-top-color: rgb(255, 68, 0);
-    border-right-color: transparent;
+    border-top-color:transparent;
+    border-right-color:  rgb(129, 129, 129);
     border-bottom-color:transparent;
     border-left-color: rgb(255, 166, 0);
     transition: all 0.3s ease;

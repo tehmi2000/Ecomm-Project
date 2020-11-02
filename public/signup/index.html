@@ -29,7 +29,7 @@
                 <span><a href="/"><img src="/assets/images/fav-logo.png" alt="LOGO" id="logo"></a></span>
             </div>
 
-            <div class="mini right-tab">
+            <div class="rows mini right-tab" style="align-items: center;">
                 <a href="/categories">Categories</a>
 
                 <span class="drop-container">
@@ -38,9 +38,18 @@
                         <li><a href="/">Home</a></li>
                         <li><a href="/myprofile">My Profile</a></li>
                         <li><a href="/myprofile/products/sell-a-product">Sell An Item</a></li>
+                        <li><a href="/myprofile/products/my-cart">My Cart</a></li>
+                        <li><a href="/myprofile/products/saved-items">Saved Items</a></li>
                         <li><a href="/support">Support</a></li>
                         <li><a href="/support/#faq">FAQs</a></li>
                     </ul>
+                </span>
+
+                <span style="border-left: 1px solid #eaeaea; padding-left: 1rem; margin-left: 0.5rem;" class="rows">
+                    <span style="justify-content: space-between; align-items: center; border: 1px solid #ccc; border-radius: 5vh; padding: 0.1rem 0.6rem;">
+                        <span id="user-icon" class="icofont-user-alt-7" style="font-size: 1.1rem;"></span>
+                        <i class="icofont-caret-down"></i>
+                    </span>
                 </span>
             </div>
         </div>
@@ -64,15 +73,15 @@
             <label for="confirm-password">Confirm Password <span class="required">*</span></label>
             <input type="password" name="confirm-password" id="confirm-password" placeholder="Re-type password" required>
 
-            <div class="rows">
-                <input type="checkbox" name="tc_agreement" id="agreement">
-                <label style="vertical-align: middle; ">Do you agree with our terms and condition?</label>
+            <div class="rows" style="align-items: center;">
+                <input type="checkbox" name="tc_agreement" id="agreement" style="width: 3rem; margin: 0.9rem 0;">
+                <label style="vertical-align: middle; font-size: 1.2rem; color: #888; font-style: italic;">I have read and agree to Univers' <a href="/terms_and_condition" style="color: dodgerblue; text-decoration: underline;">Terms & Conditions</a> for signing up as a user on its platform.</label>
             </div>
 
             <input type="submit" value="Sign Up" disabled>
         </form>
     </main>
-
+ 
     <footer class="cols">
         <div class="links rows">
             <div class="cols">

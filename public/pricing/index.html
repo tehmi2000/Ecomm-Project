@@ -24,9 +24,9 @@
     <link rel="stylesheet" href="../assets/icofont/icofont.min.css">
     <link rel="stylesheet" href="index.css">
     
-    <script src="../js/main.min.js"></script>
-    <script src="../js/lib/appear.min.js"></script>
-    <script src="../js/lib/greensock/minified/gsap.min.js"></script>
+    <script src="/js/main.min.js"></script>
+    <script src="/js/lib/appear.min.js"></script>
+    <script src="/js/lib/greensock/minified/gsap.min.js"></script>
     <script src="index.js"></script>
     <script data-ad-client="ca-pub-6903692907552928" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
@@ -34,76 +34,35 @@
     <header>
         <div class="rows section-top">
             <div class="left-tab">
-                <span class="icofont-navigation-menu" id="open-menu-btn" tabindex="0" onclick="openMenu()" onkeydown="openMenu()"></span>
-                <span><a href="/"><img src="../assets/images/fav-logo.png" alt="LOGO" id="logo"></a></span>
+                <a href="/" class="icofont-home"><span style="display: none;">Home</span></a>
+                <span><a href="/"><img src="/assets/images/fav-logo.png" alt="LOGO" id="logo"></a></span>
             </div>
 
-            <div class="right-tab">
-                <a href="/myprofile/products/my-cart" class="icofont-cart"><span style="display: none;">Cart</span></a>
+            <div class="rows mini right-tab" style="align-items: center;">
+                <a href="/categories">Categories</a>
+
+                <span class="drop-container">
+                    <span class="drop-button">More<i class="icofont-caret-down"></i></span>
+                    <ul class="drop-content">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/myprofile">My Profile</a></li>
+                        <li><a href="/myprofile/products/sell-a-product">Sell An Item</a></li>
+                        <li><a href="/myprofile/products/my-cart">My Cart</a></li>
+                        <li><a href="/myprofile/products/saved-items">Saved Items</a></li>
+                        <li><a href="/support">Support</a></li>
+                        <li><a href="/support/#faq">FAQs</a></li>
+                    </ul>
+                </span>
+
+                <span style="border-left: 1px solid #eaeaea; padding-left: 1rem; margin-left: 0.5rem;" class="rows">
+                    <span style="justify-content: space-between; align-items: center; border: 1px solid #ccc; border-radius: 5vh; padding: 0.1rem 0.6rem;">
+                        <span id="user-icon" class="icofont-user-alt-7" style="font-size: 1.1rem;"></span>
+                        <i class="icofont-caret-down"></i>
+                    </span>
+                </span>
             </div>
         </div>
     </header>
-
-    <aside id="sidemenu">
-        <nav class="rows">
-            <div>
-                <a href="/login" class="link-btn">Login</a>
-                <a href="/signup" class="link-btn">Sign up</a>
-            </div>
-            
-            <div>
-                <button id="close-menu-btn" class="icofont-close" title="Close Menu" onclick="closeMenu()" onkeydown="closeMenu()" tabindex="0"></button>
-            </div>
-        </nav>
-
-        <nav id="controls" class="panel rows">
-            <a href="/myprofile/products/sell-a-product" class="panel-pad cols">
-                <i class="pad-img icofont-food-cart"></i>
-                <span class="pad-txt">Sell An Item</span>
-            </a>
-
-            <a href="/myprofile/products/my-store" class="panel-pad cols">
-                <i class="pad-img icofont-notepad"></i>
-                <span class="pad-txt">My Store</span>
-            </a>
-
-            <a href="/myprofile/products/my-cart" class="panel-pad cols">
-                <i class="pad-img icofont-cart"></i>
-                <span class="pad-txt">View My Cart</span>
-            </a>
-
-            <a href="/myprofile/products/saved-items" class="panel-pad cols">
-                <i class="pad-img icofont-restaurant"></i>
-                <span class="pad-txt">Saved Items</span>
-            </a>
-        </nav>
-
-        <div>
-            <div class="side-links cols">
-                <span class="head">Browse Categories</span>
-                <ul>
-                    <li><a href="/categories">All categories</a></li>
-                    <li><a href="/categories/view?query=Fashion">Fashion</a></li>
-                    <li><a href="/categories/view?query=Electronics">Electronics</a></li>
-                    <li><a href="/categories/view?query=Phones%20%26%20Tablet">Phones & Tablets</a></li>
-                    <li><a href="/categories/view?query=Beauty%20%26%20Health%20Care">Beauty & Health Care</a></li>
-                    <li><a href="/categories/view?query=Baby,%20Kids%20%26%20Toys">Baby, Kids & Toys</a></li>
-                </ul>
-            </div>
-
-            <div class="side-links cols">
-                <span class="head">Useful Links</span>
-                <ul>
-                    <li><a href="#">Getting Started</a></li>
-                    <li><a href="/categories">Explore</a></li>
-                    <li><a href="/pricing">Pricing</a></li>
-                    <li><a href="#">Marketing</a></li>
-                    <li><a href="/support#faq">FAQs</a></li>
-                    <li><a href="/support">Support</a></li>
-                </ul>
-            </div>
-        </div>
-    </aside>
 
     <main>
         <div class="intro-pane">

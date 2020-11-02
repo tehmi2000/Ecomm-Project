@@ -9,6 +9,7 @@ header{
 
 header .mini a{
     margin: auto 1rem;
+    color: orangered;
 }
 
 header [class*="section"]{

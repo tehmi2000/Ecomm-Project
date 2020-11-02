@@ -1,5 +1,5 @@
 // <*><*><*><*><*><*><*><*><*><*><*><*><*><*><*> DEFINE FUNCTIONS AND VARIABLES <*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*>
-let currencyLocale = 'NGN';
+let currencyLocale = 'USD';
 let loggedInUserData = null;
 let exchangeRates = null;
 let randWorker = undefined;
@@ -339,53 +339,6 @@ const displayResponse = function(response, options) {
 
 const formatAsMoney = (price, destinationCurrency) => {
     destinationCurrency = destinationCurrency || "USD";
-    // const countries = [
-    //     {
-    //         code: "US",
-    //         currency: "USD",
-    //         country: 'United States'
-    //     },
-    //     {
-    //         code: "NG",
-    //         currency: "NGN",
-    //         country: 'Nigeria'
-    //     },
-    //     {
-    //         code: 'KE',
-    //         currency: 'KES',
-    //         country: 'Kenya'
-    //     },
-    //     {
-    //         code: 'UG',
-    //         currency: 'UGX',
-    //         country: 'Uganda'
-    //     },
-    //     {
-    //         code: 'RW',
-    //         currency: 'RWF',
-    //         country: 'Rwanda'
-    //     },
-    //     {
-    //         code: 'TZ',
-    //         currency: 'TZS',
-    //         country: 'Tanzania'
-    //     },
-    //     {
-    //         code: 'ZA',
-    //         currency: 'ZAR',
-    //         country: 'South Africa'
-    //     },
-    //     {
-    //         code: 'CM',
-    //         currency: 'XAF',
-    //         country: 'Cameroon'
-    //     },
-    //     {
-    //         code: 'GH',
-    //         currency: 'GHS',
-    //         country: 'Ghana'
-    //     }
-    // ];
 
     price = convertCurrencies(price, destinationCurrency);
 
@@ -398,7 +351,6 @@ const formatAsMoney = (price, destinationCurrency) => {
 };
 
 const convertCurrencies = function(price, destinationCurrency){
-    let baseCurrency = "USD";
     let rate = 1;
     if (exchangeRates !== null){
         let tempRates = exchangeRates;
@@ -410,7 +362,6 @@ const convertCurrencies = function(price, destinationCurrency){
                 rate = exchangeRates[`${nameOfCurrency}`];
             }
         });
-        // console.log(rate);
     }
     return price * rate;
 }
@@ -435,7 +386,6 @@ fetchAndCacheData(exchangeRateApiUrl, currencySuccessCallback);
 
 document.addEventListener("DOMContentLoaded", function () {
     // GET USER's COUNTRY's CURRENCY
-    console.time("startscript");
     try{
         if (getCookie("univers-username")) {
             let apiUrl = `/api/user/${getCookie("univers-username").value}`;
@@ -461,10 +411,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 // If page has user account icon, modify with user data
                 if(userIcon){
                     if(userData !== null && userData.firstname){
+                        let abbrName = `${formatName(userData.firstname.substr(0, 5))}${(userData.firstname.length > 5)? '...' : ''}`; 
                         userIcon.classList.toggle("active-user", true);
                         userIcon.classList.toggle("icofont-user-alt-7", false);
-                        userIcon.innerHTML = `<span>${userData.firstname.substr(0, 1).toUpperCase()}</span>`;
-                        userIcon.title = `Logged in as ${userData.username}`;
+                        userIcon.innerHTML = `<span>${abbrName}</span>`;
+                        userIcon.title = `Logged in as ${formatName(userData.firstname)} ${formatName(userData.lastname)}`;
                     }
                 }
             };
@@ -502,7 +453,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }catch(e){
         alert(e);
     }
-    console.timeEnd("startscript");
 });
 
 

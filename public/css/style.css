@@ -35,6 +35,18 @@ header a:link{
     text-decoration: none;
 }
 
+header .mini.right-tab{
+    text-transform: uppercase;
+}
+
+header #user-icon{
+    text-transform: capitalize;
+}
+
+header #user-icon:hover{
+    cursor: pointer;
+}
+
 main{
     padding: 0.9rem;
 }

@@ -475,3 +475,13 @@ Thu, 29 Oct 2020 02:29:31 GMT: {"errno":"ECONNREFUSED","code":"ECONNREFUSED","sy
 Fri, 30 Oct 2020 03:41:44 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
 Fri, 30 Oct 2020 15:14:10 GMT: {"errno":"ECONNREFUSED","code":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":3306,"fatal":true}
 Sat, 31 Oct 2020 03:52:27 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Sun, 01 Nov 2020 02:19:52 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Sun, 01 Nov 2020 13:02:14 GMT: {}
+Sun, 01 Nov 2020 13:24:51 GMT: {}
+Mon, 02 Nov 2020 01:07:46 GMT: {"name":"MongoParseError"}
+Mon, 02 Nov 2020 01:07:46 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","host":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","port":3306,"fatal":true}
+Mon, 02 Nov 2020 01:07:46 GMT: {"name":"MongoParseError"}
+Mon, 02 Nov 2020 01:08:24 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"api.currencylayer.com","host":"api.currencylayer.com","port":80}
+Mon, 02 Nov 2020 04:27:41 GMT: {"name":"MongoParseError"}
+Mon, 02 Nov 2020 04:27:41 GMT: {"name":"MongoParseError"}
+Mon, 02 Nov 2020 04:27:41 GMT: {"errno":"ENOTFOUND","code":"ENOTFOUND","syscall":"getaddrinfo","hostname":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","host":"l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com","port":3306,"fatal":true}

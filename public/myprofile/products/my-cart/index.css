@@ -206,7 +206,7 @@
 }
 
 [class$="popup-box"] .fee-item .fee.debt{
-    color: rgb(255, 6, 6);
+    color: dodgerblue;
 }
 
 [class$="popup-box"] .promo-tab{
@@ -268,14 +268,8 @@
 
 [class$="popup-box"] .sum-total *:nth-child(2){
     color: #ff8b1e;
-    font-size: 1.5rem;
-    font-weight: 600;
-    border: 2px solid #ff8b1e;
-    padding: 0.8rem 1.6rem;
-    border-radius: 5px;
-    /* background-color: #ffb01e;
-    box-shadow: 1px 1px 2px rgba(7, 7, 7, 0.15);
-    border-bottom: 2px solid orangered; */
+    font-size: 2.1rem;
+    font-weight: 400;
 }
 
 [class$="popup-box"] #confirm-payment-btn{
@@ -382,12 +376,12 @@ footer{
     }
 
     [class$="bg-cover"] > *{
-        width: 80vw;
+        width: 95vw;
         min-height: 80vh;
         overflow: auto;
         padding: 2rem;
         margin: 0;
-        transform: translate(12%, 12%);
+        transform: translateY(12%);
     }
 
     [class$="popup-box"] .total-fees{
@@ -423,9 +417,24 @@ footer{
     
     [class$="popup-box"] .sum-total *:nth-child(2){
         /* color: white; */
-        font-size: 1.2rem;
-        padding: 0.8rem 1.5rem;
+        font-size: 2.1rem;
+        font-size: 5.1vw;
+        font-weight: 400;
+        padding: 0;
+        border: none;
     }
+
+    /* [class$="popup-box"] .sum-total *:nth-child(2){
+        color: #ff8b1e;
+        font-size: 1.5rem;
+        font-weight: 600;
+        border: 2px solid #ff8b1e;
+        padding: 0.8rem 1.6rem;
+        border-radius: 5px;
+        /* background-color: #ffb01e;
+        box-shadow: 1px 1px 2px rgba(7, 7, 7, 0.15);
+        border-bottom: 2px solid orangered; 
+    } */
     
     [data-pay-btn]{
         font-size: 1.5rem;

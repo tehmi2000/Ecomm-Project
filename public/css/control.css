@@ -116,14 +116,32 @@ main{
 }
 
 .control-body #go-shopping-btn{
+    position: relative;
     display: block;
     margin-top: 2rem;
-    background-color: #ec4102;
+    background-color: dodgerblue;
     color: white;
     padding: 1.5rem 3rem;
     border-radius: 5vh;
     font-size: 1.3rem;
+    width: 30%;
+    text-align: center;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.control-body #go-shopping-btn:hover{
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
     box-shadow: 1px 3px 5px #bdbdbd;
+}
+
+.control-body #go-shopping-btn:hover::after{
+    font-family: 'IcoFont' !important;
+    margin-left: 1rem;
+    content: "\ea5d";
+    color: white;
+    font-size: 1.3rem;
 }
 
 .control-body .item .item-name{
@@ -307,14 +325,6 @@ main{
     box-shadow: none;
 }
 
-.vendor-apply-btn.no:hover::after{
-    content: "😭";
-    position: absolute;
-    font-size: 2.2rem;
-    top: 0.7rem;
-    right: 1.2rem;
-}
-
 .payment-popup-box {
     overflow-y: auto;
 }
@@ -377,15 +387,6 @@ main{
     color: rgb(255, 6, 6);
 }
 
-.payment-popup-box .promo-tab{
-    justify-content: space-between;
-    margin-top: 3rem;
-    border-radius: 5px;
-    /* border: 1px solid sandybrown; */
-    width: 100%;
-    background-color: #efefef;
-}
-
 .payment-popup-box .input-tab input[type="text"]{
     box-sizing: border-box;
     border: none;
@@ -393,15 +394,6 @@ main{
     width: 80%;
     padding: 1.5rem 2rem;
     outline: none;
-}
-
-.payment-popup-box .promo-tab button{
-    box-sizing: border-box;
-    border: none;
-    background-color: transparent;
-    /* width: 20%; */
-    padding: 1.5rem 2rem;
-    color: orange;
 }
 
 .payment-popup-box .sum-total{
@@ -416,15 +408,9 @@ main{
 }
 
 .payment-popup-box .sum-total *:nth-child(2){
-    color: #ff8b1e;
+    /* color: #ff8b1e; */
     font-size: 1.5rem;
-    font-weight: 600;
-    border: 2px solid #ff8b1e;
-    padding: 0.8rem 1.6rem;
-    border-radius: 5px;
-    /* background-color: #ffb01e;
-    box-shadow: 1px 1px 2px rgba(7, 7, 7, 0.15);
-    border-bottom: 2px solid orangered; */
+    font-weight: 400;
 }
 
 .payment-popup-box #confirm-payment-btn{
@@ -435,20 +421,6 @@ main{
     color: white;
     margin-top: 2rem;
 }
-
-/* [data-pay-btn]{
-    display: none;
-    position: sticky;
-    bottom: 1rem;
-    font-size: 1.5rem;
-    width: 90%;
-    color: white;
-    text-align: center;
-    margin: 1rem;
-    border-radius: 5px;
-    background-image: linear-gradient(to right, rgb(184, 49, 0), rgb(184, 0, 0), rgb(184, 49, 0));
-    box-shadow: 1px 2px 2px #e0e0e0;
-} */
 
 footer{
     background-color: #eee;
@@ -563,6 +535,10 @@ footer{
         min-height: 79vmax;
     }
 
+    .control-body #go-shopping-btn{
+        width: auto;
+    }
+
     /*  */
     .control-body .item{
         overflow: hidden;
@@ -659,30 +635,6 @@ footer{
     
     .payment-popup-box .fee-item .fee{
         font-size: 1.12rem;
-    }
-    
-    .payment-popup-box .promo-tab{
-        margin-top: 2rem;
-        border-radius: 3px;
-    }
-    
-    .payment-popup-box .promo-tab input[type="text"]{
-        padding: 1.5rem 2rem;
-    }
-    
-    .payment-popup-box .promo-tab button{
-        padding: 1.5rem 2rem;
-    }
-    
-    .payment-popup-box .sum-total{
-        margin-top: 3rem;
-        font-size: 1.5rem;
-    }
-    
-    .payment-popup-box .sum-total *:nth-child(2){
-        color: white;
-        font-size: 1.2rem;
-        padding: 0.8rem 1.5rem;
     }
 }
 

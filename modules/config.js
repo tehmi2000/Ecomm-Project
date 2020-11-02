@@ -290,7 +290,7 @@ const model = function(){
     };
 
 	const categoryTableExist = () => {
-		const queryCreate = "CREATE TABLE categories (id INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255) NOT NULL, image VARCHAR(255) NOT NULL) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
+		const queryCreate = "CREATE TABLE categories (id INT(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255) NOT NULL, image VARCHAR(255) NOT NULL, info TEXT NOT NULL) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
 		const queryTest = "SELECT * FROM categories LIMIT 1";
 		checkTable(queryTest, queryCreate);
 	};

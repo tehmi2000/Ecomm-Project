@@ -11,16 +11,14 @@ const createItem = function(container, object){
     //         </div>
     //     </div>
     // </a>
-    let categoryExplanation = {
-
-    }
+    let moreInfo = (object.info && object.info !== '')? object.info : "More information about the categories and what products to expect in them";
     let a0 = createComponent("A", null, ["item", "cols"]);
         let div0 = createComponent("DIV", null, ["cols"]);
             let div1 = createComponent("DIV", null, ["rows", "item-img"]);
                 let i0 = createComponent("I", null, [object.image]);
             let div2 = createComponent("DIV", null, ["item-description", "cols"]);
                 let span0 = createComponent("SPAN", object.title, ["category-title"]);
-                let span1 = createComponent("SPAN", "More information about the categories and what products to expect in them", ["hidden-info"]);
+                let span1 = createComponent("SPAN", moreInfo, ["hidden-info"]);
 
     i0.style.color = "#fcfcfc";
     span0.style.color = "#fcfcfc";
