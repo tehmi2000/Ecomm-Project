@@ -12,6 +12,11 @@ const closeMenu = function() {
     document.querySelector("#sidemenu").style.marginLeft = "-150%";
 };
 
+const displayFilters = () => {
+    const element = document.querySelector("#modifiers + #modifiers-content");
+    element.style.display = (element.style.display === "flex")? "none" : "flex";
+};
+
 const addToggleAction = function(evt) {
     console.log("on");
     evt.currentTarget.classList.toggle("on");
@@ -437,10 +442,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if(dropMenu){
             dropMenu.addEventListener("mouseover", function(evt) {
-                if(delay){
-                    clearTimeout(delay);
-                }
-
+                if(delay) clearTimeout(delay);
                 document.querySelector(".drop-container .drop-content").style.display = "grid";
             });
     
@@ -449,7 +451,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.querySelector(".drop-container .drop-content").style.display = "none";
                 }, 1000);
             });
-        }
+        }        
     }catch(e){
         alert(e);
     }

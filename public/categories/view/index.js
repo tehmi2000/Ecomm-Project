@@ -1,4 +1,4 @@
-const itemList = {};
+let itemList = {};
 
 document.addEventListener("DOMContentLoaded", function() {
     const container = document.querySelector("#item-container");
