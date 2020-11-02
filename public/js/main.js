@@ -3,6 +3,10 @@ let currencyLocale = 'USD';
 let loggedInUserData = null;
 let exchangeRates = null;
 let randWorker = undefined;
+let countryCurrency = {
+    "nigeria": "NGN",
+    "ghana": "GHS"
+};
 
 const openMenu = function() {
     document.querySelector("#sidemenu").style.marginLeft = "0%";
@@ -18,11 +22,10 @@ const displayFilters = () => {
 };
 
 const addToggleAction = function(evt) {
-    console.log("on");
     evt.currentTarget.classList.toggle("on");
 };
 
-const createSuggestions = function(pEl, cEl) {
+const createSuggestions = function(parentElement, containerElement) {
     const createSugItem = function(props) {
         let span0 = createComponent("SPAN", null, ["rows", "sug-item"]);
             let img0 = create("IMG");
@@ -36,10 +39,10 @@ const createSuggestions = function(pEl, cEl) {
 
         span01.innerHTML = props['item-name'];
         span0 = joinComponent(span0, img0, span01);
-        cEl.appendChild(span0);
+        containerElement.appendChild(span0);
     };
 
-    pEl.style.display = "flex";
+    parentElement.style.display = "flex";
 
     fetch(`/api/goods/all/mostPopular`).then(async response => {
         try {
@@ -124,19 +127,10 @@ const fetchAndCacheData = async (apiUrl, successCallback, errorCallback, options
             successCallback(result);
         }
 
-        // console.log(result);
     } catch (error) {
         errorCallback(error);
     }
 };                                                                                                                              
-
-function formatTime(hours, minutes) {
-    const ampm = (hours >= 12)? 'PM' : 'AM';
-    const fhours = (hours > 12)? hours - 12 : hours;
-    const fmin = (JSON.stringify(minutes).length === 1)? `0${minutes}` : minutes;
-    const ftime = `${fhours}:${fmin} ${ampm}`;
-    return ftime;
-}
 
 function getCookie(name){
     arrayCookie=(document.cookie).split(';');
@@ -145,75 +139,6 @@ function getCookie(name){
             return {name : decodeURI(arrayCookie[index].split('=')[0]), value : decodeURI(arrayCookie[index].split('=')[1])};
         }
     }
-}
-
-const preFormatInput = function (content) {
-    content = `<pre>${content}</pre>`;
-
-    while(content.search("\n") > 0){
-        content = content.replace("\n", "<br/>");
-    }
-
-    let formattedContent = "",
-        startBold = false,
-        endBold = false,
-        startItalic = false,
-        endItalic = false,
-        startLink = {
-            state: false,
-            position: null
-        },
-        endLink = {
-            state: false,
-            position: null
-        };
-
-    for (let index = 0; index < content.length; index++) {
-
-        if (content.charAt(index) === '*') {
-            if (startBold === false) {
-                startBold = true;
-                content = `${content.substr(0, index)}<b>${content.substr(index + 1)}`;
-            } else {
-                endBold = true;
-                startBold = false;
-                content = `${content.substr(0, index)}</b>${content.substr(index + 1)}`;
-            }
-        }
-
-        if (content.charAt(index) === '_') {
-            if (startItalic === false) {
-                startItalic = true;
-                content = content.substr(0, index) + "<i>" + content.substr(index + 1);
-            } else {
-                endItalic = true;
-                content = content.substr(0, index) + "</i>" + content.substr(index + 1);
-                endItalic = false;
-                startItalic = false;
-            }
-        }
-
-        if (content.charAt(index) === '~') {
-            try {
-                if (startLink.state === false) {
-                    startLink.state = true;
-                    startLink.position = index;
-                } else {
-
-                    endLink.state = true;
-                    endLink.position = index;
-                    content = content.substr(0, startLink.position) + "<a href=\"https://" + content.substr(startLink.position + 1, endLink.position - startLink.position - 1) + "\">" + content.substr(startLink.position + 1, endLink.position - startLink.position - 1) + "</a>" + content.substr(index + 1);
-                    startLink.position = null;
-                    endLink.state = false;
-                    startLink.state = false;
-                }
-            } catch (e) { console.error(e); }
-        }
-    }
-
-    formattedContent = content.replace("<pre>" , "")
-                              .replace("</pre>","");
-    return formattedContent;
 }
 
 function formatName(str){
@@ -245,10 +170,6 @@ const getQuery = function() {
     return object;
 };
 
-function get(selector) {
-    return document.getElementById(selector);
-}
-
 function forEach(elements, reaction){
     for(let i = 0; i < elements.length; i++){
         (reaction)(elements[i]);
@@ -263,7 +184,6 @@ const validateSearch = function() {
 };
 
 const dataValidation = data => {
-    // console.log(data);
     const result = {
         valid: false,
         data: null
@@ -272,8 +192,6 @@ const dataValidation = data => {
     if(data.length > 0){
         let [dataOne] = data;
         // console.log(dataOne);
-    }else{
-        
     }
 
     result.valid = true;
@@ -319,11 +237,9 @@ function log(output) {
 }
 
 const displayResponse = function(response, options) {
-
     options = options || {
         type: "success"
     };
-    console.log(response, options);
     const component = document.querySelector("#response");
 
     if(options.type){
@@ -355,23 +271,38 @@ const formatAsMoney = (price, destinationCurrency) => {
     return formattedPrice;
 };
 
-const convertCurrencies = function(price, destinationCurrency){
-    let rate = 1;
-    if (exchangeRates !== null){
-        let tempRates = exchangeRates;
-        delete tempRates.id;
-        delete tempRates.lastModified;
-        Object.keys(tempRates).forEach(nameOfCurrency => {
-            let seperatedCurrency = nameOfCurrency.substr(3);
-            if(seperatedCurrency === destinationCurrency.toUpperCase()){
-                rate = exchangeRates[`${nameOfCurrency}`];
-            }
-        });
+const convertCurrencies = function(price, destinationCurrency, baseCurrency){
+    baseCurrency = baseCurrency || "USD";
+    let getRate = function (currency) {
+        let rate = 1;
+        if (exchangeRates !== null){
+            let tempRates = exchangeRates;
+            delete tempRates.id;
+            delete tempRates.lastModified;
+            // Search for USD to Destination rate from exchange rates object
+            Object.keys(tempRates).forEach(nameOfCurrency => {
+                let seperatedCurrency = nameOfCurrency.substr(3);
+                if(seperatedCurrency === currency.toUpperCase()){
+                    rate = exchangeRates[`${nameOfCurrency}`];
+                }
+            });
+        }
+
+        return rate;
+    };
+
+    // USD to Destination Currency conversion rate
+    let rate = getRate(destinationCurrency);
+
+    if(baseCurrency !== 'USD'){
+        // Convert to from Current Currency to USD
+        price = price * (1/getRate(baseCurrency));
     }
+
     return price * rate;
 }
 
-// <*><*><*><*><*><*><*><*><*><*><*><*><*><*><*> CODE STARTS HERE<*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*><*>
+// <<<<<<<<<< CODE STARTS HERE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 // INSTALL SERVICE WORKER
 if('serviceWorker' in navigator){
@@ -392,6 +323,7 @@ fetchAndCacheData(exchangeRateApiUrl, currencySuccessCallback);
 document.addEventListener("DOMContentLoaded", function () {
     // GET USER's COUNTRY's CURRENCY
     try{
+        // If user's data is stored in cookie...
         if (getCookie("univers-username")) {
             let apiUrl = `/api/user/${getCookie("univers-username").value}`;
             let sideMenu = document.querySelector("#sidemenu");
@@ -400,6 +332,12 @@ document.addEventListener("DOMContentLoaded", function () {
             let userdataSuccessCallback = function (userData) {
                 // Save user's data
                 loggedInUserData = (userData.email === '' || userData.email === null)? null : userData;
+                // console.log(loggedInUserData);
+
+                if (loggedInUserData !== null){
+                    let userCountry = loggedInUserData.address.split(',')[1].trim().toLowerCase();
+                    currencyLocale = (countryCurrency[`${userCountry}`])? countryCurrency[`${userCountry}`] : "USD";
+                }
 
                 // If page has sidemenu modify with user data
                 if(sideMenu && userData.profile_picture){

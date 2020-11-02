@@ -209,15 +209,14 @@ const getPaymentParams = function () {
 };
 
 const loadPaystackGateway = function (allCartData) {
-    console.log(allCartData);
     allCartData.reference = genHex(12);
-    // handleCartPaymentSuccess(allCartData);
+    let convertedToNGN = (currencyLocale === 'NGN')? Math.round(allCartData.netTotal) : Math.round(convertCurrencies(allCartData.netTotal, 'NGN', currencyLocale));
 
     let handler = PaystackPop.setup({
         key: 'pk_test_340f998043f5a426e2cedcd469fc8fb90c4a35eb',
         email: allCartData.emailOfBuyer,
-        amount: Math.round(allCartData.netTotal) * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
-        currency: currencyLocale, // Use GHS for Ghana Cedis or USD for US Dollars
+        amount: convertedToNGN * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
+        currency: "NGN", // Use GHS for Ghana Cedis or USD for US Dollars
         channels: ['card', 'bank', 'ussd', 'bank_transfer'],
         firstname: formatName(allCartData.firstname),
         lastname: formatName(allCartData.lastname),
