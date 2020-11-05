@@ -256,29 +256,7 @@
     box-shadow: none;
 }
 
-/* .vendor-apply-btn.no:hover::after{
-    content: "😭";
-    position: absolute;
-    font-size: 2.2rem;
-    top: 0.7rem;
-    right: 1.2rem;
-} */
-
 @media only screen and (max-width:800px){
-    #post-box .gallery label{
-        width: 46%;
-        margin: 0.6rem 2%;
-        min-width: 100px;
-        height: 15rem;
-        color: #b9b9b9;
-        font-size: 1.4rem;
-        font-weight: 500;
-        padding: 1rem;
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-        background-color: #eeeeee;
-    }
 
     #post-box label[for="option-box"] + #option-box > *{
         width: 50%;

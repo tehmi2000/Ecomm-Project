@@ -115,21 +115,16 @@ const createNav = function(number, img, active) {
     active = active || false; 
     
     let container = document.querySelector(".card-container .product-card .product-nav");
-    let span0 = null;
-    if(active){
-        span0 = createComponent("SPAN", null, ["active"]);
-    }else{
-        span0 = createComponent("SPAN");
-    }
+    let span0 = (active)? createComponent("SPAN", null, ["active"]) : createComponent("SPAN");
     
     span0.setAttribute(`data-nav-${number}`, true);
     span0.setAttribute("data-pic", img);
+    span0.style.backgroundImage = `url(${img})`;
+    
     span0.addEventListener("click", function(evt) {
         setActiveNav(evt.currentTarget);
         let navImage = evt.currentTarget.getAttribute("data-pic");
         let imgSource = (navImage === '')? "/assets/images/nullimg.png" : navImage;
-
-        // console.log(imgSource);
 
         allFields["frontImage"].style.backgroundImage = `url(${imgSource})`;
         let img00 = generateTestImage(`${imgSource}`);

@@ -78,7 +78,7 @@
         <div class="lg-100 control-body">
             <div class="lg-100 header">
                 <h2 id="title">Modify A Product</h2>
-                <h5 id="subtitle">Product ID: 5eac33ecc232aaaba</h5>
+                <h5 id="subtitle">Product ID: ---</h5>
             </div>
 
             <div class="lg-100 body">
@@ -189,7 +189,7 @@
                         font-weight: 500;
                         border-radius: 3px;
                         padding: 1rem;
-                        background-image: url("/assets/images/IMG-20180112-WA0008.jpg");
+                        background-image: url("/assets/images/nullimg.png");
                         background-repeat: no-repeat;
                         background-size: contain;
                         background-position: center;
@@ -198,13 +198,26 @@
 
                     @media only screen and (max-width:800px){
                         #post-box .gallery{
-                            height: 35rem;
+                            flex-direction: column-reverse;
+                            height: auto;
                         }
 
                         .display-pane{
-                            width: calc(100% - 15vw - 2rem);
-                            max-width: 40rem;
+                            width: 100%;
+                            max-width: 100%;
+                            height: 30rem;
                             align-items: center;
+                        }
+
+                        .preview-pane{
+                            width: auto;
+                            max-height: unset;
+                            overflow-x: auto;
+                            overflow-y: hidden;
+                            margin-top: 2rem;
+                            margin-left: 0;
+                            /* padding-left: 1rem; */
+                            padding-right: 0;
                         }
 
                         .preview-pane .preview-img{
@@ -214,7 +227,29 @@
                             min-width: 7.5rem;
                             object-fit: contain;
                             padding: 1rem;
-                            margin: 0 auto 1rem;
+                            margin: 0 2%;
+                        }
+
+                        .preview-pane .preview-img:hover{
+                            outline: 2px solid orangered;
+                            /* box-shadow: 0 0 8px dodgerblue; */
+                            background-color: unset;
+                        }
+
+                        .preview-pane .cols.slider{
+                            flex-direction: row;
+                            width: auto;
+                            max-height: 100%;
+                            overflow-y: auto;
+                            margin-left: 0;
+                            justify-content: center;
+                            padding: 0.5rem 0;
+                            /* padding-left: 1rem; */
+                            /* padding-right: 2rem; */
+                        }
+
+                        .display-pane #image-edit-controls{
+                            top: calc(100% - 6rem);
                         }
 
                         .display-pane #image-edit-controls > *{
@@ -227,10 +262,10 @@
                         <div class="rows gallery">
                             <div class="preview-pane">
                                 <div class="cols slider">
-                                    <img src="/assets/images/nullimg.png" data-src="/assets/images/IMG-20180112-WA0008.jpg" alt="An" class="preview-img lazyload">
-                                    <img src="/assets/images/nullimg.png" data-src="/assets/images/IMG-20180112-WA0008.jpg" alt="An" class="preview-img lazyload">
-                                    <img src="/assets/images/nullimg.png" data-src="/assets/images/IMG-20180112-WA0008.jpg" alt="An" class="preview-img lazyload">
-                                    <img src="/assets/images/nullimg.png" data-src="/assets/images/IMG-20180112-WA0008.jpg" alt="An" class="preview-img lazyload">
+                                    <img src="/assets/images/nullimg.png" class="dummy preview-img">
+                                    <img src="/assets/images/nullimg.png" class="dummy preview-img">
+                                    <img src="/assets/images/nullimg.png" class="dummy preview-img">
+                                    <img src="/assets/images/nullimg.png" class="dummy preview-img">
                                 </div>
                             </div>
                             <div class="cols display-pane">

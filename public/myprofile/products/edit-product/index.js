@@ -2,20 +2,11 @@ if(!getCookie("univers-username")){
     window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
 };
 
-const imgUrls = {};
+const itemID = getQuery()['itemid'];
+// const imgUrls = {};
 const globals = {
-    imgSpace : 4
+    // imgSpace : 4
 };
-
-document.addEventListener("DOMContentLoaded", function() {
-    // showPostForm();
-
-    // document.querySelector("#post-box #addToStore-form").addEventListener("submit", formHandler);
-    // document.querySelectorAll("#post-box [name='item-image']").forEach(element => {
-    //     element.addEventListener("change", imageUploadHandler);
-    // });
-    
-});
 
 const displayUploadState = function(statusText, end, status){
     status = status || 200;
@@ -210,93 +201,6 @@ const formHandler = function(evt) {
     });
 };
 
-const showPostForm = function() {
-
-    const getAllSizes = function() {
-        const createSizeOption = function(container, options) {
-            let elementOptions = options.map(item => {
-                const opt = create("OPTION");
-                opt.value = item.name;
-                opt.innerHTML = item.name;
-                return opt;
-            });
-            container = joinComponent(container, ...elementOptions);
-        };
-
-        fetch(`/api/goods/item-sizes`).then(async response => {
-            try {
-                const container = document.querySelector("#props-box #size-tab select");
-                let result = await response.json();
-                globals.itemSizes = result;
-
-                container.innerHTML = "";
-                createSizeOption(container, result);
-            } catch (err) {
-                console.error(err);
-            }
-        }).catch(function(error) {
-            console.error(error);
-        });
-    };
-
-    const displaySizeOption = function(container, object){
-        // <span class="size-item rows">S</span>
-        let elementOptions = object.sizes.map(item => {
-            const opt = createComponent("SPAN", item, ["size-item", "rows"]);
-            return opt;
-        });
-        container.innerHTML = "";
-        container = joinComponent(container, ...elementOptions);
-    };
-
-    document.title = `${document.title} || Sell Item`;
-    document.querySelector(".control-body .body").style.height = "auto";
-    document.querySelector(".control-body #post-box").style.display = "flex";
-
-    document.querySelectorAll(`#post-box .tab-controls > *`).forEach(element => {
-        element.addEventListener("click", function(evt){
-            let tabID = evt.currentTarget.getAttribute("data-id");
-            document.querySelector(`#${tabID}`).style.display = "flex";
-            document.querySelector(`.tab-controls [data-id='${tabID}']`).style.display = "none";
-        });
-    });
-
-    document.querySelectorAll("#props-box [id$='-tab'] .heading > *:last-child").forEach(element => {
-        element.addEventListener("click", function(evt){
-            let propPaneID = evt.currentTarget.getAttribute("data-id");
-            document.querySelector(`#${propPaneID}`).style.display = "none";
-            document.querySelector(`.tab-controls [data-id='${propPaneID}']`).style.display = "block";
-        });
-    });
-
-    document.querySelector("#props-box #size-tab select").addEventListener("change", function(evt){
-        const container = document.querySelector("#props-box #size-tab #size-props");
-
-        displaySizeOption(container, globals[`itemSizes`].find(item => {
-            return item.name === evt.currentTarget.value;
-        }));
-    });
-
-    // Check for vendorship...
-    // fetch(`/api/vendors/${getCookie("univers-username").value}`).then(async function(response) {
-    //     try {
-    //         let cover = document.querySelector(".vendor-bg-cover");
-    //         let result = await response.json();
-
-    //         if(result.length > 0 && result[0].error) cover.style.top = "0vh";
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }).catch(function(error) {
-    //     console.log(error);
-    // });
-
-    // Load all categories...
-    getAllCategories();
-    // Load all sizes...
-    getAllSizes();
-};
-
 const placeAds = function(container) {
 
     let adsDiv = createComponent("DIV", null, ["item"]);
@@ -321,11 +225,10 @@ const createCheckOption = function(container, option) {
     // <label for="">Fasion</label>
 
     const id = `cat-option-${genHex(4)}`;
-    let span0 = create("SPAN");
+    let span0 = createComponent("SPAN", null, ["wrapper"]);
     const input0 = create("INPUT");
     const label0 = createComponent("LABEL", option.title);
 
-    span0.classList.add("wrapper");
     input0.setAttribute("type", "checkbox");
     input0.setAttribute("name", "categories");
     input0.setAttribute("value", option.title);
@@ -333,11 +236,8 @@ const createCheckOption = function(container, option) {
     label0.setAttribute("for", id);
 
     input0.addEventListener("change", function(evt) {
-        if(evt.target.checked === true){
-            document.querySelector(`[value='${evt.target.value}']+label`).style.color = "orangered";
-        }else{
-            document.querySelector(`[value='${evt.target.value}']+label`).style.color = "black";
-        }
+        let categoryOption = document.querySelector(`[value='${evt.target.value}']+label`);
+        categoryOption.style.color = (evt.target.checked === true)? "orangered" : "black";
     });
 
     span0 = joinComponent(span0, input0, label0);
@@ -345,13 +245,12 @@ const createCheckOption = function(container, option) {
 };
 
 const getAllCategories = function() {
-    fetch(`/api/categories`).then(async function(response) {
+    fetch(`/api/categories`).then(async response => {
         try {
-            let category_list = await response.json();
-            forEach(category_list, function(element) {
+            let categoryList = await response.json();
+            categoryList.forEach(element => {
                 createCheckOption(document.querySelector("#option-box"), element);
             });
-
         } catch (err) {
             console.error(err);
         }
@@ -360,8 +259,146 @@ const getAllCategories = function() {
     });
 };
 
+const getAllSizes = function() {
+    let itemSizesSuccessCallback = function (result) {
+        let container = document.querySelector("#props-box #size-tab select");
+        globals.itemSizes = result;
+        container.innerHTML = "";
+        let elementOptions = result.map(item => {
+            const opt = createComponent("OPTION", item.name);
+            opt.value = item.name;
+            return opt;
+        });
+        container = joinComponent(container, ...elementOptions);
+    };
+
+    fetchAndCacheData(`/api/goods/item-sizes`, itemSizesSuccessCallback);
+};
+
+const loadNeededApis = function () {
+    
+    // Load all categories...
+    getAllCategories();
+    // Load all sizes...
+    getAllSizes();
+};
+
+const loadElementHandlers = function (productData) {
+    // document.querySelector("#post-box #addToStore-form").addEventListener("submit", formHandler);
+    // document.querySelectorAll("#post-box [name='item-image']").forEach(element => {
+    //     element.addEventListener("change", imageUploadHandler);
+    // });
+
+    if(productData !== null){
+        let previewImgContainer = document.querySelector("#addToStore-form .preview-pane .slider");
+        document.querySelector(".control-body #subtitle").textContent = `Product ID: ${itemID}`;
+        
+        // Create preview images and assign handlers to each
+        let arrayOfImgElement = productData['item-image'].map((imgLink, index) => {
+            let imgElement = createComponent("IMG", null, ["preview-img", "lazyload"]);
+            imgElement.src = "/assets/images/nullimg.png";
+            imgElement.setAttribute("data-src", imgLink);
+            imgElement.alt = `${productData["item-name"]} ${index}`;
+            return imgElement;
+        });
+    
+        previewImgContainer.innerHTML = '';
+        arrayOfImgElement.forEach(el => {
+            previewImgContainer.appendChild(el);
+        });
+
+        // Make first image the initial display
+        // productData['item-image']
+        let displayImgContainer = document.querySelector("#addToStore-form #preview-image-1");
+        let displayImgInput = document.querySelector("#addToStore-form #changepic");
+
+        displayImgContainer.style.backgroundImage = `url(${productData['item-image'][0]})`;
+        // Input data into each field in form
+    }
+    
+
+    document.querySelectorAll(`#post-box .tab-controls > *`).forEach(element => {
+        element.addEventListener("click", function(evt){
+            let tabID = evt.currentTarget.getAttribute("data-id");
+            document.querySelector(`#${tabID}`).style.display = "flex";
+            document.querySelector(`.tab-controls [data-id='${tabID}']`).style.display = "none";
+        });
+    });
+
+    document.querySelectorAll("#props-box [id$='-tab'] .heading > *:last-child").forEach(element => {
+        element.addEventListener("click", function(evt){
+            let propPaneID = evt.currentTarget.getAttribute("data-id");
+            document.querySelector(`#${propPaneID}`).style.display = "none";
+            document.querySelector(`.tab-controls [data-id='${propPaneID}']`).style.display = "block";
+        });
+    });
+
+    document.querySelector("#props-box #size-tab select").addEventListener("change", function(evt){
+        const container = document.querySelector("#props-box #size-tab #size-props");
+
+        // <span class="size-item rows">S</span>
+        let selectedObject = globals[`itemSizes`].find(item => {
+            return item.name === evt.currentTarget.value;
+        });
+
+        let elementOptions = selectedObject.sizes.map(item => {
+            const opt = createComponent("SPAN", item, ["size-item", "rows"]);
+            return opt;
+        });
+        container.innerHTML = "";
+        container = joinComponent(container, ...elementOptions);
+    });    
+}
+
+const checkForVendorship = () => {
+    // Check for vendorship...
+    fetch(`/api/vendors/${getCookie("univers-username").value}`).then(async function(response) {
+        try {
+            let cover = document.querySelector(".vendor-bg-cover");
+            let result = await response.json();
+
+            if(result.length > 0 && result[0].error) {
+                cover.style.top = "0vh";
+            }else{
+                loadNeededApis();
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    }).catch(error => {
+        console.error(error);
+    });
+};
+
+const getProductDetails = function() {
+    // fetch details of the product from the database...
+    if(itemID !== null){
+        fetch(`/api/goods/${itemID}`).then(async function(response) {
+            try {
+                let result = await response.json();
+                // console.log(result);
+                let [product] = result;
+                loadElementHandlers(product);
+    
+            } catch (error) {
+                console.error(error);
+            }
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+    
+};
+
+const initializeForm = function() {
+    // document.title = `${document.title}`;
+    document.querySelector(".control-body .body").style.height = "auto";
+    checkForVendorship();
+    getProductDetails();
+};
 
 
-
-
-
+document.addEventListener("DOMContentLoaded", function() {
+    initializeForm();
+});

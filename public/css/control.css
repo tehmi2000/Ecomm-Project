@@ -109,7 +109,7 @@ main{
 
 .control-body .body > *{
     overflow-x: hidden;
-    display: none;
+    /* display: none; */
     height: 100%;
     min-height: 70vmin;
     padding: 1rem 0;
