@@ -43,14 +43,17 @@ main{
     line-height: 1.3;
     font-size: 2.2rem;
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
     margin-top: 0;
 }
 
 .product-card .product-short-desc{
+    text-transform: capitalize;
     line-height: 1.5;
+    margin-top: 0.3rem;
     margin-bottom: 1rem;
     font-size: 1.3rem;
+    font-style: italic;
     color: #aaa;
 }
 
@@ -154,7 +157,7 @@ main{
 }
 
 .info-card *{
-    color: #010916;
+    color: #010510;
 }
 
 .info-card .price-container{
@@ -248,8 +251,8 @@ main{
 }
 
 .nav-tab.active{
-    color: #010916;
-    border-bottom: 2px solid #010916;
+    color: #010510;
+    border-bottom: 2px solid #010510;
 }
 
 .tab-wrapper .tab-content{
@@ -281,30 +284,37 @@ main{
 }
 
 .pref-options .opt{
-    /* border: 1px solid #222; */
+    /* border: 1px solid green; */
+    margin-bottom: 1rem;
     margin-right: 1rem;
 }
 
 .pref-options > * .opt{
     text-align: center;
+    /* border: 1px solid red; */
+    align-items: flex-start;
 }
 
 .pref-options .opt-label{
     text-transform: uppercase;
     margin-left: 2px;
     margin-bottom: 3px;
-    color: #445;
+    color: #223;
 }
 
 .pref-options select, .pref-options input, .total-input{
     display: block;
     text-align: center;
     margin-top: 1rem;
-    border: 1px solid #cce;
+    border: 1px solid #aaaab0;
     border-radius: 3px;
     width: 30%;
-    min-width: 150px;
+    min-width: 100px;
     padding: 1rem;
+}
+
+.pref-options .total-input{
+    width: 100%;
 }
 
 .pane{
@@ -384,11 +394,10 @@ main{
     /*  */
     .product-card .product-name{
         font-size: 1.7rem;
-        margin-bottom: 0.5rem;
     }
 
     .product-card .product-short-desc{
-        margin-top: 0.5rem;
+        /* margin-top: 0.5rem; */
         font-size: 1.2rem;
     }
 
@@ -396,19 +405,6 @@ main{
         margin-top: 0.5rem;
         margin-bottom: 1.5rem;
     }
-
-    /* .product-card .product-nav > *{
-        width: 1rem;
-        height: 1rem;
-        
-    }
-
-    .product-card .product-nav .active::after{
-        width: 1.8rem;
-        height: 1.8rem;
-        left: -0.4rem;
-        top: -0.4rem;
-    } */
 
     .product-card .product-nav > *{
         width: 4.0rem;

@@ -25,6 +25,64 @@
 </head>
 
 <body>
+    <style>
+        .color-element.selected::after, .color-element{
+            border-radius: 10px;
+        }
+
+        .color-element{
+            position: relative;
+            width: 4rem;
+            height: 4rem;
+            border: 1px solid #ccc;
+            margin: 1rem;
+            margin-left: 0;
+            margin-right: 2rem;
+            background-color: #ccc;
+            transition: all 0.3s ease;
+        }
+
+        .color-element.selected{
+            border: none;
+            width: 4rem;
+            height: 4rem;
+        }
+
+        .color-element.selected::after{
+            content: "";
+            position: absolute;
+            width: 5rem;
+            height: 5rem;
+            border: 1px solid orange;
+            left: -0.5rem;
+            top: -0.5rem;
+            box-sizing: border-box;
+        }
+
+        #no-color-element, #no-color-element *{
+            color: #bbb !important;
+        }
+
+        #no-color-element, #no-color-element .nullcircle{
+            border: 1px solid #e0e0e0;
+        }
+
+        #no-color-element{
+            border-radius: 5vh 0 0 5vh;
+            align-items: center;
+            margin: 1rem 2rem 1rem 0;
+            padding-right: 1rem;
+        }
+
+        #no-color-element .nullcircle{
+            position: relative;
+            width: 4rem;
+            height: 4rem;
+            margin-right: 0.5rem;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+        }
+    </style>
     <header>
         <div class="rows section-top">
             <div class="left-tab">
@@ -69,8 +127,8 @@
                     <div class="rows slide-container">
                         <div id="product-pic" class="rows product-img">
                             <div class="rows slider-buttons">
-                                <button><i class="icofont-arrow-left"></i></button>
-                                <button><i class="icofont-arrow-right"></i></button>
+                                <button data-previous="0"><i class="icofont-arrow-left"></i></button>
+                                <button data-next="1"><i class="icofont-arrow-right"></i></button>
                             </div>
                         </div>
                     </div>
@@ -94,34 +152,37 @@
     
                         <div class="tab-content">
                             <div class="cols content active" id="description">
-                                <div class="" id="full-desc">
-                                    Full description text appears here
-                                </div>
-                                
+                                <div id="full-desc">Full description text appears here</div>
                                 <div class="rows pref-options">
-                                    <div class="rows lg-100">
+                                    <div class="cols lg-100">
                                         <div class="cols opt">
-                                            <span class="opt-label">Color</span>
-                                            <select name="item-color" id="item-color">
-                                                <option value="">-- Select --</option>
-                                            </select>
+                                            <span class="opt-label">Product Color</span>
+                                            <div id="item-colors" class="rows" style="flex-wrap: wrap; align-items: center;">
+                                                <!-- <div id="no-color-element" class="rows">
+                                                    <div class="nullcircle"></div>
+                                                    <span>No color specified for this product</span>
+                                                </div> -->
+                                                <div class="color-element"></div>
+                                                <div class="color-element"></div>
+                                                <div class="color-element"></div>
+                                            </div>
                                         </div>
                     
                                         <div class="cols opt">
-                                            <span class="opt-label">SIZE</span>
+                                            <span class="opt-label">Select A Size</span>
                                             <select name="item-size" id="item-size">
                                                 <option value="">-- Select --</option>
                                             </select>
                                         </div>
                                     </div>
 
-                                    <div class="rows lg-100">
-                                        <div class="cols opt">
+                                    <div class="rows lg-100" style="justify-content: flex-start;">
+                                        <div class="cols opt lg-30">
                                             <span class="opt-label">Quantity</span>
-                                            <input type="number" id="quantity-input" class="lg-100" min=1 value="1">
+                                            <input type="number" id="quantity-input" min=1 value="1">
                                         </div>
                     
-                                        <div class="cols opt total">
+                                        <div class="cols opt total lg-65">
                                             <span class="opt-label">Total Price</span>
                                             <span class="total-input">0</span>
                                         </div>
@@ -203,17 +264,20 @@
 
     <!-- Comment Widget By WidgetPack -->
     <script>
-        wpac_init = window.wpac_init || [];
-        wpac_init.push({widget: 'Comment', id: 27855, limit: 5, url: `https://oneunivers.herokuapp.com/view/${itemID}`});
-        (function() {
-            if ('WIDGETPACK_LOADED' in window) return;
-            WIDGETPACK_LOADED = true;
-            var mc = document.createElement('script');
-            mc.async = true;
-            mc.defer = true;
-            mc.src = 'https://embed.widgetpack.com/widget.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-        })();
+        window.onload = function (ev) {
+            fetchProduct()
+            wpac_init = window.wpac_init || [];
+            wpac_init.push({widget: 'Comment', id: 27855, limit: 5, url: `https://oneunivers.herokuapp.com/view/${itemID}`});
+            (function() {
+                if ('WIDGETPACK_LOADED' in window) return;
+                WIDGETPACK_LOADED = true;
+                var mc = document.createElement('script');
+                mc.async = true;
+                mc.defer = true;
+                mc.src = 'https://embed.widgetpack.com/widget.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+            })();
+        }
     </script>
 </body>
 </html>

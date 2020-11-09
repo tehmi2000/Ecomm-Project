@@ -3,6 +3,7 @@ let globalItem = null
 let preferredItem = {};
 let allFields = null;
 let ct = null;
+let activeImageIndex = 0;
 
 const priceQtyHandler = function(evt) {
     let qty = evt.currentTarget.value;
@@ -99,6 +100,21 @@ const setActiveTab = function(element) {
     document.querySelector(`#${contentId}`).classList.add("active");
 };
 
+const setProductImage = function (img, imgIndex) {
+    img = img || '';
+    imgIndex = imgIndex || 0;
+
+    let imgSource = (img === '')? "/assets/images/nullimg.png" : img;
+    allFields["frontImage"].style.backgroundImage = `url(${imgSource})`;
+    activeImageIndex = imgIndex;
+
+    // Set background color to dominant color of product image
+    let img00 = generateTestImage(`${imgSource}`);
+    img00.onload = function(){
+        setDominantColor(img00);
+    };
+};
+
 const setDominantColor = function (img) {
     let dominantColor = `rgb(${ct.getColor(img).join(',')})`;
     document.querySelector("main .bg-image-container").style.backgroundColor = dominantColor;
@@ -108,29 +124,26 @@ const generateTestImage = function(src){
     let img00 = new Image(150, 150);
     img00.crossOrigin = "anonymous";
     img00.src = `${src}`;
+    img00.async = true;
     return img00;
 };
 
 const createNav = function(number, img, active) {
-    active = active || false; 
+    // debugger;
+    active = active || false;
     
     let container = document.querySelector(".card-container .product-card .product-nav");
     let span0 = (active)? createComponent("SPAN", null, ["active"]) : createComponent("SPAN");
     
-    span0.setAttribute(`data-nav-${number}`, true);
+    span0.setAttribute(`data-nav`, number);
     span0.setAttribute("data-pic", img);
     span0.style.backgroundImage = `url(${img})`;
-    
+
     span0.addEventListener("click", function(evt) {
         setActiveNav(evt.currentTarget);
         let navImage = evt.currentTarget.getAttribute("data-pic");
-        let imgSource = (navImage === '')? "/assets/images/nullimg.png" : navImage;
-
-        allFields["frontImage"].style.backgroundImage = `url(${imgSource})`;
-        let img00 = generateTestImage(`${imgSource}`);
-        img00.onload = function(ev){
-            setDominantColor(img00);
-        };
+        let navNumber = evt.currentTarget.getAttribute("data-nav");
+        setProductImage(navImage, navNumber);
     });
 
     container.appendChild(span0);
@@ -141,42 +154,47 @@ const fetchProduct = function () {
         try {
             let data = await response.json();
             let [item] = data;
-            globalItem = item;
     
             if(item.error && item.code === 404){
                 alert(item.message);
             }else{
+                globalItem = item;
                 // console.log(item);
-                const saveBtn = allFields["saveBtn"], cartBtn = allFields["cartBtn"], quantity = allFields["quantity"];
+                document.title = `Univers | ${item["item-name"].toUpperCase()}`;
     
-                saveBtn.setAttribute("id", `save_${globalItem["_id"]}`);
-                cartBtn.setAttribute("id", `cart_${globalItem["_id"]}`);
+                allFields["saveBtn"].id = `save_${globalItem["_id"]}`;
+                allFields["cartBtn"].id = `cart_${globalItem["_id"]}`;
     
-                saveBtn.addEventListener("click", saveHandler);
-                cartBtn.addEventListener("click", cartHandler);
-                quantity.addEventListener("change", priceQtyHandler);
+                allFields["saveBtn"].addEventListener("click", saveHandler);
+                allFields["cartBtn"].addEventListener("click", cartHandler);
+                allFields["quantity"].addEventListener("change", priceQtyHandler);
     
                 let price = formatAsMoney(parseInt(item["item-price"]), currencyLocale);
     
                 allFields["price"].innerHTML = price;
-                allFields["total"].innerHTML = formatAsMoney(parseInt(item["item-price"]) * quantity.value, currencyLocale);;
+                allFields["total"].innerHTML = formatAsMoney(parseInt(item["item-price"]) * allFields["quantity"].value, currencyLocale);;
                 preferredItem["item-qty"] = 1;
                 
-                document.title = `Univers | ${item["item-name"].toUpperCase()}`;
                 allFields["title"].innerHTML = item["item-name"];
                 allFields["shortDesc"].innerHTML = item["short-desc"] || 'No summary available for this product';
                 allFields["longDesc"].innerHTML = item["item-desc"];
+
                 if(item["price-discount"]){
                     allFields["discount"].style.display = "block";
                     allFields["discount"].innerHTML = `-${item["price-discount"]}% off`;
                 }
-                
-                allFields["frontImage"].style.backgroundImage = `url(${item["item-image"][0]})`;
 
-                let img00 = generateTestImage(`${item["item-image"][0]}`);
-                img00.onload = function(ev){
-                    setDominantColor(img00);
-                };
+                let noColorElement = `<div id="no-color-element" class="rows"><div class="nullcircle"></div><span>No color specified for this product</span></div>`;
+                if (item["item-colors"]) {
+                    let allColorElement = item["item-colors"].map(color => {
+                        return `<div class="color-element" style="background-color: ${color};"></div>`
+                    }).join('');
+
+                    allFields['colorContainer'].innerHTML = (item["item-colors"].length > 0)? allColorElement : noColorElement;
+                }
+                else{
+                    allFields['colorContainer'].innerHTML = noColorElement;
+                }
 
                 item["item-image"].forEach((img, index) => {
                     if(index === 0){
@@ -185,6 +203,25 @@ const fetchProduct = function () {
                         createNav(index, img);
                     }
                 });
+
+                // Add click listeners to previous and next buttons
+                document.querySelector(".slider-buttons button[data-previous]").addEventListener("click", ev => {
+                    if(globalItem["item-image"][activeImageIndex - 1]){
+                        // Set Product Image to previous image
+                        setProductImage(globalItem["item-image"][activeImageIndex - 1], activeImageIndex - 1);
+                        setActiveNav(document.querySelector(`[data-nav='${activeImageIndex}']`));
+                    }
+                });
+
+                document.querySelector(".slider-buttons button[data-next]").addEventListener("click", function (ev) {
+                    if(globalItem["item-image"][activeImageIndex + 1]){
+                        // Set Product Image to next image
+                        setProductImage(globalItem["item-image"][activeImageIndex + 1], activeImageIndex + 1);
+                        setActiveNav(document.querySelector(`[data-nav='${activeImageIndex}']`));
+                    }
+                });
+
+                setProductImage(item["item-image"][0]);
             }
         } catch (error) {
             console.error(error);
@@ -203,6 +240,7 @@ const loadNeededElement = function () {
         backImage: document.querySelector(".bg-image-container"),
         price: document.querySelector(".info-card .product-price"),
         discount: document.querySelector('.info-card .discount-label'),
+        colorContainer: document.querySelector('.info-card .pref-options #item-colors'),
         quantity: document.querySelector('.info-card .pref-options #quantity-input'),
         total: document.querySelector('.info-card .pref-options .total-input'),
         saveBtn: document.querySelector(".info-card .product-controls button:first-child"),
@@ -214,11 +252,10 @@ const loadNeededElement = function () {
             setActiveTab(evt.currentTarget);
         })
     });
-
 };
 
 document.addEventListener("DOMContentLoaded", function () {
     ct = new ColorThief();
     loadNeededElement();
-    fetchProduct();
+    // fetchProduct();
 });
