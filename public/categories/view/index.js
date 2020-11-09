@@ -41,9 +41,9 @@ const fetchData = (searchQuery, formattedQuery) => {
                     createItem(container, item);
                 });
 
-                document.querySelectorAll(".item .item-name a:first-child").forEach(el => {
-                    $clamp(el, {clamp: 2});
-                });
+                // document.querySelectorAll(".item .item-name a:first-child").forEach(el => {
+                //     $clamp(el, {clamp: 2});
+                // });
             }
 
         } catch (error) {
@@ -139,7 +139,7 @@ const createItem = function(container, object){
         let img0 = createComponent("IMG", null, ["lazyload"]);
         let span0 = createComponent("SPAN", null, ["lg-100", "cols"]);
             let span1 = createComponent("SPAN", null, ["item-name", "cols"]);
-                let span10 = createComponent("A", object["item-name"], ["strip-link"]);
+                let span10 = createComponent("A", object["item-name"], ["strip-link", "line-clamp", "line-clamp-2"]);
                 let span11 = createComponent("SPAN", `${object["short-desc"] || 'No summary available'}`);
             let span2 = createComponent("SPAN", null, ["item-control", "rows", "lg-100"]);
                 let span20 = createComponent("SPAN", `${price}`, ["item-number"]);

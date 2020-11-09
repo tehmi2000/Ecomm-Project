@@ -199,6 +199,10 @@ marquee{
     object-fit: contain;
 }
 
+.pane .item .line-clamp{
+    
+}
+
 .pane .item img.item-delivery-method{
     background-image: none;
     min-height: unset;

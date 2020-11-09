@@ -18,7 +18,7 @@ const createItem = function(container, object){
                 let i0 = createComponent("I", null, [object.image]);
             let div2 = createComponent("DIV", null, ["item-description", "cols"]);
                 let span0 = createComponent("SPAN", object.title, ["category-title"]);
-                let span1 = createComponent("SPAN", moreInfo, ["hidden-info"]);
+                let span1 = createComponent("SPAN", moreInfo, ["hidden-info", "line-clamp", "line-clamp-3"]);
 
     i0.style.color = "#fcfcfc";
     span0.style.color = "#fcfcfc";
@@ -57,9 +57,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             createSuggestions(document.querySelector(".pane.sug"), document.querySelector(".pane.sug #suggestion-container"));
             
-            document.querySelectorAll(".item .item-description .hidden-info").forEach(el => {
-                $clamp(el, {clamp: 3});
-            });
+            // document.querySelectorAll(".item .item-description .hidden-info").forEach(el => {
+            //     $clamp(el, {clamp: 3});
+            // });
         } catch (error) {
             console.error(error);
         }

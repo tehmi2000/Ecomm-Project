@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
 const createNoItemTag = function(container, text){
     container.style.justifyContent = "center";
     container.style.alignItems = "center";
+    if (container.classList.contains("rows")) container.classList.replace("rows", "cols");
     container.innerHTML = `<span id='no-item'>${text}</span><a id="go-shopping-btn" href="/">START SHOPPING</a>`;
 };
 

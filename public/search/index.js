@@ -34,11 +34,9 @@ const fetchData = (searchQuery, formattedQuery) => {
                     itemList[`${item["_id"]}`] = item;
                     createItem(container, item);
                 });
-
-                document.querySelectorAll(".item .item-name a:first-child").forEach(el => {
-                    $clamp(el, {clamp: 2});
-                });
             }
+
+            createSuggestions(document.querySelector(".pane.sug"), document.querySelector(".pane.sug #suggestion-container"));
 
         } catch (error) {
             console.log(error);
@@ -52,7 +50,6 @@ const createNoItemTag = function(container, query){
     container.style.justifyContent = "center";
     container.style.alignItems = "center";
     container.innerHTML = `<span id='no-item' class='cols'><img src="../assets/images/portfolium-robot.png" alt=""><span>Sorry, we couldn't find any item that matched '${query}'.</span></span>`;
-    createSuggestions(document.querySelector(".pane.sug"), document.querySelector(".pane.sug #suggestion-container"));
 };
 
 const placeAds = function(container) {
@@ -125,7 +122,7 @@ const createItem = function(container, object){
         let img0 = createComponent("IMG", null, ["lazyload"]);
         let span0 = createComponent("SPAN", null, ["lg-100", "cols"]);
             let span1 = createComponent("SPAN", null, ["item-name", "cols"]);
-                let span10 = createComponent("A", object["item-name"], ["strip-link"]);
+                let span10 = createComponent("A", object["item-name"], ["strip-link", "line-clamp", "line-clamp-2"]);
                 let span11 = createComponent("SPAN", `${object["short-desc"] || 'No summary available'}`);
             let span2 = createComponent("SPAN", null, ["item-control", "rows", "lg-100"]);
                 let span20 = createComponent("SPAN", `${price}`, ["item-number"]);
@@ -199,3 +196,7 @@ const createDummyItem = function(container, number){
         container.appendChild(a0);
     }
 };
+
+window.onload = function () {
+    createSuggestions
+}

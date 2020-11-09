@@ -100,7 +100,7 @@ main h1{
 }
 
 .item:hover .item-description .hidden-info{
-    height: 6.6rem;
+    height: auto;
     padding: 0.5rem 2rem;
     color: #eeeeef;
     background-color: rgba(0, 0, 0, 0.07);

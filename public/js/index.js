@@ -40,7 +40,7 @@ const createItem = function(container, object){
         let div1 = createComponent("DIV", null, ["item-img"]);
             let img0 = createComponent("IMG", null, ["lazyload"]);
         let div2 = createComponent("DIV", null, ["item-description", "cols"]);
-            let span0 = createComponent("SPAN", object["item-name"]);
+            let span0 = createComponent("SPAN", object["item-name"], ["line-clamp", "line-clamp-2"]);
             let span1 = createComponent("SPAN", price, ["item-price"]);
                 let sup0 = createComponent("SUP", originalPrice, ["strike"]);
         let div3 = createComponent("DIV", null, ["rows"]);
@@ -139,9 +139,9 @@ const getMostPopular = function() {
                 createItem(container, object);
             });
 
-            document.querySelectorAll(".item .item-description span:first-child").forEach(el => {
-                $clamp(el, {clamp: 2});
-            });
+            // document.querySelectorAll(".item .item-description span:first-child").forEach(el => {
+            //     $clamp(el, {clamp: 2});
+            // });
         } catch (error) {
             console.error(error);
         }
@@ -209,9 +209,9 @@ const getRecommended = function() {
                 });
             }
 
-            document.querySelectorAll(".item .item-description span:first-child").forEach(el => {
-                $clamp(el, {clamp: 2});
-            });
+            // document.querySelectorAll(".item .item-description span:first-child").forEach(el => {
+            //     $clamp(el, {clamp: 2});
+            // });
         } catch (error) {
             console.error(error);
         }
@@ -235,9 +235,9 @@ const getDiscountedProducts = function () {
                     createItem(container, object);
                 });
 
-                document.querySelectorAll(".item .item-description span:first-child").forEach(el => {
-                    $clamp(el, {clamp: 2});
-                });
+                // document.querySelectorAll(".item .item-description span:first-child").forEach(el => {
+                //     $clamp(el, {clamp: 2});
+                // });
             }
             
             else {

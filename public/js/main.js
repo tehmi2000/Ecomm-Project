@@ -29,7 +29,7 @@ const createSuggestions = function(parentElement, containerElement) {
     const createSugItem = function(props) {
         let span0 = createComponent("SPAN", null, ["rows", "sug-item"]);
             let img0 = create("IMG");
-            let span01 = createComponent("SPAN", null, ["item-name"]);
+            let span01 = createComponent("SPAN", null, ["item-name", "line-clamp", "line-clamp-2"]);
 
         img0.setAttribute('src', props['item-image'][0]);
         img0.setAttribute('alt', '');
@@ -66,10 +66,6 @@ const createSuggestions = function(parentElement, containerElement) {
 
             sugData.forEach(item => {
                 createSugItem(item);
-            });
-
-            document.querySelectorAll(".sug-item .item-name").forEach(el => {
-                $clamp(el, {clamp: 2});
             });
         } catch (error) {
             console.error(error);
