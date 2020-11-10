@@ -50,9 +50,9 @@ const getMyStoreItems = function() {
                             createStoreItem(container, item);
                         });
 
-                        document.querySelectorAll(".store-item .item-name").forEach(el => {
-                            $clamp(el, {clamp: 2});
-                        });
+                        // document.querySelectorAll(".store-item .item-name").forEach(el => {
+                        //     $clamp(el, {clamp: 2});
+                        // });
                     }else{
                         createNoItemTag(container, "Nothing in your store yet");
                     }
@@ -196,7 +196,7 @@ const createStoreItem = function(container, object) {
 
     let div0 = createComponent("div", null, ["grid","store-item", "gr"]);
         const img0 = createComponent("IMG", null, ["lazyload"]);
-        let span1 = createComponent("SPAN", `${object['item-name']}`, ["item-name"]);
+        let span1 = createComponent("SPAN", `${object['item-name']}`, ["item-name", "line-clamp", "line-clamp-2"]);
         let span2 = createComponent("SPAN", `Quantity: ${object['item-qty']}`, ["item-qty"]);
         let span3 = createComponent("SPAN", `${price}`, ["item-price"]);
         let div1 = createComponent("div", null, ["rows", "mod-controls"]);

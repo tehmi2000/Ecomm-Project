@@ -257,5 +257,5 @@ const loadNeededElement = function () {
 document.addEventListener("DOMContentLoaded", function () {
     ct = new ColorThief();
     loadNeededElement();
-    // fetchProduct();
+    fetchProduct();
 });
