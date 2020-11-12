@@ -137,10 +137,6 @@ const getMyCart = function() {
                     createItems(item);
                 });
 
-                document.querySelectorAll(".item .item-name").forEach(el => {
-                    $clamp(el, {clamp: 2});
-                });
-
                 // Animate items
                 gsap.from(document.querySelectorAll("#orders-box > *"), 0.6, {x: "100vw", ease: 'Power1.easeOut', stagger: 0.3})
 
@@ -334,7 +330,7 @@ const createItems = function(items, type) {
             let div10 = createComponent("div", null, ["rows", "top"]);
                 let div101 = createComponent("DIV", `${items['item-brand'] || items['categories'][0]}`, ["item-brand"]);
                 let button101 = createComponent("BUTTON", null, ["strip-btn", "icofont-close"]);
-            let span10 = createComponent("SPAN", `${items['item-name']} (x${items['item-qty']})`, ["item-name"]);
+            let span10 = createComponent("SPAN", `${items['item-name']} (x${items['item-qty']})`, ["item-name", "line-clamp", "line-clamp-2"]);
             let span11 = createComponent("SPAN", `${price}`, ["item-price"]);
             let span12 = createComponent("SPAN", null, ["item-controls"]);
                 const button120 = createComponent("BUTTON", "Save For Later");

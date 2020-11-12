@@ -16,8 +16,8 @@
     width: 18rem;
     height: 100%;
     object-fit: contain;
-    background-color: #eee;
-    border: 1px solid #ccc;
+    background-color: var(--bg-image-color);
+    border: var(--image-border);
 }
 
 .control-body .item div.info{
@@ -46,6 +46,7 @@
 }
 
 .control-body .item .item-name{
+    height: auto;
     font-weight: 400;
     text-align: left;
     font-size: 1.4rem;
@@ -154,7 +155,6 @@ footer{
         height: 100%;
         width: 13rem;
         object-fit: contain;
-        background-color: #eee;
     }
     
     .control-body .item div.info{

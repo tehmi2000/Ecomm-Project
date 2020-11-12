@@ -134,6 +134,7 @@ const createItem = function(container, object){
     // </a>
 
     let price = formatAsMoney(parseFloat(object["item-price"]), currencyLocale);
+    let imgSource = (object["item-image"][0] === '')? "/assets/images/nullimg.png" : object["item-image"][0];
 
     let a0 = createComponent("SPAN", null, ["item"]);
         let img0 = createComponent("IMG", null, ["lazyload"]);
@@ -151,7 +152,7 @@ const createItem = function(container, object){
     span10.setAttribute("href", `/view/${object._id}`);
     a0.setAttribute("id", object._id);
     a0.setAttribute("data-href", `/view/${object._id}`);
-    img0.setAttribute("data-src", `${object["item-image"][0]}`);
+    img0.setAttribute("data-src", `${imgSource}`);
     img0.setAttribute("alt", `${object["item-name"].toLowerCase()}`);
     button20.setAttribute("id", `save_${object._id}`);
     button21.setAttribute("id", `cart_${object._id}`);

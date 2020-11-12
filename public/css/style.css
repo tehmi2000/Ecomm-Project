@@ -8,7 +8,8 @@ html{
 }
 
 body{
-    
+    --bg-image-color: #f8f8f9;
+    --image-border: 1px solid #eaeafb;
     background-color: #fcfcff;
     padding: 0;
     margin: 0;

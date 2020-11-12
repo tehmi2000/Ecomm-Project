@@ -2,20 +2,10 @@ if(!getCookie("univers-username")){
     window.location.replace(`/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`);
 };
 
-const imgUrls = {};
 const globals = {
-    cart: {
-        items: [],
-        total: 0,
-        netTotal: 0
-    },
     saved: {
         items: []
-    },
-    store: {
-        items: []
-    },
-    imgSpace : 4
+    }
 };
 
 
@@ -50,11 +40,7 @@ const getSavedItems = function() {
                         adsPosition += 3;
                     }
                     globals.saved.items.push(item);
-                    createItems(item, "save");
-                });
-
-                document.querySelectorAll(".item .item-name").forEach(el => {
-                    $clamp(el, {clamp: 2});
+                    createItems(item);
                 });
                 gsap.from(document.querySelectorAll("#orders-box > *"), 0.6, {x: "100vw", ease: 'Power1.easeOut', stagger: 0.3})
 
@@ -89,33 +75,19 @@ const placeAds = function(container) {
     container.appendChild(adsDiv);
 };
 
-const removeItem = function(item_id, type){
+const removeItem = function(item_id){
     const container = document.querySelector("#orders-box");
-    const checkoutBtn = document.querySelector("[data-pay-btn]");
-    const apiUrl = (type === "save")? 'removeFromSaved' : 'removeFromCart';
+    const apiUrl = `/api/goods/save/${getCookie("univers-username").value}/removeFromSaved`;
 
-    fetch(`/api/goods/save/${getCookie("univers-username").value}/${apiUrl}`, {
+    fetch(apiUrl, {
         method: "POST",
         body: JSON.stringify({itemID: item_id}),
-        headers: {
-            "Content-Type": "application/json; charset=utf-8"
-        }
+        headers: { "Content-Type": "application/json; charset=utf-8" }
     }).then(async response => {
         try {
             let result = await response.json();
-            if(result && type === null){
-                const element = document.querySelector(`#cartItem_${item_id}`);
-                globals.cart.items = globals.cart.items.filter(item => {
-                    return item[`_id`] !== item_id;
-                });
-                calculateCartTotal(globals.cart.items);
-                element.parentNode.removeChild(element);
-                document.querySelector("#subtitle").innerHTML = `${globals.cart.items.length} items`;
-                if(globals.cart.items.length === 0){
-                    createNoItemTag(container, "No item in your cart yet");
-                    checkoutBtn.style.display = "none";
-                }
-            }else{
+
+            if (result) {
                 const element = document.querySelector(`#savedItem_${item_id}`);
                 globals.saved.items = globals.saved.items.filter(item => {
                     return item[`_id`] !== item_id;
@@ -126,6 +98,7 @@ const removeItem = function(item_id, type){
                     createNoItemTag(container, "No item saved yet");
                 }
             }
+
         } catch (error) {
             console.error(error);
         }
@@ -135,10 +108,39 @@ const removeItem = function(item_id, type){
     });
 };
 
-const createItems = function(items, type) {
+const createItems = function(items) {
     // console.log(items);
-    type = type || null;
     const container = document.querySelector("#orders-box");
+    const cartHandler = function(evt) {
+        const cartItem = globals.saved.items.find(eachItem => {
+            return eachItem['_id'] === evt.currentTarget.id.split('_')[1];
+        });
+        console.log(cartItem);
+    
+        if(getCookie("univers-username")){
+            fetch(`/api/goods/save/${getCookie("univers-username").value}/addToCart`, {
+                method: "POST",
+                body: JSON.stringify({ item: cartItem }),
+                headers: { "Content-Type" : "application/json; charset=utf-8" }
+            }).then(async response => {
+                try {
+                    let result = await response.json();
+                    if (result) displayResponse("Item has been carted successfully!");
+                } catch (error) {
+                    console.error(error);
+                }
+            }).catch(function(error) {
+                console.error(error);
+            });
+
+        }else{
+            displayResponse("You need to sign in first!");
+            setTimeout(() => {
+                window.location.href = `/login?redirect=true&redirect_url=${window.encodeURIComponent(window.location.href)}`;
+            }, 2999);
+        }
+        
+    };
     // <div class="item">
     //     <img src="/assets/images/IMG-20180120-WA0001.jpg" alt="">
     //     <div class="info cols">
@@ -162,25 +164,28 @@ const createItems = function(items, type) {
             let div10 = createComponent("div", null, ["rows", "top"]);
                 let div101 = createComponent("DIV", `${items['item-brand'] || items['categories'][0]}`, ["item-brand"]);
                 let button101 = createComponent("BUTTON", null, ["strip-btn", "icofont-close"]);
-            let span10 = createComponent("SPAN", `${items['item-name']} (x${items['item-qty']})`, ["item-name"]);
+            let span10 = createComponent("SPAN", `${items['item-name']} (x${items['item-qty']})`, ["item-name", "line-clamp", "line-clamp-2"]);
             let span11 = createComponent("SPAN", `${price}`, ["item-price"]);
             let span12 = createComponent("SPAN", null, ["item-controls"]);
-                const button120 = createComponent("BUTTON", "Save For Later");
+                const button120 = createComponent("BUTTON", "Cart Now");
 
-    const mainID = (type === "save")? `savedItem_${items['_id']}`: `cartItem_${items['_id']}`
+    const mainID = `savedItem_${items['_id']}`;
     div0.setAttribute("id", mainID);
     img0.setAttribute("id", `image_${items['_id']}`);
     img0.setAttribute("alt", `${items['item-name'].toUpperCase()}`);
     img0.setAttribute("data-src", `${items['item-image'][0]}`);
     button101.setAttribute("id", `remove_${items['_id']}`);
+    button120.setAttribute("id", `cart_${items['_id']}`);
 
     img0.addEventListener("click", function(evt){
         window.location.href = `/view/${evt.currentTarget.id.split("_")[1]}`;
     });
 
     button101.addEventListener("click", function(evt){
-        removeItem(evt.currentTarget.id.split("_")[1], type);
+        removeItem(evt.currentTarget.id.split("_")[1]);
     });
+
+    button120.addEventListener("click", cartHandler);
 
     div10 = joinComponent(div10, div101, button101);
     span12 = joinComponent(span12, button120);

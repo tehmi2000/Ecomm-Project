@@ -16,8 +16,8 @@
     width: 18rem;
     height: 100%;
     object-fit: contain;
-    background-color: #eee;
-    border: 1px solid #ccc;
+    background-color: var(--bg-image-color);
+    border: var(--image-border);
 }
 
 .control-body .item div.info{
@@ -51,6 +51,7 @@
     font-size: 1.4rem;
     /* width: 50%; */
     padding-top: 0.3rem;
+    height: auto;
 }
 
 .control-body .item .item-price{
