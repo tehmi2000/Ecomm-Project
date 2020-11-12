@@ -14,6 +14,10 @@ header [class*="section"] *{
     vertical-align: middle;
 }
 
+header [class*="section"] .middle-tab{
+    margin: 1rem;
+}
+
 header #logo{
     margin-left: 0.7rem;
     max-height: 2.25rem;

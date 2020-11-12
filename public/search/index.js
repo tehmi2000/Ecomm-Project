@@ -36,7 +36,7 @@ const fetchData = (searchQuery, formattedQuery) => {
                 });
             }
 
-            createSuggestions(document.querySelector(".pane.sug"), document.querySelector(".pane.sug #suggestion-container"));
+            // createSuggestions(document.querySelector(".pane.sug"), document.querySelector(".pane.sug #suggestion-container"));
 
         } catch (error) {
             console.log(error);
@@ -70,6 +70,23 @@ const placeAds = function(container) {
     adsDiv = joinComponent(adsDiv, script, ins);
     container.appendChild(adsDiv);
 };
+
+const loadRecentlyViewedProducts = function (sectionElement, recentProductContainer) {
+    if ('sessionStorage' in window) {
+        let noOfRecentlyViewedItems = (sessionStorage.length <= 5)? sessionStorage.length : 6;
+        if (noOfRecentlyViewedItems >= 2) {
+            recentProductContainer.innerHTML = "";
+            for (let index = 0; index < noOfRecentlyViewedItems; index++) {
+                let item = JSON.parse(sessionStorage.getItem(sessionStorage.key(index)));
+                createItem(recentProductContainer, item);
+            }
+        }else{
+            sectionElement.style.display = "none";
+        }        
+    }else{
+        sectionElement.style.display = "none";
+    }
+}
 
 const createItem = function(container, object){
 
@@ -120,11 +137,11 @@ const createItem = function(container, object){
     
     let a0 = createComponent("SPAN", null, ["item"]);
         let img0 = createComponent("IMG", null, ["lazyload"]);
-        let span0 = createComponent("SPAN", null, ["lg-100", "cols"]);
+        let span0 = createComponent("SPAN", null, ["lg-90", "cols"]);
             let span1 = createComponent("SPAN", null, ["item-name", "cols"]);
                 let span10 = createComponent("A", object["item-name"], ["strip-link", "line-clamp", "line-clamp-2"]);
-                let span11 = createComponent("SPAN", `${object["short-desc"] || 'No summary available'}`);
-            let span2 = createComponent("SPAN", null, ["item-control", "rows", "lg-100"]);
+                let span11 = createComponent("SPAN", `${object["short-desc"] || 'No summary available'}`, ["line-clamp", "line-clamp-1"]);
+            let span2 = createComponent("SPAN", null, ["item-control", "cols", "lg-100"]);
                 let span20 = createComponent("SPAN", `${price}`, ["item-number"]);
                 let span21 = createComponent("SPAN", null, ["rows", "item-buttons"]);
                     let button20 = create("BUTTON");
@@ -156,47 +173,50 @@ const createItem = function(container, object){
     container.appendChild(a0);
 };
 
-const createDummyItem = function(container, number){
+// const createDummyItem = function(container, number){
 
-    // <span class="dummy item">
-    //     <img src="#" alt="">
-    //     <span class="cols lg-80">
-    //         <span class="item-name"></span>
-    //         <span class="item-desc"></span>
-    //         <span class="bottom-wrapper rows">
-    //             <span class="item-price"></span>
-    //             <span class="rows item-buttons">
-    //                 <span></span>
-    //                 <span></span>
-    //             </span>
-    //         </span>
-    //     </span>
-    // </span>
+//     // <span class="dummy item">
+//     //     <img src="#" alt="">
+//     //     <span class="cols lg-80">
+//     //         <span class="item-name"></span>
+//     //         <span class="item-desc"></span>
+//     //         <span class="bottom-wrapper rows">
+//     //             <span class="item-price"></span>
+//     //             <span class="rows item-buttons">
+//     //                 <span></span>
+//     //                 <span></span>
+//     //             </span>
+//     //         </span>
+//     //     </span>
+//     // </span>
 
-    for(let n = 0; n < number; n++){
-        let a0 = createComponent("SPAN", null, ["dummy", "item"]);
-            let img0 = create("IMG");
-            let span0 = createComponent("SPAN", null, ["cols", "lg-80"]);
-                let span1 = createComponent("SPAN", null, ["item-name"]);
-                let span2 = createComponent("SPAN", null, ["item-desc"]);
-                let span3 = createComponent("SPAN", null, ["bottom-wrapper", "rows"]);
-                    let span4 = createComponent("SPAN", null, ["item-price"]);
-                    let span5 = createComponent("SPAN", null, ["rows", "item-buttons"]);
-                        let span6 = create("SPAN");
-                        let span7 = create("SPAN");
+//     for(let n = 0; n < number; n++){
+//         let a0 = createComponent("SPAN", null, ["dummy", "item"]);
+//             let img0 = create("IMG");
+//             let span0 = createComponent("SPAN", null, ["cols", "lg-80"]);
+//                 let span1 = createComponent("SPAN", null, ["item-name"]);
+//                 let span2 = createComponent("SPAN", null, ["item-desc"]);
+//                 let span3 = createComponent("SPAN", null, ["bottom-wrapper", "rows"]);
+//                     let span4 = createComponent("SPAN", null, ["item-price"]);
+//                     let span5 = createComponent("SPAN", null, ["rows", "item-buttons"]);
+//                         let span6 = create("SPAN");
+//                         let span7 = create("SPAN");
 
-        img0.setAttribute("src", ``);
+//         img0.setAttribute("src", ``);
 
-        span5 = joinComponent(span5, span6, span7);
-        span3 = joinComponent(span3, span4, span5);
-        span0 = joinComponent(span0, span1, span2, span3);
+//         span5 = joinComponent(span5, span6, span7);
+//         span3 = joinComponent(span3, span4, span5);
+//         span0 = joinComponent(span0, span1, span2, span3);
 
-        a0 = joinComponent(a0, img0, span0);
+//         a0 = joinComponent(a0, img0, span0);
 
-        container.appendChild(a0);
-    }
-};
+//         container.appendChild(a0);
+//     }
+// };
 
-window.onload = function () {
-    createSuggestions
-}
+window.addEventListener("load", function(){
+    const suggestionContainer = document.querySelector(".pane.sug #suggestion-container");
+    const recentContainer = document.querySelector(".pane.recent #recent-container");
+    createSuggestions(document.querySelector(".pane.sug"), suggestionContainer);
+    loadRecentlyViewedProducts(document.querySelector("section#recent-section.pane.recent"), recentContainer)
+});

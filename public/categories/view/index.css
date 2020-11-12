@@ -79,6 +79,7 @@ main h1 > *{
 }
 
 .item img{
+    display: block;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -88,6 +89,7 @@ main h1 > *{
     max-height: 16rem;
     min-height: 100%;
     object-fit: contain;
+    border: 1px solid #d1d1d2;
 }
 
 .item .item-name{
@@ -100,10 +102,10 @@ main h1 > *{
 }
 
 .item-name > *:first-child{
-    /* font-weight: 500; */
-    text-transform: uppercase;
+    text-transform: capitalize;
     padding-bottom: 0.3rem;
     line-height: 1.5;
+    height: auto;
 }
 
 .item .item-name > *, .item .item-control > *{
@@ -112,10 +114,11 @@ main h1 > *{
 }
 
 .item .item-name > *:last-child{
+    font-style: italic;
     font-size: small;
     text-align: left;
-    color: #9f9fa0;
-    margin-top: 0.5rem;
+    color: #a0a0a1;
+    /* margin-top: 0.5rem; */
 }
 
 .item .item-name > *:last-child::first-letter{
@@ -133,22 +136,20 @@ main h1 > *{
 }
 
 .item .item-number{
+    font-size: 1.6rem;
     font-weight: bold;
-    text-align: right;
     color: #333;
     padding-top: 1rem;
     margin-right: 2rem;
-    /* height: 100%; */
 }
 
 .item .item-buttons{
-    justify-content: space-between;
-    /* align-items: flex-start; */
-    padding: 1rem;
+    padding: 2rem 1rem 1rem 0;
 }
 
 .item .item-buttons button{
-    /* display: block; */
+    min-width: 80px;
+    width: 35%;
     z-index: +10;
     text-transform: capitalize;
     border: none;
@@ -158,7 +159,7 @@ main h1 > *{
     overflow: hidden;
     font-size: 1.3rem;
     margin: 0 0.45rem;
-    padding: 1rem 3rem;
+    padding: 1rem 2.5rem;
     border-radius: 3px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.26);
 }
@@ -262,7 +263,6 @@ main h1 > *{
     #item-container{
         flex-direction: column;
     }
-
     .item{
         flex-direction: row;
         width: 99%;
@@ -277,8 +277,6 @@ main h1 > *{
         height: 18rem;
         margin: auto;
         background-color: #eee;
-        border: 1px solid #dfdfdf;
-        border-right: none;
     }
 
     .item > *{

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/style.min.css">
     <link rel="stylesheet" href="/css/miniHeader.min.css">
     <link rel="stylesheet" href="/assets/icofont/icofont.min.css">
+    <link rel="stylesheet" href="/css/clamp.min.css">
     <link rel="stylesheet" href="index.min.css">
 
     <script src="/js/lib/color-thief/color-thief.min.js"></script>
@@ -61,6 +62,7 @@
 
         #no-color-element, #no-color-element *{
             color: #aaa !important;
+            font-size: 1.1rem;
         }
 
         #no-color-element, #no-color-element .nullcircle{
@@ -80,7 +82,7 @@
             height: 4rem;
             margin-right: 0.5rem;
             background-color: #e0e0e0;
-            border-radius: 50%;
+            border-radius: 50% 0 0 50%;
         }
     </style>
     <header>
@@ -122,8 +124,11 @@
         <div class="rows bg-image-container">
             <div class="rows card-container">
                 <div class="cols product-card">
-                    <h1 class="product-name">---</h1>
-                    <div class="product-short-desc">Short description text appears here</div>
+                    <div class="lg-100">
+                        <h1 class="line-clamp line-clamp-3 product-name">---</h1>
+                        <div class="product-short-desc">Short description text appears here</div>
+                    </div>
+                    
                     <div class="rows slide-container">
                         <div id="product-pic" class="rows product-img">
                             <div class="rows slider-buttons">
@@ -145,7 +150,7 @@
                     </div>
     
                     <div class="product-info tab-wrapper">
-                        <div class="nav-tabs">
+                        <div class="rows nav-tabs">
                             <span class="nav-tab active" data-id="description">Description</span>
                             <span class="nav-tab" data-id="about-vendor">About Vendor</span>
                         </div>
@@ -208,7 +213,7 @@
                     </div>
     
                     <div>
-                        <div class="product-controls">
+                        <div class="rows product-controls">
                             <button class="strip-btn">Save Item</button>
                             <button class="strip-btn">ADD TO CART</button>
                         </div>                 

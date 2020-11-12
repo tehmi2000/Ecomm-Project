@@ -149,6 +149,15 @@ const createNav = function(number, img, active) {
     container.appendChild(span0);
 };
 
+const addToRecentlyViewedItems = function (item) {
+    if ('sessionStorage' in window) {
+        let keyNumber = item['_id'];
+        sessionStorage.setItem(`product-${keyNumber}`, JSON.stringify(item));
+    }
+
+    return;
+}
+
 const fetchProduct = function () {
     fetch(`/api/goods/${itemID}`).then(async function(response) {
         try {
@@ -258,4 +267,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ct = new ColorThief();
     loadNeededElement();
     fetchProduct();
+});
+
+window.addEventListener("load", function(){
+
+    addToRecentlyViewedItems(globalItem);
 });
