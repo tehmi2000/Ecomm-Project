@@ -154,7 +154,7 @@ const addToRecentlyViewedItems = function (item) {
         let keyNumber = item['_id'];
         sessionStorage.setItem(`product-${keyNumber}`, JSON.stringify(item));
     }
-
+    console.log("Session Supported:", 'sessionStorage' in window)
     return;
 }
 
@@ -168,7 +168,6 @@ const fetchProduct = function () {
                 alert(item.message);
             }else{
                 globalItem = item;
-                // console.log(item);
                 document.title = `Univers | ${item["item-name"].toUpperCase()}`;
     
                 allFields["saveBtn"].id = `save_${globalItem["_id"]}`;
@@ -269,7 +268,19 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchProduct();
 });
 
-window.addEventListener("load", function(){
-
-    addToRecentlyViewedItems(globalItem);
+window.addEventListener("load", function(ev){
+    let productCheckInterval = null;
+    if (globalItem === null) {
+        productCheckInterval = setInterval(() => {
+            if (globalItem !== null) {
+                addToRecentlyViewedItems(globalItem);
+                clearInterval(productCheckInterval);
+                productCheckInterval = undefined;
+            }
+        }, 1500);
+    }
+    
+    else{
+        addToRecentlyViewedItems(globalItem);
+    }
 });
